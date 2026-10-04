@@ -685,3 +685,9 @@
   .coin-title { view-transition-name: coin-title; width: fit-content; }
   .case-hero.coinop h1 { white-space: nowrap; }   /* keep "Coin-Op" from breaking at the hyphen */
   .preview.wide { width: 400px; right: -70px; border-radius: 14px; }
+  /* Coin-Op: text on top, the dashboard full width underneath, so it's big enough to read */
+  .case-hero.coinop { grid-template-columns: minmax(0, 1fr); }
+  .case-hero.coinop .copy { padding-bottom: 0; }
+  .case-hero.coinop .copy p { max-width: 640px; }
+  .case-hero.coinop .shot { padding: clamp(24px, 4vw, 44px) clamp(20px, 4vw, 56px) clamp(24px, 4vw, 44px); }
+  .case-hero.coinop .shot img { width: min(100%, 900px); }
