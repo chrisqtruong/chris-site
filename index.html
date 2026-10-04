@@ -302,7 +302,7 @@ async function runDemo() {
 }
 
 /* ---------- live mode: real translation, same free endpoint Vox2 uses ---------- */
-let ctl, timer;
+let ctl, timer, detectedLang = null;
 async function translate(text) {
   ctl?.abort(); ctl = new AbortController();
   vox.classList.add('busy');
@@ -316,7 +316,7 @@ async function translate(text) {
     const first = Array.isArray(j) ? j[0] : '';
     const [out, detected] = Array.isArray(first) ? first : [first];
     renderDst(out || '');
-    if (sl === 'auto' && detected) srcInput.placeholder = `detected: ${LANGS[detected] || detected}`;
+    if (sl === 'auto' && detected) { detectedLang = detected; srcInput.placeholder = `detected: ${LANGS[detected] || detected}`; }
     let roman = await romanP;
     roman = /^[\x00-\u024f\s'.,!?-]*$/.test(roman) && roman !== out ? roman : '';
     // back-translate into the source language and score it
@@ -381,12 +381,19 @@ srcInput.addEventListener('focus', () => goLive());
 srcInput.addEventListener('input', onInput);
 document.querySelector('[data-clear]').onclick = () => { goLive(); srcInput.value = ''; onInput(); };
 srcSel.onchange = dstSel.onchange = () => { if (vox.classList.contains('live') && srcInput.value) translate(srcInput.value); };
+// Swap, like the app: the languages trade places and the translation becomes the new text to translate.
+// Works mid-intro too: it stops the intro and carries on live from whatever was on screen.
 document.getElementById('swap').onclick = () => {
-  if (srcSel.value === 'auto') srcSel.value = 'en';
-  const a = srcSel.value; srcSel.value = dstSel.value; dstSel.value = a; sizeSel(srcSel); sizeSel(dstSel);
-  if (vox.classList.contains('live')) {
-    const out = dstText.textContent; srcInput.value = out; onInput();
-  }
+  const live = vox.classList.contains('live');
+  const from = srcSel.value === 'auto' ? (detectedLang || 'en') : srcSel.value, to = dstSel.value;
+  // mid-intro, take the whole sentence being shown (the screen may only have part of it typed so far)
+  const out = (!live && curLine ? curLine.out : dstText.textContent).trim();
+  if (!live) goLive(false);
+  srcSel.value = to; dstSel.value = from; sizeSel(srcSel); sizeSel(dstSel);
+  srcInput.value = out;
+  onInput();
+  srcInput.focus();
+  srcInput.setSelectionRange(out.length, out.length);
 };
 document.querySelector('[data-copy]').onclick = () => navigator.clipboard?.writeText(dstText.textContent);
 /* ---------- the most natural voice this browser has for a language ---------- */

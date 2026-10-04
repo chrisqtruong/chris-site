@@ -165,7 +165,7 @@
   .match-tip .tier.mid i { color: var(--v-text); }
   .match-tip .tier.low i { color: #ffb4a2; }
 
-  .divider { position: relative; height: 1px; margin: 0 22px; background: var(--v-line); transition: background-color .7s; }
+  .divider { position: relative; z-index: 2; height: 1px; margin: 0 22px; background: var(--v-line); transition: background-color .7s; }   /* above the panes, or the lower pane's header swallows clicks on the swap button */
   .swap {
     position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
     width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
