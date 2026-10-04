@@ -623,3 +623,16 @@
   }
   .ld-fix { box-shadow: inset 3px 0 0 var(--v-main); }
   .ladder .ld-fix .ld-out b { display: inline; margin: 0; font: inherit; font-weight: 700; color: var(--v-main); }
+
+  /* ---------- "where vox2 is heading": tiny illustrations of live captions and a document being checked ---------- */
+  .decision .small { font-size: 14.5px; color: var(--soft); margin-top: 12px !important; }
+  .demo.captions { display: grid; gap: 4px; }
+  .demo.captions .cap.old { opacity: .3; }
+  .demo.captions .cap.mid { opacity: .6; }
+  .demo.docrows { display: grid; gap: 8px; padding: 14px; }
+  .docrows .row { display: grid; grid-template-columns: 4px 1fr 1fr; gap: 10px; align-items: center; }
+  .docrows .row i { height: 22px; border-radius: 2px; background: var(--v-main); opacity: .9; }
+  .docrows .row.flag i { background: #ff8b78; }
+  .docrows .l, .docrows .r { height: 8px; border-radius: 4px; background: var(--v-text); opacity: .3; }
+  .docrows .r { opacity: .55; }
+  .docrows .row.flag .r { background: #ff8b78; opacity: .8; }
