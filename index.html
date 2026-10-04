@@ -531,21 +531,37 @@ srcInput.addEventListener('input', () => { if (readBtn) stopReading(); });   // 
 
 /* ---------- project list: on a computer, the project's clip fades in beside the line you hover ---------- */
 const preview = document.querySelector('#projects .preview');
-let previewOff;
+// Moving between rows: fade the current picture out, swap in the next one only once it has
+// loaded (with its own size and position), then fade it in, so no half-switched frame shows.
+let previewOff, previewTurn = 0, hiddenAt = 0;
 document.querySelectorAll('#projects .row').forEach(row => {
   row.addEventListener('mouseenter', () => {
     clearTimeout(previewOff);
+    const turn = ++previewTurn;
     const p = row.dataset.preview;
-    // GIFs load only on hover, and are dropped after fading out, so they cost nothing otherwise
-    // Vox2 shows the recording in whatever theme the hero is on right now
-    preview.src = p === 'vox2' ? `/assets/vox2/${currentVoxTheme}.gif` : p;
-    preview.classList.toggle('wide', row.hasAttribute('data-wide'));   // landscape pictures get a wider box
-    preview.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
-    preview.classList.add('show');
+    const src = p === 'vox2' ? `/assets/vox2/${currentVoxTheme}.gif` : p;   // Vox2: the hero's current theme
+    const show = async () => {
+      const img = new Image();
+      img.src = src;
+      try { await img.decode(); } catch {}
+      if (turn !== previewTurn) return;   // the pointer already moved on
+      preview.src = src;
+      preview.classList.toggle('wide', row.hasAttribute('data-wide'));   // landscape pictures get a wider box
+      preview.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
+      preview.classList.add('show');
+    };
+    // let the old picture finish fading first (it may already be fading if the pointer just left a row)
+    const fading = preview.classList.contains('show') ? 140 : Math.max(0, 140 - (performance.now() - hiddenAt));
+    if (preview.getAttribute('src') && !preview.src.endsWith(src) && fading > 0) {
+      preview.classList.remove('show');
+      previewOff = setTimeout(show, fading);
+    } else show();
   });
   row.addEventListener('mouseleave', () => {
+    const turn = ++previewTurn;
     preview.classList.remove('show');
-    previewOff = setTimeout(() => preview.removeAttribute('src'), 400);
+    hiddenAt = performance.now();
+    previewOff = setTimeout(() => { if (turn === previewTurn) preview.removeAttribute('src'); }, 300);
   });
 });
 
