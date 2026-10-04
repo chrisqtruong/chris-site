@@ -217,6 +217,13 @@ if (navEl) {
   setNavH();
   new ResizeObserver(setNavH).observe(navEl);
   document.fonts?.ready.then(setNavH);
+  // once the page moves, the bar turns see-through with a hairline under it, so content glides beneath.
+  // Watched with an IntersectionObserver on a 1px marker at the top: no work on each scroll frame.
+  const top = document.createElement('div');
+  top.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:8px;pointer-events:none';
+  top.setAttribute('aria-hidden', 'true');
+  document.body.prepend(top);
+  new IntersectionObserver(([e]) => navEl.classList.toggle('scrolled', !e.isIntersecting)).observe(top);
 }
 
 /* ---------- light / dark mode ---------- */
@@ -412,4 +419,86 @@ if (document.querySelector('.toc') || document.getElementById('vox')) {
   const mark = document.querySelector('.toc') || document.getElementById('vox'), foot = document.querySelector('footer');
   new IntersectionObserver(([e]) => btn.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(mark);
   if (foot) new IntersectionObserver(([e]) => btn.classList.toggle('lift', e.isIntersecting)).observe(foot);
+}
+
+/* ---------- hand-drawn marker: circles or underlines whatever is selected ----------
+   One wobbly stroke, like a thick marker going around a word: it overshoots where it closes and is never quite even.
+   Each item keeps its own wobble (seeded by its label), so it doesn't change shape on every redraw. */
+const SVGNS = 'http://www.w3.org/2000/svg';
+function seeded(str) {
+  let h = 2166136261;
+  for (const c of str) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+  return () => ((h = Math.imul(h ^ (h >>> 15), 2246822507) ^ Math.imul(h ^ (h >>> 13), 3266489909)) >>> 0) / 4294967296;
+}
+// smooth curve through points (Catmull-Rom as cubic Béziers)
+const smooth = pts => pts.reduce((d, p, i) => {
+  if (!i) return `M${p[0].toFixed(1)} ${p[1].toFixed(1)}`;
+  const p0 = pts[i - 2] || pts[i - 1], p1 = pts[i - 1], p3 = pts[i + 1] || p;
+  const c1 = [p1[0] + (p[0] - p0[0]) / 6, p1[1] + (p[1] - p0[1]) / 6], c2 = [p[0] - (p3[0] - p1[0]) / 6, p[1] - (p3[1] - p1[1]) / 6];
+  return `${d} C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`;
+}, '');
+function loopPath(w, h, pad, rnd, round = false) {
+  // a rounded-rectangle-ish loop that starts top left, goes once around, and overshoots past where it began
+  const cx = w / 2, cy = h / 2, rx = w / 2 + pad, ry = h / 2 + pad * .8;
+  const start = Math.PI * (1.1 + rnd() * .15), sweep = Math.PI * 2 * (1.09 + rnd() * .05), n = 30;
+  const ph = [rnd() * 6, rnd() * 6], drift = 2 + rnd() * 2.5;   // drift: the loop doesn't land back on itself
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n, a = start + sweep * t;
+    const c = Math.cos(a), s = Math.sin(a);
+    const sq = p => Math.sign(p) * Math.abs(p) ** (round ? 1 : .62);   // a pill gets a squarer loop that hugs it; a dot gets a circle
+    const wob = 1 + .025 * Math.sin(a * 2 + ph[0]) + .02 * Math.sin(a * 3 + ph[1]);
+    pts.push([cx + rx * sq(c) * wob, cy + ry * sq(s) * wob - drift * t + drift / 2]);
+  }
+  return smooth(pts);
+}
+function underPath(w, h, rnd) {
+  const y = h + 4, tilt = (rnd() - .5) * 3, pts = [];
+  for (let i = 0; i <= 6; i++) { const t = i / 6; pts.push([-3 + (w + 8) * t, y + tilt * t + Math.sin(t * Math.PI) * (1 + rnd()) + (rnd() - .5) * .8]); }
+  pts.push([w + 8, y + tilt - 3 - rnd() * 2]);   // the little flick up at the end
+  return smooth(pts);
+}
+function drawMarker(el, shape) {
+  el.querySelector(':scope > svg.marker')?.remove();
+  const w = el.offsetWidth, h = el.offsetHeight;
+  if (!w || !h) return;
+  const rnd = seeded(el.textContent + el.dataset.t + shape), pad = shape === 'ring' ? 5 : 6, m = 14;
+  const svg = document.createElementNS(SVGNS, 'svg');
+  svg.setAttribute('class', `marker ${shape}`);
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('viewBox', `${-m} ${-m} ${w + m * 2} ${h + m * 2}`);
+  Object.assign(svg.style, { left: `${-m}px`, top: `${-m}px`, width: `${w + m * 2}px`, height: `${h + m * 2}px` });
+  const path = document.createElementNS(SVGNS, 'path');
+  path.setAttribute('d', shape === 'under' ? underPath(w, h, rnd) : loopPath(w, h, pad, rnd, shape === 'ring'));
+  svg.append(path);
+  el.append(svg);
+  return path;
+}
+// Keeps a marker on the selected item inside `container`. `selector` finds the selected one, e.g. '[aria-selected="true"]'.
+export function markSelected(container, selector, shape = 'loop') {
+  if (!container) return;
+  let current = null, drawn = '';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const update = (animate) => {
+    const el = container.querySelector(selector);
+    const key = el && `${el.offsetWidth}x${el.offsetHeight}`;
+    if (el === current && key === drawn) return;
+    if (current && current !== el) current.querySelector(':scope > svg.marker')?.remove();
+    current = el; drawn = key;
+    if (!el) return;
+    const path = drawMarker(el, shape);
+    if (path && animate && !reduce) {   // drawn in, like a quick stroke of the pen
+      const len = path.getTotalLength();
+      path.style.strokeDasharray = len; path.style.strokeDashoffset = len;
+      path.getBoundingClientRect();
+      path.style.transition = 'stroke-dashoffset .38s cubic-bezier(.4, 0, .2, 1)';
+      path.style.strokeDashoffset = 0;
+    }
+  };
+  // fonts arriving or the window resizing changes the item's size, so redraw to fit
+  const ro = new ResizeObserver(() => update(false));
+  new MutationObserver(() => { update(true); if (current) ro.observe(current); }).observe(container, { subtree: true, attributes: true, attributeFilter: ['aria-selected', 'aria-pressed'] });
+  update(false);
+  if (current) ro.observe(current);
+  document.fonts?.ready.then(() => update(false));
 }

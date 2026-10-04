@@ -85,9 +85,11 @@
     position: fixed; inset: 0 0 auto 0; z-index: 10;
     display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
     padding: var(--nav-pad, 24px) var(--gutter);   /* same space above and below: the row sits centered between the window's top edge and the first box */
-    /* nearly solid instead of a frosted blur: a blur behind a fixed bar is redone on every scroll frame */
-    background: var(--paper);   /* solid: nothing to blend with the content moving underneath */
+    background: var(--paper);
+    transition: background-color .35s ease, box-shadow .35s ease;
   }
+  /* scrolled: see-through, so the page moves under it. Plain transparency, no blur: a blur is redone every frame, this costs nothing */
+  nav.scrolled { background: color-mix(in srgb, var(--paper) 84%, transparent); box-shadow: 0 1px 0 var(--hair); }
   nav .name { font: var(--head-w) calc(34px * var(--head-scale))/1 var(--display); letter-spacing: var(--head-track); text-decoration: none; white-space: nowrap; }
   nav .name i { color: var(--name-color, var(--accent)); transition: color .6s; }   /* matches the Vox2 color on the page */
   /* nav links in the same face as the name, a size down, so the header reads as one piece */
@@ -308,6 +310,8 @@
   .theme-row button { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--v-line); cursor: pointer; padding: 0; transition: transform .15s, border-color .6s; }
   .theme-row button:hover { transform: scale(1.25); }
   .theme-row button[aria-pressed="true"] { border-color: var(--v-text); }
+  .theme-row button { position: relative; }
+  .case-hero .theme-row { --marker: var(--v-on-main); }   /* on the colored hero, draw in the hero's ink */
   .case-hero .copy { padding: clamp(28px, 5vw, 72px); align-self: center; }
   .case-hero h1 { font: var(--head-w) calc(clamp(52px, 12vw, 150px) * (var(--head-scale) + .1))/.95 var(--display); margin: 0 0 20px; letter-spacing: var(--head-track); }
   .case-hero .copy p { font-size: clamp(20px, 1.8vw, 25px); margin: 0 0 26px; opacity: .9; max-width: 520px; }
@@ -556,6 +560,7 @@
   .ladder.live li { cursor: pointer; border-radius: 10px; }
   .ladder.live li:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
   .ladder.live li[aria-pressed="true"] b { color: var(--accent); }
+  .ladder.live b { position: relative; width: fit-content; }
   .ladder.live li:hover b { color: var(--ink); }
   .ladder.live li[aria-pressed="true"]:hover b { color: var(--accent); }
   .ladder-demo { margin-top: 20px; padding: 18px 20px; border-radius: 16px; background: var(--tint); display: grid; gap: 10px; }
@@ -569,10 +574,10 @@
   .ld-badge.high { color: var(--v-main); }
   .ld-badge.low { color: #ff8b78; }
   .ld-verdict { margin: 0 !important; font-size: var(--t-cap); }
-  .trend-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -4px 0 14px; }
-  .trend-tabs button { font: 500 12.5px var(--mono); padding: 6px 12px; border-radius: 99px; border: 1px solid var(--hair); background: none; color: var(--soft); cursor: pointer; transition: color .2s, border-color .2s, background-color .2s; }
-  .trend-tabs button:hover { color: var(--ink); }
-  .trend-tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--paper); }
+  .trend-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 2px 0 18px; }
+  .trend-tabs button { position: relative; font: 500 12.5px var(--mono); padding: 6px 12px; border: 0; background: none; color: var(--soft); cursor: pointer; transition: color .2s; }
+  .trend-tabs button:hover { color: var(--ink); text-decoration: underline dotted; text-underline-offset: 4px; }
+  .trend-tabs button[aria-selected="true"] { color: var(--ink); text-decoration: none; }   /* the hand-drawn loop marks it */
   .trend-good { font: 500 11.5px var(--mono); color: var(--soft); margin-left: 6px; }
   .trend.live .pts circle { cursor: pointer; outline: none; transition: r .15s; }
   .trend.live .pts circle.on, .trend.live .pts circle:hover { r: 7.5; fill: var(--accent); }
@@ -707,3 +712,12 @@
   :root { --peek: 104px; }
   #about.quiet { padding-top: 22px; }
   @media (max-width: 640px) { :root { --peek: 108px; } }
+
+  /* ---------- hand-drawn marker on whatever is selected (drawn by markSelected in site.js) ---------- */
+  .marker { position: absolute; pointer-events: none; overflow: visible; }
+  .marker path { fill: none; stroke: var(--marker, var(--accent)); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; transition: stroke .6s; }
+  .marker.ring path { stroke-width: 2.2; }
+
+  /* ---------- project pages: one spacing rhythm. 20px between paragraphs, 32px between text and a block (cards, lists, charts) ---------- */
+  .chapter p + .roadmap, .chapter p + .decisions { margin-top: 32px; }
+  .chapter .roadmap + p, .chapter .decisions + p { margin-top: 32px; }

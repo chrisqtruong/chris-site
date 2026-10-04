@@ -211,7 +211,7 @@
 
 <script type="module" src="/assets/vox2-charts.js"></script>
 <script type="module">
-import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot, markSelected } from '/assets/site.js';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
 const names = SITE_THEMES;
@@ -221,6 +221,9 @@ themeDots(document.getElementById('themeRow2'), names, pick);
 const start = SITE_THEMES.includes(pickedVoxTheme()) ? pickedVoxTheme() : SITE_THEMES[0];
 applyVoxTheme(start, 'main');
 showVoxShot(start);
+// the theme in use gets a hand-drawn ring
+markSelected(document.getElementById('themeRow'), 'button[aria-pressed="true"]', 'ring');
+markSelected(document.getElementById('themeRow2'), 'button[aria-pressed="true"]', 'ring');
 // the recordings are small; fetch them now so switching is instant
 addEventListener('load', () => names.forEach(n => { new Image().src = `/assets/vox2/${n}.gif`; }));
 </script>

@@ -1,6 +1,8 @@
 /* The two testing graphics on the Vox2 page, made interactive.
    Both draw in var(--accent), so they follow the theme picker. Without JS the static versions stay. */
 
+import { markSelected } from '/assets/site.js';
+
 /* ---------- the ladder: click a level to see what it would show you for one real kind of mistake ---------- */
 // The example: "I can't make it to dinner tonight" → Spanish, with the "not" dropped (meaning reversed).
 const LEVELS = [
@@ -44,6 +46,7 @@ if (ladder) {
   });
   ladder.classList.add('live');
   show(items.findIndex(li => li.classList.contains('here')));
+  markSelected(ladder.querySelector('ol'), 'li[aria-pressed="true"] b', 'under');   // a hand-drawn underline on the step you're looking at
 }
 
 /* ---------- the chart: three measures across the test runs, with details on each point ---------- */
@@ -141,4 +144,5 @@ if (trend) {
   });
   trend.classList.add('live');
   select('caught');
+  markSelected(tabs, 'button[aria-selected="true"]', 'loop');   // circled by hand, like picking one off a list
 }
