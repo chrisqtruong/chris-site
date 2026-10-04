@@ -46,16 +46,16 @@
 
   /* ---------- dark mode: warm near-black, soft off-white, high contrast ---------- */
   :root[data-mode="dark"] {
-    --paper: #131214;
+    --paper: #222126;        /* graphite: softer than black, still darker than every hero window but Bento */
     --ink: #f2efea;
-    --soft: #a8a49d;
-    --hair: #2d2b2e;
+    --soft: #aba79f;
+    --hair: #38363c;
     --body-ink: #dcd8d1;
-    --tint: #1d1c1f;
+    --tint: #2b2a30;
     --accent: var(--name-d, #ff7aa2);
     --name-color: var(--accent);
     --sel-ink: var(--sel-ink-d, #131214);
-    --purr-bg: #1f1d38; --purr-ink: #f3e9dc; --purr-btn: #c98b4f;   /* Purrmodoro's own night colors */
+    --purr-bg: #2a2748; --purr-ink: #f3e9dc; --purr-btn: #c98b4f;   /* Purrmodoro's own night colors, a step lighter than the page */
     --site-bg: #e9df73;
     --todo-bg: rgba(255, 224, 102, .2);
     color-scheme: dark;

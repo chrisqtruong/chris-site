@@ -109,7 +109,7 @@ const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((p
 export const onMain = name => { const [bg, main] = THEMES[name]; return contrast(bg, main) >= 4.5 ? bg : '#1d1a1f'; };
 // The same hue, deepened (on the white page) or lifted (on the dark page) only as much as needed
 // to read against it (3:1, fine for large text and accents).
-const PAPER = { light: '#ffffff', dark: '#131214' };
+const PAPER = { light: '#ffffff', dark: '#222126' };
 function readableOn(hex, mode) {
   // work in hue / saturation / lightness, so only lightness moves and the color keeps its character
   const n = parseInt(hex.slice(1), 16);
@@ -189,8 +189,8 @@ function setPageColors(colors) {
 try { const c = JSON.parse(sessionStorage.getItem('pageColors')); if (c) setPageColors(c); } catch {}
 
 /* ---------- light / dark mode ---------- */
-// The page starts in the visitor's system mode (set before first paint, in each page's <head>);
-// the toggle overrides it and is remembered on this device.
+// The site opens in dark (set before first paint, in each page's <head>);
+// the toggle switches to light and is remembered on this device.
 const modeBtn = document.getElementById('modeToggle');
 const currentMode = () => document.documentElement.dataset.mode;
 const labelMode = () => modeBtn?.setAttribute('aria-label', currentMode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
@@ -210,11 +210,7 @@ if (modeBtn) {
     setMode(mode);
   };
 }
-// follow the system while the visitor hasn't chosen
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-  let chosen = null; try { chosen = localStorage.getItem('mode'); } catch {}
-  if (!chosen) setMode(e.matches ? 'dark' : 'light');
-});
+
 
 /* ---------- footer: "Say hi, in ___" cycles through greetings, resting on English ---------- */
 // [hi, the language in its own words, lang code, script class]
