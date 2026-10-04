@@ -650,7 +650,7 @@
   .to-top.show:hover { transform: rotate(4deg) scale(1.08); }
   .to-top svg { width: 100%; height: 100%; display: block; }
   .to-top .blob { fill: var(--accent); transition: fill .6s; }
-  .to-top .up { stroke: var(--paper); }
+  .to-top .up { stroke: var(--sel-ink); }
   .to-top:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 50%; }
   .to-top.lift { bottom: 110px; }   /* stays clear of the footer links (and the cat) at the very bottom */
   @media (max-width: 820px) { .toc { padding-top: 22px; } .to-top { right: 14px; bottom: 14px; width: 48px; height: 48px; } }
@@ -660,3 +660,14 @@
   .tools button[aria-pressed="true"] { color: var(--v-main); }
   .vox.live.reading-src #srcText { display: block; }
   .vox.live.reading-src .input { visibility: hidden; }
+
+  /* light/dark toggle: a quiet hand-drawn dot that fills with the theme color on hover (like the back-to-top arrow) */
+  .mode { position: relative; border: 0; width: 38px; height: 38px; color: var(--soft); }
+  .mode .mode-blob { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-8deg); transition: transform .3s cubic-bezier(.3, 1.4, .5, 1); }
+  .mode .mode-blob path { fill: color-mix(in srgb, var(--accent) 13%, transparent); transition: fill .25s; }
+  .mode svg.moon, .mode svg.sun { position: relative; width: 18px; height: 18px; stroke-width: 2.3; }
+  .mode:hover { color: var(--sel-ink); border: 0; }   /* white or near-black, whichever reads on the theme color */
+  .mode:hover .mode-blob { transform: rotate(4deg) scale(1.06); }
+  .mode:hover .mode-blob path { fill: var(--accent); }
+  .mode:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 50%; }
+  @media (max-width: 360px) { .mode { width: 32px; height: 32px; } }

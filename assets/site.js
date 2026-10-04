@@ -218,6 +218,8 @@ function setMode(mode) {
   } else apply();
 }
 if (modeBtn) {
+  // the same hand-drawn dot as the tab icon and the back-to-top arrow, kept quiet until you hover
+  modeBtn.insertAdjacentHTML('afterbegin', `<svg class="mode-blob" viewBox="0 0 64 64" aria-hidden="true"><path d="${DOT}"/></svg>`);
   labelMode();
   modeBtn.onclick = () => {
     const mode = currentMode() === 'dark' ? 'light' : 'dark';
