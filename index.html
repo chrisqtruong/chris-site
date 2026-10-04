@@ -88,7 +88,7 @@
   <ul class="index">
     <li><a class="row" href="/projects/vox2/" data-preview="vox2"><span class="t vox2-title">Vox2</span><span class="d">A tiny two-way translator for your desktop</span><span class="arrow">→</span></a></li>
     <li><a class="row" href="/projects/purrmodoro/" data-preview="/assets/purrmodoro-demo.gif"><span class="t purr-title">Purrmodoro</span><span class="d">A focus timer with a cat, made for my wife</span><span class="arrow">→</span></a></li>
-    <li><a class="row" href="/projects/coin-op/" data-preview="/assets/coinop-mock.svg"><span class="t coin-title">Coin-Op</span><span class="d">A tiny pixel tracker of where my AI credits go</span><span class="arrow">→</span></a></li>
+    <li><a class="row" href="/projects/coin-op/" data-preview="/assets/coinop-mock.svg" data-wide><span class="t coin-title">Coin-Op</span><span class="d">A tiny pixel tracker of where my AI credits go</span><span class="arrow">→</span></a></li>
   </ul>
   <img class="preview" alt="" aria-hidden="true">
 </section>
@@ -539,6 +539,7 @@ document.querySelectorAll('#projects .row').forEach(row => {
     // GIFs load only on hover, and are dropped after fading out, so they cost nothing otherwise
     // Vox2 shows the recording in whatever theme the hero is on right now
     preview.src = p === 'vox2' ? `/assets/vox2/${currentVoxTheme}.gif` : p;
+    preview.classList.toggle('wide', row.hasAttribute('data-wide'));   // landscape pictures get a wider box
     preview.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
     preview.classList.add('show');
   });

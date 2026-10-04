@@ -684,3 +684,4 @@
   .case-hero.coinop, .c-coin { view-transition-name: coin-card; }
   .coin-title { view-transition-name: coin-title; width: fit-content; }
   .case-hero.coinop h1 { white-space: nowrap; }   /* keep "Coin-Op" from breaking at the hyphen */
+  .preview.wide { width: 400px; right: -70px; border-radius: 14px; }
