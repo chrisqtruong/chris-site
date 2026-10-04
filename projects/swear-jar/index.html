@@ -50,7 +50,9 @@
     <h1 class="coin-title">Swear Jar</h1>
     <p>A swear jar for my AI habit. It’s a tiny pixel dashboard of where my credits go while I build Vox2, my lightweight desktop translator: day by day, by focus area, and against its roadmap.</p>
     <div class="btns">
-      <a class="btn solid" href="https://github.com/chrisqtruong/swear-jar" target="_blank" rel="noopener">See it on GitHub</a>
+      <a class="btn solid" href="https://github.com/chrisqtruong/swear-jar#make-your-own" target="_blank" rel="noopener">Make your own, free</a>
+      <a class="btn" href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">Download</a>
+      <a class="btn" href="https://github.com/chrisqtruong/swear-jar" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
   <figure class="shot"><img src="/assets/coinop-dashboard.svg" width="560" height="280" alt="Swear Jar dashboard illustration: credits spent, tokens, days and turns, and a pixel-block chart of spend per day colored by focus area (mock data)"><figcaption>Illustration with mock data</figcaption></figure>
@@ -58,8 +60,8 @@
 
 <dl class="facts">
   <div><dt>Role</dt><dd>Product, design &amp; build</dd></div>
-  <div><dt>What it reads</dt><dd>Claude Code’s own logs, on my computer</dd></div>
-  <div><dt>Status</dt><dd>Open source · personal tool</dd></div>
+  <div><dt>What it reads</dt><dd>Claude Code’s own logs, on your computer</dd></div>
+  <div><dt>Status</dt><dd>Free &amp; open source · v0.2.0</dd></div>
   <div><dt>Built with</dt><dd>Python · HTML/CSS/JS · Claude Code</dd></div>
 </dl>
 
@@ -78,7 +80,21 @@
     <div class="num">Private</div>
     <div>
       <h2>private by design</h2>
-      <p>Everything is read on my own computer. Only totals per day and focus area are published; never what I asked or what Claude wrote.</p>
+      <p>Everything is read on your own computer. If you choose to publish, only totals per day and focus area go up; never your prompts or what Claude wrote.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Yours</div>
+    <div>
+      <h2>make your own</h2>
+      <p>Swear Jar is free and open source. If you build with Claude Code, it can watch your project too: it starts with general focus areas (features, bugs, tests, docs…) that you can rename, and a roadmap is optional.</p>
+      <ol class="roadmap">
+        <li><span><b>Download it.</b> Grab <a href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">swear-jar.zip</a> and unzip it. You need Python 3.9 or newer; nothing else to install.</span></li>
+        <li><span><b>Run setup.</b> <code>python3 swearjar.py setup</code> lists the projects Claude Code has worked on, with what each cost, and asks which one to track.</span></li>
+        <li><span><b>Open it.</b> Your dashboard lives at localhost:8642, and on the web too if you give it a GitHub repo.</span></li>
+      </ol>
+      <p><a href="https://github.com/chrisqtruong/swear-jar#make-your-own" target="_blank" rel="noopener">Full instructions on GitHub&nbsp;↗</a></p>
     </div>
   </div>
 </section>

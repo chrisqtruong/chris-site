@@ -730,3 +730,7 @@
 
   /* on the dark page, a faint edge keeps the Vox2 window distinct even when its theme is a dark one */
   :root[data-mode="dark"] .vox { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }
+
+  /* a command to type, inside running text */
+  code { font: 500 .82em var(--mono); background: var(--tint); padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
+  :root[data-mode="dark"] .case-hero.coinop { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }   /* dark card on a dark page: keep its edge */
