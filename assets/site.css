@@ -39,7 +39,8 @@
   }
   a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: color .2s; }
   a:hover { color: var(--accent); }
-  ::selection { background: var(--accent); color: var(--paper); }
+  /* highlighted text takes the current Vox2 theme color (same as "Truong"); it's kept readable against the page in both modes */
+  ::selection { background: var(--name-color); color: var(--paper); }
 
   /* ---------- dark mode: warm near-black, soft off-white, high contrast ---------- */
   :root[data-mode="dark"] {
