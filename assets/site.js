@@ -187,11 +187,12 @@ function setPageColors(colors) {
   for (const [k, v] of Object.entries(colors)) document.documentElement.style.setProperty(k, v);
   try { sessionStorage.setItem('pageColors', JSON.stringify(colors)); } catch {}
 }
-// The browser-tab icon: a small circle with a serif "c", in the current theme color.
+// The browser-tab icon: a hand-drawn dot in the current theme color (same shape as /favicon.svg).
+const DOT = 'M58.5 22.0C59.2 23.3 59.7 24.6 60.3 26.0C60.9 27.3 62.1 28.7 62.2 30.1C62.4 31.5 61.6 33.0 61.4 34.5C61.3 35.9 61.7 37.5 61.3 38.8C60.9 40.2 60.1 41.6 59.3 42.8C58.4 44.0 57.2 45.0 56.3 46.2C55.4 47.3 55.0 48.7 53.9 49.7C52.8 50.6 51.2 51.0 50.0 51.8C48.8 52.6 47.9 53.8 46.7 54.5C45.4 55.1 43.9 55.3 42.5 55.7C41.2 56.1 39.9 56.6 38.5 57.0C37.1 57.4 35.8 57.8 34.4 58.2C32.9 58.5 31.4 59.0 30.0 58.9C28.6 58.7 27.2 57.7 25.8 57.3C24.4 56.9 23.1 56.6 21.7 56.2C20.3 55.8 18.9 55.4 17.5 54.9C16.2 54.3 14.8 53.6 13.7 52.7C12.7 51.8 11.9 50.5 11.1 49.4C10.3 48.3 9.7 47.1 8.8 46.0C8.0 44.9 6.4 44.0 5.9 42.8C5.4 41.5 6.2 39.9 5.7 38.6C5.3 37.2 3.7 36.1 3.3 34.8C3.0 33.5 3.6 32.0 3.7 30.6C3.8 29.2 3.8 27.8 4.0 26.4C4.2 25.0 4.5 23.6 4.9 22.3C5.3 20.9 5.8 19.5 6.4 18.1C7.0 16.7 7.4 15.1 8.4 14.0C9.4 12.9 11.3 12.5 12.6 11.6C13.9 10.8 14.9 9.6 16.2 8.9C17.6 8.2 19.1 7.7 20.6 7.5C22.2 7.2 23.8 7.3 25.3 7.3C26.8 7.2 28.2 6.9 29.7 7.1C31.1 7.4 32.5 8.1 33.8 8.5C35.2 8.9 36.4 9.2 37.7 9.5C39.0 9.8 40.3 10.2 41.6 10.5C42.9 10.8 44.4 10.9 45.6 11.4C46.9 11.9 48.0 12.8 49.1 13.5C50.3 14.3 51.3 15.1 52.5 15.9C53.7 16.7 55.1 17.5 56.1 18.5C57.1 19.5 57.8 20.8 58.5 22.0Z';
 // (Chrome and Firefox update it live; Safari may keep showing the first one it loaded.)
 function setFavicon(color) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="${color}"/>`
-    + `<text x="32" y="45" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" fill="#fff">c</text></svg>`;
+  // a hand-drawn dot: lopsided, with a slightly rough edge, like one dab of a big marker
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path d="${DOT}" fill="${color}"/></svg>`;
   let link = document.querySelector('link[rel="icon"]');
   if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.append(link); }
   link.type = 'image/svg+xml';
