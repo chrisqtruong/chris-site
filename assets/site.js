@@ -155,7 +155,9 @@ export function applyVoxTheme(name, surface = 'bg') {
   // Everything else keeps the site's one fixed accent, so color stays with the Vox2 parts.
   // the hero's own color when it's vivid enough to notice, else the theme's bright accent color
   const big = surface === 'main' || !isVivid(bg) ? main : bg;
-  const nameL = readableOn(big, 'light'), nameD = readableOn(big, 'dark');
+  // On the dark page, the theme's bright color carries the accent instead (Sweden: yellow, not blue):
+  // a deep hue on navy only scrapes past 3:1 and looks dim, while the bright one glows at 6–11:1.
+  const nameL = readableOn(big, 'light'), nameD = readableOn(main, 'dark');
   // text inside a selection: white or near-black, whichever reads better on that color
   const ink = c => (contrast(c, '#ffffff') >= contrast(c, '#131214') ? '#ffffff' : '#131214');
   setPageColors({ '--name-l': nameL, '--name-d': nameD, '--sel-ink-l': ink(nameL), '--sel-ink-d': ink(nameD) });
@@ -239,8 +241,8 @@ if (navEl) {
 }
 
 /* ---------- light / dark mode ---------- */
-// The site opens in light (set before first paint, in each page's <head>);
-// the toggle switches to dark and is remembered on this device.
+// The site opens in the visitor's system setting, light or dark (set before first paint, in each page's <head>);
+// the toggle switches and is remembered on this device.
 const modeBtn = document.getElementById('modeToggle');
 const currentMode = () => document.documentElement.dataset.mode;
 const labelMode = () => modeBtn?.setAttribute('aria-label', currentMode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');

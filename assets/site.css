@@ -727,3 +727,6 @@
   .skip:focus-visible { top: 12px; }
   .next-proj a .arrow { display: inline-block; transition: transform .2s; }
   .next-proj a:hover .arrow { transform: translateX(6px); }
+
+  /* on the dark page, a faint edge keeps the Vox2 window distinct even when its theme is a dark one */
+  :root[data-mode="dark"] .vox { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }
