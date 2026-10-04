@@ -135,6 +135,14 @@ function readableOn(hex, mode) {
 
 // Colors the Vox2 parts of a page (--v-*) and the page accent. `surface` is which theme color the
 // page shows big ('bg' for the hero window, 'main' for the Vox2 card); "Truong" in the nav matches it.
+// vivid = not too dark and not greyish (so a dark navy or slate hero falls back to the theme's bright color)
+function isVivid(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(v => v / 255);
+  const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2;
+  const sat = max === min ? 0 : (max - min) / (l > 0.5 ? 2 - max - min : max + min);
+  return l >= 0.3 && sat >= 0.5;
+}
 export let currentVoxTheme = 'miami';   // the theme on screen right now
 export function applyVoxTheme(name, surface = 'bg') {
   currentVoxTheme = name;
@@ -145,7 +153,8 @@ export function applyVoxTheme(name, surface = 'bg') {
   s.setProperty('--v-on-main', onMain(name));
   // "Truong" in the nav matches the Vox2 color on the page (light and dark versions; CSS picks one).
   // Everything else keeps the site's one fixed accent, so color stays with the Vox2 parts.
-  const big = surface === 'main' ? main : bg;
+  // the hero's own color when it's vivid enough to notice, else the theme's bright accent color
+  const big = surface === 'main' || !isVivid(bg) ? main : bg;
   const nameL = readableOn(big, 'light'), nameD = readableOn(big, 'dark');
   // text inside a selection: white or near-black, whichever reads better on that color
   const ink = c => (contrast(c, '#ffffff') >= contrast(c, '#131214') ? '#ffffff' : '#131214');
