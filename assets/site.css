@@ -680,7 +680,7 @@
   .mode:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 50%; }
   @media (max-width: 360px) { .mode { width: 32px; height: 32px; } }
 
-  /* ---------- Coin-Op page: its own pixel-arcade colors ---------- */
+  /* ---------- Swear Jar page (was Coin-Op; classes keep the old name): its own pixel-arcade colors ---------- */
   .case-hero.coinop { background: #1c1a26; color: #f0eef5; }
   .case-hero.coinop .btn.solid { background: #ffd23f; border-color: #ffd23f; color: #1c1a26; }
   .case-hero.coinop .btn.solid:hover { background: #ffde6b; color: #1c1a26; }
@@ -690,9 +690,9 @@
   .case-hero.coinop figcaption { margin-top: 10px; font: 500 12px var(--mono); color: #9a96ad; }
   .case-hero.coinop, .c-coin { view-transition-name: coin-card; }
   .coin-title { view-transition-name: coin-title; width: fit-content; }
-  .case-hero.coinop h1 { white-space: nowrap; }   /* keep "Coin-Op" from breaking at the hyphen */
+  .case-hero.coinop h1 { white-space: nowrap; }   /* keep the title on one line */
   .preview.wide { width: 400px; right: -70px; border-radius: 14px; }
-  /* Coin-Op: title on the left, the dashboard large on the right (stacked on phones) */
+  /* Swear Jar: title on the left, the dashboard large on the right (stacked on phones) */
   .case-hero.coinop { grid-template-columns: minmax(0, .8fr) minmax(0, 1.35fr); align-items: center; }
   .case-hero.coinop .copy { padding-right: 0; }
   .case-hero.coinop .shot { padding: clamp(24px, 3vw, 40px) clamp(20px, 3vw, 40px) clamp(24px, 3vw, 40px) clamp(12px, 2vw, 24px); }
