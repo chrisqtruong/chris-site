@@ -87,6 +87,8 @@ addEventListener('keydown', e => {
 
 /* ---------- Vox2 themes (palettes from Vox2 / Monkeytype) ---------- */
 // [bg, main, sub, line, text, accent]; accent is a version of the theme that reads on the white page
+// the themes the site offers right now (the others stay defined for later); the first is the default
+export const SITE_THEMES = ['sweden', 'bento', 'miami'];
 export const THEMES = {
   miami:    ['#f35588', '#05dfd7', '#94294c', '#db4979', '#f0e9ec', '#e0457a'],
   laser:    ['#221b44', '#009eaf', '#b82356', '#2e2560', '#dbe7e8', '#b82356'],
@@ -143,7 +145,7 @@ function isVivid(hex) {
   const sat = max === min ? 0 : (max - min) / (l > 0.5 ? 2 - max - min : max + min);
   return l >= 0.3 && sat >= 0.5;
 }
-export let currentVoxTheme = 'miami';   // the theme on screen right now
+export let currentVoxTheme = SITE_THEMES[0];   // the theme on screen right now
 export function applyVoxTheme(name, surface = 'bg') {
   currentVoxTheme = name;
   const [bg, main, sub, line, text, accent] = THEMES[name];

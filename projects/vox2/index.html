@@ -129,14 +129,16 @@
 </footer>
 
 <script type="module">
-import { THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
-const names = Object.keys(THEMES);
+const names = SITE_THEMES;
 themeDots(document.getElementById('themeRow'), names, pick);
 themeDots(document.getElementById('themeRow2'), names, pick);
-applyVoxTheme(pickedVoxTheme() || 'laser', 'main');
-showVoxShot(pickedVoxTheme() || 'laser');
+// a theme picked earlier this visit, if it's one we still offer; else the default (Sweden)
+const start = SITE_THEMES.includes(pickedVoxTheme()) ? pickedVoxTheme() : SITE_THEMES[0];
+applyVoxTheme(start, 'main');
+showVoxShot(start);
 // the recordings are small; fetch them now so switching is instant
 addEventListener('load', () => names.forEach(n => { new Image().src = `/assets/vox2/${n}.gif`; }));
 </script>

@@ -25,7 +25,7 @@
     --gutter: clamp(16px, 3vw, 40px);
 
     /* Vox2 card theme (set by JS) */
-    --v-bg: #f35588; --v-main: #05dfd7; --v-sub: #94294c; --v-line: #db4979; --v-text: #f0e9ec;
+    --v-bg: #0058a3; --v-main: #ffcc02; --v-sub: #57abdb; --v-line: #0a63b0; --v-text: #ffffff;   /* Sweden, the default theme */
   }
   /* Young Serif has no italic, and Lexend Deca has none either: mark accent words with color, titles with weight */
   :is(h1, h2, h3, .lede, nav .name) i { font-style: normal; }

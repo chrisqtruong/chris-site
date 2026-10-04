@@ -112,11 +112,11 @@
 </footer>
 
 <script type="module">
-import { renderPhotos, applyVoxTheme, themeDots, currentVoxTheme } from '/assets/site.js';
+import { renderPhotos, applyVoxTheme, themeDots, currentVoxTheme, SITE_THEMES } from '/assets/site.js';
 
 /* ---------- themes: each intro line brings its own; the dots let visitors choose ---------- */
 const vox = document.getElementById('vox');
-const HERO_THEMES = ['miami', 'laser', 'sweden', 'bento', 'aurora', 'nautilus'];
+const HERO_THEMES = SITE_THEMES;   // Sweden first, then Bento, then Miami
 const applyTheme = applyVoxTheme;
 themeDots(document.getElementById('themes'), HERO_THEMES, name => { userPickedTheme = true; applyTheme(name); });
 let userPickedTheme = false;
@@ -217,9 +217,8 @@ const SCRIPT = [
   { en: 'And I take a lot of photos.',           to: 'ko', out: '그리고 사진을 많이 찍거든요.', roman: 'geuligo sajin-eul manh-i jjiggeodeun-yo.', back: 'And I take a lot of pictures.', theme: 'bento' },
   { en: 'Go ahead, type something.',             to: 'fr', out: 'Allez-y, tapez quelque chose.', back: 'Go ahead, type something.', theme: 'aurora' },
 ];
-// start on a random theme each visit; the lines then step through the themes in order from there
-const startAt = Math.floor(Math.random() * HERO_THEMES.length);
-SCRIPT.forEach((line, i) => { line.theme = HERO_THEMES[(startAt + i) % HERO_THEMES.length]; });
+// start on the default theme (Sweden); the lines then step through the themes in order
+SCRIPT.forEach((line, i) => { line.theme = HERO_THEMES[i % HERO_THEMES.length]; });
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 // The intro pauses while the hero is scrolled out of view, so it costs nothing while you read.
 let heroOnScreen = true, wake = null;
