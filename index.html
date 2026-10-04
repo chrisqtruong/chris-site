@@ -217,8 +217,16 @@ const SCRIPT = [
   { en: 'And I take a lot of photos.',           to: 'ko', out: '그리고 사진을 많이 찍거든요.', roman: 'geuligo sajin-eul manh-i jjiggeodeun-yo.', back: 'And I take a lot of pictures.', theme: 'bento' },
   { en: 'Go ahead, type something.',             to: 'fr', out: 'Allez-y, tapez quelque chose.', back: 'Go ahead, type something.', theme: 'aurora' },
 ];
-// start on the default theme (Sweden); the lines then step through the themes in order
-SCRIPT.forEach((line, i) => { line.theme = HERO_THEMES[i % HERO_THEMES.length]; });
+// The theme holds for a minute while the intro keeps typing, then moves to the next one
+// (Sweden → Bento → Miami). It holds still while someone is typing, while the hero is
+// scrolled away, and for good once a visitor picks a theme themselves.
+const THEME_HOLD = 60 * 1000;
+let themeIndex = 0;
+setInterval(() => {
+  if (userPickedTheme || !heroOnScreen || vox.classList.contains('live')) return;
+  themeIndex = (themeIndex + 1) % HERO_THEMES.length;
+  applyTheme(HERO_THEMES[themeIndex]);
+}, THEME_HOLD);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 // The intro pauses while the hero is scrolled out of view, so it costs nothing while you read.
 let heroOnScreen = true, wake = null;
@@ -239,7 +247,6 @@ async function runDemo() {
     for (const line of SCRIPT) {
       if (!alive()) return;
       dstSel.value = line.to; sizeSel(dstSel); curLine = line;
-      if (!userPickedTheme) applyTheme(line.theme);
       // lay out the extras now (hidden) so the text size doesn't jump when they appear
       line.score = mockScore(line.en, line.back);
       extrasEl.classList.add('wait'); setExtras({ roman: line.roman, back: line.back, score: line.score });
@@ -394,7 +401,7 @@ document.querySelectorAll('#projects .row').forEach(row => {
   });
 });
 
-applyTheme(SCRIPT[0].theme);
+applyTheme(HERO_THEMES[0]);
 document.documentElement.classList.add('themed');
 document.fonts.ready.then(() => { fitAll(); runDemo(); });
 </script>
