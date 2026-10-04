@@ -379,8 +379,8 @@ document.querySelectorAll('[data-mail]').forEach(a => {
   a.title = address;   // shows on hover, for people who use webmail
 });
 
-/* ---------- back to top: a small arrow once you're well down a long page (pages with an "on this page" menu) ---------- */
-if (document.querySelector('.toc')) {
+/* ---------- back to top: a hand-drawn arrow once you're well down a page (long pages and the home page) ---------- */
+if (document.querySelector('.toc') || document.getElementById('vox')) {
   const btn = document.createElement('button');
   btn.className = 'to-top';
   btn.type = 'button';
@@ -390,10 +390,10 @@ if (document.querySelector('.toc')) {
     + '<path class="up" d="M32 45V20M21 30l11-11 11 11" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   btn.onclick = () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   document.body.append(btn);
-  // show it once the menu has scrolled away; lift it while the footer is on screen (two cheap position reads per scroll)
-  const toc = document.querySelector('.toc'), foot = document.querySelector('footer');
+  // show it once the menu (or, on the home page, the hero) has scrolled away; lift it while the footer is on screen
+  const mark = document.querySelector('.toc') || document.getElementById('vox'), foot = document.querySelector('footer');
   const update = () => {
-    btn.classList.toggle('show', toc.getBoundingClientRect().bottom < 0);
+    btn.classList.toggle('show', mark.getBoundingClientRect().bottom < 0);
     btn.classList.toggle('lift', !!foot && foot.getBoundingClientRect().top < innerHeight);
   };
   addEventListener('scroll', update, { passive: true });
