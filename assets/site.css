@@ -93,7 +93,7 @@
   nav ul a:hover { color: var(--accent); }
 
   /* ---------- hero: Vox2, fit to window ---------- */
-  .hero { height: 100svh; min-height: 520px; padding: calc(var(--nav-h, 68px) + 12px) var(--gutter) var(--gutter); display: flex; }   /* always clears the top bar, whatever its height */
+  .hero { height: calc(100svh - var(--peek, 84px)); min-height: 480px; padding: calc(var(--nav-h, 68px) + 12px) var(--gutter) var(--gutter); display: flex; }   /* always clears the top bar, whatever its height */
   .vox {
     flex: 1; min-width: 0; display: flex; flex-direction: column;
     background: var(--v-bg); color: var(--v-text); border-radius: 22px;
@@ -699,3 +699,8 @@
   /* the dashboard blends into the card: same background, no frame or shadow */
   .case-hero.coinop .shot img { box-shadow: none; border-radius: 0; }
   .case-hero.coinop figcaption { text-align: right; }
+
+  /* the first line of the bio peeks in under the hero, so visitors see whose site it is right away */
+  :root { --peek: 104px; }
+  #about.quiet { padding-top: 22px; }
+  @media (max-width: 640px) { :root { --peek: 108px; } }
