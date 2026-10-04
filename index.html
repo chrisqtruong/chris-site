@@ -95,10 +95,11 @@
   <h2 class="label">things i <i>made</i></h2>
   <ul class="index">
     <li><a class="row" href="/projects/vox2/" data-preview="vox2"><span class="t vox2-title">Vox2</span><span class="d">A tiny two-way translator for your desktop</span><span class="arrow">→</span></a></li>
-    <li><a class="row" href="/projects/purrmodoro/" data-preview="/assets/purrmodoro-demo.gif"><span class="t purr-title">Purrmodoro</span><span class="d">A focus timer with a cat, made for my wife</span><span class="arrow">→</span></a></li>
+    <li><a class="row" href="/projects/purrmodoro/" data-preview="/assets/purrmodoro-demo.mp4"><span class="t purr-title">Purrmodoro</span><span class="d">A focus timer with a cat, made for my wife</span><span class="arrow">→</span></a></li>
     <li><a class="row" href="/projects/coin-op/" data-preview="/assets/coinop-mock.svg" data-wide><span class="t coin-title">Coin-Op</span><span class="d">A tiny pixel tracker of where my AI credits go</span><span class="arrow">→</span></a></li>
   </ul>
   <img class="preview" alt="" aria-hidden="true">
+  <video class="preview" muted loop playsinline preload="auto" aria-hidden="true"></video>
 </section>
 
 <!-- ============ PHOTOS: one quiet line; the photos live on their own pages ============ -->
@@ -539,38 +540,49 @@ srcInput.addEventListener('input', () => { if (readBtn) stopReading(); });   // 
 /* ---------- photos: a teaser; each one flies into its spot on the photos page ---------- */
 
 /* ---------- project list: on a computer, the project's clip fades in beside the line you hover ---------- */
-const preview = document.querySelector('#projects .preview');
-// Moving between rows: fade the current picture out, swap in the next one only once it has
+// Two elements share the spot: a video for the recorded clips, an image for still pictures.
+const pImg = document.querySelector('#projects img.preview'), pVid = document.querySelector('#projects video.preview');
+// Moving between rows: fade the current clip out, swap in the next one only once it has
 // loaded (with its own size and position), then fade it in, so no half-switched frame shows.
-let previewOff, previewTurn = 0, hiddenAt = 0;
+let previewOff, previewTurn = 0, hiddenAt = 0, shown = null;
+const loaded = (el, src) => new Promise(done => {
+  if (el.getAttribute('src') === src && (el !== pVid || el.readyState >= 2)) return done();
+  if (el === pVid) { el.addEventListener('loadeddata', done, { once: true }); setTimeout(done, 2000); el.src = src; }
+  else { el.src = src; el.decode().then(done, done); }
+});
 document.querySelectorAll('#projects .row').forEach(row => {
   row.addEventListener('mouseenter', () => {
     clearTimeout(previewOff);
     const turn = ++previewTurn;
     const p = row.dataset.preview;
-    const src = p === 'vox2' ? `/assets/vox2/${currentVoxTheme}.gif` : p;   // Vox2: the hero's current theme
+    const src = p === 'vox2' ? `/assets/vox2/${currentVoxTheme}.mp4` : p;   // Vox2: the hero's current theme
+    const el = src.endsWith('.mp4') ? pVid : pImg;
     const show = async () => {
-      const img = new Image();
-      img.src = src;
-      try { await img.decode(); } catch {}
+      await loaded(el, src);
       if (turn !== previewTurn) return;   // the pointer already moved on
-      preview.src = src;
-      preview.classList.toggle('wide', row.hasAttribute('data-wide'));   // landscape pictures get a wider box
-      preview.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
-      preview.classList.add('show');
+      (el === pVid ? pImg : pVid).classList.remove('show');
+      el.classList.toggle('wide', row.hasAttribute('data-wide'));   // landscape pictures get a wider box
+      el.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
+      el.classList.add('show');
+      shown = el;
+      if (el === pVid && !reduced) el.play().catch(() => {});
     };
-    // let the old picture finish fading first (it may already be fading if the pointer just left a row)
-    const fading = preview.classList.contains('show') ? 140 : Math.max(0, 140 - (performance.now() - hiddenAt));
-    if (preview.getAttribute('src') && !preview.src.endsWith(src) && fading > 0) {
-      preview.classList.remove('show');
+    // let the old clip finish fading first (it may already be fading if the pointer just left a row)
+    const fading = shown?.classList.contains('show') ? 140 : Math.max(0, 140 - (performance.now() - hiddenAt));
+    if (shown?.getAttribute('src') && shown.getAttribute('src') !== src && fading > 0) {
+      shown.classList.remove('show');
       previewOff = setTimeout(show, fading);
     } else show();
   });
   row.addEventListener('mouseleave', () => {
     const turn = ++previewTurn;
-    preview.classList.remove('show');
+    pImg.classList.remove('show'); pVid.classList.remove('show');
     hiddenAt = performance.now();
-    previewOff = setTimeout(() => { if (turn === previewTurn) preview.removeAttribute('src'); }, 300);
+    previewOff = setTimeout(() => {
+      if (turn !== previewTurn) return;
+      pImg.removeAttribute('src');
+      pVid.pause(); pVid.removeAttribute('src'); pVid.load();   // let the clip go, so nothing keeps playing hidden
+    }, 300);
   });
 });
 

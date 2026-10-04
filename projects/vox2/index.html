@@ -57,7 +57,7 @@
     </div>
     <div class="theme-row" id="themeRow"><span>Try a theme</span></div>
   </div>
-  <div class="shot"><img src="/assets/vox2/sweden.gif" width="480" height="795" data-vox-shot alt="Vox2 translating a sentence live as it's typed, with pronunciation, the back-translation and a 100% match score"></div>
+  <div class="shot"><video src="/assets/vox2/sweden.mp4" width="480" height="796" data-vox-shot autoplay muted loop playsinline aria-label="Vox2 translating a sentence live as it's typed, with pronunciation, the back-translation and a 100% match score"></video></div>
 </header>
 
 <dl class="facts">
@@ -70,7 +70,7 @@
 
 <section>
   <div class="chapter reveal" id="why">
-    <div class="num"><b>01</b>Why</div>
+    <div class="num">Why</div>
     <div>
       <h2>why i built it</h2>
       <p>I was working on an AI product with a design team, and one of my teammates only spoke Portuguese. Every message between us took a detour: I’d paste mine into Google Translate or an AI app, he’d do the same, then answer in English so I could understand. We were always one browser tab away from actually talking to each other.</p>
@@ -79,7 +79,7 @@
   </div>
 
   <div class="chapter reveal" id="design">
-    <div class="num"><b>02</b>Design</div>
+    <div class="num">Design</div>
     <div>
       <h2>small decisions that make it feel calm</h2>
       <div class="decisions">
@@ -107,7 +107,7 @@
   </div>
 
   <div class="chapter reveal" id="testing">
-    <div class="num"><b>03</b>Testing</div>
+    <div class="num">Testing</div>
     <div>
       <h2>testing my own feature, honestly</h2>
       <p>A score is only useful if you can trust it, so I test the meaning check like a researcher would: real sentences in 11 languages, with mistakes planted on purpose (a flipped “not”, a changed number, a swapped pronoun), and fresh sentences every round so it can’t just memorize the test.</p>
@@ -154,7 +154,7 @@
   </div>
 
   <div class="chapter reveal" id="next">
-    <div class="num"><b>04</b>Next</div>
+    <div class="num">Next</div>
     <div>
       <h2>where the testing goes next</h2>
       <p>The plan is phases, not a big rewrite. Each one is measured on sentences the checks have never seen, and every result gets published, including the ones that don’t move the number.</p>
@@ -172,7 +172,7 @@
   </div>
 
   <div class="chapter reveal" id="ahead">
-    <div class="num"><b>05</b>Ahead</div>
+    <div class="num">Ahead</div>
     <div>
       <h2>where vox2 is heading</h2>
       <p>The core stays tiny: a window you call up with a shortcut. Bigger things come as add-ons you turn on when you need them, and they unload when you’re done.</p>
@@ -234,7 +234,7 @@ const start = SITE_THEMES.includes(pickedVoxTheme()) ? pickedVoxTheme() : SITE_T
 applyVoxTheme(start, 'main');
 showVoxShot(start);
 // the recordings are small; fetch them now so switching is instant
-addEventListener('load', () => names.forEach(n => { new Image().src = `/assets/vox2/${n}.gif`; }));
+addEventListener('load', () => names.forEach(n => { fetch(`/assets/vox2/${n}.mp4`).catch(() => {}); }));
 </script>
 </body>
 </html>

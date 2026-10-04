@@ -163,8 +163,20 @@ export function applyVoxTheme(name, surface = 'bg') {
   document.querySelectorAll('[data-t]').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === name));
 }
 // Each theme has its own recording of the real app (a different language in each).
+// The demo clips are short muted videos (much lighter than GIFs, and played by the graphics chip).
+// With reduced motion on, they stay on their first frame.
+const stillClips = matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('video[autoplay]').forEach(v => {
+  if (stillClips) { v.removeAttribute('autoplay'); v.pause(); }
+  // some browsers skip the autoplay attribute; asking directly works for muted clips.
+  // If a browser still says no until the visitor interacts, start on the first tap, click or key.
+  else v.play().catch(() => {
+    const go = () => { v.play().catch(() => {}); ['pointerdown', 'keydown', 'touchstart'].forEach(t => removeEventListener(t, go)); };
+    ['pointerdown', 'keydown', 'touchstart'].forEach(t => addEventListener(t, go, { passive: true }));
+  });
+});
 export function showVoxShot(name) {
-  document.querySelectorAll('[data-vox-shot]').forEach(img => { img.src = `/assets/vox2/${name}.gif`; });
+  document.querySelectorAll('[data-vox-shot]').forEach(v => { v.src = `/assets/vox2/${name}.mp4`; if (!stillClips) v.play?.().catch(() => {}); });
 }
 // Little two-tone dots, like the ones in Vox2's settings.
 export function themeDots(container, names, onPick) {
