@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coin-Op · Chris Truong</title>
+<meta name="description" content="Coin-Op, a tiny pixel dashboard of where my AI credits go while building Vox2, by Chris Truong.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300..600&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+  // light or dark before anything paints: the visitor's choice, else light
+  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
+  // note how this page was reached, so scroll-reveal content that's already on screen shows at once
+  addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="name" href="/">Chris <i>Truong</i></a>
+  <ul>
+    <li><a href="/#projects">Work</a></li>
+    <li><a href="/photos/">Photos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 3.7C9.8 4.1 7 7.3 7.2 11.2 7.4 15.3 10.9 18.4 15 18.1 17.1 17.9 18.9 16.8 20.1 15.2 16.3 15.9 12.9 13.1 12.4 9.2 12.2 7.1 12.7 5.3 13.9 3.5"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 9.3C14.6 8 13.1 7.3 11.6 7.5 9.3 7.8 7.6 9.9 7.8 12.3 8 14.7 10.1 16.4 12.4 16.2 14.7 16 16.4 13.9 16.2 11.6 16.1 10.5 15.6 9.5 14.7 8.8"/><path d="M12.1 2.7 12 5M11.9 19.2l.2 2.2M2.8 11.9l2.3.1M19.1 12.2l2.1-.3M5.3 5.3l1.7 1.6M17.2 17.1l1.4 1.8M5.5 18.7l1.6-1.5M17.1 6.8l1.7-1.6"/></svg>
+  </button>
+</nav>
+
+<div class="page-head" style="padding-bottom:0">
+  <a class="back-link" href="/#projects"><span class="arrow">←</span>All projects</a>
+</div>
+
+<header class="case-hero coinop">
+  <div class="copy">
+    <h1 class="coin-title">Coin&#8209;Op</h1>
+    <p>A tiny pixel dashboard of where my AI credits go while I build Vox2: day by day, by focus area, and against the product’s own roadmap.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://chrisqtruong.github.io/coin-op/" target="_blank" rel="noopener">Open the dashboard</a>
+      <a class="btn" href="https://github.com/chrisqtruong/coin-op" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <figure class="shot"><img src="/assets/coinop-mock.svg" alt="Coin-Op dashboard illustration: credits spent, tokens, days and turns, and a pixel-block chart of spend per day colored by focus area (mock data)"><figcaption>Illustration with mock data</figcaption></figure>
+</header>
+
+<dl class="facts">
+  <div><dt>Role</dt><dd>Product, design &amp; build</dd></div>
+  <div><dt>What it reads</dt><dd>Claude Code’s own logs, on my computer</dd></div>
+  <div><dt>Status</dt><dd>Open source · personal tool</dd></div>
+  <div><dt>Built with</dt><dd>Python · HTML/CSS/JS · Claude Code</dd></div>
+</dl>
+
+<section>
+  <div class="chapter reveal">
+    <div class="num"><b>01</b>Why</div>
+    <div>
+      <h2>where is the effort actually going?</h2>
+      <p>I build Vox2 mostly by working with Claude. A product has a lot of sides (the interface, bug fixes, the Mac version, releases, the meaning check), and I wanted to see which ones were really getting the work, and whether that matched what the roadmap says matters most.</p>
+      <p>Coin-Op sorts each request into a focus area, prices it, and compares the totals with the roadmap. It’s a good guess, not an audit, but it already paid off: it showed the meaning check was taking about half of the roadmap effort while holding about a third of its value, and that everyday features were falling behind.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num"><b>02</b>Private</div>
+    <div>
+      <h2>private by design</h2>
+      <p>Everything is read on my own computer. Only totals per day and focus area are published; never what I asked or what Claude wrote.</p>
+    </div>
+  </div>
+</section>
+
+<div class="next-proj">
+  <span>Next project</span>
+  <a href="/projects/vox2/">Vox2 <span class="arrow">→</span></a>
+</div>
+
+<footer id="contact" class="reveal">
+  <div class="links">
+    <a href="#contact" data-mail="chrisqtruong|gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/chrisqtruong/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/chrisqtruong/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
+  </div>
+  <small>© 2026 Chris Truong · Baltimore</small>
+</footer>
+
+<script type="module" src="/assets/site.js"></script>
+</body>
+</html>
