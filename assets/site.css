@@ -1,16 +1,16 @@
   /* ---------- page tokens ---------- */
   :root {
-    --paper: #ffffff;
+    --paper: #faf8f4;        /* warm paper: softer than pure white */
     --ink: #161514;
     --soft: #6b6862;
-    --hair: #e8e6e1;
+    --hair: #e5e1d8;
     /* the accent and "Truong" follow the current Vox2 theme; JS sets a light (-l) and dark (-d) version of each */
     /* one thread of color: every accent is the current Vox2 theme color (light and dark versions set by JS) */
     --accent: var(--name-l, #e0457a);
     --name-color: var(--accent);
     --sel-ink: var(--sel-ink-l, #ffffff);
     --body-ink: #2b2a28;     /* long-form text, a touch softer than --ink */
-    --tint: #f6f5f2;         /* quiet panels */
+    --tint: #f1eee7;         /* quiet panels */
     --purr-bg: #f6e7d4; --purr-ink: #4a2f1f; --purr-btn: #a8673a;   /* Purrmodoro by day */
     --site-bg: #fff591; --site-ink: #3b1830;
     --todo-bg: color-mix(in srgb, #ffe066 55%, transparent);
