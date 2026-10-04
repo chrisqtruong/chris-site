@@ -212,7 +212,8 @@ addEventListener('resize', fitAll);
 const SCRIPT = [
   { en: "Hi, I'm Chris.",                        to: 'vi', out: 'Xin chào, tôi là Chris.', back: "Hello, I'm Chris." },
   { en: 'I lead design and product teams.',      to: 'ja', out: '私はデザインチームと製品チームを率いています。', roman: 'Watashi wa dezain chīmu to seihin chīmu o hikiite imasu.', back: 'I lead the design and product teams.' },
-  { en: 'I build the things I wish existed.',    to: 'es', out: 'Construyo las cosas que desearía que existieran.', back: 'I build the things I wish existed.' },
+  { en: 'I build the things I wish existed (or at least I try to).', to: 'es', out: 'Construyo las cosas que desearía que existieran (o al menos lo intento).', back: 'I build the things I wish existed (or at least I try).',
+    hesitate: ' (' },   // a beat before the aside, then it's typed in quickly
   { en: 'And I take a lot of photos.',           to: 'ko', out: '그리고 사진을 많이 찍거든요.', roman: 'geuligo sajin-eul manh-i jjiggeodeun-yo.', back: 'And I take a lot of pictures.' },
   { en: 'Go ahead, type something.',             to: 'fr', out: 'Allez-y, tapez quelque chose.', back: 'Go ahead, type something.' },
 ];
@@ -266,7 +267,10 @@ async function runDemo() {
           const shown = line.out.slice(0, Math.round(line.out.length * done));
           renderDst(shown.slice(0, Math.max(0, shown.length - 6)), shown.slice(-6));
         }
-        await sleep(reduced ? 0 : 55 + Math.random() * 55);
+        // a line can hesitate before an aside, then type it quickly, like someone adding a thought
+        const pauseAt = line.hesitate ? line.en.indexOf(line.hesitate) : -1;
+        if (i === pauseAt) await sleep(reduced ? 0 : 900);
+        await sleep(reduced ? 0 : pauseAt >= 0 && i > pauseAt ? 28 + Math.random() * 18 : 55 + Math.random() * 55);
       }
       await sleep(320);
       if (!alive()) return;
@@ -408,7 +412,7 @@ let readId = 0, readBtn = null, estTimer = null, clipAudio = null;
 const CLIPS = {
   "Hi, I'm Chris.": 'en-1', 'Xin chào, tôi là Chris.': 'vi-1',
   'I lead design and product teams.': 'en-2', '私はデザインチームと製品チームを率いています。': 'ja-2',
-  'I build the things I wish existed.': 'en-3', 'Construyo las cosas que desearía que existieran.': 'es-3',
+  'I build the things I wish existed (or at least I try to).': 'en-3', 'Construyo las cosas que desearía que existieran (o al menos lo intento).': 'es-3',
   'And I take a lot of photos.': 'en-4', '그리고 사진을 많이 찍거든요.': 'ko-4',
   'Go ahead, type something.': 'en-5', 'Allez-y, tapez quelque chose.': 'fr-5',
 };
