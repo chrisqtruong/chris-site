@@ -441,6 +441,7 @@ document.querySelectorAll('[data-say]').forEach(b => b.onclick = () => {
 renderPhotos(document.getElementById('photoGrid'), { limit: 6, href: '/photos/' });
 
 applyTheme('miami');
+document.documentElement.classList.add('themed');
 document.fonts.ready.then(() => { fitAll(); runDemo(); });
 </script>
 </body>

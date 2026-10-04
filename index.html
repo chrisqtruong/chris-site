@@ -216,6 +216,9 @@ const SCRIPT = [
   { en: 'And I take a lot of photos.',           to: 'ko', out: '그리고 사진을 많이 찍거든요.', roman: 'geuligo sajin-eul manh-i jjiggeodeun-yo.', back: 'And I take a lot of pictures.', theme: 'bento' },
   { en: 'Go ahead, type something.',             to: 'fr', out: 'Allez-y, tapez quelque chose.', back: 'Go ahead, type something.', theme: 'aurora' },
 ];
+// start on a random theme each visit; the lines then step through the themes in order from there
+const startAt = Math.floor(Math.random() * HERO_THEMES.length);
+SCRIPT.forEach((line, i) => { line.theme = HERO_THEMES[(startAt + i) % HERO_THEMES.length]; });
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 // The intro pauses while the hero is scrolled out of view, so it costs nothing while you read.
 let heroOnScreen = true, wake = null;
@@ -391,7 +394,8 @@ document.querySelectorAll('#projects .row').forEach(row => {
   });
 });
 
-applyTheme('miami');
+applyTheme(SCRIPT[0].theme);
+document.documentElement.classList.add('themed');
 document.fonts.ready.then(() => { fitAll(); runDemo(); });
 </script>
 </body>

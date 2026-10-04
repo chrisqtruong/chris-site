@@ -476,3 +476,7 @@
   @keyframes hi-in { from { opacity: 0; transform: translateY(.15em); } }
   /* the changing greeting takes the current Vox2 theme color, like "Truong" */
   .say-hi i { color: var(--name-color); transition: color .6s; }
+  /* the hero waits for its (random) starting theme before showing, so it never flashes the default pink first */
+  html:not(.themed) .vox { opacity: 0; animation: vox-fallback 0s 1.5s forwards; }
+  .vox { transition: opacity .3s ease, background-color .7s ease, color .7s ease; }
+  @keyframes vox-fallback { to { opacity: 1; } }
