@@ -189,6 +189,44 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
   if (!chosen) setMode(e.matches ? 'dark' : 'light');
 });
 
+/* ---------- footer: "Say hi, in ___" cycles through greetings, resting on English ---------- */
+// [hi, the language in its own words, lang code, script class]
+const HELLOS = [
+  ['ciao', 'italiano', 'it'], ['hola', 'español', 'es'], ['سلام', 'فارسی', 'fa', 'ar'], ['jambo', 'Kiswahili', 'sw'],
+  ['xin chào', 'tiếng Việt', 'vi', 'vi'], ['salut', 'français', 'fr'], ['안녕', '한국어', 'ko', 'ko'], ['你好', '中文', 'zh', 'zh'],
+  ['مرحبا', 'العربية', 'ar', 'ar'], ['hallo', 'Deutsch', 'de'], ['olá', 'português', 'pt'], ['merhaba', 'Türkçe', 'tr'],
+];
+const LAST = ['hi', 'English', 'en'];
+const sayHi = document.getElementById('sayHi');
+if (sayHi) {
+  const word = sayHi.querySelector('.hi-word'), name = sayHi.querySelector('.hi-lang');
+  const show = ([hi, lang, code, script = ''], ms) => {
+    for (const [el, text] of [[word, hi], [name, lang]]) {
+      el.innerHTML = `<bdi lang="${code}">${text}</bdi>`;
+      el.className = el.className.split(' ')[0] + (script ? ` s-${script}` : '');
+      el.style.animation = 'none'; void el.offsetWidth;
+      el.style.animation = `hi-in ${ms}ms ease-out`;
+    }
+  };
+  // A calm loop: one greeting at a time, a longer rest on English, then a new order.
+  const STEP = 1600, REST = 6000;
+  let queue = [], timer = null, visible = false;
+  const next = () => {
+    if (!queue.length) queue = [...HELLOS].sort(() => Math.random() - 0.5).concat([LAST]);
+    const item = queue.shift();
+    show(item, 450);
+    timer = visible ? setTimeout(next, item === LAST ? REST : STEP) : null;
+  };
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // only runs while the line is on screen; starts after a short rest on English
+    new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      clearTimeout(timer);
+      timer = visible ? setTimeout(next, 1200) : null;
+    }, { threshold: .6 }).observe(sayHi);
+  }
+}
+
 /* ---------- reveal on scroll ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }

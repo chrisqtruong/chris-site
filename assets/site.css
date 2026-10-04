@@ -461,3 +461,13 @@
     .index .arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
     .strip { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   }
+
+  /* "Say hi, in English": greetings in other scripts get serif faces that sit well next to Young Serif */
+  .say-hi i { display: inline-block; }
+  .say-hi .nw { white-space: nowrap; }   /* keep "Say ciao," and "in italiano." each in one piece */
+  @media (max-width: 700px) { .say-hi { min-height: 2.2em; } }   /* room for two lines, so the page doesn't jump while it spins */
+  .say-hi .s-vi { font-family: "Noto Serif", var(--head); font-weight: 600; }
+  .say-hi .s-zh { font-family: "Noto Serif SC", var(--head); font-weight: 700; }
+  .say-hi .s-ko { font-family: "Noto Serif KR", var(--head); font-weight: 700; }
+  .say-hi .s-ar { font-family: "Noto Naskh Arabic", var(--head); font-weight: 700; }
+  @keyframes hi-in { from { opacity: 0; transform: translateY(.15em); } }

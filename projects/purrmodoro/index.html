@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Purrmodoro · Chris Truong</title>
-<meta name="description" content="Purrmodoro, a cozy iPhone focus timer with a kitty, designed and built by Chris Truong.">
+<meta name="description" content="Purrmodoro, a cozy iPhone focus timer with a cat, designed and built by Chris Truong.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300..600&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>
   // light or dark before anything paints: the visitor's choice, else their system setting
@@ -38,12 +40,12 @@
 <header class="case-hero purr">
   <div class="copy">
     <h1 class="purr-title">Purrmodoro</h1>
-    <p>A cozy little focus timer for iPhone, starring a brown kitty who studies with you. Made as a surprise gift for my wife.</p>
+    <p>A cozy little focus timer for iPhone, starring a brown cat who studies with you. Made as a surprise gift for my wife.</p>
     <div class="btns">
       <a class="btn solid" href="https://github.com/chrisqtruong/purrmodoro" target="_blank" rel="noopener">See it on GitHub</a>
     </div>
   </div>
-  <div class="shot"><img src="/assets/purrmodoro-demo.gif" alt="Petting the kitty, winding the clock to 50 minutes, then starting the timer as it counts down from 49:59"></div>
+  <div class="shot"><img src="/assets/purrmodoro-demo.gif" alt="Petting the cat, winding the clock to 50 minutes, then starting the timer as it counts down from 49:59"></div>
 </header>
 
 <dl class="facts">
@@ -81,8 +83,8 @@
     <div class="num"><b>03</b>Character</div>
     <div>
       <h2>her room follows the real clock</h2>
-      <p>The kitty sits at her desk inside the timer ring. By day she wears a white coat and has an iced coffee; after sunset it's pajamas, round glasses, a warm lamp and tea. The window shows the actual time of day, from dawn colors to stars. Everything is drawn in code, no image files.</p>
-      <img class="wide" src="/assets/purrmodoro-kitty-day-night.png" alt="The kitty's moods, day and night: idle, focus, break, done" loading="lazy">
+      <p>The cat sits at her desk inside the timer ring. By day she wears a white coat and has an iced coffee; after sunset it's pajamas, round glasses, a warm lamp and tea. The window shows the actual time of day, from dawn colors to stars. Everything is drawn in code, no image files.</p>
+      <img class="wide" src="/assets/purrmodoro-kitty-day-night.png" alt="The cat's moods, day and night: idle, focus, break, done" loading="lazy">
       <p>When she's not focusing, you can pet her. Ears flick, a nose boop gets &gt;_&lt;, a paw tap gets a wave, and one in ten belly rubs gets a rare purr.</p>
     </div>
   </div>
@@ -94,8 +96,8 @@
       <p>Task lists, categories, accounts, sync, ambient music and an Apple Watch app all stayed out of version one. A few ideas are tabled for later:</p>
       <ol class="roadmap">
         <li>Ring even on silent, with Apple's new alarm tools.</li>
-        <li>Collectibles: treats, outfits and rare kitties earned through focus time. Her full history is saved, so they can be awarded retroactively.</li>
-        <li>Real weather in the kitty's window.</li>
+        <li>Collectibles: treats, outfits and rare cats earned through focus time. Her full history is saved, so they can be awarded retroactively.</li>
+        <li>Real weather in the cat's window.</li>
       </ol>
     </div>
   </div>
@@ -107,7 +109,7 @@
 </div>
 
 <footer id="contact" class="reveal">
-  <p class="lede">Say hi.</p>
+  <p class="lede say-hi" id="sayHi"><span class="nw">Say <i class="hi-word"><bdi>hi</bdi></i>,</span> <span class="nw">in <i class="hi-lang"><bdi>English</bdi></i>.</span></p>
   <div class="links">
     <a href="mailto:you@example.com">Email</a>
     <a href="#" title="Add your LinkedIn URL">LinkedIn</a>
