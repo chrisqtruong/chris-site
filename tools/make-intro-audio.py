@@ -21,8 +21,8 @@ LINES = [
     ('ja-2', 'ja-JP-NanamiNeural',  '私はデザインチームと製品チームを率いています。'),
     ('en-3', 'en-US-JennyNeural',   'I build the things I wish existed (or at least I try to).'),
     ('es-3', 'es-MX-DaliaNeural',   'Construyo las cosas que desearía que existieran (o al menos lo intento).'),
-    ('en-4', 'en-US-JennyNeural',   'And I take a lot of photos.'),
-    ('ko-4', 'ko-KR-SunHiNeural',   '그리고 사진을 많이 찍거든요.'),
+    ('en-4', 'en-US-JennyNeural',   'I like spending time outdoors, and I take a lot of photos.'),
+    ('ko-4', 'ko-KR-SunHiNeural',   '저는 야외에서 시간을 보내는 것을 좋아하고, 사진도 많이 찍습니다.'),
     ('en-5', 'en-US-JennyNeural',   'Go ahead, type something.'),
     ('fr-5', 'fr-FR-DeniseNeural',  'Allez-y, tapez quelque chose.'),
 ]
