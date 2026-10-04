@@ -346,3 +346,11 @@ if (links) {
   // she only moves (and blinks) while she's on screen
   new IntersectionObserver(([e]) => kitty.classList.toggle('peek', e.isIntersecting), { threshold: 1 }).observe(kitty);
 }
+
+/* ---------- email: assembled in the browser, so bots that read page code don't find the address ---------- */
+document.querySelectorAll('[data-mail]').forEach(a => {
+  const [user, domain] = a.dataset.mail.split('|');
+  const address = `${user}@${domain}`;
+  a.href = `mailto:${address}`;
+  a.title = address;   // shows on hover, for people who use webmail
+});
