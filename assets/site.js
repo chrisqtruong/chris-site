@@ -203,6 +203,15 @@ try {
   if (c) { setPageColors(c); if (c['--name-l']) setFavicon(c['--name-l']); }
 } catch {}
 
+/* ---------- the top bar's real height, so the hero (and anything else) can sit just below it ---------- */
+const navEl = document.querySelector('nav');
+if (navEl) {
+  const setNavH = () => document.documentElement.style.setProperty('--nav-h', `${navEl.offsetHeight}px`);
+  setNavH();
+  new ResizeObserver(setNavH).observe(navEl);
+  document.fonts?.ready.then(setNavH);
+}
+
 /* ---------- light / dark mode ---------- */
 // The site opens in light (set before first paint, in each page's <head>);
 // the toggle switches to dark and is remembered on this device.

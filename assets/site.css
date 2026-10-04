@@ -93,7 +93,7 @@
   nav ul a:hover { color: var(--accent); }
 
   /* ---------- hero: Vox2, fit to window ---------- */
-  .hero { height: 100svh; min-height: 520px; padding: 60px var(--gutter) var(--gutter); display: flex; }
+  .hero { height: 100svh; min-height: 520px; padding: calc(var(--nav-h, 68px) + 12px) var(--gutter) var(--gutter); display: flex; }   /* always clears the top bar, whatever its height */
   .vox {
     flex: 1; min-width: 0; display: flex; flex-direction: column;
     background: var(--v-bg); color: var(--v-text); border-radius: 22px;
