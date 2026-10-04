@@ -89,11 +89,33 @@
     <div>
       <h2>make your own</h2>
       <p>Swear Jar is free and open source. If you build with Claude Code, it can watch your project too: it starts with general focus areas (features, bugs, tests, docs…) that you can rename, and a roadmap is optional.</p>
-      <ol class="roadmap">
-        <li><span><b>Download it.</b> Grab <a href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">swear-jar.zip</a> and unzip it. You need Python 3.9 or newer; nothing else to install.</span></li>
-        <li><span><b>Run setup.</b> <code>python3 swearjar.py setup</code> lists the projects Claude Code has worked on, with what each cost, and asks which one to track.</span></li>
-        <li><span><b>Open it.</b> Your dashboard lives at localhost:8642, and on the web too if you give it a GitHub repo.</span></li>
+      <ol class="roadmap steps">
+        <li><span><b>Download it.</b> Grab <a href="https://github.com/chrisqtruong/swear-jar/releases/latest/download/swear-jar.zip">swear-jar.zip</a> and unzip it. You’ll get a <code>swear-jar</code> folder (in Downloads, unless you move it). You need Python 3.9 or newer; nothing else to install.</span></li>
+        <li><span><b>Open a terminal.</b> On a Mac, press command + space, type <i>Terminal</i> and press Return. On Windows, open <i>PowerShell</i> from the Start menu.</span></li>
+        <li><span><b>Run setup from that folder.</b> Type these two lines, pressing Return after each (on Windows, <code>python</code> instead of <code>python3</code>):<br><code>cd ~/Downloads/swear-jar</code><br><code>python3 swearjar.py setup</code></span></li>
+        <li><span><b>Answer a few questions.</b> Which project to track, a name, and two optional extras: a roadmap to compare against and a GitHub repo to publish to. Press Return to take the suggestion in [brackets].</span></li>
+        <li><span><b>Open your dashboard</b> at <code>localhost:8642</code> in your browser.</span></li>
       </ol>
+      <figure class="term" aria-label="An example setup session in the terminal">
+        <figcaption>for example</figcaption>
+<pre><span class="p">$</span> <b>cd ~/Downloads/swear-jar</b>
+<span class="p">$</span> <b>python3 swearjar.py setup</b>
+
+Swear Jar setup. Press Enter to take the suggestion in [brackets].
+Looking through your Claude Code history for projects...
+
+   1. recipe-box                   $    84.37    212 turns
+   2. portfolio-site               $    31.90     88 turns
+   3. budget-bot                   $     6.12     19 turns
+
+Which one do you want to track? A number, or type a folder name [1]: <b>1</b>
+Name to show on the dashboard [Recipe-box]: <b>Recipe Box</b>
+Roadmap link or path (Enter to skip): <span class="k">↵</span>
+GitHub repo as owner/name (Enter to keep it on this computer): <span class="k">↵</span>
+
+Start Swear Jar whenever you log in, so the dashboard is always up to date? (Y/n): <b>y</b>
+Swear Jar now runs from login: http://localhost:8642</pre>
+      </figure>
       <p><a href="https://github.com/chrisqtruong/swear-jar#make-your-own" target="_blank" rel="noopener">Full instructions on GitHub&nbsp;↗</a></p>
     </div>
   </div>

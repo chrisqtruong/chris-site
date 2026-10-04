@@ -734,3 +734,16 @@
   /* a command to type, inside running text */
   code { font: 500 .82em var(--mono); background: var(--tint); padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
   :root[data-mode="dark"] .case-hero.coinop { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }   /* dark card on a dark page: keep its edge */
+
+  /* ---------- Swear Jar: setup steps and an example terminal session ---------- */
+  .steps code { display: inline-block; margin-top: 6px; }
+  .steps br + code { margin-top: 4px; }
+  .term { margin: 32px 0; max-width: 720px; }
+  .term figcaption { font: 500 13px var(--mono); color: var(--soft); margin-bottom: 10px; text-transform: lowercase; }
+  .term pre { margin: 0; padding: 18px 20px; border-radius: 14px; background: #1c1a26; color: #c9c5d6; font: 400 13px/1.65 var(--mono); overflow-x: auto; }
+  .term pre b { color: #ffd23f; font-weight: 600; }   /* what you type */
+  .term pre .p { color: #6f6a86; }   /* the prompt */
+  .term pre .k { color: #ffd23f; opacity: .75; }   /* just press Return */
+  :root[data-mode="dark"] .term pre { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }
+  .chapter > div { min-width: 0; }   /* let wide things (like the example terminal) scroll inside their box instead of widening the page */
+  .term pre { max-width: 100%; }
