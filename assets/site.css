@@ -474,3 +474,5 @@
   .say-hi .s-ko { font-family: "Noto Serif KR", var(--head); font-weight: 700; }
   .say-hi .s-ar { font-family: "Noto Naskh Arabic", var(--head); font-weight: 700; }
   @keyframes hi-in { from { opacity: 0; transform: translateY(.15em); } }
+  /* the changing greeting takes the current Vox2 theme color, like "Truong" */
+  .say-hi i { color: var(--name-color); transition: color .6s; }

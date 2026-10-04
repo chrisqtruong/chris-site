@@ -111,7 +111,7 @@
 </footer>
 
 <script type="module">
-import { renderPhotos, applyVoxTheme, themeDots } from '/assets/site.js';
+import { renderPhotos, applyVoxTheme, themeDots, currentVoxTheme } from '/assets/site.js';
 
 /* ---------- themes: each intro line brings its own; the dots let visitors choose ---------- */
 const vox = document.getElementById('vox');
@@ -380,8 +380,8 @@ document.querySelectorAll('#projects .row').forEach(row => {
     clearTimeout(previewOff);
     const p = row.dataset.preview;
     // GIFs load only on hover, and are dropped after fading out, so they cost nothing otherwise
-    // Vox2 always shows the bright Miami recording here, like the hero's first line
-    preview.src = p === 'vox2' ? '/assets/vox2/miami.gif' : p;
+    // Vox2 shows the recording in whatever theme the hero is on right now
+    preview.src = p === 'vox2' ? `/assets/vox2/${currentVoxTheme}.gif` : p;
     preview.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
     preview.classList.add('show');
   });

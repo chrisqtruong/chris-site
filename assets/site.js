@@ -135,7 +135,9 @@ function readableOn(hex, mode) {
 
 // Colors the Vox2 parts of a page (--v-*) and the page accent. `surface` is which theme color the
 // page shows big ('bg' for the hero window, 'main' for the Vox2 card); "Truong" in the nav matches it.
+export let currentVoxTheme = 'miami';   // the theme on screen right now
 export function applyVoxTheme(name, surface = 'bg') {
+  currentVoxTheme = name;
   const [bg, main, sub, line, text, accent] = THEMES[name];
   const s = document.documentElement.style;
   s.setProperty('--v-bg', bg); s.setProperty('--v-main', main); s.setProperty('--v-sub', sub);
