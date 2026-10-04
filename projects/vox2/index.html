@@ -64,10 +64,10 @@
 <dl class="facts">
   <div><dt>Role</dt><dd>Product, design, build &amp; research</dd></div>
   <div><dt>Platforms</dt><dd>Windows · macOS (beta)</dd></div>
-  <div><dt>Status</dt><dd>Open source · v0.4.20</dd></div>
+  <div><dt>Status</dt><dd>Open source · v0.4.21</dd></div>
   <div><dt>Built with</dt><dd>Tauri 2 · HTML/CSS/JS · Claude Code</dd></div>
 </dl>
-<div class="toc" role="navigation" aria-label="On this page"><a href="#why">why i built it</a><a href="#design">design</a><a href="#testing">testing</a><a href="#next">what’s next</a><a href="#ahead">where it’s heading</a></div>
+<div class="toc" role="navigation" aria-label="On this page"><a href="#why">why i built it</a><a href="#process">process</a><a href="#design">design</a><a href="#testing">testing</a><a href="#next">what’s next</a><a href="#ahead">where it’s heading</a></div>
 
 <section>
   <div class="chapter reveal" id="why">
@@ -76,6 +76,26 @@
       <h2>why i built it</h2>
       <p>I was working on an AI product with a design team, and one of my teammates only spoke Portuguese. Every message between us took a detour: I’d paste mine into Google Translate or an AI app, he’d do the same, then answer in English so I could understand. We were always one browser tab away from actually talking to each other.</p>
       <p>I wanted something so light it disappears: a way to break the language barrier in seconds and get back to the conversation. When it first worked, it felt like I’d unlocked another world. That’s the feeling I want Vox2 to give anyone trying to connect with someone across a language.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal" id="process">
+    <div class="num">Process</div>
+    <div>
+      <h2>from discovery to release</h2>
+      <p>I learned to work this way at Accenture’s Houston Innovation Hub, running design thinking workshops for energy and utility companies: start from a real problem, design before you build, test with evidence, and iterate: fail fast, learn, try again until it holds up. Vox2 went through the same lifecycle, with a team of one and Claude Code.</p>
+      <figure class="cycle" aria-label="The product lifecycle of Vox2, from discovery to release, with test and iterate repeating">
+        <figcaption>The lifecycle, and the work in each stage</figcaption>
+        <ol>
+          <li><b>Discover</b><ul><li>A teammate who only spoke Portuguese</li><li>Every message one browser tab away</li><li>The gap: no translator tells you if your meaning came through</li></ul></li>
+          <li><b>Design</b><ul><li>Light enough to disappear</li><li>Words settle, they don’t pop</li><li>Private by default</li><li>37 themes, colorblind-safe scores</li></ul></li>
+          <li><b>Develop</b><ul><li>Live two-way translation</li><li>Dictation, read aloud, screen snips</li><li>The meaning check</li><li>A Mac version</li></ul></li>
+          <li class="loop"><b>Test</b><ul><li>11 languages, mistakes planted on purpose</li><li>Fresh sentences every round</li><li>Real medical and legal text</li></ul></li>
+          <li class="loop"><b>Iterate</b><ul><li>Targeted checks: 35% → 70%</li><li>“Can’t check” instead of a fake 100%</li><li>Units and “unless”: 48% → 71%</li></ul><em>↺ fail fast, test again</em></li>
+          <li><b>Release</b><ul><li>One-click releases for Windows and Mac</li><li>Updates install themselves</li><li>Open source, every test published</li></ul></li>
+        </ol>
+        <p class="cycle-next"><span>next</span> Real people, real conversations: watching family and friends use it, then deciding what to build from what they do.</p>
+      </figure>
     </div>
   </div>
 
@@ -146,10 +166,11 @@
           <div><dt>False alarm</dt><dd>a good translation flagged by mistake (about 7% on fresh sentences)</dd></div>
         </dl>
       </figure>
-      <p class="fine">Five test runs and two targeted tests, 11 languages, more than 10,000 translations scored. Every run is published with its method and raw results on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
+      <p class="fine">Seven test runs and several targeted tests, 11 languages, more than 15,000 translations scored. Every run is published with its method and raw results on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
       <p>The first test caught under a third of the mistakes, so I added targeted checks for negations, numbers, pronouns and opposites, and taught it to say “can’t check” when text never got translated, instead of showing a misleading number.</p>
       <p>Then I ran it on fresh sentences nobody had looked at, and errors caught dropped from 79% to 70%. That’s the more honest number. The earlier sentences had been read while tuning the checks, so they flattered it, like grading a student on the practice questions.</p>
       <p>70% sounds low, but it isn’t alarming. Every bad sentence in the test hides a mistake on purpose, and some can’t show up in a round trip at all, like a “he” passing through a language that doesn’t mark gender. The mistakes that change what you meant are caught almost every time: a dropped part of a sentence 98%, a changed number 94%, a missing “not” 85%. The misses are mostly opposite words and swapped pronouns, which need a second opinion to see. Without the checks, the score alone caught 35%. And when Vox2 can’t tell, it says so instead of guessing.</p>
+      <p>Then I raised the stakes: real medicine labels and legal notices, with the mistakes that hurt people. A wrong dose, “days” instead of “weeks”, “unless” instead of “if”. It caught only about half. Those mistakes were right there in the translation back; it just had no rule for them. So I added a unit check and taught it that “unless” means “if not”. On 144 sentences it had never seen, it now catches 71%, with fewer false alarms. That’s not enough to call it a safety check, so I don’t.</p>
       <p>The goal behind all of it: when you write to your family, your in-laws or a coworker in their language, you should know they’ll understand what you meant. Language shouldn’t decide who feels close to you, or what you get to read.</p>
     </div>
   </div>
