@@ -211,11 +211,11 @@ addEventListener('resize', fitAll);
 
 /* ---------- the intro: types lines, "translates" live, changes theme per language ---------- */
 const SCRIPT = [
-  { en: "Hi, I'm Chris.",                        to: 'vi', out: 'Xin chào, tôi là Chris.', back: "Hello, I'm Chris.", theme: 'miami' },
-  { en: 'I lead design and product teams.',      to: 'ja', out: '私はデザインチームと製品チームを率いています。', roman: 'Watashi wa dezain chīmu to seihin chīmu o hikiite imasu.', back: 'I lead the design and product teams.', theme: 'laser' },
-  { en: 'I build the things I wish existed.',    to: 'es', out: 'Construyo las cosas que desearía que existieran.', back: 'I build the things I wish existed.', theme: 'sweden' },
-  { en: 'And I take a lot of photos.',           to: 'ko', out: '그리고 사진을 많이 찍거든요.', roman: 'geuligo sajin-eul manh-i jjiggeodeun-yo.', back: 'And I take a lot of pictures.', theme: 'bento' },
-  { en: 'Go ahead, type something.',             to: 'fr', out: 'Allez-y, tapez quelque chose.', back: 'Go ahead, type something.', theme: 'aurora' },
+  { en: "Hi, I'm Chris.",                        to: 'vi', out: 'Xin chào, tôi là Chris.', back: "Hello, I'm Chris." },
+  { en: 'I lead design and product teams.',      to: 'ja', out: '私はデザインチームと製品チームを率いています。', roman: 'Watashi wa dezain chīmu to seihin chīmu o hikiite imasu.', back: 'I lead the design and product teams.' },
+  { en: 'I build the things I wish existed.',    to: 'es', out: 'Construyo las cosas que desearía que existieran.', back: 'I build the things I wish existed.' },
+  { en: 'And I take a lot of photos.',           to: 'ko', out: '그리고 사진을 많이 찍거든요.', roman: 'geuligo sajin-eul manh-i jjiggeodeun-yo.', back: 'And I take a lot of pictures.' },
+  { en: 'Go ahead, type something.',             to: 'fr', out: 'Allez-y, tapez quelque chose.', back: 'Go ahead, type something.' },
 ];
 // The theme holds for a minute while the intro keeps typing, then moves to the next one
 // (Sweden → Bento → Miami). It holds still while someone is typing, while the hero is
