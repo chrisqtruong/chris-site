@@ -507,3 +507,4 @@
   section, footer { scroll-margin-top: 72px; }
   /* footers without the greeting: just the links, a little tighter */
   footer:not(:has(.say-hi)) .links { padding-top: 28px; border-top: 1px solid var(--hair); }
+  .stat b .to { font-size: .55em; vertical-align: .25em; color: var(--soft); margin: 0 .1em; }
