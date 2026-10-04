@@ -159,6 +159,7 @@ export function applyVoxTheme(name, surface = 'bg') {
   // text inside a selection: white or near-black, whichever reads better on that color
   const ink = c => (contrast(c, '#ffffff') >= contrast(c, '#131214') ? '#ffffff' : '#131214');
   setPageColors({ '--name-l': nameL, '--name-d': nameD, '--sel-ink-l': ink(nameL), '--sel-ink-d': ink(nameD) });
+  setFavicon(nameL);
   document.querySelectorAll('[data-t]').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === name));
 }
 // Each theme has its own recording of the real app (a different language in each).
@@ -186,7 +187,20 @@ function setPageColors(colors) {
   for (const [k, v] of Object.entries(colors)) document.documentElement.style.setProperty(k, v);
   try { sessionStorage.setItem('pageColors', JSON.stringify(colors)); } catch {}
 }
-try { const c = JSON.parse(sessionStorage.getItem('pageColors')); if (c) setPageColors(c); } catch {}
+// The browser-tab icon: a small circle with a serif "c", in the current theme color.
+// (Chrome and Firefox update it live; Safari may keep showing the first one it loaded.)
+function setFavicon(color) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="${color}"/>`
+    + `<text x="32" y="45" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" fill="#fff">c</text></svg>`;
+  let link = document.querySelector('link[rel="icon"]');
+  if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.append(link); }
+  link.type = 'image/svg+xml';
+  link.href = 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
+try {
+  const c = JSON.parse(sessionStorage.getItem('pageColors'));
+  if (c) { setPageColors(c); if (c['--name-l']) setFavicon(c['--name-l']); }
+} catch {}
 
 /* ---------- light / dark mode ---------- */
 // The site opens in light (set before first paint, in each page's <head>);
