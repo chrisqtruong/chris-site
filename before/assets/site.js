@@ -1,20 +1,22 @@
 /* Shared by every page: photos, lightbox, scroll reveals, footer, page accent. */
 
-/* ---------- photos, grouped into series (placeholders until real ones go in /assets/photos) ---------- */
-// A photo: { src: '/assets/photos/baltimore/harbor.jpg', r: 1.5, cap: '…', cam: '…' }  (r = width / height)
-// Until then each one is a soft neutral block. Series, captions and cameras below are examples.
+/* ---------- photos (placeholders until real ones go in /assets/photos) ---------- */
+// swap each gradient for a real file: { src: '/assets/photos/harbor.jpg', r: 1.5, cap: '…', cam: '…' }
+// (cameras and placeholder captions are examples until the real photos and their details go in)
 const GR = 'Ricoh GR IV', A7 = 'Sony a7 III', IP = 'iPhone';
-const ph = (r, a, b, cap, cam) => ({ r, c: [a, b], cap, cam });
-export const SERIES = [
-  { slug: 'baltimore', title: 'Baltimore', when: '2026', note: 'Example series. Replace with a line about it.', photos: [
-    ph(1.5, '#c9c2b6', '#8f877b', 'Harbor, morning', GR), ph(.8, '#b9b4ab', '#6f6a62', 'Row houses', GR),
-    ph(1.5, '#a59f96', '#57524c', 'Night bus', IP), ph(1.25, '#d3cdc3', '#9a9286', 'Market', GR) ] },
-  { slug: 'vietnam', title: 'Vietnam', when: '2025', note: 'Example series. Replace with a line about it.', photos: [
-    ph(1.5, '#c8c0ae', '#857c68', 'Street, Hội An', A7), ph(.75, '#bdb6a6', '#77705f', 'Grandmother’s house', A7),
-    ph(1.5, '#d0c9b9', '#958d7b', 'Ferry', A7) ] },
-  { slug: 'everyday', title: 'Everyday', when: 'ongoing', note: 'Example series. Replace with a line about it.', photos: [
-    ph(1.25, '#c4c4c0', '#83837e', 'Kitchen light', IP), ph(1, '#b7b6b1', '#6c6b66', 'Sarah', A7),
-    ph(1.5, '#cfcdc7', '#908e87', 'Walk home', GR), ph(.8, '#bcbab3', '#75736c', 'Window', GR) ] },
+export const PHOTOS = [
+  { r: 1.5,  c: ['#f6b48f', '#f35588'], cap: 'Baltimore, 2026', cam: GR },
+  { r: .75,  c: ['#0058a3', '#57abdb'], cap: 'Philadelphia', cam: A7 },
+  { r: 1,    c: ['#221b44', '#b82356'], cap: 'Houston, home', cam: IP },
+  { r: .8,   c: ['#fff591', '#f2aa00'], cap: 'Somewhere in Vietnam', cam: A7 },
+  { r: 1.4,  c: ['#2d394d', '#ff7a90'], cap: 'Night walk', cam: GR },
+  { r: 1.25, c: ['#7b9c98', '#eaf1f3'], cap: 'Morning', cam: IP },
+  { r: .7,   c: ['#011926', '#00e980'], cap: 'Neon', cam: GR },
+  { r: 1.5,  c: ['#e1e1e3', '#94294c'], cap: 'Sarah', cam: A7 },
+  { r: 1,    c: ['#f37f83', '#fcd23f'], cap: 'Summer', cam: IP },
+  { r: .8,   c: ['#132237', '#ebb723'], cap: 'Harbor lights', cam: GR },
+  { r: 1.5,  c: ['#ebe1ef', '#8a5bd6'], cap: 'Dusk', cam: A7 },
+  { r: 1.2,  c: ['#f2aa00', '#a66b00'], cap: 'Golden hour', cam: GR },
 ];
 
 function photoInner(p) {
@@ -23,17 +25,17 @@ function photoInner(p) {
     : `<div class="ph" role="img" aria-label="${p.cap}" style="aspect-ratio:${p.r};background:linear-gradient(160deg, ${p.c[0]}, ${p.c[1]})"></div>`;
 }
 
-// A series, one big photo per row with a small caption underneath; click for full screen.
-let PHOTOS = [];
-export function renderSeries(container, series) {
-  PHOTOS = series.photos;
-  series.photos.forEach((p, i) => {
-    const f = document.createElement('figure');
-    f.className = 'plate';
+// Each photo gets the same view-transition name on every page,
+// so a thumbnail on the home page flies into its spot in the gallery.
+export function renderPhotos(grid, { limit = PHOTOS.length, href = null } = {}) {
+  PHOTOS.slice(0, limit).forEach((p, i) => {
+    const f = document.createElement(href ? 'a' : 'figure');
+    f.className = 'photo';
+    if (href) f.href = `${href}#p${i}`;
     f.style.viewTransitionName = `photo-${i}`;
-    f.innerHTML = `<div class="frame">${photoInner(p)}</div><figcaption>${p.cap}<span>${p.cam}</span></figcaption>`;
-    f.querySelector('.frame').onclick = () => openLightbox(i, f);
-    container.append(f);
+    f.innerHTML = photoInner(p) + `<figcaption>${p.cap}<span>${p.cam}</span></figcaption>`;
+    if (!href) f.onclick = () => openLightbox(i, f);
+    grid.append(f);
   });
 }
 
@@ -64,7 +66,7 @@ export function openLightbox(i, el) {
 }
 function step(d) {
   const i = (current + d + PHOTOS.length) % PHOTOS.length;
-  const el = document.querySelectorAll('.plate')[i];
+  const el = document.querySelectorAll('.photo')[i];
   if (el) openLightbox(i, el);
 }
 export function closeLightbox() {
@@ -85,8 +87,6 @@ addEventListener('keydown', e => {
 
 /* ---------- Vox2 themes (palettes from Vox2 / Monkeytype) ---------- */
 // [bg, main, sub, line, text, accent]; accent is a version of the theme that reads on the white page
-// the themes the site offers right now (the others stay defined for later); the first is the default
-export const SITE_THEMES = ['sweden', 'bento', 'miami'];
 export const THEMES = {
   miami:    ['#f35588', '#05dfd7', '#94294c', '#db4979', '#f0e9ec', '#e0457a'],
   laser:    ['#221b44', '#009eaf', '#b82356', '#2e2560', '#dbe7e8', '#b82356'],
@@ -109,56 +109,29 @@ const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((p
 export const onMain = name => { const [bg, main] = THEMES[name]; return contrast(bg, main) >= 4.5 ? bg : '#1d1a1f'; };
 // The same hue, deepened (on the white page) or lifted (on the dark page) only as much as needed
 // to read against it (3:1, fine for large text and accents).
-const PAPER = { light: '#faf8f4', dark: '#222126' };
+const PAPER = { light: '#ffffff', dark: '#131214' };
 function readableOn(hex, mode) {
-  // work in hue / saturation / lightness, so only lightness moves and the color keeps its character
-  const n = parseInt(hex.slice(1), 16);
-  let [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(v => v / 255);
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h = 0, sat = 0, l = (max + min) / 2;
-  if (max !== min) {
-    const d = max - min;
-    sat = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
-    h /= 6;
+  let [r, g, b] = [0, 8, 16].map(sh => (parseInt(hex.slice(1), 16) >> (16 - sh)) & 255);
+  const toHex = () => '#' + [r, g, b].map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+  for (let i = 0; i < 60 && contrast(toHex(), PAPER[mode]) < 3; i++) {
+    if (mode === 'light') { r *= 0.94; g *= 0.94; b *= 0.94; }
+    else { r += (255 - r) * 0.08; g += (255 - g) * 0.08; b += (255 - b) * 0.08; }
   }
-  const toHex = (L, S) => {
-    const q = L < 0.5 ? L * (1 + S) : L + S - L * S, p = 2 * L - q;
-    const ch = t => { t = (t + 1) % 1; return t < 1 / 6 ? p + (q - p) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p; };
-    return '#' + [ch(h + 1 / 3), ch(h), ch(h - 1 / 3)].map(v => Math.round(v * 255).toString(16).padStart(2, '0')).join('');
-  };
-  // lifting a very dark color also needs a little more saturation, or it drifts toward grey
-  const S = mode === 'dark' ? Math.min(1, Math.max(sat, 0.45)) : sat;
-  for (let i = 0; i < 100 && contrast(toHex(l, S), PAPER[mode]) < 3; i++) l += mode === 'light' ? -0.01 : 0.01;
-  return toHex(l, mode === 'dark' && contrast(hex, PAPER[mode]) < 3 ? S : sat);
+  return toHex();
 }
 
 // Colors the Vox2 parts of a page (--v-*) and the page accent. `surface` is which theme color the
 // page shows big ('bg' for the hero window, 'main' for the Vox2 card); "Truong" in the nav matches it.
-// vivid = not too dark and not greyish (so a dark navy or slate hero falls back to the theme's bright color)
-function isVivid(hex) {
-  const n = parseInt(hex.slice(1), 16);
-  const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(v => v / 255);
-  const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2;
-  const sat = max === min ? 0 : (max - min) / (l > 0.5 ? 2 - max - min : max + min);
-  return l >= 0.3 && sat >= 0.5;
-}
-export let currentVoxTheme = SITE_THEMES[0];   // the theme on screen right now
 export function applyVoxTheme(name, surface = 'bg') {
-  currentVoxTheme = name;
   const [bg, main, sub, line, text, accent] = THEMES[name];
   const s = document.documentElement.style;
   s.setProperty('--v-bg', bg); s.setProperty('--v-main', main); s.setProperty('--v-sub', sub);
   s.setProperty('--v-line', line); s.setProperty('--v-text', text);
   s.setProperty('--v-on-main', onMain(name));
-  // "Truong" in the nav matches the Vox2 color on the page (light and dark versions; CSS picks one).
-  // Everything else keeps the site's one fixed accent, so color stays with the Vox2 parts.
-  // the hero's own color when it's vivid enough to notice, else the theme's bright accent color
-  const big = surface === 'main' || !isVivid(bg) ? main : bg;
-  const nameL = readableOn(big, 'light'), nameD = readableOn(big, 'dark');
-  // text inside a selection: white or near-black, whichever reads better on that color
-  const ink = c => (contrast(c, '#ffffff') >= contrast(c, '#131214') ? '#ffffff' : '#131214');
-  setPageColors({ '--name-l': nameL, '--name-d': nameD, '--sel-ink-l': ink(nameL), '--sel-ink-d': ink(nameD) });
+  // light and dark versions; the stylesheet picks one for the current mode
+  const big = surface === 'main' ? main : bg;
+  setPageColors({ '--accent-l': accent, '--accent-d': readableOn(main, 'dark'),
+                  '--name-l': readableOn(big, 'light'), '--name-d': readableOn(big, 'dark') });
   document.querySelectorAll('[data-t]').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === name));
 }
 // Each theme has its own recording of the real app (a different language in each).
@@ -180,8 +153,15 @@ export function themeDots(container, names, onPick) {
 export function pickedVoxTheme(name) {
   try { if (name) sessionStorage.setItem('voxTheme', name); return sessionStorage.getItem('voxTheme'); } catch { return null; }
 }
+const cardTheme = THEMES[pickedVoxTheme()];
+if (cardTheme) {
+  const s = document.documentElement.style;
+  // the card is the theme's accent color, so the app window inside it stands out
+  s.setProperty('--card-bg', cardTheme[1]); s.setProperty('--card-text', onMain(pickedVoxTheme()));
+  showVoxShot(pickedVoxTheme());
+}
 
-/* ---------- "Truong": subpages keep the color the hero was showing ---------- */
+/* ---------- page accent: subpages keep the colors the hero was showing ---------- */
 function setPageColors(colors) {
   for (const [k, v] of Object.entries(colors)) document.documentElement.style.setProperty(k, v);
   try { sessionStorage.setItem('pageColors', JSON.stringify(colors)); } catch {}
@@ -189,8 +169,8 @@ function setPageColors(colors) {
 try { const c = JSON.parse(sessionStorage.getItem('pageColors')); if (c) setPageColors(c); } catch {}
 
 /* ---------- light / dark mode ---------- */
-// The site opens in light (set before first paint, in each page's <head>);
-// the toggle switches to dark and is remembered on this device.
+// The page starts in the visitor's system mode (set before first paint, in each page's <head>);
+// the toggle overrides it and is remembered on this device.
 const modeBtn = document.getElementById('modeToggle');
 const currentMode = () => document.documentElement.dataset.mode;
 const labelMode = () => modeBtn?.setAttribute('aria-label', currentMode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
@@ -210,7 +190,11 @@ if (modeBtn) {
     setMode(mode);
   };
 }
-
+// follow the system while the visitor hasn't chosen
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+  let chosen = null; try { chosen = localStorage.getItem('mode'); } catch {}
+  if (!chosen) setMode(e.matches ? 'dark' : 'light');
+});
 
 /* ---------- footer: "Say hi, in ___" cycles through greetings, resting on English ---------- */
 // [hi, the language in its own words, lang code, script class]
@@ -346,11 +330,3 @@ if (links) {
   // she only moves (and blinks) while she's on screen
   new IntersectionObserver(([e]) => kitty.classList.toggle('peek', e.isIntersecting), { threshold: 1 }).observe(kitty);
 }
-
-/* ---------- email: assembled in the browser, so bots that read page code don't find the address ---------- */
-document.querySelectorAll('[data-mail]').forEach(a => {
-  const [user, domain] = a.dataset.mail.split('|');
-  const address = `${user}@${domain}`;
-  a.href = `mailto:${address}`;
-  a.title = address;   // shows on hover, for people who use webmail
-});

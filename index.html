@@ -91,11 +91,9 @@
   <img class="preview" alt="" aria-hidden="true">
 </section>
 
-<!-- ============ PHOTOS ============ -->
+<!-- ============ PHOTOS: one quiet line; the photos live on their own pages ============ -->
 <section class="quiet reveal" id="photos">
-  <h2 class="label photos-title">things i <i>noticed</i></h2>
-  <div class="strip" id="photoGrid"></div>
-  <a class="more" href="/photos/">See all photographs <span class="arrow">→</span></a>
+  <p class="work-line">I also take photos. <a href="/photos/">Photographs&nbsp;→</a></p>
 </section>
 
 <!-- ============ CONTACT ============ -->
@@ -112,7 +110,7 @@
 </footer>
 
 <script type="module">
-import { renderPhotos, applyVoxTheme, themeDots, currentVoxTheme, SITE_THEMES } from '/assets/site.js';
+import { applyVoxTheme, themeDots, currentVoxTheme, SITE_THEMES } from '/assets/site.js';
 
 /* ---------- themes: each intro line brings its own; the dots let visitors choose ---------- */
 const vox = document.getElementById('vox');
@@ -380,7 +378,6 @@ document.querySelectorAll('[data-say]').forEach(b => b.onclick = () => {
 });
 
 /* ---------- photos: a teaser; each one flies into its spot on the photos page ---------- */
-renderPhotos(document.getElementById('photoGrid'), { limit: 3, href: '/photos/' });
 
 /* ---------- project list: on a computer, the project's clip fades in beside the line you hover ---------- */
 const preview = document.querySelector('#projects .preview');

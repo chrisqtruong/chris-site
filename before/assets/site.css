@@ -1,16 +1,14 @@
   /* ---------- page tokens ---------- */
   :root {
-    --paper: #faf8f4;        /* warm paper: softer than pure white */
+    --paper: #ffffff;
     --ink: #161514;
     --soft: #6b6862;
-    --hair: #e5e1d8;
+    --hair: #e8e6e1;
     /* the accent and "Truong" follow the current Vox2 theme; JS sets a light (-l) and dark (-d) version of each */
-    /* one thread of color: every accent is the current Vox2 theme color (light and dark versions set by JS) */
-    --accent: var(--name-l, #e0457a);
-    --name-color: var(--accent);
-    --sel-ink: var(--sel-ink-l, #ffffff);
+    --accent: var(--accent-l, #e0457a);
+    --name-color: var(--name-l, var(--accent));
     --body-ink: #2b2a28;     /* long-form text, a touch softer than --ink */
-    --tint: #f1eee7;         /* quiet panels */
+    --tint: #f6f5f2;         /* quiet panels */
     --purr-bg: #f6e7d4; --purr-ink: #4a2f1f; --purr-btn: #a8673a;   /* Purrmodoro by day */
     --site-bg: #fff591; --site-ink: #3b1830;
     --todo-bg: color-mix(in srgb, #ffe066 55%, transparent);
@@ -25,7 +23,7 @@
     --gutter: clamp(16px, 3vw, 40px);
 
     /* Vox2 card theme (set by JS) */
-    --v-bg: #0058a3; --v-main: #ffcc02; --v-sub: #57abdb; --v-line: #0a63b0; --v-text: #ffffff;   /* Sweden, the default theme */
+    --v-bg: #f35588; --v-main: #05dfd7; --v-sub: #94294c; --v-line: #db4979; --v-text: #f0e9ec;
   }
   /* Young Serif has no italic, and Lexend Deca has none either: mark accent words with color, titles with weight */
   :is(h1, h2, h3, .lede, nav .name) i { font-style: normal; }
@@ -41,21 +39,19 @@
   }
   a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: color .2s; }
   a:hover { color: var(--accent); }
-  /* highlighted text takes the current Vox2 theme color (same as "Truong"); it's kept readable against the page in both modes */
-  ::selection { background: var(--name-color); color: var(--sel-ink, var(--paper)); }
+  ::selection { background: var(--accent); color: var(--paper); }
 
   /* ---------- dark mode: warm near-black, soft off-white, high contrast ---------- */
   :root[data-mode="dark"] {
-    --paper: #222126;        /* graphite: softer than black, still darker than every hero window but Bento */
+    --paper: #131214;
     --ink: #f2efea;
-    --soft: #aba79f;
-    --hair: #38363c;
+    --soft: #a8a49d;
+    --hair: #2d2b2e;
     --body-ink: #dcd8d1;
-    --tint: #2b2a30;
-    --accent: var(--name-d, #ff7aa2);
-    --name-color: var(--accent);
-    --sel-ink: var(--sel-ink-d, #131214);
-    --purr-bg: #2a2748; --purr-ink: #f3e9dc; --purr-btn: #c98b4f;   /* Purrmodoro's own night colors, a step lighter than the page */
+    --tint: #1d1c1f;
+    --accent: var(--accent-d, #ff7aa2);
+    --name-color: var(--name-d, var(--accent));
+    --purr-bg: #1f1d38; --purr-ink: #f3e9dc; --purr-btn: #c98b4f;   /* Purrmodoro's own night colors */
     --site-bg: #e9df73;
     --todo-bg: rgba(255, 224, 102, .2);
     color-scheme: dark;
@@ -234,9 +230,9 @@
   .photo .ph { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
   .photo:hover .ph { transform: scale(1.03); }
   /* footer */
-  footer { max-width: 1280px; margin: clamp(64px, 8vw, 112px) auto 0; padding: 0 var(--gutter) 32px; }
+  footer { max-width: 1280px; margin: clamp(80px, 12vw, 160px) auto 0; padding: 0 var(--gutter) 40px; }
   footer .lede { margin-bottom: 28px; }
-  footer .links { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 20px; padding-bottom: 44px; border-bottom: 1px solid var(--hair); }
+  footer .links { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 20px; padding-bottom: 60px; border-bottom: 1px solid var(--hair); }
   footer small { display: block; margin-top: 20px; font: 400 13px var(--mono); color: var(--soft); }
 
   /* reveal on scroll */
@@ -377,6 +373,7 @@
     .page-head { padding-top: 100px; }
     body { font-size: 18px; }
     nav ul { gap: 14px; font-size: 15px; }
+    nav ul li:is(:first-child, :last-child) { display: none; }
     .about-grid, .c-site .inner { grid-template-columns: 1fr; }
     .timeline li { grid-template-columns: 1fr; gap: 8px; }
     .c-vox, .c-purr { grid-column: span 12; }
@@ -387,11 +384,9 @@
     .bar { padding: 10px 14px 10px 16px; }
     .bar .engine span.long { display: none; }
   }
-  nav ul a { white-space: nowrap; }
   @media (max-width: 480px) {
     nav ul { gap: 12px; font-size: 14px; }
-    nav ul li:first-child { display: none; }   /* leaves photos, say hi and the light/dark toggle */
-    nav .name { font-size: 22px; }
+    nav ul li:is(:nth-child(2), :nth-child(3)) { display: none; }   /* leaves Photos and the light/dark toggle */
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -402,6 +397,15 @@
   .swatch-row button { border-color: var(--hair); }
   .swatch-row button[aria-pressed="true"] { border-color: var(--ink); }
 
+  /* "Say hi, in English": greetings in other scripts get serif faces that sit well next to Young Serif */
+  .say-hi i { display: inline-block; }
+  .say-hi .nw { white-space: nowrap; }   /* keep "Say ciao," and "in italiano." each in one piece */
+  @media (max-width: 700px) { .say-hi { min-height: 2.2em; } }   /* room for two lines, so the page doesn't jump while it spins */
+  .say-hi .s-vi { font-family: "Noto Serif", var(--head); font-weight: 600; }
+  .say-hi .s-zh { font-family: "Noto Serif SC", var(--head); font-weight: 700; }
+  .say-hi .s-ko { font-family: "Noto Serif KR", var(--head); font-weight: 700; }
+  .say-hi .s-ar { font-family: "Noto Naskh Arabic", var(--head); font-weight: 700; }
+  @keyframes hi-in { from { opacity: 0; transform: translateY(.15em); } }
   /* theme dots: the two-tone fill stays inside the ring (by default it tiles under the border and looks like a square) */
   .themes button, .theme-row button { background-origin: border-box; background-clip: padding-box; }
   /* screenshots with white or cream backgrounds, dimmed a touch at night */
@@ -436,68 +440,3 @@
   .kitty:hover .k-happy { opacity: 1; }
   @keyframes k-blink { 0%, 95%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
   @media (prefers-reduced-motion: reduce) { .kitty svg { transform: none; } }
-
-  /* ---------- the quiet home page: everything after the hero whispers ---------- */
-  section.quiet { max-width: 980px; padding-top: clamp(48px, 6vw, 80px); }   /* tighter rhythm under the hero */
-  .bio { font-size: clamp(21px, 2.1vw, 27px); line-height: 1.55; margin: 0 0 22px; max-width: 760px; }
-  .work-line { font-size: 17px; color: var(--soft); margin: 0; max-width: 640px; }
-  .quiet .label { font: var(--head-w) calc(clamp(28px, 3vw, 38px) * (var(--head-scale) + .12))/1.2 var(--head); letter-spacing: var(--head-track); margin: 0 0 18px; }
-  .index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair); }
-  .index .row { display: grid; grid-template-columns: minmax(150px, 220px) 1fr auto; gap: 20px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--hair); text-decoration: none; color: inherit; }
-  .index .row:hover { color: inherit; }
-  .index .t { font: var(--head-w) 26px/1.1 var(--head); letter-spacing: var(--head-track); width: fit-content; }
-  .index .d { color: var(--soft); font-size: 17px; }
-  .index .arrow { color: var(--soft); }
-  .index .row:hover .arrow { color: var(--ink); }
-  #projects { position: relative; }
-  .preview { position: absolute; right: -40px; width: 200px; border-radius: 12px; box-shadow: 0 20px 50px -18px rgba(0,0,0,.45); pointer-events: none;
-    opacity: 0; transform: translateY(-50%) scale(.96); transition: opacity .25s ease, transform .3s ease; }
-  .preview.show { opacity: 1; transform: translateY(-50%) scale(1); }
-  .preview:not([src]) { display: none; }
-  @media (hover: none), (max-width: 1100px) { .preview { display: none; } }
-  .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-  .strip .photo { margin: 0; }
-  .strip .ph { aspect-ratio: 4 / 3 !important; object-fit: cover; }
-  footer .lede { margin-bottom: 24px; }
-  @media (max-width: 640px) {
-    .index .row { grid-template-columns: 1fr auto; gap: 4px 12px; }
-    .index .d { grid-column: 1; grid-row: 2; font-size: 16px; }
-    .index .arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
-    .strip { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  }
-
-  /* "Say hi, in English": greetings in other scripts get serif faces that sit well next to Young Serif */
-  .say-hi i { display: inline-block; }
-  .say-hi .nw { white-space: nowrap; }   /* keep "Say ciao," and "in italiano." each in one piece */
-  @media (max-width: 700px) { .say-hi { min-height: 2.2em; } }   /* room for two lines, so the page doesn't jump while it spins */
-  .say-hi .s-vi { font-family: "Noto Serif", var(--head); font-weight: 600; }
-  .say-hi .s-zh { font-family: "Noto Serif SC", var(--head); font-weight: 700; }
-  .say-hi .s-ko { font-family: "Noto Serif KR", var(--head); font-weight: 700; }
-  .say-hi .s-ar { font-family: "Noto Naskh Arabic", var(--head); font-weight: 700; }
-  @keyframes hi-in { from { opacity: 0; transform: translateY(.15em); } }
-  /* the changing greeting takes the current Vox2 theme color, like "Truong" */
-  .say-hi i { color: var(--name-color); transition: color .6s; }
-  /* the hero waits for its (random) starting theme before showing, so it never flashes the default pink first */
-  html:not(.themed) .vox { opacity: 0; animation: vox-fallback 0s 1.5s forwards; }
-  .vox { transition: opacity .3s ease, background-color .7s ease, color .7s ease; }
-  @keyframes vox-fallback { to { opacity: 1; } }
-  .quiet .label i { color: var(--accent); transition: color .6s; }
-
-  /* ---------- photos: "gallery mode" — theme colors step back so the photos carry the color ---------- */
-  :root.gallery { --accent: var(--ink); --sel-ink: var(--paper); }
-  .series-list { padding-top: 48px; }
-  #photos.quiet { padding-top: 28px; }
-  .plates { max-width: 1100px; margin: 56px auto 0; padding: 0 var(--gutter); display: grid; gap: clamp(56px, 8vw, 110px); }
-  .plate { margin: 0; }
-  .plate .frame { cursor: zoom-in; }
-  .plate .ph { width: 100%; max-height: 86vh; object-fit: contain; display: block; }
-  .plate div.ph { max-height: none; }
-  .plate figcaption { margin-top: 12px; font: 500 13px var(--mono); color: var(--soft); display: flex; gap: 14px; }
-  .plate figcaption span::before { content: "·"; margin-right: 14px; }
-  #photos.quiet + footer { margin-top: clamp(56px, 7vw, 96px); }
-  @media (max-width: 360px) {
-    nav { gap: 10px; }
-    nav ul { gap: 10px; font-size: 13.5px; }
-    nav .name { font-size: 20px; }
-    .mode { width: 30px; height: 30px; }
-  }
