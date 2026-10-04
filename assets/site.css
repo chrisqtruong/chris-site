@@ -87,9 +87,10 @@
   }
   nav .name { font: var(--head-w) calc(34px * var(--head-scale))/1 var(--display); letter-spacing: var(--head-track); text-decoration: none; white-space: nowrap; }
   nav .name i { color: var(--name-color, var(--accent)); transition: color .6s; }   /* matches the Vox2 color on the page */
-  nav ul { display: flex; gap: clamp(14px, 2.4vw, 32px); list-style: none; margin: 0; padding: 0; font-size: 16px; }
-  nav ul a { text-decoration: none; color: var(--soft); }
-  nav ul a:hover { color: var(--ink); }
+  /* nav links in the same face as the name, a size down, so the header reads as one piece */
+  nav ul { display: flex; gap: clamp(14px, 2.2vw, 28px); list-style: none; margin: 0; padding: 0; font: var(--head-w) 19px/1 var(--head); letter-spacing: var(--head-track); }
+  nav ul a { text-decoration: none; color: color-mix(in srgb, var(--ink) 72%, var(--paper)); transition: color .2s; }
+  nav ul a:hover { color: var(--accent); }
 
   /* ---------- hero: Vox2, fit to window ---------- */
   .hero { height: 100svh; min-height: 520px; padding: 60px var(--gutter) var(--gutter); display: flex; }
@@ -373,7 +374,7 @@
     .screens { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .page-head { padding-top: 100px; }
     body { font-size: 18px; }
-    nav ul { gap: 14px; font-size: 15px; }
+    nav ul { gap: 14px; font-size: 17px; }
     .about-grid, .c-site .inner { grid-template-columns: 1fr; }
     .timeline li { grid-template-columns: 1fr; gap: 8px; }
     .c-vox, .c-purr { grid-column: span 12; }
@@ -386,7 +387,7 @@
   }
   nav ul a { white-space: nowrap; }
   @media (max-width: 480px) {
-    nav ul { gap: 12px; font-size: 14px; }
+    nav ul { gap: 12px; font-size: 16px; }
     nav ul li:first-child { display: none; }   /* phones: photos, contact and the light/dark toggle */
     nav .name { font-size: 22px; }
   }
@@ -493,8 +494,8 @@
   .plate figcaption span::before { content: "·"; margin-right: 14px; }
   #photos.quiet + footer { margin-top: clamp(56px, 7vw, 96px); }
   @media (max-width: 360px) {
-    nav { gap: 10px; }
-    nav ul { gap: 10px; font-size: 13.5px; }
+    nav { gap: 8px; }
+    nav ul { gap: 9px; font-size: 14px; }
     nav .name { font-size: 20px; }
     .mode { width: 30px; height: 30px; }
   }
