@@ -361,19 +361,25 @@ document.addEventListener('selectionchange', () => {
 addEventListener('scroll', () => { if (bubble?.classList.contains('show')) hideBubble(); }, { passive: true });
 addEventListener('keydown', e => { if (e.key === 'Escape') hideBubble(); });
 
-/* ---------- a small kitty peeks over the footer line when you reach the bottom ---------- */
+/* ---------- a little polar bear peeks over the footer line when you reach the bottom ---------- */
 const links = document.querySelector('footer .links');
 if (links) {
   const kitty = document.createElement('span');
   kitty.className = 'kitty';
   kitty.setAttribute('aria-hidden', 'true');
+  // a little polar bear: round cream head, small round ears, bead eyes, the top of a black nose
   kitty.innerHTML = `<svg viewBox="0 0 64 40">
-    <path d="M9 24 13 2 29 13Z" fill="#9b6842"/><path d="M14 17 16 8 24 13Z" fill="#f0a3a0"/>
-    <path d="M55 24 51 2 35 13Z" fill="#9b6842"/><path d="M50 17 48 8 40 13Z" fill="#f0a3a0"/>
-    <ellipse cx="32" cy="36" rx="26" ry="23" fill="#9b6842"/>
-    <g class="k-eyes"><ellipse cx="22.5" cy="31" rx="5" ry="5.6" fill="#fffaf2"/><circle cx="23" cy="32" r="3.1" fill="#2a1a12"/>
-      <ellipse cx="41.5" cy="31" rx="5" ry="5.6" fill="#fffaf2"/><circle cx="42" cy="32" r="3.1" fill="#2a1a12"/></g>
-    <g class="k-happy" fill="none" stroke="#2a1a12" stroke-width="2" stroke-linecap="round"><path d="M18 33q4.5-5 9 0"/><path d="M37 33q4.5-5 9 0"/></g>
+    <g stroke="#cfc7b8" stroke-width="1.4">
+      <circle cx="17" cy="15" r="7.5" fill="#f6f3ec"/><circle cx="47" cy="15" r="7.5" fill="#f6f3ec"/>
+      <ellipse cx="32" cy="35" rx="23" ry="21" fill="#f6f3ec"/>
+    </g>
+    <circle cx="17" cy="15.5" r="3.6" fill="#f0c4c4"/><circle cx="47" cy="15.5" r="3.6" fill="#f0c4c4"/>
+    <ellipse cx="32" cy="38" rx="8.5" ry="6.5" fill="#fffdf8"/>
+    <ellipse cx="32" cy="34.6" rx="3.4" ry="2.3" fill="#2a2420"/>
+    <g class="k-eyes"><circle cx="24.5" cy="28.5" r="2.6" fill="#2a2420"/><circle cx="39.5" cy="28.5" r="2.6" fill="#2a2420"/>
+      <circle cx="25.3" cy="27.7" r=".8" fill="#fff"/><circle cx="40.3" cy="27.7" r=".8" fill="#fff"/></g>
+    <g class="k-happy" fill="none" stroke="#2a2420" stroke-width="2" stroke-linecap="round"><path d="M21.5 29.5q3-3.6 6 0"/><path d="M36.5 29.5q3-3.6 6 0"/></g>
+    <ellipse cx="20" cy="33" rx="2.6" ry="1.4" fill="#f3c9c9" opacity=".7"/><ellipse cx="44" cy="33" rx="2.6" ry="1.4" fill="#f3c9c9" opacity=".7"/>
   </svg>`;
   links.append(kitty);
   // she only moves (and blinks) while she's on screen
