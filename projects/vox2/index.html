@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vox2 · Chris Truong</title>
+<meta name="description" content="Vox2, a two-way desktop translator designed and built by Chris Truong.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300..600&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+  // light or dark before anything paints: the visitor's choice, else their system setting
+  try { const m = localStorage.getItem('mode'); document.documentElement.dataset.mode = m || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch { document.documentElement.dataset.mode = 'light'; }
+  // note how this page was reached, so scroll-reveal content that's already on screen shows at once
+  addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
+</script>
+</head>
+<body>
+
+<nav>
+  <a class="name" href="/">Chris <i>Truong</i></a>
+  <ul>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#work">Work</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/photos/">Photos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+  </button>
+</nav>
+
+<div class="page-head" style="padding-bottom:0">
+  <a class="back-link" href="/#projects"><span class="arrow">←</span>All projects</a>
+</div>
+
+<header class="case-hero vox2">
+  <div class="copy">
+    <h1 class="vox2-title">Vox2</h1>
+    <p>A tiny two-way translator for your desktop. Type, paste, speak or snip text in any app, and read it, or hear it, in another language.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://github.com/chrisqtruong/vox2/releases/latest/download/Vox2-setup.exe">Download for Windows</a>
+      <a class="btn" href="https://github.com/chrisqtruong/vox2/releases/latest/download/Vox2-mac.dmg">macOS (beta)</a>
+      <a class="btn" href="https://github.com/chrisqtruong/vox2" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="theme-row" id="themeRow"><span>Try a theme</span></div>
+  </div>
+  <div class="shot"><img src="/assets/vox2/laser.gif" data-vox-shot alt="Vox2 translating a sentence live as it's typed, with pronunciation, the back-translation and a 100% match score"></div>
+</header>
+
+<dl class="facts">
+  <div><dt>Role</dt><dd>Design, product &amp; build <span class="todo">confirm</span></dd></div>
+  <div><dt>Platforms</dt><dd>Windows · macOS (beta)</dd></div>
+  <div><dt>Status</dt><dd>Open source · v0.4.13</dd></div>
+  <div><dt>Built with</dt><dd>Tauri 2 · plain HTML/CSS/JS</dd></div>
+</dl>
+
+<section>
+  <div class="chapter reveal">
+    <div class="num"><b>01</b>Why</div>
+    <div>
+      <h2>why i built it</h2>
+      <p class="todo">Your story goes here. A few prompts: When did you first wish this existed? Who were you trying to talk to (family, in-laws, strangers while traveling)? What did Google Translate in a browser tab get wrong for you?</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num"><b>02</b>What</div>
+    <div>
+      <h2>everywhere you already type</h2>
+      <ul class="features">
+        <li><b>Live, both ways.</b> Type in either box and the other translates as you go.</li>
+        <li><b>From any app.</b> Select text anywhere, press a shortcut, read it in a bubble by your cursor.</li>
+        <li><b>Snip &amp; translate.</b> Draw a box around text in images, subtitles or apps that block copying.</li>
+        <li><b>Dictation.</b> Talk instead of type. Transcribed on your own computer.</li>
+        <li><b>Read aloud.</b> Natural voices in about 75 languages, each word lighting up as it's spoken.</li>
+        <li><b>Conversation mode.</b> Two people, two languages, one computer between them.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num"><b>03</b>Design</div>
+    <div>
+      <h2>small decisions that make it feel calm</h2>
+      <div class="decisions">
+        <div class="decision">
+          <h3>words settle, they don't pop</h3>
+          <p>New words show grey until the engine is sure, so the text never jumps around while you type.</p>
+          <div class="demo">Construyo las c<span class="pend">osas q</span></div>
+        </div>
+        <div class="decision">
+          <h3>trust, not just translation</h3>
+          <p>The translation comes back into your language with a score for how much of your meaning survived. It compares meaning, not exact words.</p>
+          <div class="demo"><span class="bk">↩ Hello, I'm Chris.</span><span class="m">98% match</span></div>
+        </div>
+        <div class="decision">
+          <h3>37 themes, readable for everyone</h3>
+          <p>Color is personal, so there are lots of themes. Scores can switch to a colorblind-safe palette with ✓ ! ✕ symbols, so meaning never depends on color alone.</p>
+          <div class="theme-row swatch-row" id="themeRow2"></div>
+        </div>
+        <div class="decision">
+          <h3>private by default</h3>
+          <p>No account, no server, no analytics. Voice, screen snips and the meaning check run on your own computer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num"><b>04</b>Testing</div>
+    <div>
+      <h2>testing my own feature, honestly</h2>
+      <p>A score is only useful if you can trust it, so I tested the meaning check against 1,320 translations in 11 languages, including ones with deliberate mistakes.</p>
+      <div class="stats">
+        <div class="stat"><b>93%</b><span>of good translations correctly shown as “meaning kept”</span></div>
+        <div class="stat"><b>100%</b><span>of changed numbers caught</span></div>
+        <div class="stat warn"><b>29%</b><span>of other meaning errors caught, like a flipped “not”</span></div>
+      </div>
+      <p>That last number isn't good enough yet, and the ↩ line usually shows the mistake even when the score misses it. So fixing it went to the top of the roadmap.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num"><b>05</b>Next</div>
+    <div>
+      <h2>what's next</h2>
+      <ol class="roadmap">
+        <li>Teach the meaning check to catch negations, pronouns, opposites, names and dates.</li>
+        <li>Highlight the words that changed, so you can see why a score is high or low.</li>
+        <li>“Explain this”: select a phrase and learn what it really means, how formal it is, how a native speaker would say it.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="next-proj">
+  <span>Next project</span>
+  <a href="/projects/purrmodoro/">Purrmodoro <span class="arrow">→</span></a>
+</div>
+
+<footer id="contact">
+  <p class="eyebrow reveal">Contact</p>
+  <p class="lede reveal say-hi" id="sayHi"><span class="nw">Say <i class="hi-word"><bdi>hi</bdi></i>,</span> <span class="nw">in <i class="hi-lang"><bdi>English</bdi></i>.</span></p>
+  <div class="links reveal">
+    <a href="mailto:you@example.com">Email</a>
+    <a href="#" title="Add your LinkedIn URL">LinkedIn</a>
+    <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
+  </div>
+  <small>© 2026 Chris Truong · Baltimore</small>
+  <small class="hint">psst: highlight any text on this site to translate it.</small>
+</footer>
+
+<script type="module">
+import { THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js';
+// starts as the card you clicked on the home page; picks are remembered for this visit
+const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
+const names = Object.keys(THEMES);
+themeDots(document.getElementById('themeRow'), names, pick);
+themeDots(document.getElementById('themeRow2'), names, pick);
+applyVoxTheme(pickedVoxTheme() || 'laser', 'main');
+showVoxShot(pickedVoxTheme() || 'laser');
+// the recordings are small; fetch them now so switching is instant
+addEventListener('load', () => names.forEach(n => { new Image().src = `/assets/vox2/${n}.gif`; }));
+</script>
+</body>
+</html>
