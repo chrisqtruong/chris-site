@@ -16,7 +16,8 @@ const LEVELS = [
     fix: { out: '<b>No</b> puedo ir a la cena esta noche.', back: 'I can’t make it to dinner tonight.', badge: ['high', 'fix checked · 100% match'] },
     verdict: 'Next after that: a suggested fix, offered only after it passes the same check. You see the proof, and one tap uses it. Nothing is swapped in behind your back.' },
   { out: 'Puedo ir a la cena esta noche.', back: 'I <u>can</u> make it to dinner tonight.', badge: ['low', 'major · meaning reversed'],
-    verdict: 'The goal: errors marked with their type and severity, the way professional reviewers grade translations, and tested on the same sets as research systems like xCOMET and CometKiwi, while staying small enough to run on a laptop.' },
+    fix: { out: '<b>No</b> puedo ir a la cena esta noche.', back: 'I can’t make it to dinner tonight.', badge: ['high', 'fix checked · 100% match'] },
+    verdict: 'The goal: everything above, held to research standards. Errors labeled by type and severity the way professional reviewers grade translations, fixes checked the same way, and the whole system measured on the same test sets as research systems like xCOMET and CometKiwi, while staying small enough to run on a laptop.' },
 ];
 
 const ladder = document.querySelector('.ladder');
