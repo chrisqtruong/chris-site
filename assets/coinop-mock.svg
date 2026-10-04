@@ -3,7 +3,7 @@
 <rect x="30" y="28" width="8" height="26" fill="#ffd23f"/>
 <rect x="26" y="32" width="16" height="18" fill="#ffd23f"/>
 <rect x="31" y="34" width="4" height="14" fill="#c79a00"/>
-<text x="56" y="45" font-family="'Courier New', ui-monospace, monospace" font-weight="700" font-size="22" fill="#f0eef5" letter-spacing="2">COIN<tspan fill="#ffd23f">-</tspan>OP</text>
+<text x="56" y="45" font-family="'Courier New', ui-monospace, monospace" font-weight="700" font-size="22" fill="#f0eef5" letter-spacing="2">SWEAR <tspan fill="#ffd23f">JAR</tspan></text>
 <text x="57" y="62" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#9a96ad">vox2 · project expenditure</text>
 <rect x="450" y="30" width="120" height="24" fill="none" stroke="#3ed27a" stroke-width="2"/>
 <text x="510" y="46" font-family="'Courier New', ui-monospace, monospace" font-weight="700" font-size="10" fill="#3ed27a" text-anchor="middle">updated 2 min ago</text>
