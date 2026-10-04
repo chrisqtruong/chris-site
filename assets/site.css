@@ -357,6 +357,13 @@
   .decision .demo { font: 500 15px/1.5 var(--mono); margin: 14px 0 0; padding: 14px 16px; border-radius: 12px; background: var(--v-bg, #221b44); color: var(--v-text, #dbe7e8); transition: background-color .6s, color .6s; }
   .decision .demo .pend { color: var(--v-sub, #b82356); }
   .decision .demo .bk { color: var(--v-text, #dbe7e8); opacity: .7; }
+  .decision .demo .bl { display: block; font-size: 12px; color: var(--v-sub, #b82356); margin-bottom: 4px; }
+  .decision .demo.widths { display: grid; gap: 10px; }
+  .decision .demo.widths span { display: flex; align-items: center; gap: 12px; }
+  .decision .demo.widths b { width: 48px; font-size: 12px; font-weight: 500; color: var(--v-sub, #b82356); }
+  .decision .demo.widths i { display: block; height: 22px; border-radius: 6px; border: 1.5px solid var(--v-main, #009eaf); transition: border-color .6s; }
+  .decision .demo.widths i.n { width: 38%; }
+  .decision .demo.widths i.w { width: 72%; }
   .decision .demo .m { display: inline-block; margin-left: 6px; padding: 0 8px; border: 1.5px solid var(--v-main, #009eaf); color: var(--v-main, #009eaf); border-radius: 99px; font-size: 12px; font-weight: 600; line-height: 1.6; }
   .swatches { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
   .swatches span { width: 22px; height: 22px; border-radius: 50%; }
