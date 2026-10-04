@@ -112,7 +112,7 @@
 </footer>
 
 <script type="module">
-import { applyVoxTheme, themeDots, currentVoxTheme, SITE_THEMES } from '/assets/site.js';
+import { applyVoxTheme, themeDots, currentVoxTheme, SITE_THEMES, scrollIdle, isScrolling } from '/assets/site.js';
 
 /* ---------- themes: each intro line brings its own; the dots let visitors choose ---------- */
 const vox = document.getElementById('vox');
@@ -224,7 +224,7 @@ const SCRIPT = [
 const THEME_HOLD = 60 * 1000;
 let themeIndex = 0;
 setInterval(() => {
-  if (userPickedTheme || !heroOnScreen || vox.classList.contains('live')) return;
+  if (userPickedTheme || !heroOnScreen || vox.classList.contains('live') || isScrolling()) return;
   themeIndex = (themeIndex + 1) % HERO_THEMES.length;
   applyTheme(HERO_THEMES[themeIndex]);
 }, THEME_HOLD);
@@ -236,7 +236,7 @@ const untilVisible = () => (heroOnScreen ? null : new Promise(r => { wake = r; }
 // …and it holds still while a box is being read aloud, so the words don't change mid-sentence.
 let readingNow = false, resumeRead = null;
 const untilDoneReading = () => (readingNow ? new Promise(r => { resumeRead = r; }) : null);
-const sleep = ms => new Promise(r => setTimeout(r, ms)).then(untilVisible).then(untilDoneReading);
+const sleep = ms => new Promise(r => setTimeout(r, ms)).then(untilVisible).then(untilDoneReading).then(scrollIdle);
 let demoOn = true;
 
 function esc(s) { return s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }

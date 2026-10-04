@@ -203,6 +203,13 @@ try {
   if (c) { setPageColors(c); if (c['--name-l']) setFavicon(c['--name-l']); }
 } catch {}
 
+/* ---------- while the page is scrolling, things that animate on their own wait (so scrolling stays smooth) ---------- */
+let lastScroll = 0;
+addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
+export const isScrolling = () => performance.now() - lastScroll < 200;
+// resolves once scrolling has been still for a moment
+export const scrollIdle = () => (isScrolling() ? new Promise(r => { const t = setInterval(() => { if (!isScrolling()) { clearInterval(t); r(); } }, 100); }) : null);
+
 /* ---------- the top bar's real height, so the hero (and anything else) can sit just below it ---------- */
 const navEl = document.querySelector('nav');
 if (navEl) {
@@ -261,6 +268,7 @@ if (sayHi) {
   const STEP = 1600, REST = 6000;
   let queue = [], timer = null, visible = false;
   const next = () => {
+    if (isScrolling()) { timer = setTimeout(next, 250); return; }   // wait until the page is still
     if (!queue.length) queue = [...HELLOS].sort(() => Math.random() - 0.5).concat([LAST]);
     const item = queue.shift();
     show(item, 450);
