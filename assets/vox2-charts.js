@@ -5,15 +5,15 @@
 // The example: "I can't make it to dinner tonight" → Spanish, with the "not" dropped (meaning reversed).
 const LEVELS = [
   { out: 'Puedo ir a la cena esta noche.', back: null,
-    verdict: 'Looks fine. You’d send it, and they’d expect you at dinner.' },
+    verdict: 'What most translation apps give you: a translation and nothing else. It looks fine, so you’d send it, and they’d expect you at dinner.' },
   { out: 'Puedo ir a la cena esta noche.', back: 'I can make it to dinner tonight.', badge: ['high', '96% match'],
-    verdict: 'Almost every word came back, so the score looks great, even though the meaning flipped.' },
+    verdict: 'Translate it back and compare meanings. Where Vox2 started. Almost every word came back, so the score looks great, even though the meaning flipped.' },
   { out: 'Puedo ir a la cena esta noche.', back: 'I <u>can</u> make it to dinner tonight.', badge: ['low', 'a “not” went missing'],
-    verdict: 'Caught. The check notices your “not” didn’t survive and flags the word behind it.' },
+    verdict: 'Where Vox2 is now. Checks for the classic mistakes (a flipped “not”, a changed number, a swapped pronoun, text that never got translated) catch it and flag the word behind it.' },
   { out: 'Puedo ir a la cena esta noche.', back: 'I <u>can</u> make it to dinner tonight.', badge: ['low', '2 engines agree: meaning flipped'],
-    verdict: 'Next: a second engine reads it back too, so one engine can’t agree with its own mistake.' },
+    verdict: 'Next: a second engine reads it back too, so one engine can’t agree with its own mistake, plus an optional AI double-check and every changed word highlighted.' },
   { out: 'Puedo ir a la cena esta noche.', back: 'I <u>can</u> make it to dinner tonight.', badge: ['low', 'major · meaning reversed'],
-    verdict: 'The goal: the error is marked with its type and severity, the way professional reviewers grade translations.' },
+    verdict: 'The goal: errors marked with their type and severity, the way professional reviewers grade translations, and tested on the same sets as research systems like xCOMET and CometKiwi, while staying small enough to run on a laptop.' },
 ];
 
 const ladder = document.querySelector('.ladder');
