@@ -7,6 +7,7 @@
     /* the accent and "Truong" follow the current Vox2 theme; JS sets a light (-l) and dark (-d) version of each */
     --accent: var(--accent-l, #e0457a);
     --name-color: var(--name-l, var(--accent));
+    --sel-ink: var(--sel-ink-l, #ffffff);
     --body-ink: #2b2a28;     /* long-form text, a touch softer than --ink */
     --tint: #f6f5f2;         /* quiet panels */
     --purr-bg: #f6e7d4; --purr-ink: #4a2f1f; --purr-btn: #a8673a;   /* Purrmodoro by day */
@@ -40,7 +41,7 @@
   a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; transition: color .2s; }
   a:hover { color: var(--accent); }
   /* highlighted text takes the current Vox2 theme color (same as "Truong"); it's kept readable against the page in both modes */
-  ::selection { background: var(--name-color); color: var(--paper); }
+  ::selection { background: var(--name-color); color: var(--sel-ink, var(--paper)); }
 
   /* ---------- dark mode: warm near-black, soft off-white, high contrast ---------- */
   :root[data-mode="dark"] {
@@ -52,6 +53,7 @@
     --tint: #1d1c1f;
     --accent: var(--accent-d, #ff7aa2);
     --name-color: var(--name-d, var(--accent));
+    --sel-ink: var(--sel-ink-d, #131214);
     --purr-bg: #1f1d38; --purr-ink: #f3e9dc; --purr-btn: #c98b4f;   /* Purrmodoro's own night colors */
     --site-bg: #e9df73;
     --todo-bg: rgba(255, 224, 102, .2);

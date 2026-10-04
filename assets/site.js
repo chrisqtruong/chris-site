@@ -111,13 +111,26 @@ export const onMain = name => { const [bg, main] = THEMES[name]; return contrast
 // to read against it (3:1, fine for large text and accents).
 const PAPER = { light: '#ffffff', dark: '#131214' };
 function readableOn(hex, mode) {
-  let [r, g, b] = [0, 8, 16].map(sh => (parseInt(hex.slice(1), 16) >> (16 - sh)) & 255);
-  const toHex = () => '#' + [r, g, b].map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
-  for (let i = 0; i < 60 && contrast(toHex(), PAPER[mode]) < 3; i++) {
-    if (mode === 'light') { r *= 0.94; g *= 0.94; b *= 0.94; }
-    else { r += (255 - r) * 0.08; g += (255 - g) * 0.08; b += (255 - b) * 0.08; }
+  // work in hue / saturation / lightness, so only lightness moves and the color keeps its character
+  const n = parseInt(hex.slice(1), 16);
+  let [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(v => v / 255);
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h = 0, sat = 0, l = (max + min) / 2;
+  if (max !== min) {
+    const d = max - min;
+    sat = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    h /= 6;
   }
-  return toHex();
+  const toHex = (L, S) => {
+    const q = L < 0.5 ? L * (1 + S) : L + S - L * S, p = 2 * L - q;
+    const ch = t => { t = (t + 1) % 1; return t < 1 / 6 ? p + (q - p) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p; };
+    return '#' + [ch(h + 1 / 3), ch(h), ch(h - 1 / 3)].map(v => Math.round(v * 255).toString(16).padStart(2, '0')).join('');
+  };
+  // lifting a very dark color also needs a little more saturation, or it drifts toward grey
+  const S = mode === 'dark' ? Math.min(1, Math.max(sat, 0.45)) : sat;
+  for (let i = 0; i < 100 && contrast(toHex(l, S), PAPER[mode]) < 3; i++) l += mode === 'light' ? -0.01 : 0.01;
+  return toHex(l, mode === 'dark' && contrast(hex, PAPER[mode]) < 3 ? S : sat);
 }
 
 // Colors the Vox2 parts of a page (--v-*) and the page accent. `surface` is which theme color the
@@ -131,7 +144,10 @@ export function applyVoxTheme(name, surface = 'bg') {
   // "Truong" in the nav matches the Vox2 color on the page (light and dark versions; CSS picks one).
   // Everything else keeps the site's one fixed accent, so color stays with the Vox2 parts.
   const big = surface === 'main' ? main : bg;
-  setPageColors({ '--name-l': readableOn(big, 'light'), '--name-d': readableOn(big, 'dark') });
+  const nameL = readableOn(big, 'light'), nameD = readableOn(big, 'dark');
+  // text inside a selection: white or near-black, whichever reads better on that color
+  const ink = c => (contrast(c, '#ffffff') >= contrast(c, '#131214') ? '#ffffff' : '#131214');
+  setPageColors({ '--name-l': nameL, '--name-d': nameD, '--sel-ink-l': ink(nameL), '--sel-ink-d': ink(nameD) });
   document.querySelectorAll('[data-t]').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === name));
 }
 // Each theme has its own recording of the real app (a different language in each).
