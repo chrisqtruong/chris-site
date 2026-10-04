@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300..600&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>
   // light or dark before anything paints: the visitor's choice, else their system setting
@@ -21,9 +23,11 @@
 <nav>
   <a class="name" href="#top">Chris <i>Truong</i></a>
   <ul>
-    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="/photos/">Photos</a></li>
-    <li><a href="#contact">Say hi</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
     <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
@@ -73,43 +77,109 @@
   </div>
 </header>
 
-<!-- ============ ABOUT + WORK ============ -->
-<section class="quiet reveal" id="about">
-  <p class="bio">I'm Chris, a product and design ops lead in Baltimore. I grew up in Houston, the son of Vietnamese refugees, and I like making things that feel good to use. Off the clock, I take photos and watch too many movies.</p>
-  <p class="work-line" id="work">Eight years at Accenture, from design thinking workshops to product ownership. Now I lead design operations on an AI marketing platform. <a href="#" title="Add your LinkedIn URL">LinkedIn&nbsp;↗</a></p>
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <p class="eyebrow reveal">About</p>
+  <p class="lede reveal">I help teams make things that look good and <i>work</i> well, and I make a few of my own on the side.</p>
+  <div class="about-grid">
+    <div class="reveal">
+      <h3>Personally</h3>
+      <p>I'm Vietnamese American, the son of refugees, raised in Houston. I lived in Philadelphia for a few years and now live in Baltimore with my wife, Sarah.</p>
+      <p>I watch a lot of movies (about 480 logged on <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>, with <em>Past Lives</em> and <em>High and Low</em> near the top). I take photos, write, and care about the news and the world it describes.</p>
+    </div>
+    <div class="reveal">
+      <h3>Professionally</h3>
+      <p>I've spent eight years at Accenture moving from design thinking workshops to product ownership to leading design operations. Today I keep a design team focused, resourced and in step with product and engineering on an AI marketing platform.</p>
+      <p>I studied computer science at Texas A&amp;M, but I think like a designer: I care how things feel, not just whether they ship.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <p class="eyebrow reveal">Work</p>
+  <div class="company reveal"><h2 style="margin:0">Accenture</h2><span>2018 – now</span></div>
+  <ol class="timeline">
+    <li class="reveal">
+      <span class="when">Now</span>
+      <span class="role">Design Ops Lead<small>AI marketing platform</small></span>
+      <p class="what">Set the design team's priorities with product and engineering, organize designers into workstreams with clear goals, and carry progress, risks and sign-offs into leadership. Now moving into operating-model work.</p>
+    </li>
+    <li class="reveal">
+      <span class="when">20XX – 20XX</span>
+      <span class="role">Product Management &amp; Strategy</span>
+      <p class="what">Built months-long roadmaps and PI plans, and led cross-functional teams of 10–15+ developers, QA and designers.</p>
+    </li>
+    <li class="reveal">
+      <span class="when">20XX – 20XX</span>
+      <span class="role">Product Owner &amp; Scrum Master</span>
+      <p class="what">Owned the backlog and ran the team's rhythm: what to build next, and how to keep a team shipping without burning out.</p>
+    </li>
+    <li class="reveal">
+      <span class="when">2018</span>
+      <span class="role">Analyst<small>Houston innovation hub, rotational program</small></span>
+      <p class="what">Rotated through an industry team and the design thinking team, where I facilitated workshops and built their agendas and output decks.</p>
+    </li>
+  </ol>
 </section>
 
 <!-- ============ PROJECTS ============ -->
-<section class="quiet reveal" id="projects">
-  <h2 class="label">things i made</h2>
-  <ul class="index">
-    <li><a class="row" href="/projects/vox2/" data-preview="vox2"><span class="t vox2-title">Vox2</span><span class="d">A tiny two-way translator for your desktop</span><span class="arrow">→</span></a></li>
-    <li><a class="row" href="/projects/purrmodoro/" data-preview="/assets/purrmodoro-demo.gif"><span class="t purr-title">Purrmodoro</span><span class="d">A focus timer with a kitty, made for my wife</span><span class="arrow">→</span></a></li>
-  </ul>
-  <img class="preview" alt="" aria-hidden="true">
+<section id="projects">
+  <p class="eyebrow reveal">Projects</p>
+  <h2 class="reveal">things i made because i <i>wanted</i> them to exist.</h2>
+  <div class="projects">
+    <a class="card c-vox" href="/projects/vox2/">
+      <div class="shot"><img src="/assets/vox2/laser.gif" data-vox-shot alt="Vox2 translating a sentence live as it's typed, with pronunciation, the back-translation and a match score"></div>
+      <div class="meta">
+        <h3 class="vox2-title">Vox2 <span class="arrow">→</span></h3>
+        <p>A tiny two-way translator for the desktop. Type, speak or snip text in any app and read or hear it in another language, with a back-translation that shows how much of your meaning survived. The thing at the top of this page.</p>
+        <div class="tags"><span>Windows + macOS</span><span>Tauri</span><span>75 languages</span><span>open source</span></div>
+      </div>
+    </a>
+    <a class="card c-purr" href="/projects/purrmodoro/">
+      <div class="shot"><img src="/assets/purrmodoro-demo.gif" alt="Petting the kitty, winding the clock to 50 minutes, then starting the timer as it counts down from 49:59"></div>
+      <div class="meta">
+        <h3 class="purr-title">Purrmodoro <span class="arrow">→</span></h3>
+        <p>A pomodoro timer with a small brown cat who keeps you company, made as a gift for my wife. Day coat, night pajamas, and a focus notebook.</p>
+        <div class="tags"><span>iOS</span><span>SwiftUI</span><span>widgets</span></div>
+      </div>
+    </a>
+    <div class="card c-site reveal">
+      <div class="inner">
+        <div class="big">this website.</div>
+        <div class="meta" style="padding:0">
+          <p>Designed and built by me. A live translator for a hero, serif type for everything else, and colors that follow whichever theme you pick up top.</p>
+          <div class="tags"><span>HTML / CSS / JS</span><span>Astro (next)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ============ PHOTOS ============ -->
-<section class="quiet reveal" id="photos">
-  <h2 class="label photos-title">things i noticed</h2>
-  <div class="strip" id="photoGrid"></div>
-  <a class="more" href="/photos/">See all photographs <span class="arrow">→</span></a>
+<section id="photos">
+  <p class="eyebrow reveal">Photographs</p>
+  <h2 class="reveal photos-title">things i <i>noticed</i>.</h2>
+  <div class="photos" id="photoGrid"></div>
+  <a class="more reveal" href="/photos/">See all photographs <span class="arrow">→</span></a>
 </section>
 
 <!-- ============ CONTACT ============ -->
-<footer id="contact" class="reveal">
-  <p class="lede">Say hi.</p>
-  <div class="links">
+<footer id="contact">
+  <p class="eyebrow reveal">Contact</p>
+  <p class="lede reveal say-hi" id="sayHi"><span class="nw">Say <i class="hi-word"><bdi>hi</bdi></i>,</span> <span class="nw">in <i class="hi-lang"><bdi>English</bdi></i>.</span></p>
+  <div class="links reveal">
     <a href="mailto:you@example.com">Email</a>
     <a href="#" title="Add your LinkedIn URL">LinkedIn</a>
     <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
     <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
   </div>
   <small>© 2026 Chris Truong · Baltimore</small>
+  <small class="hint">psst: highlight any text on this site to translate it.</small>
 </footer>
 
 <script type="module">
-import { renderPhotos, applyVoxTheme, themeDots, pickedVoxTheme } from '/assets/site.js';
+import { renderPhotos, applyVoxTheme, themeDots } from '/assets/site.js';
 
 /* ---------- themes: each intro line brings its own; the dots let visitors choose ---------- */
 const vox = document.getElementById('vox');
@@ -368,25 +438,7 @@ document.querySelectorAll('[data-say]').forEach(b => b.onclick = () => {
 });
 
 /* ---------- photos: a teaser; each one flies into its spot on the photos page ---------- */
-renderPhotos(document.getElementById('photoGrid'), { limit: 3, href: '/photos/' });
-
-/* ---------- project list: on a computer, the project's clip fades in beside the line you hover ---------- */
-const preview = document.querySelector('#projects .preview');
-let previewOff;
-document.querySelectorAll('#projects .row').forEach(row => {
-  row.addEventListener('mouseenter', () => {
-    clearTimeout(previewOff);
-    const p = row.dataset.preview;
-    // GIFs load only on hover, and are dropped after fading out, so they cost nothing otherwise
-    preview.src = p === 'vox2' ? `/assets/vox2/${pickedVoxTheme() || 'laser'}.gif` : p;
-    preview.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
-    preview.classList.add('show');
-  });
-  row.addEventListener('mouseleave', () => {
-    preview.classList.remove('show');
-    previewOff = setTimeout(() => preview.removeAttribute('src'), 400);
-  });
-});
+renderPhotos(document.getElementById('photoGrid'), { limit: 6, href: '/photos/' });
 
 applyTheme('miami');
 document.fonts.ready.then(() => { fitAll(); runDemo(); });

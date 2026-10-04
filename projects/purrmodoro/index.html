@@ -8,8 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300..600&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
-<!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>
   // light or dark before anything paints: the visitor's choice, else their system setting
@@ -23,11 +21,9 @@
 <nav>
   <a class="name" href="/">Chris <i>Truong</i></a>
   <ul>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#work">Work</a></li>
-    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/#projects">Work</a></li>
     <li><a href="/photos/">Photos</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Say hi</a></li>
   </ul>
   <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
     <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
@@ -82,21 +78,7 @@
   </div>
 
   <div class="chapter reveal">
-    <div class="num"><b>03</b>Screens</div>
-    <div>
-      <h2>small app, four screens</h2>
-      <div class="screens">
-        <figure><img src="/assets/purrmodoro-main.png" alt="Focusing: the kitty reads at her desk inside the timer ring" loading="lazy"><figcaption>Focusing, inside the timer ring</figcaption></figure>
-        <figure><img src="/assets/purrmodoro-notebook.png" alt="Focus notebook: this week, all-time stats, last 7 days" loading="lazy"><figcaption>The focus notebook</figcaption></figure>
-        <figure><img src="/assets/purrmodoro-calendar.png" alt="16-week heatmap and month by month" loading="lazy"><figcaption>16 weeks at a glance</figcaption></figure>
-        <figure><img src="/assets/purrmodoro-focus-times.png" alt="Your focus times: presets and breaks" loading="lazy"><figcaption>Presets and breaks</figcaption></figure>
-      </div>
-      <p class="fine">Screenshots use sample data.</p>
-    </div>
-  </div>
-
-  <div class="chapter reveal">
-    <div class="num"><b>04</b>Character</div>
+    <div class="num"><b>03</b>Character</div>
     <div>
       <h2>her room follows the real clock</h2>
       <p>The kitty sits at her desk inside the timer ring. By day she wears a white coat and has an iced coffee; after sunset it's pajamas, round glasses, a warm lamp and tea. The window shows the actual time of day, from dawn colors to stars. Everything is drawn in code, no image files.</p>
@@ -106,42 +88,7 @@
   </div>
 
   <div class="chapter reveal">
-    <div class="num"><b>05</b>Design</div>
-    <div>
-      <h2>details you feel more than see</h2>
-      <div class="decisions">
-        <div class="decision">
-          <h3>wind the clock</h3>
-          <p>Drag around the ring like a kitchen timer: halfway is 30 minutes, a full turn is 60. A haptic tick each minute, a soft click every five, and the kitty's eyes follow your finger.</p>
-        </div>
-        <div class="decision">
-          <h3>two kinds of focus</h3>
-          <p>“Focus time” counts every minute. “Deep focus” only counts sessions finished start to end with no pauses, the honest heads-down number.</p>
-        </div>
-        <div class="decision">
-          <h3>words with a wink</h3>
-          <p>Thirty little lines rotate under the timer, shuffled so none repeat until all have shown. Breaks get their own.</p>
-          <div class="chips"><span>Paws on the keyboard</span><span>Whiskers forward</span><span>Pawsitively focused</span><span>Slow blink, like a cat</span><span>Doing nothing is allowed</span></div>
-        </div>
-        <div class="decision">
-          <h3>sounds made from scratch</h3>
-          <p>Marimba, music box and singing bowl alarms, plus pops and purrs, all synthesized for this app. Each alarm has a lower version for when a break ends.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="chapter reveal">
-    <div class="num"><b>06</b>Icon</div>
-    <div>
-      <h2>three directions for the icon</h2>
-      <img class="wide" src="/assets/purrmodoro-icons.png" alt="Three icon directions: a round kitty face, a kitty inside a timer ring, and a peeking kitty, plus dark and tinted versions" loading="lazy">
-      <p>The peeking kitty (C) won, with dark and tinted versions for iOS. <span class="todo">Why C? One sentence on what made it the one.</span></p>
-    </div>
-  </div>
-
-  <div class="chapter reveal">
-    <div class="num"><b>07</b>Scope</div>
+    <div class="num"><b>04</b>Scope</div>
     <div>
       <h2>what i left out, on purpose</h2>
       <p>Task lists, categories, accounts, sync, ambient music and an Apple Watch app all stayed out of version one. A few ideas are tabled for later:</p>
@@ -159,17 +106,15 @@
   <a href="/projects/vox2/">Vox2 <span class="arrow">→</span></a>
 </div>
 
-<footer id="contact">
-  <p class="eyebrow reveal">Contact</p>
-  <p class="lede reveal say-hi" id="sayHi"><span class="nw">Say <i class="hi-word"><bdi>hi</bdi></i>,</span> <span class="nw">in <i class="hi-lang"><bdi>English</bdi></i>.</span></p>
-  <div class="links reveal">
+<footer id="contact" class="reveal">
+  <p class="lede">Say hi.</p>
+  <div class="links">
     <a href="mailto:you@example.com">Email</a>
     <a href="#" title="Add your LinkedIn URL">LinkedIn</a>
     <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
     <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
   </div>
   <small>© 2026 Chris Truong · Baltimore</small>
-  <small class="hint">psst: highlight any text on this site to translate it.</small>
 </footer>
 
 <script type="module" src="/assets/site.js"></script>

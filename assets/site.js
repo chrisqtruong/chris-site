@@ -128,10 +128,10 @@ export function applyVoxTheme(name, surface = 'bg') {
   s.setProperty('--v-bg', bg); s.setProperty('--v-main', main); s.setProperty('--v-sub', sub);
   s.setProperty('--v-line', line); s.setProperty('--v-text', text);
   s.setProperty('--v-on-main', onMain(name));
-  // light and dark versions; the stylesheet picks one for the current mode
+  // "Truong" in the nav matches the Vox2 color on the page (light and dark versions; CSS picks one).
+  // Everything else keeps the site's one fixed accent, so color stays with the Vox2 parts.
   const big = surface === 'main' ? main : bg;
-  setPageColors({ '--accent-l': accent, '--accent-d': readableOn(main, 'dark'),
-                  '--name-l': readableOn(big, 'light'), '--name-d': readableOn(big, 'dark') });
+  setPageColors({ '--name-l': readableOn(big, 'light'), '--name-d': readableOn(big, 'dark') });
   document.querySelectorAll('[data-t]').forEach(b => b.setAttribute('aria-pressed', b.dataset.t === name));
 }
 // Each theme has its own recording of the real app (a different language in each).
@@ -153,15 +153,8 @@ export function themeDots(container, names, onPick) {
 export function pickedVoxTheme(name) {
   try { if (name) sessionStorage.setItem('voxTheme', name); return sessionStorage.getItem('voxTheme'); } catch { return null; }
 }
-const cardTheme = THEMES[pickedVoxTheme()];
-if (cardTheme) {
-  const s = document.documentElement.style;
-  // the card is the theme's accent color, so the app window inside it stands out
-  s.setProperty('--card-bg', cardTheme[1]); s.setProperty('--card-text', onMain(pickedVoxTheme()));
-  showVoxShot(pickedVoxTheme());
-}
 
-/* ---------- page accent: subpages keep the colors the hero was showing ---------- */
+/* ---------- "Truong": subpages keep the color the hero was showing ---------- */
 function setPageColors(colors) {
   for (const [k, v] of Object.entries(colors)) document.documentElement.style.setProperty(k, v);
   try { sessionStorage.setItem('pageColors', JSON.stringify(colors)); } catch {}
@@ -195,44 +188,6 @@ matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
   let chosen = null; try { chosen = localStorage.getItem('mode'); } catch {}
   if (!chosen) setMode(e.matches ? 'dark' : 'light');
 });
-
-/* ---------- footer: "Say hi, in ___" cycles through greetings, resting on English ---------- */
-// [hi, the language in its own words, lang code, script class]
-const HELLOS = [
-  ['ciao', 'italiano', 'it'], ['hola', 'español', 'es'], ['سلام', 'فارسی', 'fa', 'ar'], ['jambo', 'Kiswahili', 'sw'],
-  ['xin chào', 'tiếng Việt', 'vi', 'vi'], ['salut', 'français', 'fr'], ['안녕', '한국어', 'ko', 'ko'], ['你好', '中文', 'zh', 'zh'],
-  ['مرحبا', 'العربية', 'ar', 'ar'], ['hallo', 'Deutsch', 'de'], ['olá', 'português', 'pt'], ['merhaba', 'Türkçe', 'tr'],
-];
-const LAST = ['hi', 'English', 'en'];
-const sayHi = document.getElementById('sayHi');
-if (sayHi) {
-  const word = sayHi.querySelector('.hi-word'), name = sayHi.querySelector('.hi-lang');
-  const show = ([hi, lang, code, script = ''], ms) => {
-    for (const [el, text] of [[word, hi], [name, lang]]) {
-      el.innerHTML = `<bdi lang="${code}">${text}</bdi>`;
-      el.className = el.className.split(' ')[0] + (script ? ` s-${script}` : '');
-      el.style.animation = 'none'; void el.offsetWidth;
-      el.style.animation = `hi-in ${ms}ms ease-out`;
-    }
-  };
-  // A calm loop: one greeting at a time, a longer rest on English, then a new order.
-  const STEP = 1600, REST = 6000;
-  let queue = [], timer = null, visible = false;
-  const next = () => {
-    if (!queue.length) queue = [...HELLOS].sort(() => Math.random() - 0.5).concat([LAST]);
-    const item = queue.shift();
-    show(item, 450);
-    timer = visible ? setTimeout(next, item === LAST ? REST : STEP) : null;
-  };
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    // only runs while the line is on screen; starts after a short rest on English
-    new IntersectionObserver(([e]) => {
-      visible = e.isIntersecting;
-      clearTimeout(timer);
-      timer = visible ? setTimeout(next, 1200) : null;
-    }, { threshold: .6 }).observe(sayHi);
-  }
-}
 
 /* ---------- reveal on scroll ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => {

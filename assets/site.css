@@ -373,7 +373,6 @@
     .page-head { padding-top: 100px; }
     body { font-size: 18px; }
     nav ul { gap: 14px; font-size: 15px; }
-    nav ul li:is(:first-child, :last-child) { display: none; }
     .about-grid, .c-site .inner { grid-template-columns: 1fr; }
     .timeline li { grid-template-columns: 1fr; gap: 8px; }
     .c-vox, .c-purr { grid-column: span 12; }
@@ -384,9 +383,11 @@
     .bar { padding: 10px 14px 10px 16px; }
     .bar .engine span.long { display: none; }
   }
+  nav ul a { white-space: nowrap; }
   @media (max-width: 480px) {
     nav ul { gap: 12px; font-size: 14px; }
-    nav ul li:is(:nth-child(2), :nth-child(3)) { display: none; }   /* leaves Photos and the light/dark toggle */
+    nav ul li:first-child { display: none; }   /* leaves photos, say hi and the light/dark toggle */
+    nav .name { font-size: 22px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -397,15 +398,6 @@
   .swatch-row button { border-color: var(--hair); }
   .swatch-row button[aria-pressed="true"] { border-color: var(--ink); }
 
-  /* "Say hi, in English": greetings in other scripts get serif faces that sit well next to Young Serif */
-  .say-hi i { display: inline-block; }
-  .say-hi .nw { white-space: nowrap; }   /* keep "Say ciao," and "in italiano." each in one piece */
-  @media (max-width: 700px) { .say-hi { min-height: 2.2em; } }   /* room for two lines, so the page doesn't jump while it spins */
-  .say-hi .s-vi { font-family: "Noto Serif", var(--head); font-weight: 600; }
-  .say-hi .s-zh { font-family: "Noto Serif SC", var(--head); font-weight: 700; }
-  .say-hi .s-ko { font-family: "Noto Serif KR", var(--head); font-weight: 700; }
-  .say-hi .s-ar { font-family: "Noto Naskh Arabic", var(--head); font-weight: 700; }
-  @keyframes hi-in { from { opacity: 0; transform: translateY(.15em); } }
   /* theme dots: the two-tone fill stays inside the ring (by default it tiles under the border and looks like a square) */
   .themes button, .theme-row button { background-origin: border-box; background-clip: padding-box; }
   /* screenshots with white or cream backgrounds, dimmed a touch at night */
@@ -440,3 +432,32 @@
   .kitty:hover .k-happy { opacity: 1; }
   @keyframes k-blink { 0%, 95%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
   @media (prefers-reduced-motion: reduce) { .kitty svg { transform: none; } }
+
+  /* ---------- the quiet home page: everything after the hero whispers ---------- */
+  section.quiet { max-width: 980px; padding-top: clamp(72px, 10vw, 128px); }
+  .bio { font-size: clamp(21px, 2.1vw, 27px); line-height: 1.55; margin: 0 0 22px; max-width: 760px; }
+  .work-line { font-size: 17px; color: var(--soft); margin: 0; max-width: 640px; }
+  .quiet .label { font: var(--head-w) calc(clamp(28px, 3vw, 38px) * (var(--head-scale) + .12))/1.2 var(--head); letter-spacing: var(--head-track); margin: 0 0 18px; }
+  .index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair); }
+  .index .row { display: grid; grid-template-columns: minmax(150px, 220px) 1fr auto; gap: 20px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid var(--hair); text-decoration: none; color: inherit; }
+  .index .row:hover { color: inherit; }
+  .index .t { font: var(--head-w) 26px/1.1 var(--head); letter-spacing: var(--head-track); width: fit-content; }
+  .index .d { color: var(--soft); font-size: 17px; }
+  .index .arrow { color: var(--soft); }
+  .index .row:hover .arrow { color: var(--ink); }
+  #projects { position: relative; }
+  .preview { position: absolute; right: -40px; width: 200px; border-radius: 12px; box-shadow: 0 20px 50px -18px rgba(0,0,0,.45); pointer-events: none;
+    opacity: 0; transform: translateY(-50%) scale(.96); transition: opacity .25s ease, transform .3s ease; }
+  .preview.show { opacity: 1; transform: translateY(-50%) scale(1); }
+  .preview:not([src]) { display: none; }
+  @media (hover: none), (max-width: 1100px) { .preview { display: none; } }
+  .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .strip .photo { margin: 0; }
+  .strip .ph { aspect-ratio: 4 / 3 !important; object-fit: cover; }
+  footer .lede { margin-bottom: 24px; }
+  @media (max-width: 640px) {
+    .index .row { grid-template-columns: 1fr auto; gap: 4px 12px; }
+    .index .d { grid-column: 1; grid-row: 2; font-size: 16px; }
+    .index .arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+    .strip { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  }

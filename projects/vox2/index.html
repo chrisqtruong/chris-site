@@ -8,8 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300..600&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
-<!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>
   // light or dark before anything paints: the visitor's choice, else their system setting
@@ -23,11 +21,9 @@
 <nav>
   <a class="name" href="/">Chris <i>Truong</i></a>
   <ul>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/#work">Work</a></li>
-    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/#projects">Work</a></li>
     <li><a href="/photos/">Photos</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact">Say hi</a></li>
   </ul>
   <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
     <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
@@ -70,22 +66,7 @@
   </div>
 
   <div class="chapter reveal">
-    <div class="num"><b>02</b>What</div>
-    <div>
-      <h2>everywhere you already type</h2>
-      <ul class="features">
-        <li><b>Live, both ways.</b> Type in either box and the other translates as you go.</li>
-        <li><b>From any app.</b> Select text anywhere, press a shortcut, read it in a bubble by your cursor.</li>
-        <li><b>Snip &amp; translate.</b> Draw a box around text in images, subtitles or apps that block copying.</li>
-        <li><b>Dictation.</b> Talk instead of type. Transcribed on your own computer.</li>
-        <li><b>Read aloud.</b> Natural voices in about 75 languages, each word lighting up as it's spoken.</li>
-        <li><b>Conversation mode.</b> Two people, two languages, one computer between them.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="chapter reveal">
-    <div class="num"><b>03</b>Design</div>
+    <div class="num"><b>02</b>Design</div>
     <div>
       <h2>small decisions that make it feel calm</h2>
       <div class="decisions">
@@ -113,7 +94,7 @@
   </div>
 
   <div class="chapter reveal">
-    <div class="num"><b>04</b>Testing</div>
+    <div class="num"><b>03</b>Testing</div>
     <div>
       <h2>testing my own feature, honestly</h2>
       <p>A score is only useful if you can trust it, so I tested the meaning check against 1,320 translations in 11 languages, including ones with deliberate mistakes.</p>
@@ -126,17 +107,6 @@
     </div>
   </div>
 
-  <div class="chapter reveal">
-    <div class="num"><b>05</b>Next</div>
-    <div>
-      <h2>what's next</h2>
-      <ol class="roadmap">
-        <li>Teach the meaning check to catch negations, pronouns, opposites, names and dates.</li>
-        <li>Highlight the words that changed, so you can see why a score is high or low.</li>
-        <li>“Explain this”: select a phrase and learn what it really means, how formal it is, how a native speaker would say it.</li>
-      </ol>
-    </div>
-  </div>
 </section>
 
 <div class="next-proj">
@@ -144,17 +114,15 @@
   <a href="/projects/purrmodoro/">Purrmodoro <span class="arrow">→</span></a>
 </div>
 
-<footer id="contact">
-  <p class="eyebrow reveal">Contact</p>
-  <p class="lede reveal say-hi" id="sayHi"><span class="nw">Say <i class="hi-word"><bdi>hi</bdi></i>,</span> <span class="nw">in <i class="hi-lang"><bdi>English</bdi></i>.</span></p>
-  <div class="links reveal">
+<footer id="contact" class="reveal">
+  <p class="lede">Say hi.</p>
+  <div class="links">
     <a href="mailto:you@example.com">Email</a>
     <a href="#" title="Add your LinkedIn URL">LinkedIn</a>
     <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
     <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
   </div>
   <small>© 2026 Chris Truong · Baltimore</small>
-  <small class="hint">psst: highlight any text on this site to translate it.</small>
 </footer>
 
 <script type="module">
