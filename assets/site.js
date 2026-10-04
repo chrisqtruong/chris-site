@@ -361,26 +361,19 @@ document.addEventListener('selectionchange', () => {
 addEventListener('scroll', () => { if (bubble?.classList.contains('show')) hideBubble(); }, { passive: true });
 addEventListener('keydown', e => { if (e.key === 'Escape') hideBubble(); });
 
-/* ---------- a polar bear peeks over the footer line when you reach the bottom ---------- */
+/* ---------- a small cat peeks over the footer line when you reach the bottom ---------- */
 const links = document.querySelector('footer .links');
 if (links) {
   const kitty = document.createElement('span');
   kitty.className = 'kitty';
   kitty.setAttribute('aria-hidden', 'true');
-  // a little polar bear peeking over the ledge: a soft rounded body, tiny ears, a snout bump,
-  // drawn with a thick, slightly wobbly marker outline and a pale blue shadow down its back
-  kitty.innerHTML = `<svg viewBox="0 0 70 50">
-    <g fill="#f8f6f0" stroke="#2b2622" stroke-width="2.4">
-      <path d="M41.2 10.4C40.6 6.3 44.2 3.8 47.4 5.2C50.2 6.4 50.6 9.8 49.1 12"/>
-      <path d="M25.6 11.4C24.6 7.3 27.9 4.6 31.2 5.7C34.1 6.6 34.8 9.9 33.6 12.3"/>
-      <path d="M15 50C13.2 43.5 12.6 37.4 14.4 32.2C10.6 31.4 6.6 29 7.1 25.1C7.6 21.4 11.2 19.8 15.2 20.2C17.1 14.4 22.6 9.6 30.4 8.3C38.3 7.1 46.2 8.4 51.3 12.3C57.1 16.8 60.2 25.1 61 34C61.5 40 61.4 45.3 60.9 50Z" stroke-linejoin="round"/>
-    </g>
-    <path d="M51.3 12.3C57.1 16.8 60.2 25.1 61 34C61.5 40 61.4 45.3 60.9 50L55.2 50C56.2 42 55.6 33.2 52.4 24.6C51 20.6 50.4 16 51.3 12.3Z" fill="#c9d7e4" opacity=".8"/>
-    <path d="M18.4 50C17.6 46.6 20 44.3 23.4 44.5C26.6 44.7 28.6 47 28.2 50" fill="#f8f6f0" stroke="#2b2622" stroke-width="2.2" stroke-linecap="round"/>
-    <ellipse cx="8.9" cy="24.4" rx="2.9" ry="2.1" transform="rotate(-12 8.9 24.4)" fill="#2b2622"/>
-    <path d="M13.2 28.6q1.8 1.3 3.6.1" fill="none" stroke="#2b2622" stroke-width="1.5" stroke-linecap="round"/>
-    <g class="k-eyes"><circle cx="21.4" cy="18.2" r="1.7" fill="#2b2622"/></g>
-    <path class="k-happy" d="M19.6 18.8q1.8-2.2 3.6 0" fill="none" stroke="#2b2622" stroke-width="1.6" stroke-linecap="round"/>
+  kitty.innerHTML = `<svg viewBox="0 0 64 40">
+    <path d="M9 24 13 2 29 13Z" fill="#9b6842"/><path d="M14 17 16 8 24 13Z" fill="#f0a3a0"/>
+    <path d="M55 24 51 2 35 13Z" fill="#9b6842"/><path d="M50 17 48 8 40 13Z" fill="#f0a3a0"/>
+    <ellipse cx="32" cy="36" rx="26" ry="23" fill="#9b6842"/>
+    <g class="k-eyes"><ellipse cx="22.5" cy="31" rx="5" ry="5.6" fill="#fffaf2"/><circle cx="23" cy="32" r="3.1" fill="#2a1a12"/>
+      <ellipse cx="41.5" cy="31" rx="5" ry="5.6" fill="#fffaf2"/><circle cx="42" cy="32" r="3.1" fill="#2a1a12"/></g>
+    <g class="k-happy" fill="none" stroke="#2a1a12" stroke-width="2" stroke-linecap="round"><path d="M18 33q4.5-5 9 0"/><path d="M37 33q4.5-5 9 0"/></g>
   </svg>`;
   links.append(kitty);
   // she only moves (and blinks) while she's on screen
