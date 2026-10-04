@@ -424,10 +424,10 @@
 
   /* ---------- the kitty: peeks up from behind the footer line, blinks now and then ---------- */
   footer .links { position: relative; }
-  .kitty { position: absolute; right: 6px; bottom: 0; width: 66px; height: 36px; overflow: hidden; pointer-events: auto; }
-  .kitty svg { display: block; width: 66px; height: 36px; transform: translateY(100%); transition: transform .7s cubic-bezier(.3, 1.4, .5, 1) .5s; }
+  .kitty { position: absolute; right: 6px; bottom: 0; width: 56px; height: 40px; overflow: hidden; pointer-events: auto; }
+  .kitty svg { display: block; width: 56px; height: 40px; transform: translateY(100%); transition: transform .7s cubic-bezier(.3, 1.4, .5, 1) .5s; }
   .kitty.peek svg { transform: translateY(0); }
-  .kitty .k-eyes { transform-origin: 40px 17.6px; }
+  .kitty .k-eyes { transform-origin: 21.4px 18.2px; }
   .kitty.peek .k-eyes { animation: k-blink 6s 2s infinite; }
   .kitty .k-happy { opacity: 0; }
   .kitty:hover .k-eyes { opacity: 0; }

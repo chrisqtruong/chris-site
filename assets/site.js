@@ -367,19 +367,20 @@ if (links) {
   const kitty = document.createElement('span');
   kitty.className = 'kitty';
   kitty.setAttribute('aria-hidden', 'true');
-  // a polar bear in profile, facing the page: thick wobbly marker outline, a long snout,
-  // a blue-grey watercolor wash under the jaw and a little paint bleed past the line
-  kitty.innerHTML = `<svg viewBox="0 0 80 44">
-    <path d="M74 44C75.5 34 74.5 24 69 16.5C64 9.8 56 5.8 48.5 7.2C43.5 8.2 40.4 11.6 37.6 14.4C33 16.8 27.5 17.6 21.5 18.6C15.5 19.6 10.5 20.2 8.2 23.6C6.2 27 7.9 31 12 32.2C17 33.6 22.6 33.2 27.6 34.6C31.8 36 34.8 39.4 35.8 44Z" transform="translate(-1.4 1.3)" fill="#d6e2ec" opacity=".85"/>
-    <path d="M52.6 9.2C51.8 2.8 59.6 0.6 63.4 5C65.2 7.2 64.8 10 62.6 11.4" fill="#f7f3eb" stroke="#2a2420" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M74 44C75.5 34 74.5 24 69 16.5C64 9.8 56 5.8 48.5 7.2C43.5 8.2 40.4 11.6 37.6 14.4C33 16.8 27.5 17.6 21.5 18.6C15.5 19.6 10.5 20.2 8.2 23.6C6.2 27 7.9 31 12 32.2C17 33.6 22.6 33.2 27.6 34.6C31.8 36 34.8 39.4 35.8 44Z" fill="#f7f3eb" stroke="#2a2420" stroke-width="2.6" stroke-linejoin="round"/>
-    <path d="M27.6 34.6C31.8 36 34.8 39.4 35.8 44L72.8 44C73 40 72.6 36.4 71.4 33.4C60.5 36.2 47 36.2 37 33.8Z" fill="#b9cbdb" opacity=".45"/>
-    <ellipse cx="58.2" cy="6.6" rx="2.3" ry="1.7" fill="#efc3c3"/>
-    <ellipse cx="31" cy="26.8" rx="3.4" ry="1.8" fill="#f2c1c1" opacity=".65"/>
-    <path d="M8.2 21.6C5.4 22.8 5.5 27.4 8.8 28.4C12.1 29.3 14.6 26.2 13.6 23.4C12.9 21.4 10.4 20.7 8.2 21.6Z" fill="#2a2420"/>
-    <path d="M13.6 31.2C16.4 32.4 19.2 32.2 21.2 30.9" fill="none" stroke="#2a2420" stroke-width="1.7" stroke-linecap="round"/>
-    <g class="k-eyes"><circle cx="40" cy="17.6" r="2.4" fill="#2a2420"/><circle cx="39.2" cy="16.9" r=".8" fill="#fff"/></g>
-    <path class="k-happy" d="M37.6 18.4q2.4-2.9 4.8 0" fill="none" stroke="#2a2420" stroke-width="2" stroke-linecap="round"/>
+  // a little polar bear peeking over the ledge: a soft rounded body, tiny ears, a snout bump,
+  // drawn with a thick, slightly wobbly marker outline and a pale blue shadow down its back
+  kitty.innerHTML = `<svg viewBox="0 0 70 50">
+    <g fill="#f8f6f0" stroke="#2b2622" stroke-width="2.4">
+      <path d="M41.2 10.4C40.6 6.3 44.2 3.8 47.4 5.2C50.2 6.4 50.6 9.8 49.1 12"/>
+      <path d="M25.6 11.4C24.6 7.3 27.9 4.6 31.2 5.7C34.1 6.6 34.8 9.9 33.6 12.3"/>
+      <path d="M15 50C13.2 43.5 12.6 37.4 14.4 32.2C10.6 31.4 6.6 29 7.1 25.1C7.6 21.4 11.2 19.8 15.2 20.2C17.1 14.4 22.6 9.6 30.4 8.3C38.3 7.1 46.2 8.4 51.3 12.3C57.1 16.8 60.2 25.1 61 34C61.5 40 61.4 45.3 60.9 50Z" stroke-linejoin="round"/>
+    </g>
+    <path d="M51.3 12.3C57.1 16.8 60.2 25.1 61 34C61.5 40 61.4 45.3 60.9 50L55.2 50C56.2 42 55.6 33.2 52.4 24.6C51 20.6 50.4 16 51.3 12.3Z" fill="#c9d7e4" opacity=".8"/>
+    <path d="M18.4 50C17.6 46.6 20 44.3 23.4 44.5C26.6 44.7 28.6 47 28.2 50" fill="#f8f6f0" stroke="#2b2622" stroke-width="2.2" stroke-linecap="round"/>
+    <ellipse cx="8.9" cy="24.4" rx="2.9" ry="2.1" transform="rotate(-12 8.9 24.4)" fill="#2b2622"/>
+    <path d="M13.2 28.6q1.8 1.3 3.6.1" fill="none" stroke="#2b2622" stroke-width="1.5" stroke-linecap="round"/>
+    <g class="k-eyes"><circle cx="21.4" cy="18.2" r="1.7" fill="#2b2622"/></g>
+    <path class="k-happy" d="M19.6 18.8q1.8-2.2 3.6 0" fill="none" stroke="#2b2622" stroke-width="1.6" stroke-linecap="round"/>
   </svg>`;
   links.append(kitty);
   // she only moves (and blinks) while she's on screen
