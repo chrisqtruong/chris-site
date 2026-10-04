@@ -99,11 +99,39 @@
     <div>
       <h2>testing my own feature, honestly</h2>
       <p>A score is only useful if you can trust it, so I test the meaning check like a researcher would: real sentences in 11 languages, with mistakes planted on purpose (a flipped “not”, a changed number, a swapped pronoun), and fresh sentences every round so it can’t just memorize the test.</p>
+      <figure class="ladder" aria-label="Five levels of checking a translation, with Vox2 at level 3">
+        <figcaption>How much a translator checks its own work</figcaption>
+        <ol>
+          <li class="done"><b>No check</b><span>You get a translation and hope. What most translation apps show.</span></li>
+          <li class="done"><b>A match score</b><span>Translate it back and compare meanings. Where Vox2 started.</span></li>
+          <li class="done here"><b>Targeted checks</b><span>Catch the classic mistakes: a flipped “not”, a changed number, a swapped pronoun, text that never got translated.</span><em>Vox2 is here</em></li>
+          <li><b>Second opinions</b><span>A different engine, an optional AI double-check, every changed word highlighted.</span></li>
+          <li><b>Research grade</b><span>Tested on the same human-graded sets researchers use, against systems like xCOMET and CometKiwi, while staying small enough to run on a laptop.</span></li>
+        </ol>
+      </figure>
       <div class="stats">
         <div class="stat"><b>29% <span class="to">→</span> 79%</b><span>of meaning errors caught, from the first test to now</span></div>
         <div class="stat"><b>94%</b><span>of good translations shown as “meaning kept”, with false alarms down to 4%</span></div>
         <div class="stat"><b>96% <span class="to">→</span> 8%</b><span>of gibberish passed off as a match; now it says “can’t check” instead</span></div>
       </div>
+      <figure class="trend">
+        <figcaption>Meaning errors caught, test by test</figcaption>
+        <svg viewBox="0 0 420 230" role="img" aria-label="Errors caught: 29% in run 1, 78% in run 2, 78% in run 3, 79% in Phase 1.2">
+          <g class="grid"><line x1="40" x2="404" y1="30" y2="30"/><line x1="40" x2="404" y1="105" y2="105"/><line x1="40" x2="404" y1="180" y2="180"/></g>
+          <g class="axis"><text x="32" y="34">100%</text><text x="32" y="109">50%</text><text x="32" y="184">0%</text></g>
+          <path class="area" d="M70 136.5 L180 63 L290 63 L390 61.5 L390 180 L70 180 Z"/>
+          <path class="line" d="M70 136.5 L180 63 L290 63 L390 61.5"/>
+          <g class="pts"><circle cx="70" cy="136.5" r="5"/><circle cx="180" cy="63" r="5"/><circle cx="290" cy="63" r="5"/><circle cx="390" cy="61.5" r="5"/></g>
+          <g class="vals"><text x="70" y="124">29%</text><text x="180" y="51">78%</text><text x="290" y="51">78%</text><text x="390" y="49">79%</text></g>
+          <g class="runs"><text x="70" y="202">run 1</text><text x="180" y="202">run 2</text><text x="290" y="202">run 3</text><text x="390" y="202">phase 1.2</text>
+            <text x="70" y="219" class="sub">match score only</text><text x="235" y="219" class="sub">+ targeted checks</text></g>
+        </svg>
+        <dl class="key">
+          <div><dt>Match score</dt><dd>how much of your meaning survived the round trip</dd></div>
+          <div><dt>Error caught</dt><dd>a mistake we planted that the check flagged</dd></div>
+          <div><dt>False alarm</dt><dd>a good translation flagged by mistake (held at 4–7%)</dd></div>
+        </dl>
+      </figure>
       <p class="fine">Six test runs, 11 languages, more than 10,000 translations scored. Every run is published with its method and raw results on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
       <p>The first test caught under a third of the mistakes, so I added targeted checks for negations, numbers, pronouns and opposites, and taught it to say “can’t check” when text never got translated, instead of showing a misleading number. Pronouns are still the weakest spot, so translations that get people right, like “they” or “partner”, are what I’m working on next.</p>
       <p>The goal behind all of it: when you write to your family, your in-laws or a coworker in their language, you should know they’ll understand what you meant. Language shouldn’t decide who feels close to you, or what you get to read.</p>
