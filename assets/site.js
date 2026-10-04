@@ -109,7 +109,7 @@ const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((p
 export const onMain = name => { const [bg, main] = THEMES[name]; return contrast(bg, main) >= 4.5 ? bg : '#1d1a1f'; };
 // The same hue, deepened (on the white page) or lifted (on the dark page) only as much as needed
 // to read against it (3:1, fine for large text and accents).
-const PAPER = { light: '#faf8f4', dark: '#222126' };
+const PAPER = { light: '#faf8f4', dark: '#171c28' };
 function readableOn(hex, mode) {
   // work in hue / saturation / lightness, so only lightness moves and the color keeps its character
   const n = parseInt(hex.slice(1), 16);
