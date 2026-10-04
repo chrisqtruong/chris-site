@@ -191,8 +191,8 @@ function setPageColors(colors) {
 try { const c = JSON.parse(sessionStorage.getItem('pageColors')); if (c) setPageColors(c); } catch {}
 
 /* ---------- light / dark mode ---------- */
-// The site opens in dark (set before first paint, in each page's <head>);
-// the toggle switches to light and is remembered on this device.
+// The site opens in light (set before first paint, in each page's <head>);
+// the toggle switches to dark and is remembered on this device.
 const modeBtn = document.getElementById('modeToggle');
 const currentMode = () => document.documentElement.dataset.mode;
 const labelMode = () => modeBtn?.setAttribute('aria-label', currentMode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
