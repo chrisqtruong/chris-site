@@ -84,7 +84,7 @@
   nav {
     position: fixed; inset: 0 0 auto 0; z-index: 10;
     display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    padding: 14px var(--gutter);
+    padding: var(--nav-pad, 24px) var(--gutter);   /* same space above and below: the row sits centered between the window's top edge and the first box */
     /* nearly solid instead of a frosted blur: a blur behind a fixed bar is redone on every scroll frame */
     background: var(--paper);   /* solid: nothing to blend with the content moving underneath */
   }
@@ -96,7 +96,7 @@
   nav ul a:hover { color: var(--accent); }
 
   /* ---------- hero: Vox2, fit to window ---------- */
-  .hero { height: calc(100svh - var(--peek, 84px)); min-height: 480px; padding: calc(var(--nav-h, 68px) + 12px) var(--gutter) var(--gutter); display: flex; }   /* always clears the top bar, whatever its height */
+  .hero { height: calc(100svh - var(--peek, 84px)); min-height: 480px; padding: var(--nav-h, 68px) var(--gutter) var(--gutter); display: flex; }   /* starts right where the top bar ends, so the bar's row is centered in the space above */
   .vox {
     flex: 1; min-width: 0; display: flex; flex-direction: column;
     background: var(--v-bg); color: var(--v-text); border-radius: 22px;
@@ -666,7 +666,7 @@
   .vox.live.reading-src .input { visibility: hidden; }
 
   /* light/dark toggle: a quiet hand-drawn dot that fills with the theme color on hover (like the back-to-top arrow) */
-  .mode { position: relative; border: 0; width: 38px; height: 38px; color: var(--soft); }
+  .mode { position: relative; border: 0; width: 38px; height: 38px; color: var(--soft); margin-block: -10px; }   /* hangs over the row instead of making it taller, so the row centers on the text */
   .mode .mode-blob { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-8deg); transition: transform .3s cubic-bezier(.3, 1.4, .5, 1); }
   .mode .mode-blob path { fill: color-mix(in srgb, var(--accent) 13%, transparent); transition: fill .25s; }
   .mode svg.moon, .mode svg.sun { position: relative; width: 18px; height: 18px; stroke-width: 2.3; }
