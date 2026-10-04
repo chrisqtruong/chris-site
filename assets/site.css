@@ -5,8 +5,9 @@
     --soft: #6b6862;
     --hair: #e8e6e1;
     /* the accent and "Truong" follow the current Vox2 theme; JS sets a light (-l) and dark (-d) version of each */
-    --accent: var(--accent-l, #e0457a);
-    --name-color: var(--name-l, var(--accent));
+    /* one thread of color: every accent is the current Vox2 theme color (light and dark versions set by JS) */
+    --accent: var(--name-l, #e0457a);
+    --name-color: var(--accent);
     --sel-ink: var(--sel-ink-l, #ffffff);
     --body-ink: #2b2a28;     /* long-form text, a touch softer than --ink */
     --tint: #f6f5f2;         /* quiet panels */
@@ -51,8 +52,8 @@
     --hair: #2d2b2e;
     --body-ink: #dcd8d1;
     --tint: #1d1c1f;
-    --accent: var(--accent-d, #ff7aa2);
-    --name-color: var(--name-d, var(--accent));
+    --accent: var(--name-d, #ff7aa2);
+    --name-color: var(--accent);
     --sel-ink: var(--sel-ink-d, #131214);
     --purr-bg: #1f1d38; --purr-ink: #f3e9dc; --purr-btn: #c98b4f;   /* Purrmodoro's own night colors */
     --site-bg: #e9df73;
@@ -480,3 +481,4 @@
   html:not(.themed) .vox { opacity: 0; animation: vox-fallback 0s 1.5s forwards; }
   .vox { transition: opacity .3s ease, background-color .7s ease, color .7s ease; }
   @keyframes vox-fallback { to { opacity: 1; } }
+  .quiet .label i { color: var(--accent); transition: color .6s; }
