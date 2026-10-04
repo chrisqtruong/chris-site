@@ -650,3 +650,9 @@
   .to-top svg { width: 18px; height: 18px; }
   .to-top.lift { bottom: 110px; }   /* stays clear of the footer links (and the cat) at the very bottom */
   @media (max-width: 820px) { .toc { padding-top: 22px; } .to-top { right: 14px; bottom: 14px; width: 40px; height: 40px; } }
+
+  /* read aloud: the word being spoken lights up in the theme color, like Vox2 */
+  ::highlight(vox-word) { color: var(--v-main); background-color: color-mix(in srgb, var(--v-main) 22%, transparent); }
+  .tools button[aria-pressed="true"] { color: var(--v-main); }
+  .vox.live.reading-src #srcText { display: block; }
+  .vox.live.reading-src .input { visibility: hidden; }

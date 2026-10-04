@@ -230,7 +230,10 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let heroOnScreen = true, wake = null;
 new IntersectionObserver(([e]) => { heroOnScreen = e.isIntersecting; if (heroOnScreen && wake) { wake(); wake = null; } }).observe(vox);
 const untilVisible = () => (heroOnScreen ? null : new Promise(r => { wake = r; }));
-const sleep = ms => new Promise(r => setTimeout(r, ms)).then(untilVisible);
+// …and it holds still while a box is being read aloud, so the words don't change mid-sentence.
+let readingNow = false, resumeRead = null;
+const untilDoneReading = () => (readingNow ? new Promise(r => { resumeRead = r; }) : null);
+const sleep = ms => new Promise(r => setTimeout(r, ms)).then(untilVisible).then(untilDoneReading);
 let demoOn = true;
 
 function esc(s) { return s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }
@@ -369,13 +372,86 @@ document.getElementById('swap').onclick = () => {
   }
 };
 document.querySelector('[data-copy]').onclick = () => navigator.clipboard?.writeText(dstText.textContent);
-document.querySelectorAll('[data-say]').forEach(b => b.onclick = () => {
-  const src = b.dataset.say === 'src';
-  const text = src ? (vox.classList.contains('live') ? srcInput.value : srcText.textContent) : dstText.textContent;
+/* ---------- read aloud, with the word being spoken lit up (like Vox2: a CSS highlight drawn over the text) ---------- */
+const wordMark = typeof Highlight === 'function' ? new Highlight() : null;
+if (wordMark) CSS.highlights.set('vox-word', wordMark);
+let readId = 0, readBtn = null, estTimer = null;
+
+// A Range over characters [from, to) of an element's text.
+function textRange(el, from, to) {
+  const range = document.createRange();
+  const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  let pos = 0, started = false;
+  for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+    const len = n.length;
+    if (!started && from < pos + len) { range.setStart(n, from - pos); started = true; }
+    if (started && to <= pos + len) { range.setEnd(n, to - pos); return range; }
+    pos += len;
+  }
+  return null;
+}
+function stopReading(resume = true) {
+  readId++;
+  clearTimeout(estTimer);
+  speechSynthesis.cancel();
+  wordMark?.clear();
+  vox.classList.remove('reading-src');
+  readBtn?.setAttribute('aria-pressed', 'false');
+  readBtn = null;
+  if (!resume) return;   // switching straight to the other box: keep the intro paused
+  readingNow = false;
+  if (resumeRead) { resumeRead(); resumeRead = null; }
+}
+function readAloud(btn) {
+  if (readBtn === btn) { stopReading(); return; }   // second click stops, like the app
+  stopReading(false);
+  const id = readId, src = btn.dataset.say === 'src', live = vox.classList.contains('live');
+  // typed text lives in an input box, which can't be highlighted: show a matching copy while reading
+  if (src && live) {
+    srcText.textContent = srcInput.value;
+    srcText.style.setProperty('--fs', srcInput.style.getPropertyValue('--fs'));
+    vox.classList.add('reading-src');
+  }
+  const el = src ? srcText : dstText;
+  const text = el.textContent;
+  if (!text.trim()) { stopReading(); return; }
+  const lang = src ? (srcSel.value === 'auto' ? 'en' : srcSel.value) : dstSel.value;
+  // word positions; the browser's word splitter also handles languages without spaces (Japanese, Chinese, Thai…)
+  const words = typeof Intl.Segmenter === 'function'
+    ? [...new Intl.Segmenter(lang, { granularity: 'word' }).segment(text)].filter(w => w.isWordLike).map(w => [w.index, w.index + w.segment.length])
+    : [...text.matchAll(/\S+/g)].map(m => [m.index, m.index + m[0].length]);
+  const mark = (from, to) => {
+    if (id !== readId || !wordMark) return;
+    wordMark.clear();
+    const r = textRange(el, from, to);
+    if (r) wordMark.add(r);
+  };
   const u = new SpeechSynthesisUtterance(text);
-  u.lang = src ? (srcSel.value === 'auto' ? 'en' : srcSel.value) : dstSel.value;
-  speechSynthesis.cancel(); speechSynthesis.speak(u);
-});
+  u.lang = lang;
+  let heard = false;
+  u.onboundary = e => {
+    if (e.name && e.name !== 'word') return;
+    heard = true;
+    const w = words.find(([f, t]) => e.charIndex >= f && e.charIndex < t);
+    w ? mark(w[0], w[1]) : mark(e.charIndex, e.charIndex + (e.charLength || 1));
+  };
+  // some voices never report word timings: then pace the highlight by the length of each word
+  u.onstart = () => {
+    estTimer = setTimeout(function step(i = 0) {
+      if (heard || id !== readId || i >= words.length) return;
+      mark(...words[i]);
+      const len = words[i][1] - words[i][0];
+      estTimer = setTimeout(() => step(i + 1), 140 + len * 55);
+    }, 500);
+  };
+  u.onend = u.onerror = () => { if (id === readId) stopReading(); };
+  readBtn = btn;
+  btn.setAttribute('aria-pressed', 'true');
+  readingNow = true;
+  speechSynthesis.speak(u);
+}
+document.querySelectorAll('[data-say]').forEach(b => b.onclick = () => readAloud(b));
+srcInput.addEventListener('input', () => { if (readBtn) stopReading(); });   // typing stops the reading
 
 /* ---------- photos: a teaser; each one flies into its spot on the photos page ---------- */
 
