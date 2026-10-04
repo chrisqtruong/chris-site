@@ -311,7 +311,6 @@
   .theme-row button:hover { transform: scale(1.25); }
   .theme-row button[aria-pressed="true"] { border-color: var(--v-text); }
   .theme-row button { position: relative; }
-  .case-hero .theme-row { --marker: var(--v-on-main); }   /* on the colored hero, draw in the hero's ink */
   .case-hero .copy { padding: clamp(28px, 5vw, 72px); align-self: center; }
   .case-hero h1 { font: var(--head-w) calc(clamp(52px, 12vw, 150px) * (var(--head-scale) + .1))/.95 var(--display); margin: 0 0 20px; letter-spacing: var(--head-track); }
   .case-hero .copy p { font-size: clamp(20px, 1.8vw, 25px); margin: 0 0 26px; opacity: .9; max-width: 520px; }
