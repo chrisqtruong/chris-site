@@ -376,3 +376,23 @@ document.querySelectorAll('[data-mail]').forEach(a => {
   a.href = `mailto:${address}`;
   a.title = address;   // shows on hover, for people who use webmail
 });
+
+/* ---------- back to top: a small arrow once you're well down a long page (pages with an "on this page" menu) ---------- */
+if (document.querySelector('.toc')) {
+  const btn = document.createElement('button');
+  btn.className = 'to-top';
+  btn.type = 'button';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+  btn.onclick = () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  document.body.append(btn);
+  // show it once the menu has scrolled away; lift it while the footer is on screen (two cheap position reads per scroll)
+  const toc = document.querySelector('.toc'), foot = document.querySelector('footer');
+  const update = () => {
+    btn.classList.toggle('show', toc.getBoundingClientRect().bottom < 0);
+    btn.classList.toggle('lift', !!foot && foot.getBoundingClientRect().top < innerHeight);
+  };
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+}
