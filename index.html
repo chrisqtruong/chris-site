@@ -401,7 +401,41 @@ function bestVoice(lang) {
 /* ---------- read aloud, with the word being spoken lit up (like Vox2: a CSS highlight drawn over the text) ---------- */
 const wordMark = typeof Highlight === 'function' ? new Highlight() : null;
 if (wordMark) CSS.highlights.set('vox-word', wordMark);
-let readId = 0, readBtn = null, estTimer = null;
+let readId = 0, readBtn = null, estTimer = null, clipAudio = null;
+// The intro lines have natural recordings (Azure neural voices) with exact word timings;
+// anything else falls back to the best voice the browser has.
+const CLIPS = {
+  "Hi, I'm Chris.": 'en-1', 'Xin chào, tôi là Chris.': 'vi-1',
+  'I lead design and product teams.': 'en-2', '私はデザインチームと製品チームを率いています。': 'ja-2',
+  'I build the things I wish existed.': 'en-3', 'Construyo las cosas que desearía que existieran.': 'es-3',
+  'And I take a lot of photos.': 'en-4', '그리고 사진을 많이 찍거든요.': 'ko-4',
+  'Go ahead, type something.': 'en-5', 'Allez-y, tapez quelque chose.': 'fr-5',
+};
+const clipWords = {};
+async function playClip(name, el, text, id) {
+  const timing = clipWords[name] ??= await fetch(`/assets/voice/${name}.json`).then(r => r.json());
+  if (id !== readId) return;
+  const lead = text.indexOf(timing.text);
+  clipAudio = new Audio(`/assets/voice/${name}.mp3`);
+  let last = -1;
+  const follow = () => {
+    if (id !== readId) return;
+    const ms = clipAudio.currentTime * 1000;
+    let i = last;
+    while (i + 1 < timing.words.length && timing.words[i + 1][0] <= ms) i++;
+    if (i !== last && i >= 0) { last = i; markWord(el, lead + timing.words[i][1], lead + timing.words[i][2], id); }
+    estTimer = setTimeout(follow, 30);
+  };
+  clipAudio.onplay = follow;
+  clipAudio.onended = clipAudio.onerror = () => { if (id === readId) stopReading(); };
+  clipAudio.play().catch(() => { if (id === readId) stopReading(); });
+}
+function markWord(el, from, to, id) {
+  if (id !== readId || !wordMark) return;
+  wordMark.clear();
+  const r = textRange(el, from, to);
+  if (r) wordMark.add(r);
+}
 
 // A Range over characters [from, to) of an element's text.
 function textRange(el, from, to) {
@@ -420,6 +454,7 @@ function stopReading(resume = true) {
   readId++;
   clearTimeout(estTimer);
   speechSynthesis.cancel();
+  if (clipAudio) { clipAudio.pause(); clipAudio = null; }
   wordMark?.clear();
   vox.classList.remove('reading-src');
   readBtn?.setAttribute('aria-pressed', 'false');
@@ -441,6 +476,11 @@ function readAloud(btn) {
   const el = src ? srcText : dstText;
   const text = el.textContent;
   if (!text.trim()) { stopReading(); return; }
+  readBtn = btn;
+  btn.setAttribute('aria-pressed', 'true');
+  readingNow = true;
+  const clip = CLIPS[text.trim()];
+  if (clip) { playClip(clip, el, text, id); return; }
   const lang = src ? (srcSel.value === 'auto' ? 'en' : srcSel.value) : dstSel.value;
   // word positions; the browser's word splitter also handles languages without spaces (Japanese, Chinese, Thai…)
   const words = typeof Intl.Segmenter === 'function'
