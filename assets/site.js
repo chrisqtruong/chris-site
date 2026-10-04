@@ -383,7 +383,9 @@ if (document.querySelector('.toc')) {
   btn.className = 'to-top';
   btn.type = 'button';
   btn.setAttribute('aria-label', 'Back to top');
-  btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>';
+  // the same hand-drawn marker dot as the tab icon, in the theme color, with a bold arrow
+  btn.innerHTML = `<svg viewBox="0 0 64 64"><path class="blob" d="${DOT}"/>`
+    + '<path class="up" d="M32 45V20M21 30l11-11 11 11" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   btn.onclick = () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   document.body.append(btn);
   // show it once the menu has scrolled away; lift it while the footer is on screen (two cheap position reads per scroll)
