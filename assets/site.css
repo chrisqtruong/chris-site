@@ -387,7 +387,6 @@
   nav ul a { white-space: nowrap; }
   @media (max-width: 480px) {
     nav ul { gap: 12px; font-size: 14px; }
-    nav ul li:first-child { display: none; }   /* leaves photos, say hi and the light/dark toggle */
     nav .name { font-size: 22px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -506,3 +505,5 @@
 
   /* jumping to a section from the nav: land below the fixed bar */
   section, footer { scroll-margin-top: 72px; }
+  /* footers without the greeting: just the links, a little tighter */
+  footer:not(:has(.say-hi)) .links { padding-top: 28px; border-top: 1px solid var(--hair); }
