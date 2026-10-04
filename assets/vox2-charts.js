@@ -12,6 +12,9 @@ const LEVELS = [
     verdict: 'Where Vox2 is now. Checks for the classic mistakes (a flipped “not”, a changed number, a swapped pronoun, text that never got translated) catch it and flag the word behind it.' },
   { out: 'Puedo ir a la cena esta noche.', back: 'I <u>can</u> make it to dinner tonight.', badge: ['low', '2 engines agree: meaning flipped'],
     verdict: 'Next: a second engine reads it back too, so one engine can’t agree with its own mistake, plus an optional AI double-check and every changed word highlighted.' },
+  { out: 'Puedo ir a la cena esta noche.', back: 'I <u>can</u> make it to dinner tonight.', badge: ['low', 'a “not” went missing'],
+    fix: { out: '<b>No</b> puedo ir a la cena esta noche.', back: 'I can’t make it to dinner tonight.', badge: ['high', 'fix checked · 100% match'] },
+    verdict: 'Next after that: a suggested fix, offered only after it passes the same check. You see the proof, and one tap uses it. Nothing is swapped in behind your back.' },
   { out: 'Puedo ir a la cena esta noche.', back: 'I <u>can</u> make it to dinner tonight.', badge: ['low', 'major · meaning reversed'],
     verdict: 'The goal: errors marked with their type and severity, the way professional reviewers grade translations, and tested on the same sets as research systems like xCOMET and CometKiwi, while staying small enough to run on a laptop.' },
 ];
@@ -28,7 +31,8 @@ if (ladder) {
     const L = LEVELS[i];
     demo.innerHTML = `<div class="ld-you"><span>you typed</span>I can’t make it to dinner tonight.</div>
       <div class="ld-box"><div class="ld-lang">Spanish</div><div class="ld-out">${L.out}</div>${
-        L.back ? `<div class="ld-back">↩ ${L.back}${L.badge ? ` <i class="ld-badge ${L.badge[0]}">${L.badge[1]}</i>` : ''}</div>` : ''}</div>
+        L.back ? `<div class="ld-back">↩ ${L.back}${L.badge ? ` <i class="ld-badge ${L.badge[0]}">${L.badge[1]}</i>` : ''}</div>` : ''}</div>${
+        L.fix ? `<div class="ld-box ld-fix"><div class="ld-lang">suggested fix</div><div class="ld-out">${L.fix.out}</div><div class="ld-back">↩ ${L.fix.back} <i class="ld-badge ${L.fix.badge[0]}">${L.fix.badge[1]}</i></div></div>` : ''}
       <p class="ld-verdict">${L.verdict}</p>`;
   };
   items.forEach((li, i) => {

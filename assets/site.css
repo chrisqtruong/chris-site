@@ -512,7 +512,7 @@
   /* ---------- Vox2 page: the "how much it checks" ladder and the errors-caught chart (theme colored) ---------- */
   .ladder, .trend { margin: 8px 0 30px; }
   .ladder figcaption, .trend figcaption { font: 500 13px var(--mono); color: var(--soft); margin-bottom: 16px; text-transform: lowercase; }
-  .ladder ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 12px; }
+  .ladder ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0 12px; }
   .ladder li { position: relative; padding-top: 26px; font-size: 14.5px; line-height: 1.45; }
   .ladder li::before { content: ""; position: absolute; top: 5px; left: 0; right: -12px; height: 3px; border-radius: 3px; background: var(--hair); }
   .ladder li:last-child::before { right: 0; }
@@ -621,3 +621,5 @@
     .ladder em { position: static; display: table; margin-top: 8px; }
     .ladder em::after { display: none; }
   }
+  .ld-fix { box-shadow: inset 3px 0 0 var(--v-main); }
+  .ladder .ld-fix .ld-out b { display: inline; margin: 0; font: inherit; font-weight: 700; color: var(--v-main); }
