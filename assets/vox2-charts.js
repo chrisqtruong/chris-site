@@ -54,18 +54,19 @@ const RUNS = [
   { name: 'run 1', when: 'Oct 3', note: 'Baseline: the match score alone. 40 sentences × 11 languages, mistakes planted on purpose.' },
   { name: 'run 2', when: 'Oct 3', note: 'Targeted checks added (negations, numbers, pronouns, opposites). 80 sentences it had never seen.' },
   { name: 'run 3', when: 'Oct 3', note: 'Fewer false alarms, more opposite word pairs. A fresh set of 80 never-seen sentences.' },
-  { name: 'phase 1.2', when: 'Oct 4', note: 'Numbers written differently, more “not” words, inclusive pronouns. Re-scored on runs 2–3.' },
+  { name: 'phase 1.2', when: 'Oct 4', note: 'Numbers written differently, more “not” words, inclusive pronouns. Re-scored on runs 2–3, which had already been read, so a little flattering.' },
+  { name: 'run 5', when: 'Oct 4', note: 'Fresh sentences nobody had seen, plus a new mistake to catch (a gender you didn’t write). The honest number.' },
 ];
 const MEASURES = {
-  caught: { label: 'errors caught', values: [29, 78, 78, 79], min: 0, max: 100, good: 'higher is better', fmt: v => `${v}%` },
-  alarms: { label: 'false alarms', values: [4, 7, 5, 4.1], min: 0, max: 10, good: 'lower is better', fmt: v => `${v}%` },
-  kept:   { label: 'good kept', values: [93, 91, 93, 94], min: 80, max: 100, good: 'higher is better', fmt: v => `${v}%` },
+  caught: { label: 'errors caught', values: [29, 78, 78, 79, 70], min: 0, max: 100, good: 'higher is better', fmt: v => `${v}%` },
+  alarms: { label: 'false alarms', values: [4, 7, 5, 4.1, 6.9], min: 0, max: 10, good: 'lower is better', fmt: v => `${v}%` },
+  kept:   { label: 'good kept', values: [93, 91, 93, 94, 91], min: 80, max: 100, good: 'higher is better', fmt: v => `${v}%` },
 };
 
 const trend = document.querySelector('.trend');
 if (trend) {
   const svg = trend.querySelector('svg');
-  const X = [70, 180, 290, 390], TOP = 30, BOT = 180;
+  const X = [60, 140, 220, 300, 380], TOP = 30, BOT = 180;
   const yOf = (m, v) => BOT - (v - m.min) / (m.max - m.min) * (BOT - TOP);
 
   // tabs above the chart
@@ -92,7 +93,7 @@ if (trend) {
   const draw = (yy, m) => {
     const d = X.map((x, i) => `${i ? 'L' : 'M'}${x} ${yy[i].toFixed(1)}`).join(' ');
     line.setAttribute('d', d);
-    area.setAttribute('d', `${d} L${X[3]} ${BOT} L${X[0]} ${BOT} Z`);
+    area.setAttribute('d', `${d} L${X.at(-1)} ${BOT} L${X[0]} ${BOT} Z`);
     pts.forEach((c, i) => c.setAttribute('cy', yy[i]));
     vals.forEach((t, i) => t.setAttribute('y', yy[i] - 12));
   };

@@ -55,7 +55,7 @@
 <dl class="facts">
   <div><dt>Role</dt><dd>Product, design, build &amp; research</dd></div>
   <div><dt>Platforms</dt><dd>Windows · macOS (beta)</dd></div>
-  <div><dt>Status</dt><dd>Open source · v0.4.13</dd></div>
+  <div><dt>Status</dt><dd>Open source · v0.4.20</dd></div>
   <div><dt>Built with</dt><dd>Tauri 2 · HTML/CSS/JS · Claude Code</dd></div>
 </dl>
 <div class="toc" role="navigation" aria-label="On this page"><a href="#why">why i built it</a><a href="#design">design</a><a href="#testing">testing</a><a href="#next">what’s next</a><a href="#ahead">where it’s heading</a></div>
@@ -115,30 +115,32 @@
         </ol>
       </figure>
       <div class="stats">
-        <div class="stat"><b>29% <span class="to">→</span> 79%</b><span>of meaning errors caught, from the first test to now</span></div>
-        <div class="stat"><b>94%</b><span>of good translations shown as “meaning kept”, with false alarms down to 4%</span></div>
-        <div class="stat"><b>96% <span class="to">→</span> 8%</b><span>of gibberish passed off as a match; now it says “can’t check” instead</span></div>
+        <div class="stat"><b>35% <span class="to">→</span> 70%</b><span>of meaning errors caught on sentences it had never seen, from the score alone to now. Goal: 90%+</span></div>
+        <div class="stat"><b>91%</b><span>of good translations shown as “meaning kept”, with false alarms at about 7%. Goal: under 5%</span></div>
+        <div class="stat"><b>96% <span class="to">→</span> 8%</b><span>of gibberish passed off as a match; now it says “can’t check”, in all 11 languages, without misfiring on any of 6,160 good translations</span></div>
       </div>
       <figure class="trend">
         <figcaption>The meaning check, test by test</figcaption>
-        <svg viewBox="0 0 420 230" role="img" aria-label="Errors caught: 29% in run 1, 78% in run 2, 78% in run 3, 79% in Phase 1.2">
+        <svg viewBox="0 0 420 230" role="img" aria-label="Errors caught: 29% in run 1, 78% in run 2, 78% in run 3, 79% in Phase 1.2, 70% in run 5 on fresh sentences">
           <g class="grid"><line x1="40" x2="404" y1="30" y2="30"/><line x1="40" x2="404" y1="105" y2="105"/><line x1="40" x2="404" y1="180" y2="180"/></g>
           <g class="axis"><text x="32" y="34">100%</text><text x="32" y="109">50%</text><text x="32" y="184">0%</text></g>
-          <path class="area" d="M70 136.5 L180 63 L290 63 L390 61.5 L390 180 L70 180 Z"/>
-          <path class="line" d="M70 136.5 L180 63 L290 63 L390 61.5"/>
-          <g class="pts"><circle cx="70" cy="136.5" r="5"/><circle cx="180" cy="63" r="5"/><circle cx="290" cy="63" r="5"/><circle cx="390" cy="61.5" r="5"/></g>
-          <g class="vals"><text x="70" y="124">29%</text><text x="180" y="51">78%</text><text x="290" y="51">78%</text><text x="390" y="49">79%</text></g>
-          <g class="runs"><text x="70" y="202">run 1</text><text x="180" y="202">run 2</text><text x="290" y="202">run 3</text><text x="390" y="202">phase 1.2</text>
-            <text x="70" y="219" class="sub">match score only</text><text x="235" y="219" class="sub">+ targeted checks</text></g>
+          <path class="area" d="M60 136.5 L140 63 L220 63 L300 61.5 L380 75 L380 180 L60 180 Z"/>
+          <path class="line" d="M60 136.5 L140 63 L220 63 L300 61.5 L380 75"/>
+          <g class="pts"><circle cx="60" cy="136.5" r="5"/><circle cx="140" cy="63" r="5"/><circle cx="220" cy="63" r="5"/><circle cx="300" cy="61.5" r="5"/><circle cx="380" cy="75" r="5"/></g>
+          <g class="vals"><text x="60" y="124.5">29%</text><text x="140" y="51">78%</text><text x="220" y="51">78%</text><text x="300" y="49.5">79%</text><text x="380" y="63">70%</text></g>
+          <g class="runs"><text x="60" y="202">run 1</text><text x="140" y="202">run 2</text><text x="220" y="202">run 3</text><text x="300" y="202">phase 1.2</text><text x="380" y="202">run 5</text>
+            <text x="60" y="219" class="sub">score only</text><text x="220" y="219" class="sub">+ targeted checks</text><text x="380" y="219" class="sub">fresh sentences</text></g>
         </svg>
         <dl class="key">
           <div><dt>Match score</dt><dd>how much of your meaning survived the round trip</dd></div>
           <div><dt>Error caught</dt><dd>a mistake we planted that the check flagged</dd></div>
-          <div><dt>False alarm</dt><dd>a good translation flagged by mistake (held at 4–7%)</dd></div>
+          <div><dt>False alarm</dt><dd>a good translation flagged by mistake (about 7% on fresh sentences)</dd></div>
         </dl>
       </figure>
-      <p class="fine">Six test runs, 11 languages, more than 10,000 translations scored. Every run is published with its method and raw results on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
-      <p>The first test caught under a third of the mistakes, so I added targeted checks for negations, numbers, pronouns and opposites, and taught it to say “can’t check” when text never got translated, instead of showing a misleading number. Pronouns are still the weakest spot, so translations that get people right, like “they” or “partner”, are what I’m working on next.</p>
+      <p class="fine">Five test runs and two targeted tests, 11 languages, more than 10,000 translations scored. Every run is published with its method and raw results on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
+      <p>The first test caught under a third of the mistakes, so I added targeted checks for negations, numbers, pronouns and opposites, and taught it to say “can’t check” when text never got translated, instead of showing a misleading number.</p>
+      <p>Then I ran it on fresh sentences nobody had looked at, and errors caught dropped from 79% to 70%. That’s the more honest number. The earlier sentences had been read while tuning the checks, so they flattered it, like grading a student on the practice questions.</p>
+      <p>70% sounds low, but it isn’t alarming. Every bad sentence in the test hides a mistake on purpose, and some can’t show up in a round trip at all, like a “he” passing through a language that doesn’t mark gender. The mistakes that change what you meant are caught almost every time: a dropped part of a sentence 98%, a changed number 94%, a missing “not” 85%. The misses are mostly opposite words and swapped pronouns, which need a second opinion to see. Without the checks, the score alone caught 35%. And when Vox2 can’t tell, it says so instead of guessing.</p>
       <p>The goal behind all of it: when you write to your family, your in-laws or a coworker in their language, you should know they’ll understand what you meant. Language shouldn’t decide who feels close to you, or what you get to read.</p>
     </div>
   </div>
@@ -154,6 +156,7 @@
         <li><span><b>Show everything that changed.</b> When a check flags a problem, Vox2 already underlines the words behind it and lists the ones that didn’t come back. Next: highlight words that were added too, and test whether the highlights actually help people catch mistakes.</span></li>
         <li><span><b>A second opinion.</b> Translate back with a different engine, so one engine can’t agree with its own mistake, plus an optional AI double-check for the messages that matter most.</span></li>
         <li><span><b>Measure it against the research.</b> Run Vox2’s checks on the WMT test sets, the yearly benchmark where research systems are scored against mistakes marked by professional translators, and publish how it compares to systems like xCOMET and CometKiwi.</span></li>
+        <li><span><b>Another fresh test.</b> Confirm today’s numbers on a second set of sentences nobody has read, so they aren’t tuned to the last one.</span></li>
         <li><span><b>Harder, more realistic tests.</b> Messy text from real life (chat messages, screen snips, names, slang) and the cases it still misses, like pronouns, tested on purpose until they hold up.</span></li>
       </ol>
       <p>All of it has to stay light. The checks run on your own computer, and anything heavier, like the AI double-check, stays optional. The bar isn’t more features. It’s trusting a translation enough to hit send without a second app open.</p>
