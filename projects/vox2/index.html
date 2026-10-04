@@ -115,7 +115,7 @@
         <div class="stat"><b>96% <span class="to">→</span> 8%</b><span>of gibberish passed off as a match; now it says “can’t check” instead</span></div>
       </div>
       <figure class="trend">
-        <figcaption>Meaning errors caught, test by test</figcaption>
+        <figcaption>The meaning check, test by test</figcaption>
         <svg viewBox="0 0 420 230" role="img" aria-label="Errors caught: 29% in run 1, 78% in run 2, 78% in run 3, 79% in Phase 1.2">
           <g class="grid"><line x1="40" x2="404" y1="30" y2="30"/><line x1="40" x2="404" y1="105" y2="105"/><line x1="40" x2="404" y1="180" y2="180"/></g>
           <g class="axis"><text x="32" y="34">100%</text><text x="32" y="109">50%</text><text x="32" y="184">0%</text></g>
@@ -147,6 +147,7 @@
         <li><span><b>Beyond English.</b> The checks look hardest at the English side today. Next, the same checks in other languages, so a reply in Vietnamese or Portuguese gets the same scrutiny.</span></li>
         <li><span><b>Show everything that changed.</b> When a check flags a problem, Vox2 already underlines the words behind it and lists the ones that didn’t come back. Next: highlight words that were added too, and test whether the highlights actually help people catch mistakes.</span></li>
         <li><span><b>A second opinion.</b> Translate back with a different engine, so one engine can’t agree with its own mistake, plus an optional AI double-check for the messages that matter most.</span></li>
+        <li><span><b>Measure it against the research.</b> Run Vox2’s checks on the WMT test sets, the yearly benchmark where research systems are scored against mistakes marked by professional translators, and publish how it compares to systems like xCOMET and CometKiwi.</span></li>
         <li><span><b>Harder, more realistic tests.</b> Messy text from real life (chat messages, screen snips, names, slang) and the cases it still misses, like pronouns, tested on purpose until they hold up.</span></li>
       </ol>
       <p>All of it has to stay light. The checks run on your own computer, and anything heavier, like the AI double-check, stays optional. The bar isn’t more features. It’s trusting a translation enough to hit send without a second app open.</p>
@@ -171,6 +172,7 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
+<script type="module" src="/assets/vox2-charts.js"></script>
 <script type="module">
 import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js';
 // starts as the card you clicked on the home page; picks are remembered for this visit
