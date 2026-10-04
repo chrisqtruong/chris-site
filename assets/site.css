@@ -289,9 +289,6 @@
   .page-head .intro { font-size: clamp(19px, 1.6vw, 23px); max-width: 640px; color: var(--body-ink); margin: 0; }
   .todo { background: var(--todo-bg); padding: 1px 5px; border-radius: 4px; font-style: italic; }
 
-  /* ---------- photos page ---------- */
-  .gallery { max-width: 1440px; margin: 56px auto 0; padding: 0 var(--gutter); columns: 3 300px; column-gap: 16px; }
-  .gallery .photo { margin-bottom: 16px; }
 
   /* ---------- project (case study) page ---------- */
   .case-hero { border-radius: 26px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; align-items: end; margin: 32px var(--gutter) 0; }
@@ -484,7 +481,7 @@
   .quiet .label i { color: var(--accent); transition: color .6s; }
 
   /* ---------- photos: "gallery mode" — theme colors step back so the photos carry the color ---------- */
-  :root.gallery { --accent: var(--ink); --sel-ink: var(--paper); }
+  :root.gallery-mode { --accent: var(--ink); --sel-ink: var(--paper); }
   .series-list { padding-top: 48px; }
   #photos.quiet { padding-top: 28px; }
   .plates { max-width: 1100px; margin: 56px auto 0; padding: 0 var(--gutter); display: grid; gap: clamp(56px, 8vw, 110px); }
@@ -501,3 +498,11 @@
     nav .name { font-size: 20px; }
     .mode { width: 30px; height: 30px; }
   }
+
+  /* ---------- one column width per page, so every left edge lines up ---------- */
+  /* home and photo pages use the narrower reading column; project pages keep the wider one */
+  .narrow footer, .narrow .page-head, .narrow .plates { max-width: 980px; }
+  .narrow .plates { padding: 0 var(--gutter); }
+
+  /* jumping to a section from the nav: land below the fixed bar */
+  section, footer { scroll-margin-top: 72px; }

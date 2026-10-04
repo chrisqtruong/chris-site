@@ -250,6 +250,13 @@ if (sayHi) {
   }
 }
 
+/* ---------- in-page nav links (like "Say hi"): show everything first, so nothing is still fading in on arrival ---------- */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href*="#"]');
+  if (!a || new URL(a.href).pathname !== location.pathname) return;
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+});
+
 /* ---------- reveal on scroll ---------- */
 const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
