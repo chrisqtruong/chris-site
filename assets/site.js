@@ -386,17 +386,13 @@ if (document.querySelector('.toc') || document.getElementById('vox')) {
   btn.type = 'button';
   btn.setAttribute('aria-label', 'Back to top');
   // the same hand-drawn marker dot as the tab icon, in the theme color, with a bold arrow
-  btn.innerHTML = `<svg viewBox="0 0 64 64"><path class="blob" d="${DOT}"/>`
+  btn.innerHTML = `<svg viewBox="-4 -4 72 76" overflow="visible"><path d="${DOT}" transform="translate(0 4)" fill="rgba(0,0,0,.16)"/><path class="blob" d="${DOT}"/>`
     + '<path class="up" d="M32 45V20M21 30l11-11 11 11" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   btn.onclick = () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   document.body.append(btn);
-  // show it once the menu (or, on the home page, the hero) has scrolled away; lift it while the footer is on screen
+  // show it once the menu (or, on the home page, the hero) has scrolled away; lift it while the footer is on screen.
+  // The browser reports those moments itself, so nothing runs on each scroll frame.
   const mark = document.querySelector('.toc') || document.getElementById('vox'), foot = document.querySelector('footer');
-  const update = () => {
-    btn.classList.toggle('show', mark.getBoundingClientRect().bottom < 0);
-    btn.classList.toggle('lift', !!foot && foot.getBoundingClientRect().top < innerHeight);
-  };
-  addEventListener('scroll', update, { passive: true });
-  addEventListener('resize', update);
-  update();
+  new IntersectionObserver(([e]) => btn.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(mark);
+  if (foot) new IntersectionObserver(([e]) => btn.classList.toggle('lift', e.isIntersecting)).observe(foot);
 }
