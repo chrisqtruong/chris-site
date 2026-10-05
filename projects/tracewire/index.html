@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tracewire · Chris Truong</title>
+<meta name="description" content="Tracewire, a sourced, hourly-updated record of the tech, AI and data-center deals and decisions that affect ordinary people, by Chris Truong.">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171c28" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chris Truong">
+<meta property="og:title" content="Tracewire · Chris Truong">
+<meta property="og:description" content="Tracewire, a sourced, hourly-updated record of the tech, AI and data-center deals and decisions that affect ordinary people, by Chris Truong.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+  // light or dark before anything paints: the visitor's choice, else their system setting
+  const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || sys; } catch { document.documentElement.dataset.mode = sys; }
+  // note how this page was reached, so scroll-reveal content that's already on screen shows at once
+  addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav>
+  <a class="name" href="/">Chris <i>Truong</i></a>
+  <ul>
+    <li><a href="/#projects">Work</a></li>
+    <li><a href="/photos/">Photos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 3.7C9.8 4.1 7 7.3 7.2 11.2 7.4 15.3 10.9 18.4 15 18.1 17.1 17.9 18.9 16.8 20.1 15.2 16.3 15.9 12.9 13.1 12.4 9.2 12.2 7.1 12.7 5.3 13.9 3.5"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 9.3C14.6 8 13.1 7.3 11.6 7.5 9.3 7.8 7.6 9.9 7.8 12.3 8 14.7 10.1 16.4 12.4 16.2 14.7 16 16.4 13.9 16.2 11.6 16.1 10.5 15.6 9.5 14.7 8.8"/><path d="M12.1 2.7 12 5M11.9 19.2l.2 2.2M2.8 11.9l2.3.1M19.1 12.2l2.1-.3M5.3 5.3l1.7 1.6M17.2 17.1l1.4 1.8M5.5 18.7l1.6-1.5M17.1 6.8l1.7-1.6"/></svg>
+  </button>
+</nav>
+<main id="main">
+
+<div class="page-head" style="padding-bottom:0">
+  <a class="back-link" href="/#projects"><span class="arrow">←</span>All projects</a>
+</div>
+
+<header class="case-hero tracewire">
+  <div class="copy">
+    <p class="part-of">Part of <a href="/projects/paper-trail/">Paper Trail</a></p>
+    <h1>Tracewire</h1>
+    <p>The tech, AI and data-center deals and decisions that affect ordinary people, with a source for every fact.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://chrisqtruong.github.io/tracewire/" target="_blank" rel="noopener">Read it</a>
+      <a class="btn" href="https://github.com/chrisqtruong/tracewire" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <figure class="shot"><img src="/assets/tracewire-top.jpg" width="1100" height="794" alt="The top of Tracewire: verified posts on the left, such as Amazon Web Services dropping NDAs on data center projects, and the live Wire of unverified headlines on the right"></figure>
+</header>
+
+<dl class="facts">
+  <div><dt>Role</dt><dd>Research, editorial, design &amp; build</dd></div>
+  <div><dt>Updates</dt><dd>Wire every few minutes · verified hourly</dd></div>
+  <div><dt>Status</dt><dd>Live · launched Oct. 2026</dd></div>
+  <div><dt>Built with</dt><dd>HTML/CSS/JS · GitHub Actions · Claude</dd></div>
+</dl>
+
+<section>
+  <div class="chapter reveal">
+    <div class="num">Why</div>
+    <div>
+      <h2>what the boom costs the town next door</h2>
+      <p>AI runs on data centers, and they are going up fast: drawing power and water from the same grids and aquifers as the towns around them, often approved under nondisclosure agreements and tax breaks residents learn about later. Meanwhile a handful of companies buy, invest in and partner with each other, spend heavily to shape the rules, and win public contracts.</p>
+      <p>Those decisions land on ordinary people as utility rates, water use, layoffs and surveillance, but they’re reported piecemeal across utility dockets, merger filings and local news. Tracewire is the second tracker built on <a href="/projects/paper-trail/">Paper Trail</a>, and it keeps them in one sourced, permanent record.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Speeds</div>
+    <div>
+      <h2>fast and checked, side by side</h2>
+      <p>Tracewire runs at two speeds, and never mixes them up. The <em>Wire</em> pulls raw headlines from 52 tested public feeds (the FTC, Justice Department, SEC filings, federal courts, energy regulators, newsrooms) every few minutes, marked unverified. The <em>Feed</em> is the checked record: every hour a scheduled Claude run opens each item at its source, labels it confirmed, reported or disputed, and tags the companies, agencies and places involved.</p>
+      <ul class="features">
+        <li><b>Saved copies.</b> Every source link is saved to the Internet Archive, so the record survives broken links.</li>
+        <li><b>A status page.</b> What each check read, which sources were healthy, and what couldn’t be fetched.</li>
+        <li><b>Never in its own voice.</b> It doesn’t call anything corruption; it says what was filed, charged or reported, and by whom.</li>
+        <li><b>Nothing deleted.</b> Corrections in place, older posts archived, every change on GitHub.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Explore</div>
+    <div>
+      <h2>follow a company, a state or a deal</h2>
+      <p>Beyond the feed, Tracewire maps the territory: more than a hundred tracked entities (companies, agencies, utilities, courts and officials), a ledger of deals, fines, contracts and lobbying, data center projects by state, and a diagram of who is buying, investing in and partnering with whom.</p>
+      <figure class="wide-shot"><img src="/assets/tracewire-deals.jpg" width="1060" height="820" alt="Tracewire’s diagram of who is buying, investing in and partnering with whom: Amazon investing in Anthropic, Nvidia investing in SB Energy and buying Hugging Face, AMD buying World Labs" loading="lazy"><figcaption>Who is buying, investing in and partnering with whom, from confirmed ledger rows only.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<div class="next-proj">
+  <span>Next project</span>
+  <a href="/projects/purrmodoro/">Purrmodoro <span class="arrow">→</span></a>
+</div>
+
+</main>
+<footer id="contact" class="reveal">
+  <div class="links">
+    <a href="#contact" data-mail="chrisqtruong|gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/chrisqtruong/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/chrisqtruong/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
+  </div>
+  <small>© 2026 Chris Truong · Baltimore</small>
+</footer>
+
+<script type="module" src="/assets/site.js"></script>
+</body>
+</html>

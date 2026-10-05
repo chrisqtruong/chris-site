@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Trail · Chris Truong</title>
+<meta name="description" content="Paper Trail, a framework by Chris Truong for sourced, permanent public-record trackers, behind Bankrolled and Tracewire.">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171c28" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chris Truong">
+<meta property="og:title" content="Paper Trail · Chris Truong">
+<meta property="og:description" content="Paper Trail, a framework by Chris Truong for sourced, permanent public-record trackers, behind Bankrolled and Tracewire.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+  // light or dark before anything paints: the visitor's choice, else their system setting
+  const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || sys; } catch { document.documentElement.dataset.mode = sys; }
+  // note how this page was reached, so scroll-reveal content that's already on screen shows at once
+  addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav>
+  <a class="name" href="/">Chris <i>Truong</i></a>
+  <ul>
+    <li><a href="/#projects">Work</a></li>
+    <li><a href="/photos/">Photos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 3.7C9.8 4.1 7 7.3 7.2 11.2 7.4 15.3 10.9 18.4 15 18.1 17.1 17.9 18.9 16.8 20.1 15.2 16.3 15.9 12.9 13.1 12.4 9.2 12.2 7.1 12.7 5.3 13.9 3.5"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 9.3C14.6 8 13.1 7.3 11.6 7.5 9.3 7.8 7.6 9.9 7.8 12.3 8 14.7 10.1 16.4 12.4 16.2 14.7 16 16.4 13.9 16.2 11.6 16.1 10.5 15.6 9.5 14.7 8.8"/><path d="M12.1 2.7 12 5M11.9 19.2l.2 2.2M2.8 11.9l2.3.1M19.1 12.2l2.1-.3M5.3 5.3l1.7 1.6M17.2 17.1l1.4 1.8M5.5 18.7l1.6-1.5M17.1 6.8l1.7-1.6"/></svg>
+  </button>
+</nav>
+<main id="main">
+
+<div class="page-head" style="padding-bottom:0">
+  <a class="back-link" href="/#projects"><span class="arrow">←</span>All projects</a>
+</div>
+
+<header class="case-hero papertrail">
+  <div class="copy">
+    <h1>Paper Trail</h1>
+    <p>A framework I built for keeping a sourced, permanent public record of how powerful industries shape American life. It runs two trackers so far: Bankrolled, on gambling, and Tracewire, on tech, AI and data centers.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://github.com/chrisqtruong/bankrolled/tree/main/tracker-kit" target="_blank" rel="noopener">Start your own</a>
+      <a class="btn" href="#trackers">See the trackers</a>
+    </div>
+  </div>
+  <figure class="shot pair">
+    <img class="back" src="/assets/tracewire-top.jpg" width="1100" height="794" alt="Tracewire, a dark page of verified tech and data-center news with a live wire of headlines beside it">
+    <img class="front" src="/assets/bankrolled-top.jpg" width="1100" height="821" alt="Bankrolled, a light page with a running count of gambling losses and charts of industry money">
+  </figure>
+</header>
+
+<dl class="facts">
+  <div><dt>Role</dt><dd>Method, design &amp; build</dd></div>
+  <div><dt>Trackers</dt><dd><a href="/projects/bankrolled/">Bankrolled</a> · <a href="/projects/tracewire/">Tracewire</a></dd></div>
+  <div><dt>Updates</dt><dd>Every hour, by a scheduled AI run</dd></div>
+  <div><dt>Built with</dt><dd>HTML/CSS/JS · GitHub Pages &amp; Actions · Claude</dd></div>
+</dl>
+
+<section>
+  <div class="chapter reveal">
+    <div class="num">Why</div>
+    <div>
+      <h2>keep the record in one place</h2>
+      <p>I’m constantly impressed by independent projects that keep a public record of corruption, corporate greed and abuse of power, built by people who decided someone should be keeping track. One that stuck with me is Rachel LaPointe’s <a href="https://substack.com/@genderedpoliceviolence" target="_blank" rel="noopener">Gendered Police Violence</a>, where a New York social worker documents gender-based violence by police, case by case. Work like that inspired me to start my own.</p>
+      <p>I want a fairer, more equitable world, and getting there means watching what large companies do with their money and power. The trouble is that the record is scattered: a campaign filing here, a court ruling there, a fine announced on a Friday afternoon. Powerful institutions count on it staying that way, easy to miss and easy to forget.</p>
+      <p>Paper Trail is my attempt at using AI for public good: gather what’s already public, check it against primary sources, and keep it in one searchable, permanent place that anyone can read and reuse.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">How</div>
+    <div>
+      <h2>from headline to record</h2>
+      <p>The framework is a pipeline, and none of it needs anyone to press a button.</p>
+      <ol class="roadmap">
+        <li><span><b>Gather.</b> A small program polls public feeds every few minutes (regulators, courts, government filings, newsrooms) and posts what it finds as unverified headlines, clearly labeled.</span></li>
+        <li><span><b>Verify.</b> Every hour, a scheduled Claude run reads primary sources first, opens each candidate at its source, and labels it confirmed, reported or disputed. Only confirmed items enter the ledger of who paid whom.</span></li>
+        <li><span><b>Keep.</b> Every source link gets a saved copy on the Internet Archive, older posts move to a monthly archive, and every change is committed to GitHub. Nothing is ever deleted.</span></li>
+        <li><span><b>Show.</b> One fast static page per tracker: a feed, the ledger, charts, entities, comments, and a status page that says what was checked and what couldn’t be read.</span></li>
+      </ol>
+      <p>Tracewire runs all four steps. Bankrolled, the first tracker, came before the live headline feed and saved copies; it gathers, verifies, archives and shows through its hourly run.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Rules</div>
+    <div>
+      <h2>honest about what it knows</h2>
+      <p>The trackers take a side on what matters, so the facts have to be airtight. The same standards apply to every one of them.</p>
+      <ul class="features">
+        <li><b>Three labels.</b> Confirmed, reported or disputed, on every item, so you always know how sure it is.</li>
+        <li><b>Accused until convicted.</b> Lawsuits are allegations; it never calls anything corruption in its own voice, only what was filed, charged or reported, and by whom.</li>
+        <li><b>No shaky numbers.</b> When sources disagree on a figure, it’s left out.</li>
+        <li><b>Mistakes stay visible.</b> Corrections are made in place, late finds keep their true date, and each tracker publishes its own blind spots.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chapter reveal" id="trackers">
+    <div class="num">Trackers</div>
+    <div>
+      <h2>two trackers so far</h2>
+      <div class="decisions trackers">
+        <a class="decision tracker" href="/projects/bankrolled/">
+          <img src="/assets/bankrolled-top.jpg" width="1100" height="821" alt="">
+          <h3>Bankrolled</h3>
+          <p>The money behind American gambling, from sportsbooks to prediction markets: who pays whom, who loses, and who writes the rules.</p>
+          <span class="go">Read about it →</span>
+        </a>
+        <a class="decision tracker" href="/projects/tracewire/">
+          <img src="/assets/tracewire-top.jpg" width="1100" height="794" alt="">
+          <h3>Tracewire</h3>
+          <p>The tech, AI and data-center deals and decisions that affect ordinary people: power and water, mergers, lobbying, contracts and courts.</p>
+          <span class="go">Read about it →</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Yours</div>
+    <div>
+      <h2>start your own</h2>
+      <p>The framework ships as the <a href="https://github.com/chrisqtruong/bankrolled/tree/main/tracker-kit" target="_blank" rel="noopener">Tracker Kit</a>: one command turns a short config into a complete tracker (the page, its data files, the source checklist and the hourly AI instructions), ready to put on GitHub. It comes with starting points for corporate lobbying, environmental disasters and conflict accountability.</p>
+      <p>Each tracker lives in its own repository with its own data, comments and schedule, so a mistake in one can never leak into another, and any of them can be handed to someone else. A tracker’s behavior is defined by plain text files it rereads every run, so improving one means editing a file, not rewriting a program.</p>
+    </div>
+  </div>
+</section>
+
+<div class="next-proj">
+  <span>Next project</span>
+  <a href="/projects/bankrolled/">Bankrolled <span class="arrow">→</span></a>
+</div>
+
+</main>
+<footer id="contact" class="reveal">
+  <div class="links">
+    <a href="#contact" data-mail="chrisqtruong|gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/chrisqtruong/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/chrisqtruong/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
+  </div>
+  <small>© 2026 Chris Truong · Baltimore</small>
+</footer>
+
+<script type="module" src="/assets/site.js"></script>
+</body>
+</html>
