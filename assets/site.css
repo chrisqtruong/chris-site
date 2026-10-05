@@ -461,11 +461,6 @@
   .index .arrow { color: var(--soft); }
   .index .row:hover .arrow { color: var(--ink); }
   #projects { position: relative; }
-  .preview { position: absolute; right: -40px; width: 200px; border-radius: 12px; box-shadow: 0 20px 50px -18px rgba(0,0,0,.45); pointer-events: none;
-    opacity: 0; transform: translateY(-50%) scale(.96); transition: opacity .14s ease, transform .3s cubic-bezier(.2,.8,.2,1); }
-  .preview.show { opacity: 1; transform: translateY(-50%) scale(1); }
-  .preview:not([src]) { display: none; }
-  @media (hover: none), (max-width: 1100px) { .preview { display: none; } }
   .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .strip .photo { margin: 0; }
   .strip .ph { aspect-ratio: 4 / 3 !important; object-fit: cover; }
@@ -725,7 +720,6 @@
   .case-hero.coinop, .c-coin { view-transition-name: coin-card; }
   .coin-title { view-transition-name: coin-title; width: fit-content; }
   .case-hero.coinop h1 { white-space: nowrap; }   /* keep the title on one line */
-  .preview.wide { width: 400px; right: -70px; border-radius: 14px; }
   /* Swear Jar: title on the left, the dashboard large on the right (stacked on phones) */
   .case-hero.coinop { grid-template-columns: minmax(0, .8fr) minmax(0, 1.35fr); align-items: center; }
   .case-hero.coinop .copy { padding-right: 0; }
@@ -805,3 +799,17 @@
   /* demo clips are decoration: never show Safari's big play button over them (they start on the first tap if autoplay is blocked) */
   .shot video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
   .shot video::-webkit-media-controls { display: none !important; }
+
+  /* ---------- Bankrolled page: newsprint black and white, like the site itself ---------- */
+  .case-hero.bankrolled { background: #121211; color: #ededea; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+  .case-hero.bankrolled h1 { font-size: clamp(48px, 6vw, 96px); }
+  .case-hero.bankrolled .btn.solid { background: #ededea; border-color: #ededea; color: #121211; }
+  .case-hero.bankrolled .btn.solid:hover { background: #ffffff; color: #121211; }
+  .case-hero.bankrolled .btn:hover { background: rgba(255, 255, 255, .08); color: inherit; }
+  .case-hero.bankrolled .shot { margin: 0; padding: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 48px) 0 0; place-items: end stretch; }
+  .case-hero.bankrolled .shot img { width: 100%; border-radius: 12px 12px 0 0; box-shadow: 0 30px 70px -24px rgba(0, 0, 0, .7); }
+  :root[data-mode="dark"] .case-hero.bankrolled { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }
+  @media (max-width: 820px) {
+    .case-hero.bankrolled { grid-template-columns: minmax(0, 1fr); }
+    .case-hero.bankrolled .shot { padding: 0 20px; }
+  }

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bankrolled · Chris Truong</title>
+<meta name="description" content="Bankrolled, a daily, sourced record of the money behind American sports betting, by Chris Truong.">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171c28" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chris Truong">
+<meta property="og:title" content="Bankrolled · Chris Truong">
+<meta property="og:description" content="Bankrolled, a daily, sourced record of the money behind American sports betting, by Chris Truong.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+  // light or dark before anything paints: the visitor's choice, else their system setting
+  const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || sys; } catch { document.documentElement.dataset.mode = sys; }
+  // note how this page was reached, so scroll-reveal content that's already on screen shows at once
+  addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav>
+  <a class="name" href="/">Chris <i>Truong</i></a>
+  <ul>
+    <li><a href="/#projects">Work</a></li>
+    <li><a href="/photos/">Photos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 3.7C9.8 4.1 7 7.3 7.2 11.2 7.4 15.3 10.9 18.4 15 18.1 17.1 17.9 18.9 16.8 20.1 15.2 16.3 15.9 12.9 13.1 12.4 9.2 12.2 7.1 12.7 5.3 13.9 3.5"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 9.3C14.6 8 13.1 7.3 11.6 7.5 9.3 7.8 7.6 9.9 7.8 12.3 8 14.7 10.1 16.4 12.4 16.2 14.7 16 16.4 13.9 16.2 11.6 16.1 10.5 15.6 9.5 14.7 8.8"/><path d="M12.1 2.7 12 5M11.9 19.2l.2 2.2M2.8 11.9l2.3.1M19.1 12.2l2.1-.3M5.3 5.3l1.7 1.6M17.2 17.1l1.4 1.8M5.5 18.7l1.6-1.5M17.1 6.8l1.7-1.6"/></svg>
+  </button>
+</nav>
+<main id="main">
+
+<div class="page-head" style="padding-bottom:0">
+  <a class="back-link" href="/#projects"><span class="arrow">←</span>All projects</a>
+</div>
+
+<header class="case-hero bankrolled">
+  <div class="copy">
+    <h1>Bankrolled</h1>
+    <p>A daily, sourced record of the money behind American sports betting: who pays whom, who loses, and who writes the rules.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://chrisqtruong.github.io/bankrolled/" target="_blank" rel="noopener">Read it</a>
+      <a class="btn" href="https://github.com/chrisqtruong/bankrolled" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <figure class="shot"><img src="/assets/bankrolled-top.jpg" width="1100" height="872" alt="The top of Bankrolled: the masthead, a chart of what bettors lost to legal U.S. sportsbooks each year (4.3 billion dollars in 2021 to 17 billion in 2025), and the sportsbooks' super PAC reaching 72 million dollars"></figure>
+</header>
+
+<dl class="facts">
+  <div><dt>Role</dt><dd>Research, editorial, design &amp; build</dd></div>
+  <div><dt>Updates</dt><dd>Every morning, on its own</dd></div>
+  <div><dt>Status</dt><dd>Live · launched Oct. 2026</dd></div>
+  <div><dt>Built with</dt><dd>HTML/CSS/JS · GitHub Pages · Claude Code</dd></div>
+</dl>
+
+<section>
+  <div class="chapter reveal">
+    <div class="num">Why</div>
+    <div>
+      <h2>follow the money</h2>
+      <p>Sports betting went from illegal in most of the country to an app on everyone’s phone in a few years. Bettors lost $17 billion to legal sportsbooks in 2025, nearly four times what they lost in 2021. The companies spend over a billion a year on marketing, sign deals with leagues, teams and star athletes, and funded a $72 million super PAC ahead of the 2026 midterms.</p>
+      <p>The stories are spread across campaign filings, court dockets, regulators and earnings reports. Bankrolled puts them in one place, every day: the political money, the deals, the fines and lawsuits, and what the research says it’s costing people.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Rules</div>
+    <div>
+      <h2>only what can be sourced</h2>
+      <p>Every item carries a label. <em>Confirmed</em> means a primary record backs it: a filing, a court document, a regulator’s action. <em>Reported</em> means credible but not yet verifiable. <em>Disputed</em> means the subject publicly denies it. Only confirmed items go into the ledger of who paid whom.</p>
+      <ul class="features">
+        <li><b>Charged isn’t convicted.</b> People are described as charged or accused until a plea or a verdict.</li>
+        <li><b>Lawsuits are allegations.</b> Sums sought are claims, not judgments.</li>
+        <li><b>No shaky numbers.</b> When sources disagree on a figure, it’s left out.</li>
+        <li><b>Corrections in place.</b> With the date and what changed.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Daily</div>
+    <div>
+      <h2>it updates itself every morning</h2>
+      <p>A scheduled run starts at 7:52 a.m. Eastern without anyone prompting it. It checks primary sources first (federal campaign filings, lobbying disclosures, the Justice Department, courts, state gaming regulators, company investor pages), then the wire, national and trade press. It reads each candidate at its source, labels it, skips duplicates, and republishes the page.</p>
+      <p>If nothing meets the bar, nothing gets posted, and that day’s report says so. Every run is committed to GitHub, so the whole history is a public archive anyone can check.</p>
+      <p class="fine">If gambling is causing problems for you or someone you know, the National Problem Gambling Helpline is 1-800-GAMBLER (call or text).</p>
+    </div>
+  </div>
+</section>
+
+<div class="next-proj">
+  <span>Next project</span>
+  <a href="/projects/purrmodoro/">Purrmodoro <span class="arrow">→</span></a>
+</div>
+
+</main>
+<footer id="contact" class="reveal">
+  <div class="links">
+    <a href="#contact" data-mail="chrisqtruong|gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/chrisqtruong/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/chrisqtruong/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
+  </div>
+  <small>© 2026 Chris Truong · Baltimore</small>
+</footer>
+
+<script type="module" src="/assets/site.js"></script>
+</body>
+</html>
