@@ -746,8 +746,8 @@
   .marker.ring path { stroke-width: 2.2; }
 
   /* ---------- project pages: one spacing rhythm. 20px between paragraphs, 32px between text and a block (cards, lists, charts) ---------- */
-  .chapter p + .roadmap, .chapter p + .decisions { margin-top: 32px; }
-  .chapter .roadmap + p, .chapter .decisions + p { margin-top: 32px; }
+  .chapter p + :is(.roadmap, .decisions, .features) { margin-top: 32px; }
+  .chapter :is(.roadmap, .decisions, .features) + p { margin-top: 32px; }
 
   /* ---------- small accessibility and polish pieces ---------- */
   :is(img, video)[width][height] { height: auto; }   /* sizes in the HTML reserve space; CSS still decides the width (a video left at its full height letterboxes inside an empty box) */
@@ -800,14 +800,14 @@
   .shot video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
   .shot video::-webkit-media-controls { display: none !important; }
 
-  /* ---------- Bankrolled page: newsprint black and white, like the site itself ---------- */
-  .case-hero.bankrolled { background: #121211; color: #ededea; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
+  /* ---------- Bankrolled page: its deep green and paper white ---------- */
+  .case-hero.bankrolled { background: #1d6a45; color: #fafaf7; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); }
   .case-hero.bankrolled h1 { font-size: clamp(48px, 6vw, 96px); }
-  .case-hero.bankrolled .btn.solid { background: #ededea; border-color: #ededea; color: #121211; }
-  .case-hero.bankrolled .btn.solid:hover { background: #ffffff; color: #121211; }
+  .case-hero.bankrolled .btn.solid { background: #fafaf7; border-color: #fafaf7; color: #17191a; }
+  .case-hero.bankrolled .btn.solid:hover { background: #ffffff; color: #17191a; }
   .case-hero.bankrolled .btn:hover { background: rgba(255, 255, 255, .08); color: inherit; }
   .case-hero.bankrolled .shot { margin: 0; padding: clamp(28px, 4vw, 56px) clamp(20px, 3vw, 48px) 0 0; place-items: end stretch; }
-  .case-hero.bankrolled .shot img { width: 100%; border-radius: 12px 12px 0 0; box-shadow: 0 30px 70px -24px rgba(0, 0, 0, .7); }
+  .case-hero.bankrolled .shot img { width: 100%; border-radius: 12px 12px 0 0; box-shadow: 0 30px 70px -24px rgba(0, 0, 0, .55); }
   :root[data-mode="dark"] .case-hero.bankrolled { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }
   @media (max-width: 820px) {
     .case-hero.bankrolled { grid-template-columns: minmax(0, 1fr); }
