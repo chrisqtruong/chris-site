@@ -781,3 +781,21 @@
   :root[data-mode="dark"] .term pre { outline: 1px solid rgba(255, 255, 255, .07); outline-offset: -1px; }
   .chapter > div { min-width: 0; }   /* let wide things (like the example terminal) scroll inside their box instead of widening the page */
   .term pre { max-width: 100%; }
+
+  /* Weather, in dots: the app's own ink navy, the clip wide on the right */
+  .case-hero.weather { background: #171c28; color: #ece7db; grid-template-columns: minmax(0, .8fr) minmax(0, 1.35fr); align-items: center; }
+  .case-hero.weather h1 { font-size: clamp(46px, 5.2vw, 88px); }
+  .case-hero.weather .copy { padding-right: 0; }
+  .case-hero.weather .btn { border-color: rgba(236,231,219,.35); color: inherit; }
+  .case-hero.weather .btn.solid { background: #e8a24f; border-color: #e8a24f; color: #171c28; }
+  .case-hero.weather .btn.solid:hover { background: #f0b660; color: #171c28; }
+  .case-hero.weather .btn:hover { background: rgba(255,255,255,.08); color: inherit; }
+  .case-hero.weather .shot { margin: 0; padding: clamp(24px, 3vw, 40px); place-items: center; }
+  .case-hero.weather .shot :is(img, video) { width: 100%; border-radius: 10px; box-shadow: 0 0 0 1px rgba(255,255,255,.06); }
+  .case-hero.weather figcaption { margin-top: 10px; font: 500 12px var(--mono); color: #8d93a3; text-align: right; }
+  .case-hero.weather, .c-wx { view-transition-name: wx-card; }
+  .wx-title { view-transition-name: wx-title; width: fit-content; }
+  @media (max-width: 820px) {
+    .case-hero.weather { grid-template-columns: minmax(0, 1fr); }
+    .case-hero.weather .copy { padding-right: clamp(28px, 5vw, 72px); padding-bottom: 0; }
+  }

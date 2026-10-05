@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather, in dots · Chris Truong</title>
+<meta name="description" content="Weather, in dots: 86 years of weather for any place on earth, one dot at a time, by Chris Truong.">
+<meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#171c28" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Chris Truong">
+<meta property="og:title" content="Weather, in dots · Chris Truong">
+<meta property="og:description" content="Weather, in dots: 86 years of weather for any place on earth, one dot at a time, by Chris Truong.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Roboto+Mono:wght@400;500;600&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<script>
+  // light or dark before anything paints: the visitor's choice, else their system setting
+  const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || sys; } catch { document.documentElement.dataset.mode = sys; }
+  // note how this page was reached, so scroll-reveal content that's already on screen shows at once
+  addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav>
+  <a class="name" href="/">Chris <i>Truong</i></a>
+  <ul>
+    <li><a href="/#projects">Work</a></li>
+    <li><a href="/photos/">Photos</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
+    <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 3.7C9.8 4.1 7 7.3 7.2 11.2 7.4 15.3 10.9 18.4 15 18.1 17.1 17.9 18.9 16.8 20.1 15.2 16.3 15.9 12.9 13.1 12.4 9.2 12.2 7.1 12.7 5.3 13.9 3.5"/></svg>
+    <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 9.3C14.6 8 13.1 7.3 11.6 7.5 9.3 7.8 7.6 9.9 7.8 12.3 8 14.7 10.1 16.4 12.4 16.2 14.7 16 16.4 13.9 16.2 11.6 16.1 10.5 15.6 9.5 14.7 8.8"/><path d="M12.1 2.7 12 5M11.9 19.2l.2 2.2M2.8 11.9l2.3.1M19.1 12.2l2.1-.3M5.3 5.3l1.7 1.6M17.2 17.1l1.4 1.8M5.5 18.7l1.6-1.5M17.1 6.8l1.7-1.6"/></svg>
+  </button>
+</nav>
+<main id="main">
+
+<div class="page-head" style="padding-bottom:0">
+  <a class="back-link" href="/#projects"><span class="arrow">←</span>All projects</a>
+</div>
+
+<header class="case-hero weather">
+  <div class="copy">
+    <h1 class="wx-title">Weather, in dots</h1>
+    <p>Eighty-six years of weather for any place on earth, one dot at a time. Pick a city and a measure, then zoom from a single afternoon out to a whole decade.</p>
+    <div class="btns">
+      <a class="btn solid" href="https://chrisqtruong.github.io/weather-in-dots/" target="_blank" rel="noopener">Try it</a>
+      <a class="btn" href="https://github.com/chrisqtruong/weather-in-dots" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <figure class="shot"><video src="/assets/weather-dots-demo.mp4" poster="/assets/weather-dots-houston.png" autoplay muted loop playsinline aria-label="Houston's temperature since 1940, one dot per week, then per month and per year"></video><figcaption>Houston, one dot per week since 1940</figcaption></figure>
+</header>
+
+<dl class="facts">
+  <div><dt>Role</dt><dd>Idea, design &amp; build</dd></div>
+  <div><dt>Data</dt><dd>ERA5 reanalysis, 1940 to now · live radar</dd></div>
+  <div><dt>Status</dt><dd>Free &amp; open source</dd></div>
+  <div><dt>Built with</dt><dd>HTML/CSS/JS · Open-Meteo · Claude Code</dd></div>
+</dl>
+
+<section>
+  <div class="chapter reveal">
+    <div class="num">Why</div>
+    <div>
+      <h2>calm to look at, honest underneath</h2>
+      <p>I liked the dots I’d been drawing for my own site and wanted to see what they could hold. Weather turned out to be a good fit: every hour since 1940 has been rebuilt from stations, balloons, ships and satellites, and it’s free for anyone to use.</p>
+      <p>Laid out week by week, the seasons look like weather. The changes underneath look like climate: Houston’s summers stretching into October, and the warm years piling up since 2010. Those changes reach everyone, but not equally, and I wanted something that makes them easy to see.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">How</div>
+    <div>
+      <h2>twelve measures, five sizes of dot</h2>
+      <p>Temperature, feels like, humidity, dew point, rain, snow, cloud, wind, gusts, pressure, sunlight and sunshine, each with its own colour ramp. A dot can be an hour, a day, a week, a month or a year. A radar view draws the last two hours of rain as dots on a labelled map, looping like a doppler.</p>
+      <p>History comes from ERA5, the European weather centre’s reanalysis, served free by Open-Meteo. Everything the page fetches is saved in your browser, so a place you’ve opened before loads instantly.</p>
+      <p><a href="https://github.com/chrisqtruong/weather-in-dots" target="_blank" rel="noopener">Read more and run it yourself on GitHub&nbsp;↗</a></p>
+    </div>
+  </div>
+</section>
+
+<div class="next-proj">
+  <span>Next project</span>
+  <a href="/projects/vox2/">Vox2 <span class="arrow">→</span></a>
+</div>
+
+</main>
+<footer id="contact" class="reveal">
+  <div class="links">
+    <a href="#contact" data-mail="chrisqtruong|gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/chrisqtruong/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/chrisqtruong/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://github.com/chrisqtruong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://letterboxd.com/chrisqtruong/" target="_blank" rel="noopener">Letterboxd</a>
+  </div>
+  <small>© 2026 Chris Truong · Baltimore</small>
+</footer>
+
+<script type="module" src="/assets/site.js"></script>
+</body>
+</html>
