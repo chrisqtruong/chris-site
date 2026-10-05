@@ -756,7 +756,7 @@
   .chapter .roadmap + p, .chapter .decisions + p { margin-top: 32px; }
 
   /* ---------- small accessibility and polish pieces ---------- */
-  img[width][height] { height: auto; }   /* sizes in the HTML reserve space; CSS still decides the width */
+  :is(img, video)[width][height] { height: auto; }   /* sizes in the HTML reserve space; CSS still decides the width (a video left at its full height letterboxes inside an empty box) */
   .skip { position: absolute; left: 12px; top: -60px; z-index: 70; padding: 10px 16px; border-radius: 99px; background: var(--ink); color: var(--paper); font: 500 14px var(--mono); text-decoration: none; }
   .skip:focus-visible { top: 12px; }
   .next-proj a .arrow { display: inline-block; transition: transform .2s; }
@@ -799,3 +799,9 @@
     .case-hero.weather { grid-template-columns: minmax(0, 1fr); }
     .case-hero.weather .copy { padding-right: clamp(28px, 5vw, 72px); padding-bottom: 0; }
   }
+
+  /* Vox2 page: the app window a bit larger, filling more of its half */
+  .case-hero.vox2 .shot :is(img, video) { width: min(100%, 460px); }
+  /* demo clips are decoration: never show Safari's big play button over them (they start on the first tap if autoplay is blocked) */
+  .shot video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+  .shot video::-webkit-media-controls { display: none !important; }
