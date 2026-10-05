@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bankrolled · Chris Truong</title>
-<meta name="description" content="Bankrolled, a daily, sourced record of the money behind American sports betting, by Chris Truong.">
+<meta name="description" content="Bankrolled, a sourced, hourly-updated record of the money behind American gambling, from sportsbooks to prediction markets, by Chris Truong.">
 <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#171c28" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Chris Truong">
 <meta property="og:title" content="Bankrolled · Chris Truong">
-<meta property="og:description" content="Bankrolled, a daily, sourced record of the money behind American sports betting, by Chris Truong.">
+<meta property="og:description" content="Bankrolled, a sourced, hourly-updated record of the money behind American gambling, from sportsbooks to prediction markets, by Chris Truong.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,20 +48,20 @@
 <header class="case-hero bankrolled">
   <div class="copy">
     <h1>Bankrolled</h1>
-    <p>A daily, sourced record of the money behind American sports betting: who pays whom, who loses, and who writes the rules.</p>
+    <p>A sourced record of the money behind American gambling, from sportsbooks to prediction markets: who pays whom, who loses, and who writes the rules.</p>
     <div class="btns">
       <a class="btn solid" href="https://chrisqtruong.github.io/bankrolled/" target="_blank" rel="noopener">Read it</a>
       <a class="btn" href="https://github.com/chrisqtruong/bankrolled" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
-  <figure class="shot"><img src="/assets/bankrolled-top.jpg" width="1100" height="821" alt="The top of Bankrolled: the masthead with a live status showing when it last checked for news, a running count of what Americans have lost to legal sportsbooks since the page was opened, and charts of yearly losses and the sportsbooks’ super PAC"></figure>
+  <figure class="shot"><img src="/assets/bankrolled-top.jpg" width="1100" height="821" alt="The top of Bankrolled: the masthead with a live status showing it checks every hour, a running count of what Americans have lost to legal sportsbooks since you arrived, and charts of yearly losses and the sportsbooks’ super PAC"></figure>
 </header>
 
 <dl class="facts">
   <div><dt>Role</dt><dd>Research, editorial, design &amp; build</dd></div>
-  <div><dt>Updates</dt><dd>Every two hours, on its own</dd></div>
+  <div><dt>Updates</dt><dd>Every hour, on its own</dd></div>
   <div><dt>Status</dt><dd>Live · launched Oct. 2026</dd></div>
-  <div><dt>Built with</dt><dd>HTML/CSS/JS · GitHub Pages · Claude Code</dd></div>
+  <div><dt>Built with</dt><dd>HTML/CSS/JS · GitHub Pages · Claude</dd></div>
 </dl>
 
 <section>
@@ -70,8 +70,8 @@
     <div>
       <h2>follow the money</h2>
       <p>I’m constantly impressed by independent projects that keep a public record of corruption, corporate greed and abuse of power, built by people who decided someone should be keeping track. One that stuck with me is Rachel LaPointe’s <a href="https://substack.com/@genderedpoliceviolence" target="_blank" rel="noopener">Gendered Police Violence</a>, where a New York social worker documents gender-based violence by police, case by case. Work like that inspired me to start my own.</p>
-      <p>I want a fairer, more equitable world, and getting there means watching what large corporations do with their money and power: how they profit from the communities they operate in, and how they buy influence over the people who are supposed to regulate them. Sports betting is the first industry Bankrolled tracks.</p>
-      <p>It went from illegal in most of the country to an app on everyone’s phone in a few years. Bettors lost $17 billion to legal sportsbooks in 2025, nearly four times what they lost in 2021. The companies spend over a billion a year on marketing, sign deals with leagues, teams and star athletes, and funded a $72 million super PAC ahead of the 2026 midterms. Bankrolled puts the whole picture in one place: the political money, the deals, the fines and lawsuits, and what the research says it’s costing people.</p>
+      <p>I want a fairer, more equitable world, and getting there means watching what large corporations do with their money and power: how they profit from the communities they operate in, and how they buy influence over the people who are supposed to regulate them. Gambling is the first industry Bankrolled tracks.</p>
+      <p>Sports betting went from illegal in most of the country to an app on everyone’s phone in a few years, and prediction markets like Kalshi and Polymarket now sell sports bets as “contracts”. Bettors lost $17 billion to legal sportsbooks in 2025, nearly four times what they lost in 2021. The companies spend over a billion a year on marketing, sign deals with leagues, teams and star athletes, and funded a $72 million super PAC ahead of the 2026 midterms. Bankrolled treats both the same and puts the whole picture in one place: the political money, the deals, the fines and lawsuits, and what the research says it’s costing people.</p>
     </div>
   </div>
 
@@ -86,6 +86,7 @@
         <li><b>No shaky numbers.</b> When sources disagree on a figure, it’s left out.</li>
         <li><b>Corrections in place.</b> With the date and what changed.</li>
       </ul>
+      <p>It also publishes its own blind spots: sites that block automated readers, paywalls that show only a headline, small local outlets it under-covers. Its first audit found four stories six to ten weeks late; late finds keep their true date and are flagged in that day’s report.</p>
     </div>
   </div>
 
@@ -93,15 +94,24 @@
     <div class="num">Live</div>
     <div>
       <h2>it keeps itself current</h2>
-      <p>A scheduled research run checks every two hours, from 7:52 a.m. to 11:52 p.m. Eastern, without anyone prompting it. It looks at primary sources first (federal campaign filings, lobbying disclosures, the Justice Department, courts, state gaming regulators, company investor pages), then the wire, national and trade press. It reads each candidate at its source, labels it, skips duplicates and republishes the page. If nothing meets the bar, nothing gets posted, and that day’s report says so.</p>
+      <p>A scheduled Claude task checks every hour, around the clock, without anyone prompting it. It looks at primary sources first (federal campaign filings, lobbying disclosures, the Justice Department, courts, regulators, company investor pages), then the wire, national and trade press, reads each candidate at its source, labels it and republishes the page. The first check each morning also rereads every primary source and the comments for corrections. If nothing meets the bar, nothing gets posted.</p>
       <ul class="features">
-        <li><b>Live status.</b> The masthead shows when it last checked and when it checks next.</li>
-        <li><b>A running tab.</b> A counter of what Americans have lost to sportsbooks since you opened the page, at 2025’s pace.</li>
-        <li><b>New posts while you read.</b> An open page looks for new items every few minutes.</li>
-        <li><b>Take the data.</b> Interactive charts, filters by topic, date and status, and the ledger copies out as a spreadsheet.</li>
+        <li><b>Live status.</b> The masthead shows when it last checked.</li>
+        <li><b>A running tab.</b> What Americans have lost to sportsbooks since you arrived, at 2025’s pace.</li>
+        <li><b>Comments on every post.</b> Through GitHub Discussions; readers can flag what it got wrong.</li>
+        <li><b>Nothing deleted.</b> Posts move to a monthly archive after 90 days, and every run is committed to GitHub.</li>
+        <li><b>Take the data.</b> Interactive charts, filters, and a ledger that copies out as a spreadsheet.</li>
+        <li><b>Free to reuse.</b> The content and data are open (CC BY 4.0); the code is MIT.</li>
       </ul>
-      <p>Every run is committed to GitHub, so the whole history is a public archive anyone can check.</p>
-      <p class="fine">If gambling is causing problems for you or someone you know, the National Problem Gambling Helpline is 1-800-GAMBLER (call or text).</p>
+    </div>
+  </div>
+  <div class="chapter reveal">
+    <div class="num">Kit</div>
+    <div>
+      <h2>a kit for the next one</h2>
+      <p>Powerful institutions count on the public record being scattered and easy to forget. Bankrolled is my attempt at using AI for public good: gather what’s already public, check it against primary sources, and keep it in one searchable, permanent place.</p>
+      <p>Gambling is only the first subject. The <a href="https://github.com/chrisqtruong/bankrolled/tree/main/tracker-kit" target="_blank" rel="noopener">Tracker Kit</a> packages the method (sourced facts, honest labels, nothing deleted, an hourly AI run) so anyone can start a tracker on something else in about ten minutes. It comes with starting points for corporate lobbying, environmental disasters and conflict accountability.</p>
+      <p class="fine" style="margin-top:32px !important">If gambling is causing problems for you or someone you know, the National Problem Gambling Helpline is 1-800-GAMBLER (call or text).</p>
     </div>
   </div>
 </section>
