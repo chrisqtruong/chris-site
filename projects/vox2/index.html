@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006100339">
+<link rel="stylesheet" href="/assets/site.css?v=20261006100951">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
@@ -87,7 +87,7 @@
           <li class="loop"><b>Iterate</b><ul><li>Targeted checks: 35% → 70%</li><li>“Can’t check” instead of a fake 100%</li><li>Units and “unless”: 48% → 71%</li></ul><em>↺ fail fast, test again</em></li>
           <li><b>Release</b><ul><li>One-click releases for Windows and Mac</li><li>Updates install themselves</li><li>Open source, every test published</li></ul></li>
         </ol>
-        <p class="cycle-next"><span>next</span> Real people, real conversations: watching family and friends use it, then deciding what to build from what they do.</p>
+        <p class="cycle-next"><span>next</span> Real people, real feedback: putting it in front of people, listening, and deciding what to build from what they do.</p>
       </figure>
     </div>
   </div>
@@ -175,9 +175,11 @@
     <div class="num">Next</div>
     <div>
       <h2>what’s next</h2>
+      <p>Vox2 started as a fun side project, and so far I’m its main user. But what I care about most in anything I make is whether people can actually pick it up and keep using it. If I took it further, that’s where I’d start: put it in front of people, listen, fix what trips them up, and do it again.</p>
       <p>The app itself stays small. Bigger features will be add-ons you can turn on when you need them, and every change to the meaning check still gets tested and published.</p>
       <ol class="roadmap">
-        <li><span><b>Real people, real conversations.</b> Watching family and friends use it, then building from what they actually do.</span></li>
+        <li><span><b>Real people, real feedback.</b> Hand it to family, friends and coworkers, watch where they get stuck, and build from what they actually do.</span></li>
+          <li><span><b>Quicker, and yours.</b> More shortcuts and settings, so you can shape Vox2 around how you work and get a translation without reaching for the mouse.</span></li>
         <li><span><b>A second opinion.</b> Translate back with a different engine, so one engine can’t agree with its own mistake, plus an optional AI double-check for the messages that matter most. That’s where the remaining misses are.</span></li>
         <li><span><b>Measured against the research.</b> Run the checks on the WMT test sets, where research systems are scored against mistakes marked by professional translators, and publish how Vox2 compares.</span></li>
       </ol>
@@ -227,9 +229,9 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/vox2-charts.js?v=20261006100339"></script>
+<script type="module" src="/assets/vox2-charts.js?v=20261006100951"></script>
 <script type="module">
-import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006100339';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006100951';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
 const names = SITE_THEMES;
