@@ -521,7 +521,14 @@ export function markSelected(container, selector, shape = 'loop') {
 const footSmall = document.querySelector('footer small');
 if (footSmall) {
   const fmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' });
-  const tick = () => { footSmall.textContent = `© 2026 Chris Truong · ${fmt.format(new Date()).toLowerCase()} in Baltimore`; };
+  // the time, then a small cat asleep beside it (a few gray lines, like a doodle in the margin)
+  footSmall.innerHTML = '<span class="pm-time"></span><svg class="napcat" viewBox="0 0 30 22" aria-hidden="true">'
+    + '<path class="ear l" d="M6.5 10.5 7.6 5.6 10.4 8.6"/><path class="ear r" d="M11.6 8.3 14.2 5.4 14.6 10"/>'
+    + '<path class="breath" d="M4.4 19.6c-.9-4.6 1.6-9.8 6.7-10.6 3.9-.6 6.2 1 7.8 2.9 2.2-.9 5.4-.5 7 2 1.6 2.6.7 5.6-1.6 5.7H4.4z"/>'
+    + '<path d="M8.2 14.2q1.1.8 2.2 0M12 14.4q1.1.8 2.2 0"/><path d="M24.8 19.6c2.1.1 3.6-1 3.4-2.8"/>'
+    + '<text class="z" x="17" y="7">z</text><text class="z z2" x="19" y="5">z</text><text class="z z3" x="21" y="3">z</text></svg>';
+  const timeEl = footSmall.querySelector('.pm-time');
+  const tick = () => { timeEl.textContent = `${fmt.format(new Date()).replace(' ', '').toLowerCase()} in Baltimore, Maryland`; };
   tick(); setInterval(tick, 30000);
 }
 

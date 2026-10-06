@@ -985,3 +985,73 @@
     .chapter :is(.cycle, .ladder) { width: 940px; margin-left: calc((var(--col) - 940px) / 2); margin-right: 0; }
   }
   .shot video::-webkit-media-controls-overlay-play-button { display: none !important; }
+
+  /* =====================================================================
+     Home, Benji-style: one quiet column of plain paragraphs, a dated list, a postmark.
+     ===================================================================== */
+  .benji { --col: 560px; --muted: color-mix(in srgb, var(--ink) 45%, var(--paper)); }
+  .benji .col { max-width: calc(var(--col) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 9vw, 96px) var(--gutter) 0; }
+  .benji .masthead { position: relative; margin-bottom: 30px; }
+  .benji .who { font: 600 17px/1.5 var(--serif); margin: 0; letter-spacing: 0; }
+  .benji .updated { font: 400 15px/1.5 var(--sans); color: var(--muted); margin: 0; }
+  .benji .masthead .mode { position: absolute; top: -8px; right: -10px; margin: 0 !important; }
+  .benji .about p { font: 400 17px/1.65 var(--serif); color: var(--ink); margin: 0 0 14px; }
+  .benji .about a, .benji .item { color: var(--ink); }
+  .benji .about a { text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent); }
+  .benji #sayHi .hi-word { font-style: normal; }
+  .benji #sayHi bdi { display: inline-block; animation-duration: inherit; }
+
+  /* the list: year on the left, name, and what it is on the right */
+  .benji .list { margin-top: 56px; }
+  .benji .list-label { font: 400 15px/1.5 var(--sans); color: var(--muted); margin: 0 0 10px; padding-bottom: 10px; border-bottom: 1px solid var(--hair); }
+  .benji .years { list-style: none; margin: 0; padding: 0; }
+  .benji .years li { display: grid; grid-template-columns: 112px 1fr; }
+  .benji .yr { font: 400 15px/1.5 var(--sans); color: var(--muted); padding-top: 13px; }
+  .benji .item { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--hair); text-decoration: none; min-height: 44px; box-sizing: border-box; }
+  .benji .years li:last-child .item { border-bottom: 0; }
+  .benji .item .t { font: 400 17px/1.4 var(--serif); }
+  .benji .item .m { font: 400 15px/1.4 var(--sans); color: var(--muted); white-space: nowrap; }
+  .benji .item:hover .t { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+  .benji .sub .t::before { content: "↳ "; color: var(--muted); }
+
+  /* Vox2, live, as a figure in the column */
+  .benji .hero.demo { height: 400px; min-height: 0; padding: 0; margin: 0; }
+  .benji .hero.demo .vox { border-radius: 16px; }
+
+  /* postmark: a short rule, the time here, and a cat asleep */
+  .benji .postmark, .postmark { max-width: calc(var(--col) + 2 * var(--gutter)); margin: 64px auto 0; padding: 0 var(--gutter) 72px; }
+  .postmark::before { content: ""; display: block; width: 48px; height: 1px; background: var(--hair); margin-bottom: 26px; }
+  .postmark small { display: inline-flex; align-items: center; gap: 10px; font: 400 15px var(--sans) !important; color: var(--muted, var(--soft)) !important; margin: 0; }
+
+  /* the sleeping cat: a few gray lines; ears twitch now and then, z's drift up */
+  .napcat { width: 30px; height: 22px; color: var(--muted, var(--soft)); overflow: visible; flex: none; }
+  .napcat path, .napcat circle { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .napcat .ear { transform-box: fill-box; transform-origin: 50% 100%; animation: ear 7s ease-in-out infinite; }
+  .napcat .ear.r { animation-delay: .25s; }
+  .napcat .z { font: 600 6px var(--sans); fill: currentColor; stroke: none; opacity: 0; animation: zz 4.5s ease-out infinite; }
+  .napcat .z2 { animation-delay: 1.5s; } .napcat .z3 { animation-delay: 3s; }
+  @keyframes ear { 0%, 88%, 100% { transform: rotate(0); } 92% { transform: rotate(-10deg); } 96% { transform: rotate(4deg); } }
+  @keyframes zz { 0% { opacity: 0; transform: translate(0, 0); } 25% { opacity: .9; } 100% { opacity: 0; transform: translate(5px, -9px); } }
+  .napcat .breath { transform-box: fill-box; transform-origin: 50% 100%; animation: breath 3.6s ease-in-out infinite; }
+  @keyframes breath { 50% { transform: scaleY(1.04); } }
+  @media (prefers-reduced-motion: reduce) { .napcat * { animation: none !important; } .napcat .z { opacity: .7; } }
+
+  /* every footer follows the same quiet pattern; the big greeting lives on the home page as one word now */
+  footer .say-hi, .kitty { display: none !important; }
+  footer:not(.postmark) .links { font: 400 16px var(--serif); border-bottom: 0; padding-bottom: 0; }
+  footer:not(.postmark) small { display: inline-flex; align-items: center; gap: 10px; font: 400 15px var(--sans) !important; color: var(--soft) !important; }
+  @media (max-width: 640px) {
+    .benji .years li { grid-template-columns: 64px 1fr; }
+    .benji .masthead .mode { right: -6px; }
+  }
+  .benji .col > section { padding: 0; max-width: none; margin-left: 0; margin-right: 0; }
+  .benji .col > section.list { margin-top: 48px; }
+  /* project pages: the same quiet header as home, just the name (back home) and the dot toggle */
+  body:not(.benji) nav ul { display: none; }
+  body:not(.benji) nav .name { font: 600 17px/1.5 var(--serif); }
+  body:not(.benji) nav .name i { color: inherit; }
+  body:not(.benji) nav .mode { margin-left: auto; }
+  body:not(.benji) nav { padding-top: clamp(40px, 7vw, 72px); }
+  body:not(.benji) .page-head { padding-top: 28px; }
+  .next-proj { margin-top: clamp(56px, 7vw, 88px); }
+  footer:not(.postmark) { margin-top: 40px; }
