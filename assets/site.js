@@ -193,7 +193,7 @@ function setPageColors(colors) {
   try { sessionStorage.setItem('pageColors', JSON.stringify(colors)); } catch {}
 }
 // The browser-tab icon: a hand-drawn dot in the current theme color (same shape as /favicon.svg).
-const DOT = 'M58.2 23.4C59.3 28.3 57.0 36.1 55.8 40.6C54.5 45.0 54.4 47.4 50.7 50.1C46.9 52.8 39.2 56.4 33.3 56.7C27.4 56.9 20.0 54.4 15.4 51.5C10.9 48.5 7.7 42.8 5.9 38.9C4.2 35.0 2.8 32.4 4.7 28.2C6.5 23.9 12.2 16.9 17.1 13.2C22.0 9.6 28.6 6.5 34.0 6.2C39.3 5.9 45.0 8.4 49.0 11.3C53.0 14.1 57.0 18.5 58.2 23.4Z';
+const DOT = 'M58.2 23.4C60.9 29.0 61.0 35.8 58.4 41.4C56.2 46.2 53.8 48.2 50.4 50.6C46.6 53.2 39.2 56.4 33.3 56.7C27.4 56.9 20.0 54.4 15.4 51.5C10.9 48.5 7.7 42.8 5.9 38.9C4.2 35.0 2.8 32.4 4.7 28.2C6.5 23.9 12.2 16.9 17.1 13.2C22.0 9.6 28.6 6.5 34.0 6.2C39.3 5.9 45.0 8.4 49.0 11.3C53.0 14.1 56.6 18.0 58.2 23.4Z';
 // (Chrome and Firefox update it live; Safari may keep showing the first one it loaded.)
 function setFavicon(color) {
   // a hand-drawn dot: lopsided like one dab of a big marker, with a smooth edge (a rough one reads as pixelated)
