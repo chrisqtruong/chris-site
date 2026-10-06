@@ -1275,3 +1275,9 @@
 .case-hero .shot.pair img { position: static; transform: none; width: 100% !important; }
 .case-hero .shot.pair .front { order: -1; }
 .case-hero .part-of { font-size: 14px !important; margin-bottom: 6px !important; }
+
+/* wide figures (lifecycle, ladder) step out of the column, so they get more air above and below than the text does */
+.chapter.chapter :is(.cycle, .ladder) { margin-top: 44px !important; margin-bottom: 44px !important; }
+.chapter.chapter :is(.stats, .trend) { margin-top: 32px !important; margin-bottom: 32px !important; }
+/* the ladder's example lines up with the reading column, not the wide ladder */
+.ladder-demo { max-width: var(--col); margin: 28px auto 0 !important; gap: 12px; }
