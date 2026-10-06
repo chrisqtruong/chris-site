@@ -1343,3 +1343,9 @@ body:not(.benji) nav { padding-top: clamp(20px, 3.5vw, 40px) !important; }
 /* home: caption, rule and time evenly and closely spaced */
 .benji .postmark { margin-top: 26px; }
 .benji .postmark::before { margin-bottom: 20px; }
+/* Paper Trail header: each screenshot opens its tracker's page */
+.case-hero .shot.pair a { display: block; border-radius: 10px; transition: transform .2s; }
+.case-hero .shot.pair a:hover { transform: translateY(-3px); }
+.case-hero .shot.pair a:hover img { box-shadow: 0 0 0 1.5px var(--accent) !important; }
+.case-hero .shot.pair a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .case-hero .shot.pair a:hover { transform: none; } }
