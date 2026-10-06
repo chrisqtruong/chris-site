@@ -857,3 +857,7 @@
     .case-hero.tracewire .shot { padding: 0 20px; }
     .shot.pair { min-height: 300px; margin: 0 12px; }
   }
+
+  /* a still inside a chapter, full width of the text */
+  .shot-inline { margin: 22px 0 6px; }
+  .shot-inline img { display: block; width: 100%; border-radius: 10px; }
