@@ -539,3 +539,10 @@ if (updated) {
   // a freshly loaded local file reports "now"; only trust a date that isn't in the future
   if (!isNaN(d) && d <= new Date()) updated.textContent = 'Updated ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 }
+
+/* ---------- small animated figures: play only while on screen ---------- */
+const figs = document.querySelectorAll('.fx');
+if (figs.length) {
+  const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('play', e.isIntersecting)), { threshold: .3 });
+  figs.forEach(f => io.observe(f));
+}

@@ -1108,3 +1108,80 @@
     font: 500 14px var(--sans); text-decoration: none;
     clip-path: inset(50%); opacity: 0; pointer-events: none; transition: none; }
   .skip:focus-visible { clip-path: none; opacity: 1; pointer-events: auto; }
+
+  /* =====================================================================
+     Vox2 "small details": no cards. A small piece of the real interface, animated in code
+     (so it stays sharp at any zoom), next to a heading and one sentence.
+     ===================================================================== */
+  .details { display: grid; gap: 28px; margin-top: 20px; }
+  .detail { display: grid; grid-template-columns: 220px 1fr; gap: 24px; align-items: center; }
+  .detail h3 { font: 600 18px/1.3 var(--serif); margin: 0 0 4px; }
+  .detail p { font-size: 16px !important; margin: 0 !important; color: var(--body-ink); }
+  .detail .theme-row { margin-top: 10px; }
+  .fx { margin: 0; position: relative; height: 112px; display: grid; align-items: center; }
+  .fx .pane { background: var(--v-bg); color: var(--v-text); border-radius: 10px; padding: 10px 12px; font: 500 13px/1.45 var(--mono);
+    box-shadow: 0 10px 24px -14px rgba(0, 0, 0, .45); transition: background-color .6s, color .6s; }
+  .fx .lang { display: block; font-size: 10.5px; color: var(--v-main); margin-bottom: 4px; }
+  .fx p { margin: 0 !important; font: inherit !important; color: inherit !important; }
+
+  /* 1 · words appear gray, then settle */
+  .fx-settle p span { color: var(--v-sub); opacity: 0; }
+  .fx.play.fx-settle p span { animation: fx-settle 6s infinite; }
+  .fx-settle p span:nth-child(2) { animation-delay: .5s !important; } .fx-settle p span:nth-child(3) { animation-delay: 1s !important; }
+  .fx-settle p span:nth-child(4) { animation-delay: 1.5s !important; } .fx-settle p span:nth-child(5) { animation-delay: 2s !important; }
+  @keyframes fx-settle { 0% { opacity: 0; color: var(--v-sub); } 4% { opacity: 1; color: var(--v-sub); } 18%, 86% { opacity: 1; color: var(--v-text); } 94%, 100% { opacity: 0; color: var(--v-text); } }
+
+  /* 2 · the score counts up */
+  @property --pct { syntax: '<integer>'; inherits: false; initial-value: 98; }
+  .fx-score .back { color: var(--v-text) !important; opacity: .75; margin-top: 4px !important; font-size: 12px !important; }
+  .fx-score .badge { display: inline-block; margin-left: 4px; padding: 0 7px; border: 1.5px solid var(--v-main); color: var(--v-main); border-radius: 99px; font-size: 10.5px; font-weight: 600; line-height: 1.6; }
+  .fx-score .pct { counter-reset: p var(--pct); } .fx-score .pct::after { content: counter(p); }
+  .fx.play.fx-score .back { animation: fx-back 5s infinite; }
+  .fx.play.fx-score .pct { animation: fx-count 5s infinite; }
+  @keyframes fx-back { 0%, 8% { opacity: 0; } 20%, 92% { opacity: .75; } 100% { opacity: 0; } }
+  @keyframes fx-count { 0%, 22% { --pct: 40; } 45%, 100% { --pct: 98; } }
+
+  /* 3 · the window cycles through themes */
+  .fx-themes .dots { position: absolute; left: 0; bottom: 6px; display: flex; gap: 6px; }
+  .fx-themes .dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--hair); }
+  .fx-themes .pane { margin-bottom: 18px; }
+  .fx.play.fx-themes .pane { animation: fx-themes 10s steps(1) infinite; }
+  .fx.play.fx-themes .lang { animation: fx-themes-main 10s steps(1) infinite; }
+  .fx.play.fx-themes .dots i { animation: fx-dot 10s steps(1) infinite; }
+  .fx-themes .dots i:nth-child(2) { animation-delay: 2s !important; } .fx-themes .dots i:nth-child(3) { animation-delay: 4s !important; }
+  .fx-themes .dots i:nth-child(4) { animation-delay: 6s !important; } .fx-themes .dots i:nth-child(5) { animation-delay: 8s !important; }
+  @keyframes fx-themes { 0% { background: #0058a3; color: #fff; } 20% { background: #2d394d; color: #fffaf8; } 40% { background: #f35588; color: #f0e9ec; } 60% { background: #011926; color: #fff; } 80% { background: #313131; color: #f5e6c8; } }
+  @keyframes fx-themes-main { 0% { color: #ffcc02; } 20% { color: #ff7a90; } 40% { color: #05dfd7; } 60% { color: #00e980; } 80% { color: #f66e0d; } }
+  @keyframes fx-dot { 0% { background: var(--ink); } 20%, 100% { background: var(--hair); } }
+
+  /* 4 · select a sentence anywhere, the bubble appears */
+  .fx-select .doc { display: grid; gap: 7px; padding-right: 30px; }
+  .fx-select .doc i { display: block; height: 7px; border-radius: 4px; background: var(--hair); }
+  .fx-select .doc i.short { width: 55%; }
+  .fx-select .doc i.sel { height: auto; background: none; }
+  .fx-select .doc b { font: 400 13px/1.3 var(--serif); color: var(--body-ink); background-image: linear-gradient(color-mix(in srgb, var(--v-main) 55%, transparent), color-mix(in srgb, var(--v-main) 55%, transparent));
+    background-repeat: no-repeat; background-size: 100% 100%; }
+  .fx-select .doc { align-self: start; padding-top: 8px; }
+  .fx-select .bubble { position: absolute; right: -6px; bottom: 0; width: 150px; padding: 8px 10px; font-size: 12px; }
+  .fx-select .bubble .lang { font-size: 10px; }
+  .fx.play.fx-select .doc b { animation: fx-sel 6s infinite; }
+  .fx.play.fx-select .bubble { animation: fx-bubble 6s infinite; }
+  @keyframes fx-sel { 0%, 6% { background-size: 0% 100%; } 26%, 90% { background-size: 100% 100%; } 100% { background-size: 0% 100%; } }
+  @keyframes fx-bubble { 0%, 32% { opacity: 0; transform: translateY(6px) scale(.97); } 40%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; transform: translateY(6px) scale(.97); } }
+
+  /* 5 · fit the window, then the bigger reading size */
+  .fx-fit .pane { width: 200px; justify-self: start; white-space: nowrap; overflow: hidden; }
+  .fx.play.fx-fit .pane { animation: fx-fit 7s cubic-bezier(.3, .7, .3, 1) infinite; }
+  .fx.play.fx-fit p { animation: fx-fit-text 7s cubic-bezier(.3, .7, .3, 1) infinite; }
+  @keyframes fx-fit { 0%, 18% { width: 210px; } 30%, 52% { width: 158px; } 64%, 86% { width: 216px; } 100% { width: 210px; } }
+  @keyframes fx-fit-text { 0%, 52% { font-size: 13px; } 64%, 86% { font-size: 17px; } 100% { font-size: 13px; } }
+
+  /* 6 · private: a laptop, and the cloud crossed out */
+  .fx-private svg { width: 150px; height: auto; overflow: visible; }
+  .fx-private path { fill: none; stroke: var(--soft); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .fx-private .ok { stroke: var(--accent); stroke-width: 2.5; }
+  .fx-private .cloud { opacity: .8; }
+
+  @media (prefers-reduced-motion: reduce) { .fx * { animation: none !important; } .fx-settle p span, .fx-score .back, .fx-select .bubble { opacity: 1; } }
+  @media (max-width: 640px) { .detail { grid-template-columns: 1fr; gap: 10px; } .fx { max-width: 260px; } }
+  .fx .lang::after, .fx .lang::before { display: none !important; }
