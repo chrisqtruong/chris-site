@@ -1247,3 +1247,31 @@
   :root:not([data-mode="dark"]) .term pre b { color: var(--ink); }
   :root:not([data-mode="dark"]) .term pre .p { color: #9a988f; }
   :root:not([data-mode="dark"]) .term pre .k { color: var(--ink); opacity: .55; }
+
+/* ---- Project headers, plain: title and a line in the reading column, the picture below. No colored block. ---- */
+.case-hero {
+  display: block !important; background: none !important; color: var(--ink) !important; outline: none !important;
+  border-radius: 0 !important; overflow: visible; max-width: calc(var(--col) + 2 * var(--gutter)) !important;
+  margin: 20px auto 0 !important; padding: 0 var(--gutter);
+}
+.case-hero .copy { padding: 0 !important; }
+.case-hero h1 { font: 600 34px/1.15 var(--serif) !important; letter-spacing: -0.015em !important; color: var(--ink) !important; margin: 0 0 8px !important; white-space: normal !important; }
+.case-hero .copy p { font-size: 17px !important; line-height: 1.6; color: var(--soft); opacity: 1; max-width: none; margin: 0 0 16px !important; }
+.case-hero .part-of { color: var(--soft); opacity: 1; }
+.case-hero .part-of a, .case-hero.tracewire .part-of a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--hair); text-underline-offset: 3px; }
+/* buttons: ink and outline, the same on every page */
+.case-hero .btn { background: transparent !important; border: 1px solid var(--hair) !important; color: var(--ink) !important; filter: none !important; }
+.case-hero .btn.solid { background: var(--ink) !important; border-color: var(--ink) !important; color: var(--paper) !important; }
+.case-hero .btn:hover { border-color: var(--soft) !important; }
+.case-hero .btn.solid:hover { background: var(--ink) !important; opacity: .85; }
+.case-hero .theme-row, .case-hero .theme-row span { color: var(--soft); }
+/* the picture sits under the text, on the page */
+.case-hero .shot { display: block !important; margin: 28px 0 0 !important; padding: 0 !important; text-align: center; }
+.case-hero .shot :is(img, video) { display: block; margin: 0 auto; width: 100% !important; max-height: none !important; border-radius: 10px !important; box-shadow: 0 0 0 1px var(--hair) !important; }
+.case-hero.vox2 .shot video { width: min(100%, 280px) !important; border-radius: 12px !important; }
+.case-hero.purr .shot video { width: min(100%, 260px) !important; border-radius: 22px !important; }
+.case-hero .shot figcaption { color: var(--soft) !important; text-align: left !important; margin-top: 8px; }
+.case-hero .shot.pair { min-height: 0 !important; display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+.case-hero .shot.pair img { position: static; transform: none; width: 100% !important; }
+.case-hero .shot.pair .front { order: -1; }
+.case-hero .part-of { font-size: 14px !important; margin-bottom: 6px !important; }
