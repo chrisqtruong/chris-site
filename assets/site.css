@@ -1363,3 +1363,9 @@ body:not(.benji) nav { padding-top: clamp(20px, 3.5vw, 40px) !important; }
 :root[data-mode="dark"] .case-hero .btn::before { opacity: .42 !important; }
 .case-hero .btn:is(:hover, :focus-visible)::after { opacity: 0; }   /* the underline steps aside for the swipe */
 @media (prefers-reduced-motion: reduce) { .case-hero .btn::before { transition: none; } }
+
+/* project pages: one even gap between sections. Whatever ends a section (paragraph, figure, list) adds no extra space of its own */
+body:not(.benji) main > section { padding-top: 0 !important; }
+.chapter.chapter { padding-top: 44px !important; }
+.chapter > div:last-child > :last-child, .chapter > div:last-child > :last-child > :last-child { margin-bottom: 0 !important; }
+.chapter .num { margin-bottom: 12px !important; }
