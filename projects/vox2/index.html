@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006094345">
+<link rel="stylesheet" href="/assets/site.css?v=20261006094908">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
@@ -51,21 +51,15 @@
     <h1 class="vox2-title">Vox2</h1>
     <p>A tiny two-way translator for your desktop. Type, paste, speak or snip text in any app, and read it, or hear it, in another language.</p>
     <div class="btns">
-      <a class="btn solid" href="https://github.com/chrisqtruong/vox2/releases/latest/download/Vox2-setup.exe">Download for Windows</a>
+      <a class="btn solid" href="https://github.com/chrisqtruong/vox2/releases/latest/download/Vox2-setup.exe">download for Windows</a>
       <a class="btn" href="https://github.com/chrisqtruong/vox2/releases/latest/download/Vox2-mac.dmg">macOS (beta)</a>
-      <a class="btn" href="https://github.com/chrisqtruong/vox2" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://github.com/chrisqtruong/vox2" target="_blank" rel="noopener">github</a>
     </div>
     <div class="theme-row" id="themeRow"><span>Try a theme</span></div>
   </div>
   <div class="shot"><video src="/assets/vox2/sweden.mp4" width="480" height="796" data-vox-shot autoplay muted loop playsinline aria-label="Vox2 translating a sentence live as it's typed, with pronunciation, the back-translation and a 100% match score"></video></div>
 </header>
 
-<dl class="facts">
-  <div><dt>Role</dt><dd>Product, design, build &amp; research</dd></div>
-  <div><dt>Platforms</dt><dd>Windows · macOS (beta)</dd></div>
-  <div><dt>Status</dt><dd>Open source · v0.4.23</dd></div>
-  <div><dt>Built with</dt><dd>Tauri 2 · HTML/CSS/JS · Claude Code</dd></div>
-</dl>
 <div class="toc" role="navigation" aria-label="On this page"><a href="#why">why i built it</a><a href="#process">process</a><a href="#design">design</a><a href="#testing">testing</a><a href="#next">what’s next</a></div>
 
 <section>
@@ -233,9 +227,9 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/vox2-charts.js?v=20261006094345"></script>
+<script type="module" src="/assets/vox2-charts.js?v=20261006094908"></script>
 <script type="module">
-import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006094345';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006094908';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
 const names = SITE_THEMES;

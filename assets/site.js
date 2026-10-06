@@ -409,7 +409,7 @@ document.querySelectorAll('[data-mail]').forEach(a => {
 });
 
 /* ---------- back to top: a hand-drawn arrow once you're well down a page (every page; on short ones it never shows) ---------- */
-const topMark = ['.toc', '.facts', '#vox', 'main > :first-child'].map(s => document.querySelector(s)).find(Boolean);
+const topMark = ['.toc', '.case-hero', '#vox', 'main > :first-child'].map(s => document.querySelector(s)).find(Boolean);
 if (topMark) {
   const btn = document.createElement('button');
   btn.className = 'to-top';
