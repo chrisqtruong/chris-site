@@ -861,3 +861,23 @@
   /* a still inside a chapter, full width of the text */
   .shot-inline { margin: 22px 0 6px; }
   .shot-inline img { display: block; width: 100%; border-radius: 10px; }
+
+  /* ---------- Apple HIG pass: every control gets at least a 44×44 tap area, without changing how it looks ---------- */
+  nav ul a { display: inline-block; padding: 13px 6px; margin: -13px -6px; }
+  nav .name { display: inline-block; padding: 10px 0; margin: -10px 0; }
+  .mode { width: 44px !important; height: 44px !important; margin-block: -13px !important; }
+  .back-link { display: inline-block; padding: 14px 0; margin: -14px 0; }
+  .btn { min-height: 44px; display: inline-flex; align-items: center; }
+  .toc a { padding: 12px 14px; }
+  footer .links a { padding-block: 6px; }
+  /* small round and icon controls: an invisible hit area around them */
+  .themes button, .theme-row button, .tools button, .swap, .trend-tabs button { position: relative; }
+  .themes button::after, .theme-row button::after { content: ""; position: absolute; inset: -14px -6px; }
+  .tools button::after { content: ""; position: absolute; inset: -7px -3px; }
+  .swap::after { content: ""; position: absolute; inset: -3px; border-radius: 50%; }
+  .trend-tabs button::after { content: ""; position: absolute; inset: -8px -4px; }
+  /* text at least 13px and 4.5:1 against its background */
+  :is(.case-hero.coinop, .case-hero.weather) figcaption, .card .tags { font-size: 13px; }
+  .tracker .go { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+  :root[data-mode="dark"] .case-hero.purr .btn.solid { color: #24160c; }
+  .ladder em { color: var(--sel-ink); }   /* black or white, whichever reads better on the theme color */

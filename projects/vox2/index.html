@@ -73,17 +73,17 @@
   <div class="chapter reveal" id="why">
     <div class="num">Why</div>
     <div>
-      <h2>why i built it</h2>
-      <p>I was working on an AI product with a design team, and one of my teammates only spoke Portuguese. Every message between us took a detour: I’d paste mine into Google Translate or an AI app, he’d do the same, then answer in English so I could understand. We were always one browser tab away from actually talking to each other.</p>
-      <p>I wanted something so light it disappears: a way to break the language barrier in seconds and get back to the conversation. When it first worked, it felt like I’d unlocked another world. That’s the feeling I want Vox2 to give anyone trying to connect with someone across a language.</p>
+      <h2>a teammate who spoke portuguese</h2>
+      <p>A while ago I was on a design team with someone who only spoke Portuguese. Every message went through a translator first. I’d paste mine into Google Translate or an AI app, he’d do the same and reply in English, and we were always a browser tab away from actually talking.</p>
+      <p>I wanted something faster than that tab, that also tells you whether your meaning made it across. Vox2 is a small window you open with a shortcut from any app. The first time it worked, it felt like I’d unlocked another world.</p>
     </div>
   </div>
 
   <div class="chapter reveal" id="process">
     <div class="num">Process</div>
     <div>
-      <h2>from discovery to release</h2>
-      <p>I learned to work this way at Accenture’s Houston Innovation Hub, running design thinking workshops for energy and utility companies: start from a real problem, design before you build, test with evidence, and iterate: fail fast, learn, try again until it holds up. Vox2 went through the same lifecycle, with a team of one and Claude Code.</p>
+      <h2>how I worked</h2>
+      <p>I picked up this way of working at Accenture’s Houston Innovation Hub, running design thinking workshops for energy and utility companies. Start from a real problem, design before you build, test with evidence, and keep going until it holds up. Vox2 went through the same steps, with a team of one and Claude Code.</p>
       <figure class="cycle" aria-label="The product lifecycle of Vox2, from discovery to release, with test and iterate repeating">
         <figcaption>The lifecycle, and the work in each stage</figcaption>
         <ol>
@@ -102,31 +102,31 @@
   <div class="chapter reveal" id="design">
     <div class="num">Design</div>
     <div>
-      <h2>small decisions that make it feel calm</h2>
+      <h2>the small details</h2>
       <div class="decisions">
         <div class="decision">
-          <h3>words settle, they don’t pop</h3>
-          <p>New words show grey until the engine is sure, so the text never jumps around while you type.</p>
+          <h3>words settle in</h3>
+          <p>New words show in gray until the translation settles, so the text doesn’t jump around while you type.</p>
           <div class="demo">Construyo las c<span class="pend">osas q</span></div>
         </div>
         <div class="decision">
-          <h3>trust, not just translation</h3>
-          <p>The translation comes back into your language with a score for how much of your meaning survived. It compares meaning, not exact words.</p>
+          <h3>a score for your meaning</h3>
+          <p>The translation is translated back into your language, with a score for how much of your meaning made it. It compares meaning, so different wording that says the same thing still scores well.</p>
           <div class="demo"><span class="bk">↩ Hello, I’m Chris.</span><span class="m">98% match</span></div>
         </div>
         <div class="decision">
-          <h3>37 themes, readable for everyone</h3>
-          <p>Color is personal, so there are lots of themes. Scores can switch to a colorblind-safe palette with ✓ ! ✕ symbols, so meaning never depends on color alone.</p>
+          <h3>37 themes</h3>
+          <p>People care about color, so there are a lot of themes. Scores can also switch to a colorblind-safe palette with ✓, ! and ✕, so nothing relies on color alone.</p>
           <div class="theme-row swatch-row" id="themeRow2"></div>
         </div>
         <div class="decision">
-          <h3>a shortcut away, from any app</h3>
-          <p>Select text anywhere and tap a key: the translation appears in a bubble by your cursor, with its match score. Drag it aside and it stays put, like a sticky note.</p>
+          <h3>from any app</h3>
+          <p>Select text anywhere and press a key. The translation shows up in a bubble by your cursor, with its score. Drag it aside and it stays there like a sticky note.</p>
           <div class="demo bubble" aria-hidden="true"><span class="bl">English → Tiếng Việt</span>Rất vui được gặp bạn.<span class="m">96% match</span></div>
         </div>
         <div class="decision">
           <h3>room to read</h3>
-          <p>Fit the window around your text with one shortcut. Press it again for a wider reading size, again to go back.</p>
+          <p>One shortcut fits the window to your text. Press it again for a bigger reading size, and once more to go back.</p>
           <div class="demo widths" aria-hidden="true"><span><b>fit</b><i class="n"></i></span><span><b>again</b><i class="w"></i></span></div>
         </div>
         <div class="decision">
@@ -140,8 +140,8 @@
   <div class="chapter reveal" id="testing">
     <div class="num">Testing</div>
     <div>
-      <h2>testing my own feature, honestly</h2>
-      <p>A score is only useful if you can trust it, so I test the meaning check like a researcher would: real sentences in 11 languages, with mistakes planted on purpose (a flipped “not”, a changed number, a swapped pronoun), and fresh sentences every round so it can’t just memorize the test.</p>
+      <h2>does the score mean anything?</h2>
+      <p>A score is only useful if you can trust it. So I test the meaning check on real sentences in 11 languages, with mistakes planted on purpose (a flipped “not”, a changed number, a swapped pronoun), and new sentences every round so it can’t memorize the answers.</p>
       <figure class="ladder" aria-label="Six levels of checking a translation, with Vox2 at level 3">
         <figcaption>How much a translator checks its own work · tap a step</figcaption>
         <ol>
@@ -177,9 +177,9 @@
         </dl>
       </figure>
       <p class="fine">Seven test runs and several targeted tests, 11 languages, more than 15,000 translations scored. Every run is published with its method and raw results on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
-      <p>The first test caught under a third of the mistakes, so I added targeted checks for negations, numbers, pronouns and opposites, and taught it to say “can’t check” instead of guessing. On fresh sentences nobody had looked at, it now catches 70%. Earlier runs said 79%, but those sentences had been read while tuning the checks, like grading a student on the practice questions, so I report the lower number.</p>
-      <p>Then I raised the stakes: real medicine labels and legal notices, with the mistakes that hurt people, like a wrong dose or “unless” instead of “if”. It caught about half. The mistakes were right there in the translation back, so I added a unit check and taught it that “unless” means “if not”. On 144 new sentences it now catches 71%. That’s not enough to call it a safety check, so I don’t.</p>
-      <p>The goal behind all of it: when you write to your family, your in-laws or a coworker in their language, you should know they’ll understand what you meant. Language shouldn’t decide who feels close to you, or what you get to read.</p>
+      <p>The first version caught under a third of the mistakes. I added checks for negations, numbers, pronouns and opposites, and taught it to say “can’t check” instead of guessing. On sentences nobody had seen, it now catches 70%. Earlier runs said 79%, but I’d read those sentences while tuning the checks, which is a bit like grading yourself on the practice test. So I go with 70%.</p>
+      <p>Then I tried harder text: real medicine labels and legal notices, where a wrong dose or “unless” instead of “if” can hurt someone. It caught about half. I added a check for units and taught it that “unless” means “if not”, and on 144 new sentences it now catches 71%. That still isn’t good enough to call it a safety feature, so I don’t.</p>
+      <p>What I’m after is simple. When you write to your family, your in-laws or a coworker in their language, you should know they’ll understand you.</p>
     </div>
   </div>
 
@@ -187,7 +187,7 @@
     <div class="num">Next</div>
     <div>
       <h2>what’s next</h2>
-      <p>The core stays tiny: a window you call up with a shortcut. Bigger things come as add-ons you turn on when you need them, and every change to the meaning check is still measured and published.</p>
+      <p>The app itself stays small. Bigger features will be add-ons you can turn on when you need them, and every change to the meaning check still gets tested and published.</p>
       <ol class="roadmap">
         <li><span><b>Real people, real conversations.</b> Watching family and friends use it, then building from what they actually do.</span></li>
         <li><span><b>A second opinion.</b> Translate back with a different engine, so one engine can’t agree with its own mistake, plus an optional AI double-check for the messages that matter most. That’s where the remaining misses are.</span></li>
@@ -215,7 +215,7 @@
           <p class="small">Every paragraph gets the meaning check, so you know where to look twice instead of trusting one giant block.</p>
         </div>
       </div>
-      <p>All of it has to stay light. The bar isn’t more features. It’s trusting a translation enough to hit send without a second app open.</p>
+      <p>Whatever I add, it has to stay light enough to open without thinking about it.</p>
     </div>
   </div>
 

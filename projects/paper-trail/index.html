@@ -48,15 +48,15 @@
 <header class="case-hero papertrail">
   <div class="copy">
     <h1>Paper Trail</h1>
-    <p>A framework I built for keeping a sourced, permanent public record of how powerful industries shape American life. It runs two trackers so far: Bankrolled, on gambling, and Tracewire, on tech, AI and data centers.</p>
+    <p>A kit I built for keeping a public record of how big industries affect people’s lives, with a source for every fact. It runs two trackers so far: Bankrolled, on gambling, and Tracewire, on tech, AI and data centers.</p>
     <div class="btns">
       <a class="btn solid" href="https://github.com/chrisqtruong/bankrolled/tree/main/tracker-kit" target="_blank" rel="noopener">Start your own</a>
       <a class="btn" href="#trackers">See the trackers</a>
     </div>
   </div>
   <figure class="shot pair">
-    <img class="back" src="/assets/tracewire-top.jpg" width="1100" height="794" alt="Tracewire, a dark page of verified tech and data-center news with a live wire of headlines beside it">
-    <img class="front" src="/assets/bankrolled-top.jpg" width="1100" height="821" alt="Bankrolled, a light page with a running count of gambling losses and charts of industry money">
+    <img class="back" src="/assets/tracewire-top.jpg" width="1800" height="1300" alt="Tracewire, a dark page of verified tech and data-center news with a live wire of headlines beside it">
+    <img class="front" src="/assets/bankrolled-top.jpg" width="1540" height="1150" alt="Bankrolled, a light page with a running count of gambling losses and charts of industry money">
   </figure>
 </header>
 
@@ -71,18 +71,18 @@
   <div class="chapter reveal">
     <div class="num">Why</div>
     <div>
-      <h2>keep the record in one place</h2>
-      <p>I’m constantly impressed by independent projects that keep a public record of corruption, corporate greed and abuse of power, built by people who decided someone should be keeping track. One that stuck with me is Rachel LaPointe’s <a href="https://substack.com/@genderedpoliceviolence" target="_blank" rel="noopener">Gendered Police Violence</a>, where a New York social worker documents gender-based violence by police, case by case. Work like that inspired me to start my own.</p>
-      <p>I want a fairer, more equitable world, and getting there means watching what large companies do with their money and power. The trouble is that the record is scattered: a campaign filing here, a court ruling there, a fine announced on a Friday afternoon. Powerful institutions count on it staying that way, easy to miss and easy to forget.</p>
-      <p>Paper Trail is my attempt at using AI for public good: gather what’s already public, check it against primary sources, and keep it in one searchable, permanent place that anyone can read and reuse.</p>
+      <h2>where this came from</h2>
+      <p>I’m always impressed by independent projects that keep track of corruption and corporate greed, usually because one person decided somebody had to. One I think about a lot is Rachel LaPointe’s <a href="https://substack.com/@genderedpoliceviolence" target="_blank" rel="noopener">Gendered Police Violence</a>, where a New York social worker documents gender-based violence by police, one case at a time. It made me want to start my own.</p>
+      <p>Most of this information is already public. It’s just spread out: a campaign filing here, a court ruling there, a fine announced late on a Friday. That makes it easy to miss and easy to forget.</p>
+      <p>Paper Trail is my attempt at putting AI to good use. It collects what’s public, checks it against the original documents, and keeps it in one place anyone can search and reuse.</p>
     </div>
   </div>
 
   <div class="chapter reveal">
     <div class="num">How</div>
     <div>
-      <h2>from headline to record</h2>
-      <p>The framework is a pipeline, and none of it needs anyone to press a button.</p>
+      <h2>how it works</h2>
+      <p>Each tracker runs by itself, every hour.</p>
       <ol class="roadmap">
         <li><span><b>Gather.</b> A small program polls public feeds every few minutes (regulators, courts, government filings, newsrooms) and posts what it finds as unverified headlines, clearly labeled.</span></li>
         <li><span><b>Verify.</b> Every hour, a scheduled Claude run reads primary sources first, opens each candidate at its source, and labels it confirmed, reported or disputed. Only confirmed items enter the ledger of who paid whom.</span></li>
@@ -96,8 +96,8 @@
   <div class="chapter reveal">
     <div class="num">Rules</div>
     <div>
-      <h2>honest about what it knows</h2>
-      <p>The trackers take a side on what matters, so the facts have to be airtight. The same standards apply to every one of them.</p>
+      <h2>the rules</h2>
+      <p>The trackers have a point of view, so the facts need to hold up. They all follow the same rules.</p>
       <ul class="features">
         <li><b>Three labels.</b> Confirmed, reported or disputed, on every item, so you always know how sure it is.</li>
         <li><b>Accused until convicted.</b> Lawsuits are allegations; it never calls anything corruption in its own voice, only what was filed, charged or reported, and by whom.</li>
@@ -113,13 +113,13 @@
       <h2>two trackers so far</h2>
       <div class="decisions trackers">
         <a class="decision tracker" href="/projects/bankrolled/">
-          <img src="/assets/bankrolled-top.jpg" width="1100" height="821" alt="">
+          <img src="/assets/bankrolled-top.jpg" width="1540" height="1150" alt="">
           <h3>Bankrolled</h3>
           <p>The money behind American gambling, from sportsbooks to prediction markets: who pays whom, who loses, and who writes the rules.</p>
           <span class="go">Read about it →</span>
         </a>
         <a class="decision tracker" href="/projects/tracewire/">
-          <img src="/assets/tracewire-top.jpg" width="1100" height="794" alt="">
+          <img src="/assets/tracewire-top.jpg" width="1800" height="1300" alt="">
           <h3>Tracewire</h3>
           <p>The tech, AI and data-center deals and decisions that affect ordinary people: power and water, mergers, lobbying, contracts and courts.</p>
           <span class="go">Read about it →</span>
@@ -132,8 +132,8 @@
     <div class="num">Yours</div>
     <div>
       <h2>start your own</h2>
-      <p>The framework ships as the <a href="https://github.com/chrisqtruong/bankrolled/tree/main/tracker-kit" target="_blank" rel="noopener">Tracker Kit</a>: one command turns a short config into a complete tracker (the page, its data files, the source checklist and the hourly AI instructions), ready to put on GitHub. It comes with starting points for corporate lobbying, environmental disasters and conflict accountability.</p>
-      <p>Each tracker lives in its own repository with its own data, comments and schedule, so a mistake in one can never leak into another, and any of them can be handed to someone else. A tracker’s behavior is defined by plain text files it rereads every run, so improving one means editing a file, not rewriting a program.</p>
+      <p>The kit is called the <a href="https://github.com/chrisqtruong/bankrolled/tree/main/tracker-kit" target="_blank" rel="noopener">Tracker Kit</a>. One command turns a short settings file into a working tracker, ready to put on GitHub, with starting points for corporate lobbying, environmental disasters and conflict accountability.</p>
+      <p>Each tracker lives in its own repository, so a mistake in one can’t spill into another, and any of them can be handed off. How a tracker behaves is written in plain text files it rereads every run, so changing it means editing a document, not code.</p>
     </div>
   </div>
 </section>

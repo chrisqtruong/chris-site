@@ -95,6 +95,7 @@ if (trend) {
     line.setAttribute('d', d);
     area.setAttribute('d', `${d} L${X.at(-1)} ${BOT} L${X[0]} ${BOT} Z`);
     pts.forEach((c, i) => c.setAttribute('cy', yy[i]));
+    hits.forEach((c, i) => c.setAttribute('cy', yy[i]));
     vals.forEach((t, i) => t.setAttribute('y', yy[i] - 12));
   };
   const select = key => {
@@ -133,6 +134,19 @@ if (trend) {
     tip.classList.add('show');
   };
   const hideTip = () => { tip.classList.remove('show'); pts.forEach(c => c.classList.remove('on')); };
+  // each point gets an invisible larger circle on top, so it's easy to tap (44pt, per Apple's guidelines)
+  const hits = pts.map(c => {
+    const h = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    h.setAttribute('cx', c.getAttribute('cx')); h.setAttribute('cy', c.getAttribute('cy')); h.setAttribute('r', 15);
+    h.setAttribute('fill', 'transparent'); h.setAttribute('aria-hidden', 'true'); h.style.cursor = 'pointer';
+    c.parentNode.append(h);
+    return h;
+  });
+  hits.forEach((h, i) => {
+    h.addEventListener('mouseenter', () => showTip(i));
+    h.addEventListener('click', () => showTip(i));
+    h.addEventListener('mouseleave', hideTip);
+  });
   pts.forEach((c, i) => {
     c.setAttribute('tabindex', '0');
     c.setAttribute('role', 'button');
