@@ -415,7 +415,7 @@ document.querySelectorAll('[data-mail]').forEach(a => {
 });
 
 /* ---------- back to top: a hand-drawn arrow once you're well down a page (every page; on short ones it never shows) ---------- */
-const topMark = ['.toc', '.case-hero', '#vox', 'main > :first-child'].map(s => document.querySelector(s)).find(Boolean);
+const topMark = ['.toc', '.case-hero', 'main > :first-child'].map(s => document.querySelector(s)).find(Boolean);
 if (topMark) {
   const btn = document.createElement('button');
   btn.className = 'to-top';
@@ -551,4 +551,32 @@ const figs = document.querySelectorAll('.fx');
 if (figs.length) {
   const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('play', e.isIntersecting)), { threshold: .3 });
   figs.forEach(f => io.observe(f));
+}
+
+/* ---------- tap an image marked data-full to see it at full size over a darkened page ---------- */
+const zoomables = document.querySelectorAll('img[data-full]');
+if (zoomables.length) {
+  const box = document.createElement('dialog');
+  box.className = 'zoombox';
+  box.innerHTML = '<img alt=""><button type="button" class="lb-close" aria-label="Close">×</button>';
+  document.body.append(box);
+  const big = box.querySelector('img');
+  const close = () => box.close();
+  box.addEventListener('click', close);                       // anywhere closes it, picture included
+  box.addEventListener('close', () => { big.removeAttribute('src'); });
+  zoomables.forEach(img => {
+    img.tabIndex = 0;
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', (img.alt ? img.alt + '. ' : '') + 'Open full size');
+    const open = () => {
+      big.src = img.currentSrc || img.src;                   // the small one shows at once…
+      big.alt = img.alt;
+      const full = new Image();                                // …then the full one swaps in when it's loaded
+      full.onload = () => { if (box.open) big.src = img.dataset.full; };
+      full.src = img.dataset.full;
+      box.showModal();
+    };
+    img.addEventListener('click', open);
+    img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
 }

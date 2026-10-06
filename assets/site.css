@@ -1482,3 +1482,13 @@ body:not(.benji) main > section { padding-top: 0 !important; }
   .wd-gallery figcaption { font-size: var(--t-cap); color: var(--soft); margin-top: 6px; line-height: 1.35; }
   @media (max-width: 640px) { .wd-gallery { grid-template-columns: 1fr; gap: 16px; } .wd-gallery img { aspect-ratio: 16 / 9; } }
   .shot-inline + p { margin-top: 18px !important; }
+
+  /* full-size viewer for images marked data-full */
+  img[data-full] { cursor: zoom-in; }
+  .zoombox { border: 0; padding: 0; margin: auto; background: none; max-width: 96vw; max-height: 92vh; overflow: visible; cursor: zoom-out; }
+  .zoombox::backdrop { background: rgba(10, 12, 18, .82); backdrop-filter: blur(3px); }
+  .zoombox img { display: block; max-width: 96vw; max-height: 92vh; width: auto; height: auto; border-radius: 10px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.7); }
+  .zoombox .lb-close { position: fixed; top: 14px; right: 18px; width: 44px; height: 44px; border: 0; background: none; color: #fff; font: 300 34px/1 var(--serif); cursor: pointer; opacity: .85; }
+  .zoombox[open] { animation: lb-in .18s ease-out; }
+  @keyframes lb-in { from { opacity: 0; transform: scale(.98); } }
+  @media (prefers-reduced-motion: reduce) { .zoombox[open] { animation: none; } }
