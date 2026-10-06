@@ -49,12 +49,12 @@
   /* ---------- dark mode: warm near-black, soft off-white, high contrast ---------- */
   :root[data-mode="dark"] {
     --body-w: 430;   /* light text on dark reads thinner; a touch more weight keeps it even */
-    --paper: #171c28;        /* ink navy: a deep blue-black that suits Sweden, Bento and Miami */
+    --paper: #16211c;        /* deep spruce: a calm green-black that suits Sweden, Bento and Miami */
     --ink: #f0eee9;
-    --soft: #a3a7b2;
-    --hair: #2c3346;
+    --soft: #a4ada7;
+    --hair: #283630;
     --body-ink: #d9d9dc;
-    --tint: #202638;
+    --tint: #1e2b25;
     --accent: var(--name-d, #ff7aa2);
     --name-color: var(--accent);
     --sel-ink: var(--sel-ink-d, #131214);
@@ -904,7 +904,7 @@
     --col: 620px;
   }
   :root[data-mode="dark"] {
-    --paper: #171c28; --ink: #ecebe7; --body-ink: #dedcd6; --soft: #a3a3a0; --hair: #2a3142; --tint: #1f2533;
+    --paper: #16211c; --ink: #ecebe7; --body-ink: #dedcd6; --soft: #a4ada7; --hair: #283630; --tint: #1e2b25;
     --body-w: 400;
   }
   body { -webkit-font-smoothing: antialiased; }
