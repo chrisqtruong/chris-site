@@ -1185,3 +1185,23 @@
   @media (prefers-reduced-motion: reduce) { .fx * { animation: none !important; } .fx-settle p span, .fx-score .back, .fx-select .bubble { opacity: 1; } }
   @media (max-width: 640px) { .detail { grid-template-columns: 1fr; gap: 10px; } .fx { max-width: 260px; } }
   .fx .lang::after, .fx .lang::before { display: none !important; }
+  /* the greeting changes language; it sits last in the sentence in a fixed-width slot, so the line never rewraps */
+  .benji #sayHi { display: inline-block; width: 5.4em; white-space: nowrap; vertical-align: bottom; }
+  .benji #sayHi bdi::after { content: "."; }
+
+  /* project headers: sized to sit with the reading column, not fill the screen */
+  .case-hero { max-width: 960px; margin-left: auto !important; margin-right: auto !important; border-radius: 20px; }
+  .case-hero .copy { padding: clamp(24px, 4vw, 44px) !important; }
+  .case-hero h1 { font-size: clamp(36px, 4.6vw, 52px) !important; margin-bottom: 12px !important; }
+  .case-hero .copy p { font-size: 17px !important; line-height: 1.55; margin-bottom: 18px !important; }
+  .case-hero .shot { padding: clamp(20px, 3vw, 32px) 20px 0 !important; }
+  .case-hero.vox2 .shot :is(img, video) { width: min(100%, 300px) !important; }
+  .case-hero.purr .shot :is(img, video) { width: min(100%, 250px) !important; }
+  .case-hero :is(.bankrolled, .tracewire) .shot img, .case-hero.bankrolled .shot img, .case-hero.tracewire .shot img { max-height: 340px; object-fit: cover; object-position: top; }
+  .shot.pair { min-height: clamp(260px, 28vw, 340px) !important; }
+  .case-hero .btn { min-height: 40px; padding: 9px 16px; font-size: 14px; }
+  .case-hero .btns { gap: 8px; }
+  .case-hero .theme-row { margin-top: 16px; }
+  body:not(.benji) main > section { padding-top: 32px; }
+  @media (max-width: 1000px) { .case-hero { margin-left: 12px !important; margin-right: 12px !important; } }
+  .case-hero.vox2 .shot :is(img, video) { width: min(100%, 260px) !important; }
