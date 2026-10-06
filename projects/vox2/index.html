@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006094908">
+<link rel="stylesheet" href="/assets/site.css?v=20261006095151">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
@@ -156,7 +156,7 @@
           <g class="pts"><circle cx="60" cy="136.5" r="5"/><circle cx="140" cy="63" r="5"/><circle cx="220" cy="63" r="5"/><circle cx="300" cy="61.5" r="5"/><circle cx="380" cy="75" r="5"/></g>
           <g class="vals"><text x="60" y="124.5">29%</text><text x="140" y="51">78%</text><text x="220" y="51">78%</text><text x="300" y="49.5">79%</text><text x="380" y="63">70%</text></g>
           <g class="runs"><text x="60" y="202">run 1</text><text x="140" y="202">run 2</text><text x="220" y="202">run 3</text><text x="300" y="202">phase 1.2</text><text x="380" y="202">run 5</text>
-            <text x="60" y="219" class="sub">score only</text><text x="220" y="219" class="sub">+ targeted checks</text><text x="380" y="219" class="sub">fresh sentences</text></g>
+            <text x="60" y="219" class="sub">score only</text><text x="220" y="219" class="sub">+ targeted checks</text><text x="404" y="219" class="sub end">fresh sentences</text></g>
         </svg>
         <dl class="key">
           <div><dt>Match score</dt><dd>how much of your meaning survived the round trip</dd></div>
@@ -227,9 +227,9 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/vox2-charts.js?v=20261006094908"></script>
+<script type="module" src="/assets/vox2-charts.js?v=20261006095151"></script>
 <script type="module">
-import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006094908';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006095151';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
 const names = SITE_THEMES;

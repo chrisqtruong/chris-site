@@ -1321,3 +1321,22 @@ body:not(.benji) nav { padding-top: clamp(20px, 3.5vw, 40px) !important; }
 :root[data-mode="dark"] .case-hero .btn.solid:hover::before { opacity: .55; }
 .case-hero .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px !important; }
 .case-hero .btn.solid::before { left: -3px; right: -8px; top: 8px; bottom: 6px; transform: rotate(-1.2deg); }
+
+/* chart labels: the chart is drawn 420 wide and shown up to 620px (about 1.5x), so these sizes come out
+   near 15px (values) and 12–13px (labels) on screen, a step below the 17px body text */
+.trend .vals text { font-size: 10.2px; }
+.trend .runs text { font-size: 8.8px; }
+.trend .runs text.sub { font-size: 8.4px; }
+.trend .axis text { font-size: 8.2px; }
+.trend .line, .trend .pts circle { stroke-width: 2.4; }
+/* on a phone the chart shrinks below its drawn size, so the labels need larger units to stay readable */
+@media (max-width: 640px) {
+  .trend .vals text { font-size: 15px; }
+  .trend .runs text { font-size: 13.5px; }
+  .trend .runs text.sub { font-size: 13px; }
+  .trend .axis text { font-size: 13px; }
+}
+.trend .runs text.sub.end { text-anchor: end; }   /* the last label ends at the chart edge instead of spilling past it */
+@media (max-width: 480px) { .trend .runs text.sub { display: none; } }   /* too tight to fit on a phone; the paragraph below says the same thing */
+/* under the home demo: a quiet caption that highlighting works anywhere */
+.benji .try-note { margin: 18px 0 0; font: italic 400 14.5px/1.5 var(--serif); color: var(--muted, var(--soft)); }
