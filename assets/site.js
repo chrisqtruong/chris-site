@@ -518,13 +518,13 @@ if (footSmall) {
   const fmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' });
   // the time, then a small ovenbird beside it (a few gray lines, like a doodle in the margin).
   // It keeps Baltimore hours: asleep from 11pm to 7am, awake the rest of the day.
-  footSmall.innerHTML = '<span class="pm-time"></span><svg class="doodle" viewBox="2 5 26 17" aria-hidden="true">'
+  footSmall.innerHTML = '<span class="pm-time"></span><a class="bird-link" href="https://www.allaboutbirds.org/guide/Ovenbird" target="_blank" rel="noopener" aria-label="Ovenbird, on All About Birds" title="Ovenbird"><svg class="doodle" viewBox="2 5 26 17" aria-hidden="true">'
     + '<g class="bob"><path class="breath" d="M6 10.4C6.6 7.6 9 6.2 11.4 6.6 13.6 7 14.8 8.6 15.6 9.8 18 9.6 21 10 23.4 9.2L27.4 6.4 25.4 11.2C24.4 15.8 20 18.6 14.8 18.6 10 18.6 6.6 16.4 6 12.6"/>'
     + '<path d="M6 10.4 2.4 11.5 6 12.6"/><path class="crown" d="M8.4 7.2Q11 5.9 13.8 7.7"/>'
     + '<g class="open"><circle cx="9.7" cy="9.9" r="1.45"/><circle class="pupil" cx="9.7" cy="9.9" r=".6"/></g><path class="shut" d="M8.3 10q1.4.9 2.8 0"/>'
     + '<path class="streak" d="M8.4 14.1l.7.6M10.6 15.3l.7.6M8.8 16.4l.7.6M12.8 16.3l.7.6M11.4 13.6l.6.5"/><path d="M14.6 12.4Q18.4 15.6 23 12"/></g>'
     + '<path d="M12.4 18.6l-.5 2.7M15.6 18.4l.3 2.8"/>'
-    + '<text class="z" x="10" y="5">z</text><text class="z z2" x="12" y="3">z</text><text class="z z3" x="14" y="1">z</text></svg>';
+    + '<text class="z" x="10" y="5">z</text><text class="z z2" x="12" y="3">z</text><text class="z z3" x="14" y="1">z</text></svg></a>';
   const timeEl = footSmall.querySelector('.pm-time'), bird = footSmall.querySelector('.doodle');
   const hourFmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', hourCycle: 'h23', timeZone: 'America/New_York' });
   const tick = () => {

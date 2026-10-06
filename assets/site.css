@@ -1373,3 +1373,9 @@ body:not(.benji) main > section { padding-top: 0 !important; }
 /* Vox2's on-this-page links sit evenly between the header picture and the first section */
 .toc { padding-top: 16px !important; }
 .toc + section > .chapter:first-child { padding-top: 16px !important; }
+/* the bird links to the Cornell Lab's ovenbird page: a quiet Easter egg, with a full-size tap area and a little hop on hover */
+.bird-link { position: relative; display: block; color: inherit; }
+.bird-link::after { content: ""; position: absolute; inset: -12px -8px; }
+.bird-link:hover .doodle { color: var(--ink); transform: translateY(-2px); }
+.bird-link .doodle { transition: color .2s, transform .2s; }
+.bird-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
