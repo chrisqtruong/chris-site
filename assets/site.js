@@ -516,3 +516,19 @@ export function markSelected(container, selector, shape = 'loop') {
   if (current) ro.observe(current);
   document.fonts?.ready.then(() => update(false));
 }
+
+/* ---------- footer: the time where I live, like a postmark ---------- */
+const footSmall = document.querySelector('footer small');
+if (footSmall) {
+  const fmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' });
+  const tick = () => { footSmall.textContent = `© 2026 Chris Truong · ${fmt.format(new Date()).toLowerCase()} in Baltimore`; };
+  tick(); setInterval(tick, 30000);
+}
+
+/* ---------- "Updated" date: when this page was last published ---------- */
+const updated = document.getElementById('updated');
+if (updated) {
+  const d = new Date(document.lastModified);
+  // a freshly loaded local file reports "now"; only trust a date that isn't in the future
+  if (!isNaN(d) && d <= new Date()) updated.textContent = 'Updated ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}

@@ -15,7 +15,7 @@
     --site-bg: #fff591; --site-ink: #3b1830;
     --todo-bg: color-mix(in srgb, #ffe066 55%, transparent);
     color-scheme: light;
-    /* type: Young Serif for titles and headlines, Newsreader for reading, Roboto Mono for small labels */
+    /* type: superseded by the "Newsletter edition" block at the end (Iowan serif + system sans; Roboto Mono only inside the Vox2 window) */
     --display: "Young Serif", Georgia, serif;   /* big one-to-three-word titles */
     --head: "Young Serif", Georgia, serif;      /* headlines and subheads */
     --head-w: 400; --head-track: -0.015em; --head-scale: .74;
@@ -882,3 +882,106 @@
   :root[data-mode="dark"] .case-hero.purr .btn.solid { color: #24160c; }
   .ladder em { color: var(--sel-ink); }   /* black or white, whichever reads better on the theme color */
   .trend .hits circle { fill: transparent; stroke: none; }
+
+  /* =====================================================================
+     Newsletter edition (Oct 2026): one calm serif reading column, quiet sans labels,
+     near-white paper. The colorful Vox2 window and the hand-drawn dots stay as the bold notes.
+     ===================================================================== */
+  :root {
+    --serif: "Iowan Old Style", "Iowan Old Style BT", "Palatino Linotype", Palatino, Charter, Georgia, serif;
+    --display: var(--serif); --head: var(--serif);
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --head-w: 600; --head-track: -0.01em; --head-scale: 1;
+    --body-w: 400; --body-size: 18px; --body-lh: 1.65;
+    --t-lead: 21px; --t-small: 17px; --t-cap: 15px;
+    --paper: #fcfcfa; --ink: #282826; --body-ink: #2f2f2c; --soft: #6b6b67; --hair: #e6e5e1; --tint: #f3f2ee;
+    --col: 620px;
+  }
+  :root[data-mode="dark"] {
+    --paper: #171c28; --ink: #ecebe7; --body-ink: #dedcd6; --soft: #a3a3a0; --hair: #2a3142; --tint: #1f2533;
+    --body-w: 400;
+  }
+  body { -webkit-font-smoothing: antialiased; }
+  em { font-style: italic; }
+
+  /* quiet sans for labels, dates and small print (Benji, Josh); sentence case */
+  .back-link, .facts dt, .chapter .num, .next-proj > span, footer small, .toc a, .eyebrow, .updated,
+  .ladder figcaption, .trend figcaption, .cycle figcaption, .term figcaption, .part-of, .btn, nav ul,
+  .screens figcaption, .wide-shot figcaption, .fine, .key dt, .tracker .go,
+  :is(.case-hero.coinop, .case-hero.weather) figcaption {
+    font-family: var(--sans) !important; text-transform: none !important; letter-spacing: 0 !important;
+  }
+
+  /* ---------- header: name and links sitting in the page, not a fixed bar ---------- */
+  nav { position: relative; inset: auto; max-width: calc(var(--col) + 2 * var(--gutter)); margin: 0 auto; padding: 36px var(--gutter) 0;
+    background: none !important; box-shadow: none !important; align-items: center; }
+  nav .name { font: 600 20px/1.2 var(--serif); letter-spacing: -0.01em; }
+  nav ul { font: 400 15px/1 var(--sans); gap: 22px; }
+  nav ul a { color: var(--soft); }
+  nav ul a:hover { color: var(--ink); }
+
+  /* ---------- reading column ---------- */
+  section.quiet, footer, .page-head, .facts, .toc, .next-proj, .narrow footer { max-width: calc(var(--col) + 2 * var(--gutter)); }
+  .bio { font-size: var(--t-lead); line-height: 1.55; color: var(--ink); }
+  .work-line { color: var(--soft); }
+  a { text-decoration-color: color-mix(in srgb, var(--soft) 55%, transparent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--ink); text-decoration-color: var(--accent); }
+  .updated { font-size: 14px; color: var(--soft); margin: 0 0 22px; }
+
+  /* section labels: small serif headings with a short rule under them (Josh) */
+  .quiet .label { font: 600 22px/1.3 var(--serif); margin: 0 0 14px; }
+  .quiet .label::after { content: ""; display: block; width: 40px; height: 1px; background: var(--hair); margin-top: 14px; }
+  .quiet .label i { color: inherit; }
+
+  /* project list: rows with hairlines, title and a gray line (Benji) */
+  .index { border-top: 0; }
+  .index .row { grid-template-columns: minmax(130px, 170px) 1fr auto; padding: 14px 0; gap: 16px; }
+  .index .t { font: 600 18px/1.3 var(--serif); }
+  .index .d { font-size: 16px; }
+  .index .sub .t { font-size: 17px; }
+
+  /* footer: the greeting stays, smaller; local time in Baltimore (Benji) */
+  footer .lede, .say-hi { font: 600 clamp(28px, 4vw, 36px)/1.2 var(--serif) !important; letter-spacing: -0.01em; }
+  footer .links { font: 400 17px var(--serif); gap: 8px 22px; padding-bottom: 28px; }
+
+  /* ---------- home on a wide screen: text on the left, Vox2 on the right (Lee) ---------- */
+  @media (min-width: 1100px) {
+    body.home nav { max-width: calc(var(--col) + 460px + 96px + 2 * var(--gutter)); }
+    body.home main { display: grid; grid-template-columns: minmax(0, var(--col)) 460px; column-gap: 96px; justify-content: center;
+      max-width: calc(var(--col) + 460px + 96px + 2 * var(--gutter)); margin: 0 auto; padding: 0 var(--gutter); }
+    body.home main > section { grid-column: 1; max-width: none; padding-left: 0; padding-right: 0; margin: 0; }
+    body.home .hero { grid-column: 2; grid-row: 1 / span 6; position: sticky; top: 28px; align-self: start;
+      height: calc(100svh - 56px); min-height: 560px; max-height: 860px; padding: 0; margin-top: 28px; }
+    body.home #about.quiet { padding-top: 56px; }
+    body.home footer { max-width: calc(var(--col) + 460px + 96px + 2 * var(--gutter)); }
+    body.home footer > * { max-width: var(--col); }
+  }
+  @media (max-width: 1099px) {
+    body.home .hero { height: min(78svh, 680px); padding: 24px var(--gutter) 0; }
+  }
+
+  /* ---------- project pages: a calm single column under the picture ---------- */
+  .chapter { display: block; max-width: calc(var(--col) + 2 * var(--gutter)); margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+  .chapter + .chapter { padding-top: clamp(56px, 7vw, 88px); }
+  .chapter .num { font-size: 14px !important; color: var(--soft); padding: 0; margin-bottom: 6px; }
+  .chapter h2 { font: 600 26px/1.25 var(--serif) !important; letter-spacing: -0.01em; margin-bottom: 14px; }
+  .chapter h2 i { color: inherit; }
+  .chapter p { max-width: none; }
+  .decision h3 { font: 600 19px/1.3 var(--serif); }
+  .case-hero h1 { font-weight: 600; letter-spacing: -0.02em; }
+  .case-hero .copy p { font-size: 19px; }
+  .facts dd { font-size: 16px; }
+  .next-proj a { font: 600 26px/1.2 var(--serif) !important; }
+  section { max-width: none; }
+  nav { justify-content: flex-start; gap: 0; }
+  nav ul { margin-left: auto; margin-right: 18px; }
+  @media (max-width: 640px) {
+    .index .row { grid-template-columns: 1fr auto; gap: 4px 12px; }
+    .index .d { grid-column: 1; grid-row: 2; }
+    .index .arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  }
+  /* wide figures step out of the reading column on a big screen */
+  @media (min-width: 1100px) {
+    .chapter :is(.cycle, .ladder) { width: 940px; margin-left: calc((var(--col) - 940px) / 2); margin-right: 0; }
+  }
+  .shot video::-webkit-media-controls-overlay-play-button { display: none !important; }
