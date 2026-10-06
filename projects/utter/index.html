@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Purrmodoro · Chris Truong</title>
-<meta name="description" content="Purrmodoro, a cozy iPhone focus timer with a cat, designed and built by Chris Truong.">
+<title>Utter · Chris Truong</title>
+<meta name="description" content="Utter, an iPhone dictation app for long thoughts, with strong speech models that run on the phone. Designed and built by Chris Truong.">
 <meta name="theme-color" content="#faf8f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#171c28" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Chris Truong">
-<meta property="og:title" content="Purrmodoro · Chris Truong">
-<meta property="og:description" content="Purrmodoro, a cozy iPhone focus timer with a cat, designed and built by Chris Truong.">
+<meta property="og:title" content="Utter · Chris Truong">
+<meta property="og:description" content="Utter, an iPhone dictation app for long thoughts, with strong speech models that run on the phone. Designed and built by Chris Truong.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,62 +46,47 @@
   <a class="back-link" href="/#projects"><span class="arrow">←</span>All projects</a>
 </div>
 
-<header class="case-hero purr">
+<header class="case-hero utter">
   <div class="copy">
-    <h1 class="purr-title">Purrmodoro</h1>
-    <p>A cozy little focus timer for iPhone, starring a brown cat who studies with you. Made as a surprise gift for my wife.</p>
+    <h1>Utter</h1>
+    <p>Dictation for iPhone, built for long thoughts. Strong speech models turn your voice into text on the phone, and nothing ever leaves it.</p>
     <div class="btns">
-      <a class="btn solid" href="https://github.com/chrisqtruong/purrmodoro" target="_blank" rel="noopener">see it on github</a>
+      <a class="btn solid" href="https://github.com/chrisqtruong/utter" target="_blank" rel="noopener">see it on github</a>
     </div>
   </div>
-  <div class="shot"><video src="/assets/purrmodoro-demo.mp4" width="320" height="564" autoplay muted loop playsinline aria-label="Petting the cat, winding the clock to 50 minutes, then starting the timer as it counts down from 49:59"></video></div>
+  <div class="shot"><img src="/assets/utter-note.jpg" width="506" height="1100" alt="Utter showing a finished two-paragraph note, a match score of 96, and the yellow marker-dot mic button"></div>
 </header>
 
 
 <section>
   <div class="chapter reveal">
-    <div class="num">Why</div>
+    <div class="num">What</div>
     <div>
-      <h2>a timer that doesn’t feel like homework</h2>
-      <p>My wife juggles a lot at work, and stressful weeks pile up fast. She timed her focus sessions with her iPhone alarm: it blared when time was up, and in between she lost track of how much time had passed. It worked, but it felt stiff.</p>
-      <p>I wanted something gentler and more personal: a timer that’s calm to look at even on a crunch day, and that keeps her history, so she gets credit for the hours she worked hard and the times she gave herself rest, without anything leaving her phone. I had the idea, and I wanted to see if I could make it real.</p>
-      <p>When she first opened it, she laughed at the cat, and at the little touches made just for her: the white coat, the cup of tea.</p>
+      <h2>talk for as long as you want, read it back as notes</h2>
+      <p>Tap the dot and talk, for a few seconds or half an hour, even with the screen locked. When you stop, the text is ready and copied. Pauses become paragraphs, ums and uhs disappear, and longer notes get a short title.</p>
+      <p>Built-in dictation is made for quick replies. Utter is for the longer stuff: monologues, journaling, ideas on a walk, notes you want to keep.</p>
+      <img class="wide" src="/assets/utter-screens.jpg" width="1900" height="1306" loading="lazy" alt="Three Utter screens: a finished note, the searchable history with date filters, and settings with weekly stats">
+    </div>
+  </div>
+
+  <div class="chapter reveal">
+    <div class="num">Trust</div>
+    <div>
+      <h2>it tells you how sure it is</h2>
+      <p>Every note gets a match score from 0 to 100, from how sure the speech model was about each word. Words it wasn’t sure about get a dotted underline, so you know where to look before you send anything.</p>
+      <p>A one-minute voice check measures how well each model hears your voice, teaches it the names you use, and tunes the score so 85 means about 85% of your words came out right. I wrote up <a href="https://github.com/chrisqtruong/utter/blob/main/docs/match-score.md" target="_blank" rel="noopener">how the score works</a>, including where it fails.</p>
     </div>
   </div>
 
   <div class="chapter reveal">
     <div class="num">Principles</div>
     <div>
-      <h2>five rules i wrote before anything else</h2>
+      <h2>four rules it’s built on</h2>
       <ol class="roadmap">
-        <li><span><b>Open, tap, focusing.</b> It should never need setup to use.</span></li>
-        <li><span><b>Task-agnostic.</b> No categories, labels or to-dos.</span></li>
-        <li><span><b>She’s in control.</b> Nothing starts without a tap.</span></li>
-        <li><span><b>Lightweight.</b> No third-party libraries, no accounts, no servers.</span></li>
-        <li><span><b>Delight in small doses.</b> Smooth animations and haptics, never in the way.</span></li>
-      </ol>
-    </div>
-  </div>
-
-  <div class="chapter reveal">
-    <div class="num">Character</div>
-    <div>
-      <h2>her room follows the real clock</h2>
-      <p>The cat sits at her desk inside the timer ring. By day she wears a white coat and has an iced coffee; after sunset it’s pajamas, round glasses, a warm lamp and tea. The window shows the actual time of day, from dawn colors to stars. Everything is drawn in code, no image files.</p>
-      <img class="wide" src="/assets/purrmodoro-kitty-day-night.png" width="1976" height="1186" loading="lazy" alt="The cat's moods, day and night: idle, focus, break, done" loading="lazy">
-      <p>When she’s not focusing, you can pet her. Ears flick, a nose boop gets &gt;_&lt;, a paw tap gets a wave, and one in ten belly rubs gets a rare purr.</p>
-    </div>
-  </div>
-
-  <div class="chapter reveal">
-    <div class="num">Scope</div>
-    <div>
-      <h2>what i left out, on purpose</h2>
-      <p>Task lists, categories, accounts, sync, ambient music and an Apple Watch app all stayed out of version one. A few ideas are tabled for later:</p>
-      <ol class="roadmap">
-        <li>Ring even on silent, with Apple’s new alarm tools.</li>
-        <li>Collectibles: treats, outfits and rare cats earned through focus time. Her full history is saved, so they can be awarded retroactively.</li>
-        <li>Real weather in the cat’s window.</li>
+        <li><span><b>On the phone.</b> No account, no servers. Recordings are thrown away once they’re text.</span></li>
+        <li><span><b>Pick your model.</b> Parakeet or Whisper, with honest pros and cons. Download only what you use.</span></li>
+        <li><span><b>One button.</b> Tap to start, tap to stop. Everything else stays out of the way.</span></li>
+        <li><span><b>Charming, not slick.</b> 37 themes and the same hand-drawn marks as this site.</span></li>
       </ol>
     </div>
   </div>
@@ -109,7 +94,7 @@
 
 <div class="next-proj">
   <span>Next project</span>
-  <a href="/projects/weather-dots/">Weather, in dots <span class="arrow">→</span></a>
+  <a href="/projects/purrmodoro/">Purrmodoro <span class="arrow">→</span></a>
 </div>
 
 </main>

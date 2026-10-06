@@ -709,6 +709,12 @@
   @media (max-width: 360px) { .mode { width: 32px; height: 32px; } }
 
   /* ---------- Swear Jar page (was Coin-Op; classes keep the old name): its own pixel-arcade colors ---------- */
+  /* Utter: its own serika dark theme, yellow accent */
+  .case-hero.utter { background: #323437; color: #d1d0c5; }
+  .case-hero.utter .btn.solid { background: #e2b714; border-color: #e2b714; color: #323437; }
+  .case-hero.utter .btn.solid:hover { background: #ecc433; color: #323437; }
+  .case-hero.utter .btn:hover { background: rgba(255,255,255,.08); color: inherit; }
+  .case-hero.utter .shot :is(img, video) { width: min(100%, 320px); max-height: 560px; object-fit: cover; object-position: top; box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 30px 60px -20px rgba(0,0,0,.6); }
   .case-hero.coinop { background: #1c1a26; color: #f0eef5; }
   .case-hero.coinop .btn.solid { background: #ffd23f; border-color: #ffd23f; color: #1c1a26; }
   .case-hero.coinop .btn.solid:hover { background: #ffde6b; color: #1c1a26; }
@@ -1282,6 +1288,7 @@
 .case-hero .shot :is(img, video) { display: block; margin: 0 auto; width: 100% !important; max-height: none !important; border-radius: 10px !important; box-shadow: 0 0 0 1px var(--hair) !important; }
 .case-hero.vox2 .shot video { width: min(100%, 280px) !important; border-radius: 12px !important; }
 .case-hero.purr .shot video { width: min(100%, 260px) !important; border-radius: 22px !important; }
+.case-hero.utter .shot img { width: min(100%, 260px) !important; border-radius: 22px !important; }
 .case-hero .shot figcaption { color: var(--soft) !important; text-align: left !important; margin-top: 8px; }
 .case-hero .shot.pair { min-height: 0 !important; display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
 .case-hero .shot.pair img { position: static; transform: none; width: 100% !important; }
