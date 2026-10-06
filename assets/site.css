@@ -1474,3 +1474,11 @@ body:not(.benji) main > section { padding-top: 0 !important; }
   .fx-swap .before s { text-decoration-color: var(--v-sub); color: var(--v-sub); }
   .fx-swap .after b { color: var(--v-main); font-weight: 500; }
   @media (prefers-reduced-motion: reduce) { .fx-swap .before { opacity: 0; } .fx-swap .after { opacity: 1; } }
+
+  /* weather, in dots: a few more measures, side by side */
+  .wd-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 14px 0 6px; }
+  .wd-gallery figure { margin: 0; }
+  .wd-gallery img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+  .wd-gallery figcaption { font-size: var(--t-cap); color: var(--soft); margin-top: 6px; line-height: 1.35; }
+  @media (max-width: 640px) { .wd-gallery { grid-template-columns: 1fr; gap: 16px; } .wd-gallery img { aspect-ratio: 16 / 9; } }
+  .shot-inline + p { margin-top: 18px !important; }

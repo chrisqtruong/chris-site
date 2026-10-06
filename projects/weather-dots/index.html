@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006151424">
+<link rel="stylesheet" href="/assets/site.css?v=20261006151928">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   /* light by day, dark by night where the visitor is (from their own clock and time zone; flipping the toggle holds for that visit) */(function () { var d = document.documentElement, m; try { localStorage.removeItem('mode'); m = sessionStorage.getItem('mode'); } catch (e) {} if (!m) { try { var n = new Date(), y = n.getFullYear(), tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '', s = /^(Australia|Antarctica)|^Pacific\/(Auckland|Chatham|Fiji)|^America\/(Santiago|Argentina|Sao_Paulo|Montevideo|Asuncion|Lima|La_Paz)|^Africa\/(Johannesburg|Maputo|Harare|Windhoek|Lusaka)/.test(tz), r = Math.PI / 180, lat = (s ? -30 : /^Europe|^Atlantic\/Reykjavik/.test(tz) ? 50 : /^Asia\/(Ho_Chi_Minh|Saigon|Bangkok|Manila|Singapore|Jakarta|Kuala_Lumpur|Kolkata|Calcutta|Colombo|Dhaka|Yangon|Phnom_Penh)|^Africa|^America\/(Mexico_City|Bogota|Caracas|Panama|Guatemala|Costa_Rica)|^Pacific\/Honolulu/.test(tz) ? 13 : 40) * r, day = (n - new Date(y, 0, 0)) / 864e5, dec = -23.44 * r * Math.cos(2 * Math.PI * (day + 10) / 365), c = (Math.sin(-0.833 * r) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec)), half = Math.acos(Math.max(-1, Math.min(1, c))) / r / 15, std = Math.max(new Date(y, 0, 1).getTimezoneOffset(), new Date(y, 6, 1).getTimezoneOffset()), noon = 12 + (std - n.getTimezoneOffset()) / 60, h = n.getHours() + n.getMinutes() / 60; m = h > noon - half && h < noon + half ? 'light' : 'dark'; } catch (e) { m = 'light'; } } d.dataset.mode = m; })();
@@ -73,7 +73,13 @@
       <h2>against its own normal</h2>
       <p>Switch to <i>change</i> and each cell is colored by how far it sat from the same time of year in 1951–1980, the baseline NASA uses for its global record. Laid out by year, the cells become warming stripes. The page also says it in one line: Houston’s last ten years ran 1.7°F warmer than that normal.</p>
       <p>A thin line across the top of the page holds the whole planet, every year since 1850, from NOAA. Hover over it to read any year.</p>
-      <figure class="shot-inline"><img src="/assets/weather-dots-stripes.jpg" alt="Houston's warming stripes, one soft column per year since 1940, blue in the early decades and warm orange after 2000" loading="lazy"></figure>
+      <figure class="shot-inline"><img src="/assets/weather-dots-stripes-centered.jpg" width="1800" height="736" alt="Houston's warming stripes, one soft column per year since 1940, blue in the early decades and warm orange after 2000" loading="lazy"></figure>
+      <p>Every measure has its own colors. A few more, saved straight from the site:</p>
+      <div class="wd-gallery">
+        <figure><img src="/assets/weather-dots-anchorage-sunlight.jpg" width="1200" height="709" loading="lazy" alt="Anchorage sunlight by week since 1940: a glowing gold band of summer between long purple winters"><figcaption>Anchorage, sunlight by week</figcaption></figure>
+        <figure><img src="/assets/weather-dots-houston-rain.jpg" width="1200" height="491" loading="lazy" alt="Houston's rain against its normal, one column per year: teal for wetter years, brown for drier ones"><figcaption>Houston, rain against normal by year</figcaption></figure>
+        <figure><img src="/assets/weather-dots-chicago-gusts.jpg" width="1200" height="709" loading="lazy" alt="Chicago wind gusts by week: pale pink, windy winters around a darker, calmer plum band of summer"><figcaption>Chicago, gusts by week</figcaption></figure>
+      </div>
     </div>
   </div>
 
@@ -105,6 +111,6 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/site.js?v=20261006151424"></script>
+<script type="module" src="/assets/site.js?v=20261006151928"></script>
 </body>
 </html>
