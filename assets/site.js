@@ -251,7 +251,7 @@ if (modeBtn) {
   labelMode();
   modeBtn.onclick = () => {
     const mode = currentMode() === 'dark' ? 'light' : 'dark';
-    try { localStorage.setItem('mode', mode); } catch {}
+    try { sessionStorage.setItem('mode', mode); } catch {}   // for this visit; next time, the time of day decides again
     setMode(mode);
   };
 }

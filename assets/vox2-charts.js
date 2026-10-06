@@ -1,7 +1,7 @@
 /* The two testing graphics on the Vox2 page, made interactive.
    Both draw in var(--accent), so they follow the theme picker. Without JS the static versions stay. */
 
-import { markSelected } from '/assets/site.js?v=20261006112646';
+import { markSelected } from '/assets/site.js?v=20261006112746';
 
 /* ---------- the ladder: click a level to see what it would show you for one real kind of mistake ---------- */
 // The example: "I can't make it to dinner tonight" → Spanish, with the "not" dropped (meaning reversed).

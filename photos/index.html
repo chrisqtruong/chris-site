@@ -16,10 +16,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006112646">
+<link rel="stylesheet" href="/assets/site.css?v=20261006112746">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
-  /* light by day, dark by night where the visitor is (from their own clock and time zone; a choice made with the toggle wins) */(function () { var d = document.documentElement, m; try { m = localStorage.getItem('mode'); } catch (e) {} if (!m) { try { var n = new Date(), y = n.getFullYear(), tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '', s = /^(Australia|Antarctica)|^Pacific\/(Auckland|Chatham|Fiji)|^America\/(Santiago|Argentina|Sao_Paulo|Montevideo|Asuncion|Lima|La_Paz)|^Africa\/(Johannesburg|Maputo|Harare|Windhoek|Lusaka)/.test(tz), r = Math.PI / 180, lat = (s ? -30 : 40) * r, day = (n - new Date(y, 0, 0)) / 864e5, dec = -23.44 * r * Math.cos(2 * Math.PI * (day + 10) / 365), c = (Math.sin(-0.833 * r) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec)), half = Math.acos(Math.max(-1, Math.min(1, c))) / r / 15, std = Math.max(new Date(y, 0, 1).getTimezoneOffset(), new Date(y, 6, 1).getTimezoneOffset()), noon = 12 + (std - n.getTimezoneOffset()) / 60, h = n.getHours() + n.getMinutes() / 60; m = h > noon - half && h < noon + half ? 'light' : 'dark'; } catch (e) { m = 'light'; } } d.dataset.mode = m; })();
+  /* light by day, dark by night where the visitor is (from their own clock and time zone; flipping the toggle holds for that visit) */(function () { var d = document.documentElement, m; try { localStorage.removeItem('mode'); m = sessionStorage.getItem('mode'); } catch (e) {} if (!m) { try { var n = new Date(), y = n.getFullYear(), tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '', s = /^(Australia|Antarctica)|^Pacific\/(Auckland|Chatham|Fiji)|^America\/(Santiago|Argentina|Sao_Paulo|Montevideo|Asuncion|Lima|La_Paz)|^Africa\/(Johannesburg|Maputo|Harare|Windhoek|Lusaka)/.test(tz), r = Math.PI / 180, lat = (s ? -30 : /^Europe|^Atlantic\/Reykjavik/.test(tz) ? 50 : /^Asia\/(Ho_Chi_Minh|Saigon|Bangkok|Manila|Singapore|Jakarta|Kuala_Lumpur|Kolkata|Calcutta|Colombo|Dhaka|Yangon|Phnom_Penh)|^Africa|^America\/(Mexico_City|Bogota|Caracas|Panama|Guatemala|Costa_Rica)|^Pacific\/Honolulu/.test(tz) ? 13 : 40) * r, day = (n - new Date(y, 0, 0)) / 864e5, dec = -23.44 * r * Math.cos(2 * Math.PI * (day + 10) / 365), c = (Math.sin(-0.833 * r) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec)), half = Math.acos(Math.max(-1, Math.min(1, c))) / r / 15, std = Math.max(new Date(y, 0, 1).getTimezoneOffset(), new Date(y, 6, 1).getTimezoneOffset()), noon = 12 + (std - n.getTimezoneOffset()) / 60, h = n.getHours() + n.getMinutes() / 60; m = h > noon - half && h < noon + half ? 'light' : 'dark'; } catch (e) { m = 'light'; } } d.dataset.mode = m; })();
   // note how this page was reached, so scroll-reveal content that's already on screen shows at once
   addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
 </script>
@@ -64,7 +64,7 @@
 </footer>
 
 <script type="module">
-import { SERIES } from '/assets/site.js?v=20261006112646';
+import { SERIES } from '/assets/site.js?v=20261006112746';
 document.getElementById('seriesList').innerHTML = SERIES.map(s =>
   `<li><a class="row" href="/photos/series/?s=${s.slug}"><span class="t">${s.title}</span><span class="d">${s.when} · ${s.photos.length} photos</span><span class="arrow">→</span></a></li>`).join('');
 </script>
