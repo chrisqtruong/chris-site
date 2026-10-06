@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006092716">
+<link rel="stylesheet" href="/assets/site.css?v=20261006093458">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
@@ -124,7 +124,7 @@
           <div><h3>room to read</h3><p>One shortcut fits the window to your text. Press it again for a bigger reading size, and once more to go back.</p></div>
         </div>
         <div class="detail">
-          <figure class="fx fx-private" aria-hidden="true"><svg viewBox="0 0 120 70"><path d="M30 46V22a3 3 0 0 1 3-3h54a3 3 0 0 1 3 3v24"/><path d="M22 46h76l-4 6H26z"/><path d="M52 34l6 5 11-11" class="ok"/><g class="cloud"><path d="M82 16a6 6 0 0 1 11-3 5 5 0 0 1 7 5 4 4 0 0 1-2 8H84a5 5 0 0 1-2-10z"/><path d="M80 6l22 24"/></g></svg></figure>
+          <figure class="fx fx-settle fx-private" aria-hidden="true"><div class="pane"><span class="lang">Dictation</span><p><span>Is</span> <span>this</span> <span>seat</span> <span>taken?</span></p><p class="foot"><i class="rec"></i>heard on this computer</p></div></figure>
           <div><h3>private by default</h3><p>No account, no server, no analytics. Voice, screen snips and the meaning check run on your own computer.</p></div>
         </div>
       </div>
@@ -233,9 +233,9 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/vox2-charts.js?v=20261006092716"></script>
+<script type="module" src="/assets/vox2-charts.js?v=20261006093458"></script>
 <script type="module">
-import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006092716';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006093458';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
 const names = SITE_THEMES;

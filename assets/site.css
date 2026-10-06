@@ -1176,11 +1176,12 @@
   @keyframes fx-fit { 0%, 18% { width: 210px; } 30%, 52% { width: 158px; } 64%, 86% { width: 216px; } 100% { width: 210px; } }
   @keyframes fx-fit-text { 0%, 52% { font-size: 13px; } 64%, 86% { font-size: 17px; } 100% { font-size: 13px; } }
 
-  /* 6 · private: a laptop, and the cloud crossed out */
-  .fx-private svg { width: 150px; height: auto; overflow: visible; }
-  .fx-private path { fill: none; stroke: var(--soft); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-  .fx-private .ok { stroke: var(--accent); stroke-width: 2.5; }
-  .fx-private .cloud { opacity: .8; }
+  /* 6 · private: dictation settles in, and the window's status line says where it was heard */
+  .fx-private .foot { display: flex; align-items: center; gap: 6px; margin-top: 8px !important; padding-top: 6px; border-top: 1px solid color-mix(in srgb, var(--v-text) 18%, transparent);
+    font-size: 10.5px !important; opacity: .75; }
+  .fx-private .rec { width: 6px; height: 6px; border-radius: 50%; background: var(--v-main); }
+  .fx.play.fx-private .rec { animation: fx-rec 1.6s ease-in-out infinite; }
+  @keyframes fx-rec { 50% { opacity: .25; } }
 
   @media (prefers-reduced-motion: reduce) { .fx * { animation: none !important; } .fx-settle p span, .fx-score .back, .fx-select .bubble { opacity: 1; } }
   @media (max-width: 640px) { .detail { grid-template-columns: 1fr; gap: 10px; } .fx { max-width: 260px; } }
