@@ -1349,3 +1349,17 @@ body:not(.benji) nav { padding-top: clamp(20px, 3.5vw, 40px) !important; }
 .case-hero .shot.pair a:hover img { box-shadow: 0 0 0 1.5px var(--accent) !important; }
 .case-hero .shot.pair a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .case-hero .shot.pair a:hover { transform: none; } }
+
+/* header links all start plain (a drawn underline); hovering one draws the marker swipe in behind it, left to right */
+.case-hero .btn.solid::after { display: block; }
+.case-hero .btn::before, .case-hero .btn.solid::before {
+  left: -3px; right: -8px; top: 8px; bottom: 6px; transform: rotate(-1.2deg); background: var(--accent); opacity: .3;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M4 8C20 4.5 44 7 68 4.6 82 3.4 92 4.4 97.4 6.6 99.2 12 98.6 19 96.2 24.6 76 26.6 52 24.4 30 26.4 18 27.4 9 26.6 3.2 24.4 1.2 18.4 1.8 12.6 4 8Z'/%3E%3C/svg%3E");
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 30' preserveAspectRatio='none'%3E%3Cpath d='M4 8C20 4.5 44 7 68 4.6 82 3.4 92 4.4 97.4 6.6 99.2 12 98.6 19 96.2 24.6 76 26.6 52 24.4 30 26.4 18 27.4 9 26.6 3.2 24.4 1.2 18.4 1.8 12.6 4 8Z'/%3E%3C/svg%3E");
+  clip-path: inset(0 100% 0 0); transition: clip-path .38s cubic-bezier(.3, .7, .3, 1);
+}
+.case-hero .btn:is(:hover, :focus-visible)::before { clip-path: inset(0 0 0 0); }
+.case-hero .btn.solid:hover::before { opacity: .3; }
+:root[data-mode="dark"] .case-hero .btn::before { opacity: .42 !important; }
+.case-hero .btn:is(:hover, :focus-visible)::after { opacity: 0; }   /* the underline steps aside for the swipe */
+@media (prefers-reduced-motion: reduce) { .case-hero .btn::before { transition: none; } }
