@@ -1369,3 +1369,6 @@ body:not(.benji) main > section { padding-top: 0 !important; }
 .chapter.chapter { padding-top: 44px !important; }
 .chapter > div:last-child > :last-child, .chapter > div:last-child > :last-child > :last-child { margin-bottom: 0 !important; }
 .chapter .num { margin-bottom: 12px !important; }
+/* Vox2's on-this-page links sit evenly between the header picture and the first section */
+.toc { padding-top: 16px !important; }
+.toc + section > .chapter:first-child { padding-top: 16px !important; }
