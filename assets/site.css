@@ -6,7 +6,7 @@
     --hair: #e5e1d8;
     /* the accent and "Truong" follow the current Vox2 theme; JS sets a light (-l) and dark (-d) version of each */
     /* one thread of color: every accent is the current Vox2 theme color (light and dark versions set by JS) */
-    --accent: var(--name-l, #e0457a);
+    --accent: var(--name-l, #5a55c9);
     --name-color: var(--accent);
     --sel-ink: var(--sel-ink-l, #ffffff);
     --body-ink: #2b2a28;     /* long-form text, a touch softer than --ink */

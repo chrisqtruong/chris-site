@@ -135,14 +135,8 @@ function readableOn(hex, mode) {
 
 // Colors the Vox2 parts of a page (--v-*) and the page accent. `surface` is which theme color the
 // page shows big ('bg' for the hero window, 'main' for the Vox2 card); "Truong" in the nav matches it.
-// vivid = not too dark and not greyish (so a dark navy or slate hero falls back to the theme's bright color)
-function isVivid(hex) {
-  const n = parseInt(hex.slice(1), 16);
-  const [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(v => v / 255);
-  const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2;
-  const sat = max === min ? 0 : (max - min) / (l > 0.5 ? 2 - max - min : max + min);
-  return l >= 0.3 && sat >= 0.5;
-}
+// Light mode keeps one site color whatever the Vox2 theme: an iris that sits between the Vox2 blue and the navy dark mode.
+const SITE_ACCENT_L = '#5a55c9';
 export let currentVoxTheme = SITE_THEMES[0];   // the theme on screen right now
 export function applyVoxTheme(name, surface = 'bg') {
   currentVoxTheme = name;
@@ -151,13 +145,10 @@ export function applyVoxTheme(name, surface = 'bg') {
   s.setProperty('--v-bg', bg); s.setProperty('--v-main', main); s.setProperty('--v-sub', sub);
   s.setProperty('--v-line', line); s.setProperty('--v-text', text);
   s.setProperty('--v-on-main', onMain(name));
-  // "Truong" in the nav matches the Vox2 color on the page (light and dark versions; CSS picks one).
-  // Everything else keeps the site's one fixed accent, so color stays with the Vox2 parts.
-  // the hero's own color when it's vivid enough to notice, else the theme's bright accent color
-  const big = surface === 'main' || !isVivid(bg) ? main : bg;
+  // Light mode: the fixed site iris. Dark mode follows the Vox2 theme.
   // On the dark page, the theme's bright color carries the accent instead (Sweden: yellow, not blue):
   // a deep hue on navy only scrapes past 3:1 and looks dim, while the bright one glows at 6–11:1.
-  const nameL = readableOn(big, 'light'), nameD = readableOn(main, 'dark');
+  const nameL = SITE_ACCENT_L, nameD = readableOn(main, 'dark');
   // text inside a selection: white or near-black, whichever reads better on that color
   const ink = c => (contrast(c, '#ffffff') >= contrast(c, '#131214') ? '#ffffff' : '#131214');
   setPageColors({ '--name-l': nameL, '--name-d': nameD, '--sel-ink-l': ink(nameL), '--sel-ink-d': ink(nameD) });
@@ -214,7 +205,7 @@ function setFavicon(color) {
 }
 try {
   const c = JSON.parse(sessionStorage.getItem('pageColors'));
-  if (c) { setPageColors(c); if (c['--name-l']) setFavicon(c['--name-l']); }
+  if (c) { Object.assign(c, { '--name-l': SITE_ACCENT_L, '--sel-ink-l': '#ffffff' }); setPageColors(c); setFavicon(SITE_ACCENT_L); }
 } catch {}
 
 /* ---------- while the page is scrolling, things that animate on their own wait (so scrolling stays smooth) ---------- */
@@ -417,8 +408,9 @@ document.querySelectorAll('[data-mail]').forEach(a => {
   a.title = address;   // shows on hover, for people who use webmail
 });
 
-/* ---------- back to top: a hand-drawn arrow once you're well down a page (long pages and the home page) ---------- */
-if (document.querySelector('.toc') || document.getElementById('vox')) {
+/* ---------- back to top: a hand-drawn arrow once you're well down a page (every page; on short ones it never shows) ---------- */
+const topMark = ['.toc', '.facts', '#vox', 'main > :first-child'].map(s => document.querySelector(s)).find(Boolean);
+if (topMark) {
   const btn = document.createElement('button');
   btn.className = 'to-top';
   btn.type = 'button';
@@ -430,7 +422,7 @@ if (document.querySelector('.toc') || document.getElementById('vox')) {
   document.body.append(btn);
   // show it once the menu (or, on the home page, the hero) has scrolled away; lift it while the footer is on screen.
   // The browser reports those moments itself, so nothing runs on each scroll frame.
-  const mark = document.querySelector('.toc') || document.getElementById('vox'), foot = document.querySelector('footer');
+  const mark = topMark, foot = document.querySelector('footer');
   new IntersectionObserver(([e]) => btn.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(mark);
   if (foot) new IntersectionObserver(([e]) => btn.classList.toggle('lift', e.isIntersecting)).observe(foot);
 }

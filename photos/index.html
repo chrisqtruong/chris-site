@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006085202">
+<link rel="stylesheet" href="/assets/site.css?v=20261006085504">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
@@ -64,7 +64,7 @@
 </footer>
 
 <script type="module">
-import { SERIES } from '/assets/site.js?v=20261006085202';
+import { SERIES } from '/assets/site.js?v=20261006085504';
 document.getElementById('seriesList').innerHTML = SERIES.map(s =>
   `<li><a class="row" href="/photos/series/?s=${s.slug}"><span class="t">${s.title}</span><span class="d">${s.when} · ${s.photos.length} photos</span><span class="arrow">→</span></a></li>`).join('');
 </script>
