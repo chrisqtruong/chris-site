@@ -363,6 +363,7 @@ function showBubble(range) {
   bubble.style.left = `${Math.max(12, Math.min(r.left, innerWidth - 332))}px`;
   bubble.style.top = r.bottom + 160 < innerHeight ? `${r.bottom + 10}px` : `${Math.max(12, r.top - 150)}px`;
   bubble.classList.add('show');
+  bubbleY = scrollY;
   hlTranslate();
 }
 document.addEventListener('selectionchange', () => {
@@ -378,7 +379,9 @@ document.addEventListener('selectionchange', () => {
     showBubble(sel.getRangeAt(0));
   }, 350);
 });
-addEventListener('scroll', () => { if (bubble?.classList.contains('show')) hideBubble(); }, { passive: true });
+// close it once the page has really scrolled away, not on a trackpad's little bounce at the top or bottom
+let bubbleY = 0;
+addEventListener('scroll', () => { if (bubble?.classList.contains('show') && Math.abs(scrollY - bubbleY) > 80) hideBubble(); }, { passive: true });
 addEventListener('keydown', e => { if (e.key === 'Escape') hideBubble(); });
 
 /* ---------- a small cat peeks over the footer line when you reach the bottom ---------- */
