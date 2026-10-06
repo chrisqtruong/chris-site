@@ -1183,8 +1183,9 @@
   .fx-fit .pane { width: 200px; justify-self: start; white-space: nowrap; overflow: hidden; }
   .fx.play.fx-fit .pane { animation: fx-fit 7s cubic-bezier(.3, .7, .3, 1) infinite; }
   .fx.play.fx-fit p { animation: fx-fit-text 7s cubic-bezier(.3, .7, .3, 1) infinite; }
-  @keyframes fx-fit { 0%, 18% { width: 210px; } 30%, 52% { width: 158px; } 64%, 86% { width: 216px; } 100% { width: 210px; } }
-  @keyframes fx-fit-text { 0%, 52% { font-size: 13px; } 64%, 86% { font-size: 17px; } 100% { font-size: 13px; } }
+  /* fit to the text, then wider, then a compact window, then back */
+  @keyframes fx-fit { 0%, 12% { width: 200px; } 22%, 36% { width: 152px; } 46%, 60% { width: 236px; } 70%, 86% { width: 128px; } 96%, 100% { width: 200px; } }
+  @keyframes fx-fit-text { 0%, 100% { font-size: 13px; } }
 
   /* 6 · private: dictation settles in, and the window's status line says where it was heard */
   .fx-private .foot { display: flex; align-items: center; gap: 6px; margin-top: 8px !important; padding-top: 6px; border-top: 1px solid color-mix(in srgb, var(--v-text) 18%, transparent);

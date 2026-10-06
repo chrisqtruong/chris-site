@@ -17,7 +17,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261006102210">
+<link rel="stylesheet" href="/assets/site.css?v=20261006102527">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
@@ -82,7 +82,7 @@
         <ol>
           <li><b>Discover</b><ul><li>A teammate who only spoke Portuguese</li><li>Every message one browser tab away</li><li>No translator tells you if your meaning came through</li><li>None live on your desktop, a shortcut away, faster than switching to a browser or AI app</li></ul></li>
           <li><b>Design</b><ul><li>Light enough to disappear</li><li>Words settle, they don’t pop</li><li>Private by default</li><li>Make it yours: 37 themes, your own shortcuts</li></ul></li>
-          <li><b>Develop</b><ul><li>Live two-way translation</li><li>Dictation, read aloud, screen snips</li><li>The meaning check</li><li>A Mac version</li></ul></li>
+          <li><b>Develop</b><ul><li>Live two-way translation</li><li>Dictation, read aloud, screen snips</li><li>The meaning check</li><li>Conversation mode, one computer between two people</li><li>A Mac version</li></ul></li>
           <li class="loop"><b>Test</b><ul><li>11 languages, mistakes planted on purpose</li><li>Fresh sentences every round</li><li>Real medical and legal text</li></ul></li>
           <li class="loop"><b>Iterate</b><ul><li>Targeted checks: 35% → 70%</li><li>“Can’t check” instead of a fake 100%</li><li>Units and “unless”: 48% → 71%</li></ul><em>↺ fail fast, test again</em></li>
           <li><b>Release</b><ul><li>One-click releases for Windows and Mac</li><li>Updates install themselves</li><li>Open source, every test published</li></ul></li>
@@ -107,19 +107,19 @@
         </div>
         <div class="detail">
           <figure class="fx fx-themes" aria-hidden="true"><div class="pane"><span class="lang">English</span><p>Is this the right train?</p></div><div class="dots"><i></i><i></i><i></i><i></i><i></i></div></figure>
-          <div><h3>37 themes</h3><p>People care about color, so there are a lot of themes. Scores can also use a colorblind-safe palette with ✓, ! and ✕, so nothing relies on color alone.</p><div class="theme-row swatch-row" id="themeRow2"></div></div>
+          <div><h3>37 themes</h3><p>People care about color, so there are a lot of themes, and you can star your favorites to keep them on top. Scores can also use a colorblind-safe palette with ✓, ! and ✕, so nothing relies on color alone.</p><div class="theme-row swatch-row" id="themeRow2"></div></div>
         </div>
         <div class="detail">
           <figure class="fx fx-select" aria-hidden="true"><div class="doc"><i class="sel"><b>Nice to meet you.</b></i><i></i><i class="short"></i></div><div class="pane bubble"><span class="lang">English → Tiếng Việt</span><p>Rất vui được gặp bạn.</p></div></figure>
-          <div><h3>from any app</h3><p>Select text anywhere and press a key. The translation shows up in a bubble by your cursor, with its score. Drag it aside and it stays there like a sticky note.</p></div>
+          <div><h3>from any app</h3><p>Select text anywhere and press a key (on a Mac, just tap the right ⌘). The translation shows up in a bubble by your cursor, with its score. Click your text to see all of it, or drag the bubble aside and it stays there like a sticky note.</p></div>
         </div>
         <div class="detail">
           <figure class="fx fx-fit" aria-hidden="true"><div class="pane"><span class="lang">English</span><p>See you at dinner.</p></div></figure>
-          <div><h3>room to read</h3><p>One shortcut fits the window to your text. Press it again for a bigger reading size, and once more to go back.</p></div>
+          <div><h3>room to read</h3><p>One shortcut fits the window to your text. Press it again for a wider reading width, again for a compact window that scrolls, and once more to fit again.</p></div>
         </div>
         <div class="detail">
           <figure class="fx fx-settle fx-private" aria-hidden="true"><div class="pane"><span class="lang">Dictation</span><p><span>Is</span> <span>this</span> <span>seat</span> <span>taken?</span></p><p class="foot"><i class="rec"></i>heard on this computer</p></div></figure>
-          <div><h3>private by default</h3><p>No account, no server, no analytics. Voice, screen snips and the meaning check run on your own computer.</p></div>
+          <div><h3>private by default</h3><p>No account, no server, no analytics. Your text goes only to the translation engine you pick, and voice, screen snips and the meaning check run on your own computer.</p></div>
         </div>
       </div>
     </div>
@@ -229,9 +229,9 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/vox2-charts.js?v=20261006102210"></script>
+<script type="module" src="/assets/vox2-charts.js?v=20261006102527"></script>
 <script type="module">
-import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006102210';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261006102527';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
 const names = SITE_THEMES;
