@@ -1,5 +1,9 @@
 /* Shared by every page: photos, lightbox, scroll reveals, footer, page accent. */
 
+// Chris's call (2026-10-06): the site animates for everyone, even with the phone's Reduce Motion setting on.
+// To respect that setting again, set this back to: matchMedia('(prefers-reduced-motion: reduce)').matches
+export const REDUCE_MOTION = false;
+
 /* ---------- photos, grouped into series (placeholders until real ones go in /assets/photos) ---------- */
 // A photo: { src: '/assets/photos/baltimore/harbor.jpg', r: 1.5, cap: '…', cam: '…' }  (r = width / height)
 // Until then each one is a soft neutral block. Series, captions and cameras below are examples.
@@ -40,7 +44,7 @@ export function renderSeries(container, series) {
 /* ---------- lightbox: the photo grows out of the grid (same-page view transition) ---------- */
 let lb, current = -1, fromEl = null;
 function swap(fn) {
-  if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) return fn();
+  if (!document.startViewTransition || REDUCE_MOTION) return fn();
   return document.startViewTransition(fn);
 }
 export function openLightbox(i, el) {
@@ -159,7 +163,7 @@ export function applyVoxTheme(name, surface = 'bg') {
 // The demo clips are short muted videos (much lighter than GIFs, and played by the graphics chip).
 // With reduced motion on, they stay still (each has a poster image, so there's always a picture),
 // and tapping a clip plays or pauses it. That also covers phones that block autoplay, like iPhones in Low Power Mode.
-const stillClips = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const stillClips = REDUCE_MOTION;
 // a small play button over the first frame, shown whenever a clip is sitting still (reduced motion, or a phone that won't autoplay)
 function playButton(v) {
   const holder = v.parentElement;
@@ -256,7 +260,7 @@ const labelMode = () => modeBtn?.setAttribute('aria-label', currentMode() === 'd
 function setMode(mode) {
   const apply = () => { document.documentElement.dataset.mode = mode; labelMode(); };
   // a quick cross-fade instead of a flash
-  if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (document.startViewTransition && !REDUCE_MOTION) {
     document.documentElement.classList.add('mode-switch');
     document.startViewTransition(apply).finished.finally(() => document.documentElement.classList.remove('mode-switch'));
   } else apply();
@@ -302,7 +306,7 @@ if (sayHi) {
     show(item, 450);
     timer = visible ? setTimeout(next, item === LAST ? REST : STEP) : null;
   };
-  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!REDUCE_MOTION) {
     // only runs while the line is on screen; starts after a short rest on English
     new IntersectionObserver(([e]) => {
       visible = e.isIntersecting;
@@ -437,7 +441,7 @@ if (topMark) {
   // the same hand-drawn marker dot as the tab icon, in the theme color, with a bold arrow
   btn.innerHTML = `<svg viewBox="-4 -4 72 76" overflow="visible"><path d="${DOT}" transform="translate(0 4)" fill="rgba(0,0,0,.16)"/><path class="blob" d="${DOT}"/>`
     + '<path class="up" d="M32 45V20M21 30l11-11 11 11" fill="none" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  btn.onclick = () => scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  btn.onclick = () => scrollTo({ top: 0, behavior: REDUCE_MOTION ? 'auto' : 'smooth' });
   document.body.append(btn);
   // show it once the menu (or, on the home page, the hero) has scrolled away; lift it while the footer is on screen.
   // The browser reports those moments itself, so nothing runs on each scroll frame.
@@ -503,7 +507,7 @@ function drawMarker(el, shape) {
 export function markSelected(container, selector, shape = 'loop') {
   if (!container) return;
   let current = null, drawn = '';
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduce = REDUCE_MOTION;
   const update = (animate) => {
     const el = container.querySelector(selector);
     const key = el && `${el.offsetWidth}x${el.offsetHeight}`;

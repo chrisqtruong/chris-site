@@ -1,7 +1,7 @@
 /* The two testing graphics on the Vox2 page, made interactive.
    Both draw in var(--accent), so they follow the theme picker. Without JS the static versions stay. */
 
-import { markSelected } from '/assets/site.js?v=20261006175548';
+import { markSelected } from '/assets/site.js?v=20261006182626';
 
 /* ---------- the ladder: click a level to see what it would show you for one real kind of mistake ---------- */
 // The example: "I can't make it to dinner tonight" → Spanish, with the "not" dropped (meaning reversed).
@@ -109,7 +109,7 @@ if (trend) {
     // glide from the old line to the new one (or jump straight there if the tab isn't visible)
     const from = ys.slice(), to = X.map((_, i) => yOf(m, m.values[i])), t0 = performance.now();
     cancelAnimationFrame(anim);
-    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches || document.hidden;
+    const reduce = document.hidden;
     if (reduce) { ys = to; draw(ys, m); return; }
     const step = now => {
       const p = reduce ? 1 : Math.min(1, (now - t0) / 450), e = 1 - (1 - p) ** 3;

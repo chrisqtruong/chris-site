@@ -1,3 +1,5 @@
+/* Reduce Motion: the site animates for everyone by Chris's choice, so every "(prefers-reduced-motion: reduce)" block below
+   carries "and (max-width: 0px)", which never matches. Remove that suffix to respect the setting again. */
   /* ---------- page tokens ---------- */
   :root {
     --paper: #faf8f4;        /* warm paper: softer than pure white */
@@ -403,7 +405,7 @@
     nav ul { gap: 12px; font-size: 16px; }
     nav .name { font-size: 22px; }
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) and (max-width: 0px) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .reveal { opacity: 1; transform: none; }
   }
@@ -445,7 +447,7 @@
   .kitty:hover .k-eyes { opacity: 0; }
   .kitty:hover .k-happy { opacity: 1; }
   @keyframes k-blink { 0%, 95%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
-  @media (prefers-reduced-motion: reduce) { .kitty svg { transform: none; } }
+  @media (prefers-reduced-motion: reduce) and (max-width: 0px) { .kitty svg { transform: none; } }
 
   /* ---------- the quiet home page: everything after the hero whispers ---------- */
   section.quiet { max-width: 980px; padding-top: clamp(48px, 6vw, 80px); }   /* tighter rhythm under the hero */
@@ -1050,7 +1052,7 @@
   @keyframes bob { 0%, 45%, 100% { transform: none; } 7%, 22%, 37% { transform: rotate(-6deg) translateX(-.4px); } 14%, 29% { transform: none; } }
   @keyframes zz { 0% { opacity: 0; transform: translate(0, 0); } 25% { opacity: .9; } 100% { opacity: 0; transform: translate(5px, -9px); } }
   @keyframes breath { 50% { transform: scaleY(1.04); } }
-  @media (prefers-reduced-motion: reduce) { .doodle * { animation: none !important; } .doodle.asleep .z { opacity: .7; } }
+  @media (prefers-reduced-motion: reduce) and (max-width: 0px) { .doodle * { animation: none !important; } .doodle.asleep .z { opacity: .7; } }
 
   /* every footer follows the same quiet pattern; the big greeting lives on the home page as one word now */
   footer .say-hi, .kitty { display: none !important; }
@@ -1200,7 +1202,7 @@
   .fx.play.fx-private .rec { animation: fx-rec 1.6s ease-in-out infinite; }
   @keyframes fx-rec { 50% { opacity: .25; } }
 
-  @media (prefers-reduced-motion: reduce) { .fx * { animation: none !important; } .fx-settle p span, .fx-score .back, .fx-select .bubble { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) and (max-width: 0px) { .fx * { animation: none !important; } .fx-settle p span, .fx-score .back, .fx-select .bubble { opacity: 1; } }
   @media (max-width: 640px) { .detail { grid-template-columns: 1fr; gap: 10px; } .fx { max-width: 260px; } }
   .fx .lang::after, .fx .lang::before { display: none !important; }
   /* the greeting changes language; it sits last in the sentence in a fixed-width slot, so the line never rewraps */
@@ -1356,7 +1358,7 @@ body:not(.benji) nav { padding-top: clamp(20px, 3.5vw, 40px) !important; }
 .case-hero .shot.pair a:hover { transform: translateY(-3px); }
 .case-hero .shot.pair a:hover img { box-shadow: 0 0 0 1.5px var(--accent) !important; }
 .case-hero .shot.pair a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-@media (prefers-reduced-motion: reduce) { .case-hero .shot.pair a:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) and (max-width: 0px) { .case-hero .shot.pair a:hover { transform: none; } }
 
 /* header links all start plain (a drawn underline); hovering one draws the marker swipe in behind it, left to right */
 .case-hero .btn.solid::after { display: block; }
@@ -1370,7 +1372,7 @@ body:not(.benji) nav { padding-top: clamp(20px, 3.5vw, 40px) !important; }
 .case-hero .btn.solid:hover::before { opacity: .3; }
 :root[data-mode="dark"] .case-hero .btn::before { opacity: .42 !important; }
 .case-hero .btn:is(:hover, :focus-visible)::after { opacity: 0; }   /* the underline steps aside for the swipe */
-@media (prefers-reduced-motion: reduce) { .case-hero .btn::before { transition: none; } }
+@media (prefers-reduced-motion: reduce) and (max-width: 0px) { .case-hero .btn::before { transition: none; } }
 
 /* project pages: one even gap between sections. Whatever ends a section (paragraph, figure, list) adds no extra space of its own */
 body:not(.benji) main > section { padding-top: 0 !important; }
@@ -1439,7 +1441,7 @@ body:not(.benji) main > section { padding-top: 0 !important; }
   @keyframes u-stop { 0%, 29% { opacity: 1; } 31%, 100% { opacity: 0; } }
   @keyframes u-micglyph { 0%, 29% { opacity: 0; } 31%, 100% { opacity: 1; } }
   @keyframes u-pulse { 0%, 29% { transform: scale(1.05) rotate(-2deg); } 4%, 12%, 20% { transform: scale(1.1) rotate(2deg); } 8%, 16%, 24% { transform: scale(1.03) rotate(-3deg); } 31%, 100% { transform: none; } }
-  @media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) and (max-width: 0px) {
     .uphone *, .uphone svg { animation: none !important; }
     .uphone .rec, .uphone .mic .stop { opacity: 0; }
     .uphone .note span, .uphone .bar { opacity: 1; }
@@ -1473,7 +1475,7 @@ body:not(.benji) main > section { padding-top: 0 !important; }
   @keyframes u-after { 0%, 35% { opacity: 0; } 45%, 90% { opacity: 1; } 100% { opacity: 0; } }
   .fx-swap .before s { text-decoration-color: var(--v-sub); color: var(--v-sub); }
   .fx-swap .after b { color: var(--v-main); font-weight: 500; }
-  @media (prefers-reduced-motion: reduce) { .fx-swap .before { opacity: 0; } .fx-swap .after { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) and (max-width: 0px) { .fx-swap .before { opacity: 0; } .fx-swap .after { opacity: 1; } }
 
   /* weather, in dots: a few more measures, side by side */
   .wd-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 14px 0 6px; }
@@ -1491,7 +1493,7 @@ body:not(.benji) main > section { padding-top: 0 !important; }
   .zoombox .lb-close { position: fixed; top: 14px; right: 18px; width: 44px; height: 44px; border: 0; background: none; color: #fff; font: 300 34px/1 var(--serif); cursor: pointer; opacity: .85; }
   .zoombox[open] { animation: lb-in .18s ease-out; }
   @keyframes lb-in { from { opacity: 0; transform: scale(.98); } }
-  @media (prefers-reduced-motion: reduce) { .zoombox[open] { animation: none; } }
+  @media (prefers-reduced-motion: reduce) and (max-width: 0px) { .zoombox[open] { animation: none; } }
 
 /* weather art: matted like prints, a thin white border around each picture */
 .shot-inline img[data-full], .wd-gallery img {
