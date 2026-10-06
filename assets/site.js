@@ -160,12 +160,25 @@ export function applyVoxTheme(name, surface = 'bg') {
 // With reduced motion on, they stay still (each has a poster image, so there's always a picture),
 // and tapping a clip plays or pauses it. That also covers phones that block autoplay, like iPhones in Low Power Mode.
 const stillClips = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// a small play button over the first frame, shown whenever a clip is sitting still (reduced motion, or a phone that won't autoplay)
+function playButton(v) {
+  const holder = v.parentElement;
+  if (!holder || holder.querySelector('.play-clip')) return;
+  holder.classList.add('has-play');
+  const b = Object.assign(document.createElement('button'), { type: 'button', className: 'play-clip', textContent: '▶ play' });
+  b.setAttribute('aria-label', 'Play the clip');
+  b.onclick = () => v.play().catch(() => {});
+  const sync = () => { b.hidden = !v.paused; };
+  v.addEventListener('play', sync); v.addEventListener('pause', sync);
+  holder.append(b); sync();
+}
 document.querySelectorAll('video[autoplay]').forEach(v => {
   v.addEventListener('click', () => (v.paused ? v.play().catch(() => {}) : v.pause()));
-  if (stillClips) { v.removeAttribute('autoplay'); v.pause(); }
+  if (stillClips) { v.removeAttribute('autoplay'); v.pause(); playButton(v); }
   // some browsers skip the autoplay attribute; asking directly works for muted clips.
-  // If a browser still says no until the visitor interacts, start on the first tap, click or key.
+  // If a browser still says no (an iPhone in Low Power Mode), show the play button, and start on the first tap, click or key.
   else v.play().catch(() => {
+    playButton(v);
     const go = () => { v.play().catch(() => {}); ['pointerdown', 'keydown', 'touchstart'].forEach(t => removeEventListener(t, go)); };
     ['pointerdown', 'keydown', 'touchstart'].forEach(t => addEventListener(t, go, { passive: true }));
   });
