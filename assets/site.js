@@ -157,9 +157,11 @@ export function applyVoxTheme(name, surface = 'bg') {
 }
 // Each theme has its own recording of the real app (a different language in each).
 // The demo clips are short muted videos (much lighter than GIFs, and played by the graphics chip).
-// With reduced motion on, they stay on their first frame.
+// With reduced motion on, they stay still (each has a poster image, so there's always a picture),
+// and tapping a clip plays or pauses it. That also covers phones that block autoplay, like iPhones in Low Power Mode.
 const stillClips = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('video[autoplay]').forEach(v => {
+  v.addEventListener('click', () => (v.paused ? v.play().catch(() => {}) : v.pause()));
   if (stillClips) { v.removeAttribute('autoplay'); v.pause(); }
   // some browsers skip the autoplay attribute; asking directly works for muted clips.
   // If a browser still says no until the visitor interacts, start on the first tap, click or key.
@@ -169,7 +171,8 @@ document.querySelectorAll('video[autoplay]').forEach(v => {
   });
 });
 export function showVoxShot(name) {
-  document.querySelectorAll('[data-vox-shot]').forEach(v => { v.src = `/assets/vox2/${name}.mp4`; if (!stillClips) v.play?.().catch(() => {}); });
+  // swap the poster with the clip, so the new theme shows at once even if the phone won't autoplay
+  document.querySelectorAll('[data-vox-shot]').forEach(v => { v.poster = `/assets/vox2/${name}.jpg`; v.src = `/assets/vox2/${name}.mp4`; if (!stillClips) v.play?.().catch(() => {}); });
 }
 // Little two-tone dots, like the ones in Vox2's settings.
 export function themeDots(container, names, onPick) {

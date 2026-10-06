@@ -1288,7 +1288,7 @@
 .case-hero .shot :is(img, video) { display: block; margin: 0 auto; width: 100% !important; max-height: none !important; border-radius: 10px !important; box-shadow: 0 0 0 1px var(--hair) !important; }
 .case-hero.vox2 .shot video { width: min(100%, 280px) !important; border-radius: 12px !important; }
 .case-hero.purr .shot video { width: min(100%, 260px) !important; border-radius: 22px !important; }
-.case-hero.utter .shot img { width: min(100%, 260px) !important; border-radius: 22px !important; }
+
 .case-hero .shot figcaption { color: var(--soft) !important; text-align: left !important; margin-top: 8px; }
 .case-hero .shot.pair { min-height: 0 !important; display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
 .case-hero .shot.pair img { position: static; transform: none; width: 100% !important; }
@@ -1386,3 +1386,91 @@ body:not(.benji) main > section { padding-top: 0 !important; }
 .bird-link:hover .doodle { color: var(--ink); transform: translateY(-2px); }
 .bird-link .doodle { transition: color .2s, transform .2s; }
 .bird-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+
+  /* =====================================================================
+     Utter: the phone at the top and the "small details" are drawn and animated in code,
+     like Vox2's, so they're sharp at any size and don't depend on a video autoplaying.
+     Colors are Utter's own serika dark theme.
+     ===================================================================== */
+  .utter-page { --u-bg: #323437; --u-main: #e2b714; --u-sub: #646669; --u-alt: #2c2e31; --u-text: #d1d0c5; --u-error: #ca4754; }
+  .utter-page .details { --v-bg: var(--u-bg); --v-main: var(--u-main); --v-sub: var(--u-sub); --v-text: var(--u-text); --v-line: var(--u-alt); }
+
+  .uphone { position: relative; width: min(100%, 280px); aspect-ratio: 10 / 17; margin: 0 auto; border-radius: 22px; background: var(--u-bg); color: var(--u-text);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 30px 60px -24px rgba(0,0,0,.5); overflow: hidden; font-family: var(--mono); text-align: left; }
+  .uphone .top { position: absolute; top: 22px; left: 20px; right: 20px; display: flex; align-items: center; justify-content: space-between; }
+  .uphone .brand { font: 600 17px var(--mono); letter-spacing: -.01em; }
+  .uphone .brand i { color: var(--u-main); font-style: normal; }
+  .uphone .icons { display: flex; gap: 12px; }
+  .uphone .icons b { width: 14px; height: 14px; border-radius: 50%; border: 1.6px solid var(--u-sub); }
+  .uphone .note { position: absolute; top: 66px; left: 20px; right: 20px; font: 400 14.5px/1.5 -apple-system, system-ui, sans-serif; }
+  .uphone .note p { margin: 0 0 12px !important; font: inherit !important; color: inherit !important; }
+  .uphone .note span { opacity: 0; }
+  .uphone .note .shaky { text-decoration: underline dotted var(--u-error); text-underline-offset: 3px; color: var(--u-error); }
+  .uphone .rec { position: absolute; top: 46%; left: 20px; right: 20px; }
+  .uphone .rec .clock { font-size: 12px; color: var(--u-sub); }
+  .uphone .bars { display: flex; gap: 4px; align-items: center; height: 46px; margin: 10px 0; }
+  .uphone .bars i { flex: 1; height: 6px; border-radius: 3px; background: var(--u-main); }
+  .uphone .rec .say { font-size: 11px; color: var(--u-sub); }
+  .uphone .bar { position: absolute; left: 0; right: 0; bottom: 102px; padding: 9px 20px 0; border-top: 1px solid var(--u-alt); font-size: 11.5px; color: var(--u-sub); opacity: 0; }
+  .uphone .bar .score { color: var(--u-main); font-weight: 600; }
+  .uphone .bar .acts { margin-top: 6px; display: flex; gap: 14px; }
+  .uphone .bar .acts b { color: var(--u-main); font-weight: 400; }
+  .uphone .mic { position: absolute; bottom: 22px; left: 50%; width: 70px; height: 70px; margin-left: -35px; }
+  .uphone .mic svg { width: 100%; height: 100%; display: block; }
+  .uphone .mic .dot { fill: var(--u-main); }
+  .uphone .mic .glyph { fill: var(--u-bg); }
+
+  /* one 11 s loop: recording (0–30%), the words land (33–55%), the score shows (58%), then it fades and starts over */
+  .uphone .rec { animation: u-rec 11s infinite; }
+  .uphone .bars i { animation: u-bars .9s ease-in-out infinite alternate; }
+  .uphone .bars i:nth-child(3n) { animation-duration: .7s; } .uphone .bars i:nth-child(3n+1) { animation-duration: 1.1s; }
+  .uphone .bars i:nth-child(4n) { animation-delay: -.4s; } .uphone .bars i:nth-child(5n) { animation-delay: -.2s; }
+  .uphone .note span { animation: u-word 11s infinite; animation-delay: calc(var(--i) * .09s); }
+  .uphone .bar { animation: u-bar 11s infinite; }
+  .uphone .mic .dot { animation: u-dot 11s infinite; }
+  .uphone .mic .stop { animation: u-stop 11s infinite; }
+  .uphone .mic .glyph:not(.stop) { animation: u-micglyph 11s infinite; }
+  .uphone .mic svg { animation: u-pulse 11s infinite; transform-origin: center; }
+  @keyframes u-rec { 0%, 28% { opacity: 1; } 31%, 100% { opacity: 0; } }
+  @keyframes u-bars { from { height: 6px; } to { height: 40px; } }
+  @keyframes u-word { 0%, 32% { opacity: 0; transform: translateY(3px); } 35%, 90% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; } }
+  @keyframes u-bar { 0%, 55% { opacity: 0; } 59%, 90% { opacity: 1; } 95%, 100% { opacity: 0; } }
+  @keyframes u-dot { 0%, 29% { fill: var(--u-error); } 31%, 100% { fill: var(--u-main); } }
+  @keyframes u-stop { 0%, 29% { opacity: 1; } 31%, 100% { opacity: 0; } }
+  @keyframes u-micglyph { 0%, 29% { opacity: 0; } 31%, 100% { opacity: 1; } }
+  @keyframes u-pulse { 0%, 29% { transform: scale(1.05) rotate(-2deg); } 4%, 12%, 20% { transform: scale(1.1) rotate(2deg); } 8%, 16%, 24% { transform: scale(1.03) rotate(-3deg); } 31%, 100% { transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .uphone *, .uphone svg { animation: none !important; }
+    .uphone .rec, .uphone .mic .stop { opacity: 0; }
+    .uphone .note span, .uphone .bar { opacity: 1; }
+  }
+  .case-hero.utter .shot { padding-bottom: clamp(24px, 4vw, 44px) !important; }
+
+  /* details: Utter's own little figures */
+  .fx-u .pane { font-family: -apple-system, system-ui, sans-serif; font-weight: 400; font-size: 13.5px; }
+  .fx-u .lang { font-family: var(--mono); }
+  .fx-u .shaky { text-decoration: underline dotted #ca4754; text-underline-offset: 3px; color: #ca4754; }
+  .fx-u .foot { display: flex; align-items: center; gap: 6px; margin-top: 8px !important; padding-top: 6px; border-top: 1px solid color-mix(in srgb, var(--v-text) 16%, transparent);
+    font: 500 10.5px var(--mono) !important; color: var(--v-sub) !important; }
+  .fx-u .foot .u-num { color: var(--v-main); font-weight: 600; display: inline-flex; gap: 4px; }
+  .fx-u .foot .pct::after { vertical-align: baseline; }
+  /* score counts up */
+  .fx-uscore .pct { counter-reset: p var(--pct); } .fx-uscore .pct::after { content: counter(p); }
+  .fx.play.fx-uscore .pct { animation: fx-count 5s infinite; }
+  .fx.play.fx-uscore .shaky { animation: u-shaky 5s infinite; }
+  @keyframes u-shaky { 0%, 30% { text-decoration-color: transparent; color: var(--v-text); } 45%, 100% { text-decoration-color: #ca4754; color: #ca4754; } }
+  /* a pause becomes a paragraph */
+  .fx-para p + p { margin-top: 0 !important; }
+  .fx.play.fx-para p + p { animation: u-para 6s cubic-bezier(.3,.7,.3,1) infinite; }
+  @keyframes u-para { 0%, 25% { margin-top: 0; } 40%, 90% { margin-top: 12px; } 100% { margin-top: 0; } }
+  /* swap one text for another: tidy, and the dictionary */
+  .fx-swap .stack { display: grid; }
+  .fx-swap .stack > * { grid-area: 1 / 1; }
+  .fx-swap .after { opacity: 0; }
+  .fx.play.fx-swap .before { animation: u-before 6s infinite; }
+  .fx.play.fx-swap .after { animation: u-after 6s infinite; }
+  @keyframes u-before { 0%, 35% { opacity: 1; } 45%, 90% { opacity: 0; } 100% { opacity: 1; } }
+  @keyframes u-after { 0%, 35% { opacity: 0; } 45%, 90% { opacity: 1; } 100% { opacity: 0; } }
+  .fx-swap .before s { text-decoration-color: var(--v-sub); color: var(--v-sub); }
+  .fx-swap .after b { color: var(--v-main); font-weight: 500; }
+  @media (prefers-reduced-motion: reduce) { .fx-swap .before { opacity: 0; } .fx-swap .after { opacity: 1; } }
