@@ -1205,3 +1205,45 @@
   body:not(.benji) main > section { padding-top: 32px; }
   @media (max-width: 1000px) { .case-hero { margin-left: 12px !important; margin-right: 12px !important; } }
   .case-hero.vox2 .shot :is(img, video) { width: min(100%, 260px) !important; }
+
+/* ---- Project pages, Benji style (benji.org/drawesome): no cards, quiet labels on a hairline ---- */
+  /* section label on a hairline rule, then the heading */
+  .chapter .num { display: flex; align-items: center; gap: 12px; font: 600 13px/1 var(--sans) !important; color: var(--ink) !important; letter-spacing: 0; margin-bottom: 16px !important; }
+  .chapter .num::after { content: ""; flex: 1; height: 1px; background: var(--hair); }
+  .chapter h2 { font-size: 22px !important; margin-bottom: 10px !important; }
+  body:not(.benji) .chapter + .chapter { padding-top: 56px; }
+
+  /* table of contents: plain links, no pills */
+  .toc { gap: 0 20px; padding-top: 8px; }
+  .toc a, .toc a:hover { border: 0; border-radius: 0; padding: 12px 0; font: 400 14px var(--sans); }
+  .toc a { color: var(--soft); }
+  .toc a:hover { color: var(--ink); }
+
+  /* former cards: plain stacked items */
+  .decisions { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+  .decision { background: none !important; padding: 0 !important; border-radius: 0 !important; }
+  .decision h3 { font: 600 18px/1.35 var(--serif) !important; margin: 0 0 4px; }
+  .decision p { font-size: 17px !important; line-height: 1.65; }
+  .decision .demo { max-width: 440px; }
+  .decision .small { font-size: 15px !important; }
+  /* the Paper Trail trackers keep their screenshots side by side */
+  .decisions:has(.tracker) { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 24px !important; }
+  .tracker img { border-radius: 8px; box-shadow: 0 0 0 1px var(--hair); }
+
+  /* the ladder's example sits on the page, not in a tinted box */
+  .ladder-demo { background: none !important; padding: 0 !important; border-radius: 0 !important; }
+
+  /* numbers: smaller, on a hairline */
+  .stat { border-top: 1px solid var(--hair); padding-top: 10px; }
+  .stat b { font: 600 30px/1.1 var(--serif) !important; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .stat span { font-size: 15px; line-height: 1.45; }
+@media (max-width: 760px) {
+  .decisions:has(.tracker) { grid-template-columns: minmax(0, 1fr) !important; }
+}
+  .chapter p.fine { font-size: 14px; line-height: 1.55; color: var(--soft); }
+
+  /* terminal example: a light code pane, like Benji's (dark mode keeps the dark one) */
+  :root:not([data-mode="dark"]) .term pre { background: #f1f0ec; color: #55534e; border-radius: 10px; }
+  :root:not([data-mode="dark"]) .term pre b { color: var(--ink); }
+  :root:not([data-mode="dark"]) .term pre .p { color: #9a988f; }
+  :root:not([data-mode="dark"]) .term pre .k { color: var(--ink); opacity: .55; }
