@@ -18,9 +18,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>
-  // light or dark before anything paints: the visitor's choice, else their system setting
-  const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || sys; } catch { document.documentElement.dataset.mode = sys; }
+  // light or dark before anything paints: the visitor's choice, else light
+  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
   // note how this page was reached, so scroll-reveal content that's already on screen shows at once
   addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
 </script>

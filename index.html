@@ -19,9 +19,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
 <link rel="stylesheet" href="/assets/site.css">
 <script>
-  // light or dark before anything paints: the visitor's choice, else their system setting
-  const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || sys; } catch { document.documentElement.dataset.mode = sys; }
+  // light or dark before anything paints: the visitor's choice, else light
+  try { document.documentElement.dataset.mode = localStorage.getItem('mode') || 'light'; } catch { document.documentElement.dataset.mode = 'light'; }
   // note how this page was reached, so scroll-reveal content that's already on screen shows at once
   addEventListener('pagereveal', e => { document.documentElement.dataset.arrived = e.viewTransition ? 'vt' : 'plain'; });
 </script>
@@ -50,13 +49,13 @@
 <section class="list" id="projects">
   <h2 class="list-label">Things I made</h2>
   <ol class="years">
-    <li><span class="yr">2026</span><a class="item" href="/projects/vox2/"><span class="t">Vox2</span><span class="m">Desktop app</span></a></li>
-    <li><span class="yr"></span><a class="item" href="/projects/paper-trail/"><span class="t">Paper Trail</span><span class="m">Framework</span></a></li>
-    <li class="sub"><span class="yr"></span><a class="item" href="/projects/bankrolled/"><span class="t">Bankrolled</span><span class="m">Tracker</span></a></li>
-    <li class="sub"><span class="yr"></span><a class="item" href="/projects/tracewire/"><span class="t">Tracewire</span><span class="m">Tracker</span></a></li>
-    <li><span class="yr"></span><a class="item" href="/projects/purrmodoro/"><span class="t">Purrmodoro</span><span class="m">iPhone app</span></a></li>
-    <li><span class="yr"></span><a class="item" href="/projects/weather-dots/"><span class="t">Weather, in dots</span><span class="m">Website</span></a></li>
-    <li><span class="yr"></span><a class="item" href="/projects/swear-jar/"><span class="t">Swear Jar</span><span class="m">Dashboard</span></a></li>
+    <li><a class="item" href="/projects/vox2/"><span class="t">Vox2</span><span class="m">A translator for Windows and Mac that also checks if your meaning came through.</span></a></li>
+    <li><a class="item" href="/projects/paper-trail/"><span class="t">Paper Trail</span><span class="m">My kit for building websites that keep a sourced public record.</span></a></li>
+    <li class="sub"><a class="item" href="/projects/bankrolled/"><span class="t">Bankrolled</span><span class="m">Follows the money behind American gambling, updated every hour.</span></a></li>
+    <li class="sub"><a class="item" href="/projects/tracewire/"><span class="t">Tracewire</span><span class="m">Follows tech, AI and data center deals, and who they affect.</span></a></li>
+    <li><a class="item" href="/projects/purrmodoro/"><span class="t">Purrmodoro</span><span class="m">A focus timer with a cat, made for my wife.</span></a></li>
+    <li><a class="item" href="/projects/weather-dots/"><span class="t">Weather, in dots</span><span class="m">86 years of weather for any city, drawn in dots.</span></a></li>
+    <li><a class="item" href="/projects/swear-jar/"><span class="t">Swear Jar</span><span class="m">Shows where my AI credits go while I build.</span></a></li>
   </ol>
 </section>
 

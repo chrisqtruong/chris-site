@@ -1055,3 +1055,56 @@
   body:not(.benji) .page-head { padding-top: 28px; }
   .next-proj { margin-top: clamp(56px, 7vw, 88px); }
   footer:not(.postmark) { margin-top: 40px; }
+
+  /* =====================================================================
+     Compact pass: one tight rhythm everywhere.
+     12px between paragraphs · 8px under a heading · 20px around figures and lists · 44px between chapters
+     ===================================================================== */
+  /* home list: no year column, rows run the full width */
+  .benji .years li { display: block; }
+  .benji .about p { margin-bottom: 12px; }
+  .benji .col > section.list { margin-top: 36px; }
+  .benji .masthead { margin-bottom: 24px; }
+  .benji .postmark, .postmark { margin-top: 44px; padding-bottom: 56px; }
+  .postmark::before { margin-bottom: 18px; }
+
+  /* project pages */
+  body:not(.benji) main > section { padding-top: 40px; }
+  .page-head { padding-bottom: 0; }
+  .case-hero { margin-top: 20px; }
+  .facts { padding-top: 24px; gap: 20px; }
+  .facts div { padding-top: 10px; }
+  .toc { padding-top: 16px; }
+  .chapter + .chapter { padding-top: 44px; }
+  .chapter .num { margin-bottom: 2px; }
+  .chapter h2 { margin-bottom: 8px !important; }
+  .chapter p { font-size: 17px; line-height: 1.65; margin: 0 0 12px; }
+  .chapter :is(.cycle, .ladder, .trend, .stats, .decisions, .roadmap, .features, .term, .wide-shot, .screens, img.wide, .shot-row) { margin-top: 20px !important; margin-bottom: 20px !important; }
+  .chapter p + :is(.roadmap, .decisions, .features), .chapter :is(.roadmap, .decisions, .features) + p { margin-top: 20px; }
+  .chapter .fine { margin-top: -6px !important; }
+  .decisions { gap: 12px; }
+  .decision { padding: 20px 20px 18px; }
+  .decision p { font-size: 16px; }
+  .roadmap li, .features li { padding: 10px 0; font-size: 16px; }
+  .stats { gap: 16px; }
+  .ladder-demo { margin-top: 16px; }
+  .next-proj { margin-top: 48px; padding-top: 20px; }
+  footer:not(.postmark) { margin-top: 28px; padding-bottom: 48px; }
+  footer:not(.postmark) .links { padding-top: 0; }
+  footer:not(.postmark) small { margin-top: 12px; }
+  /* home list: name, then one plain line about it */
+  .benji .item { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: baseline; }
+  .benji .item .m { white-space: normal; font-size: 15px; line-height: 1.45; }
+  .benji .sub .item { grid-template-columns: 150px 1fr; }
+  @media (max-width: 640px) {
+    .benji .item { grid-template-columns: 1fr; gap: 2px; }
+  }
+  /* project titles: big, not billboard */
+  .case-hero h1 { font-size: clamp(44px, 6vw, 80px) !important; line-height: 1.02; }
+  /* "Skip to content": invisible until someone moves through the page with the keyboard,
+     then a small pill in the page's own colors (it used to be an inverted dark pill, which looked like a glitch) */
+  .skip { position: fixed; left: 12px; top: 12px; z-index: 70; padding: 10px 16px; border-radius: 99px;
+    background: var(--paper); color: var(--ink); border: 1px solid var(--hair); box-shadow: 0 6px 20px -8px rgba(0, 0, 0, .25);
+    font: 500 14px var(--sans); text-decoration: none;
+    clip-path: inset(50%); opacity: 0; pointer-events: none; transition: none; }
+  .skip:focus-visible { clip-path: none; opacity: 1; pointer-events: auto; }
