@@ -881,3 +881,4 @@
   .tracker .go { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
   :root[data-mode="dark"] .case-hero.purr .btn.solid { color: #24160c; }
   .ladder em { color: var(--sel-ink); }   /* black or white, whichever reads better on the theme color */
+  .trend .hits circle { fill: transparent; stroke: none; }

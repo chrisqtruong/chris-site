@@ -135,11 +135,15 @@ if (trend) {
   };
   const hideTip = () => { tip.classList.remove('show'); pts.forEach(c => c.classList.remove('on')); };
   // each point gets an invisible larger circle on top, so it's easy to tap (44pt, per Apple's guidelines)
+  // in their own group, so the dots' styles (fill, stroke, hover size) never touch them
+  const hitLayer = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  hitLayer.setAttribute('class', 'hits');
+  svg.append(hitLayer);
   const hits = pts.map(c => {
     const h = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     h.setAttribute('cx', c.getAttribute('cx')); h.setAttribute('cy', c.getAttribute('cy')); h.setAttribute('r', 15);
     h.setAttribute('fill', 'transparent'); h.setAttribute('aria-hidden', 'true'); h.style.cursor = 'pointer';
-    c.parentNode.append(h);
+    hitLayer.append(h);
     return h;
   });
   hits.forEach((h, i) => {
