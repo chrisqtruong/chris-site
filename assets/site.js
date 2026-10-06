@@ -553,30 +553,46 @@ if (figs.length) {
   figs.forEach(f => io.observe(f));
 }
 
-/* ---------- tap an image marked data-full to see it at full size over a darkened page ---------- */
-const zoomables = document.querySelectorAll('img[data-full]');
+/* ---------- tap an image marked data-full to see it at full size over a darkened page ----------
+   With more than one on the page, ← and → (or the arrow buttons) step through them in order. */
+const zoomables = [...document.querySelectorAll('img[data-full]')];
 if (zoomables.length) {
+  const many = zoomables.length > 1;
   const box = document.createElement('dialog');
   box.className = 'zoombox';
-  box.innerHTML = '<img alt=""><button type="button" class="lb-close" aria-label="Close">×</button>';
+  box.innerHTML = '<figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lb-close" aria-label="Close">×</button>'
+    + (many ? '<button type="button" class="zb-step prev" aria-label="Previous picture">←</button><button type="button" class="zb-step next" aria-label="Next picture">→</button>' : '');
   document.body.append(box);
-  const big = box.querySelector('img');
-  const close = () => box.close();
-  box.addEventListener('click', close);                       // anywhere closes it, picture included
-  box.addEventListener('close', () => { big.removeAttribute('src'); });
-  zoomables.forEach(img => {
+  const big = box.querySelector('img'), cap = box.querySelector('figcaption');
+  let at = 0;
+  const show = i => {
+    at = (i + zoomables.length) % zoomables.length;
+    const img = zoomables[at];
+    big.src = img.currentSrc || img.src;                     // the small one shows at once…
+    big.alt = img.alt;
+    const full = new Image();                                  // …then the full one swaps in when it's loaded
+    full.onload = () => { if (box.open && zoomables[at] === img) big.src = img.dataset.full; };
+    full.src = img.dataset.full;
+    const words = img.dataset.caption || img.closest('figure')?.querySelector('figcaption')?.textContent.trim() || '';
+    cap.textContent = many ? (words ? `${words} · ` : '') + `${at + 1} / ${zoomables.length}` : words;
+    // warm up the neighbours so stepping feels instant
+    if (many) [at + 1, at - 1].forEach(k => { new Image().src = zoomables[(k + zoomables.length) % zoomables.length].dataset.full; });
+  };
+  box.addEventListener('click', e => { if (!e.target.closest('.zb-step')) box.close(); });   // anywhere else closes it, picture included
+  box.querySelectorAll('.zb-step').forEach(b => b.addEventListener('click', () => show(at + (b.classList.contains('next') ? 1 : -1))));
+  box.addEventListener('keydown', e => {
+    if (!many) return;
+    if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+  });
+  box.addEventListener('close', () => { big.removeAttribute('src'); zoomables[at]?.focus({ preventScroll: true }); });
+  zoomables.forEach((img, i) => {
     img.tabIndex = 0;
     img.setAttribute('role', 'button');
     img.setAttribute('aria-label', (img.alt ? img.alt + '. ' : '') + 'Open full size');
-    const open = () => {
-      big.src = img.currentSrc || img.src;                   // the small one shows at once…
-      big.alt = img.alt;
-      const full = new Image();                                // …then the full one swaps in when it's loaded
-      full.onload = () => { if (box.open) big.src = img.dataset.full; };
-      full.src = img.dataset.full;
-      box.showModal();
-    };
+    const open = () => { show(i); box.showModal(); };
     img.addEventListener('click', open);
     img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
   });
 }
+
