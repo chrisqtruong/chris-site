@@ -792,7 +792,7 @@
   /* =====================================================================
      Home, Benji-style: one quiet column of plain paragraphs, a dated list, a postmark.
      ===================================================================== */
-  .benji { --col: 560px; --muted: color-mix(in srgb, var(--ink) 45%, var(--paper)); }
+  .benji { --col: 560px; --muted: color-mix(in srgb, var(--ink) 64%, var(--paper)); }
   .benji .col { max-width: calc(var(--col) + 2 * var(--gutter)); margin: 0 auto; padding: clamp(56px, 9vw, 96px) var(--gutter) 0; }
   .benji .masthead { position: relative;}
   .benji .who { font: 600 17px/1.5 var(--serif); margin: 0; letter-spacing: 0; }
@@ -1363,7 +1363,7 @@ body:has(.photo-head) footer { margin-top: 72px; }
 .sections { display: none; }
 @media (min-width: 1360px) {
   .sections { display: block; position: fixed; left: 56px; top: 104px; width: 170px; z-index: 5; font: 400 14px/1.5 var(--sans); }
-  .sections a { color: var(--muted, color-mix(in srgb, var(--ink) 45%, var(--paper))); text-decoration: none; transition: color .2s; }
+  .sections a { color: var(--muted); text-decoration: none; transition: color .2s; }
   .sections a:hover { color: var(--ink); }
   .sections .sec-back { display: inline-block; margin-bottom: 28px; }
   .sections .sec-title { display: block; margin-bottom: 14px; }
@@ -1375,3 +1375,6 @@ body:has(.photo-head) footer { margin-top: 72px; }
   body:has(.sections) .page-head { display: none; }
   body:has(.sections) .case-hero { margin-top: 56px !important; }
 }
+
+/* the quiet gray, defined once for every page: 64% ink is the lightest mix that still reads (4.56:1 light, 6.41:1 dark) */
+:root { --muted: color-mix(in srgb, var(--ink) 64%, var(--paper)); }
