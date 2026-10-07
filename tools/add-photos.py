@@ -40,8 +40,7 @@ CAPS.write_text(json.dumps({k: caps[k] for k in sorted(caps) if k in seen}, inde
 photos.sort(key=lambda p: (p['date'] or '9999', p['slug']))
 def figure(p):
     cap = caps.get(p['slug'], '')
-    cam = re.sub(r'^(RICOH IMAGING COMPANY, LTD\.|SONY|Apple) ', '', p['camera']).strip()
-    label = ' · '.join(x for x in [cap, cam] if x)
+    label = cap   # just the caption; no camera or lens names
     alt = html.escape(cap or 'Photo by Chris Truong', quote=True)
     return (f'  <figure><img src="/assets/photos/{p["slug"]}.jpg" data-full="/assets/photos/{p["slug"]}-full.jpg" '
             f'width="{p["w"]}" height="{p["h"]}" loading="lazy" alt="{alt}">'
