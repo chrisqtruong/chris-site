@@ -1353,3 +1353,8 @@ body:has(.photo-head) footer { margin-top: 72px; }
   .benji .sub .item .m { padding-left: 1.35em; }      /* descriptions line up under the name, past the ↳ */
 }
 .text .nb { white-space: nowrap; }
+
+/* Weather in dots: the study, matted like the other prints */
+.study { margin: 22px auto 22px; max-width: 420px; }
+.study video { display: block; width: 100%; height: auto; background: #fff; padding: clamp(6px, 1vw, 11px); box-sizing: border-box; border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 12px 28px -16px rgba(0, 0, 0, .38); }
