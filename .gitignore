@@ -2,3 +2,5 @@
 .env
 before/
 type-options/
+photos-src/
+tools/.bin/

@@ -1528,3 +1528,22 @@ body:not(.benji) main > section { padding-top: 0 !important; }
 /* these clips are pictures that move: no browser playback overlay on top (the play button above covers starting one) */
 .has-play video::-webkit-media-controls, .has-play video::-webkit-media-controls-panel,
 .has-play video::-webkit-media-controls-start-playback-button, .has-play video::-webkit-media-controls-overlay-play-button { display: none !important; -webkit-appearance: none; }
+
+/* ---------- Photos: its own page, apart from the projects ---------- */
+.photo-head { max-width: calc(var(--col) + 2 * var(--gutter)); margin: 20px auto 0; padding: 0 var(--gutter); }
+.photo-head h1 { font: 600 34px/1.15 var(--serif); letter-spacing: -0.015em; margin: 0 0 8px; }
+.photo-head p { font-size: 17px; line-height: 1.6; color: var(--soft); margin: 0 0 10px; }
+/* the work-in-progress note: a darkroom safelight glowing beside it */
+.developing { display: flex; align-items: center; gap: 10px; font: italic 400 15.5px/1.5 var(--serif) !important; color: var(--soft); margin-top: 16px !important; }
+.safelight { flex: none; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #c8463c;
+  box-shadow: 0 0 10px 2px rgba(200, 70, 60, .35); animation: safelight 4.5s ease-in-out infinite; }
+@keyframes safelight { 50% { opacity: .5; box-shadow: 0 0 4px 1px rgba(200, 70, 60, .2); } }
+.benji #photos .m .safelight { margin-right: 8px; vertical-align: 2px; }
+/* the prints: white mats like the weather art, three columns that fall into place by height */
+.prints { max-width: 940px; margin: 40px auto 0; padding: 0 var(--gutter); columns: 3 240px; column-gap: 24px; }
+.prints:not(:has(figure)) { display: none; }
+.prints figure { break-inside: avoid; margin: 0 0 28px; }
+.prints img { display: block; width: 100%; height: auto; background: #fff; padding: clamp(6px, .9vw, 10px); box-sizing: border-box; border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 12px 28px -16px rgba(0, 0, 0, .38); }
+.prints figcaption { font: italic 400 14px/1.4 var(--serif); color: var(--soft); margin-top: 8px; }
+body:has(.photo-head) footer { margin-top: 72px; }

@@ -17,3 +17,9 @@ then open http://localhost:4321.
 Thanks for taking a look,
 
 Chris
+
+## Adding photos
+
+1. Put the original photos in `photos-src/` (not published).
+2. Run `python3 tools/add-photos.py`. It makes a page-size copy and a full-size copy of each one in `assets/photos/`, with the location and other hidden camera data removed, and updates the gallery on `/photos/`.
+3. Write captions in `photos/captions.json`, then run the script again.
