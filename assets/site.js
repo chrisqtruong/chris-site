@@ -490,3 +490,25 @@ if (zoomables.length) {
   });
 }
 
+
+/* ---------- project pages: a quiet list of sections in the left margin (like benji.org) ----------
+   Built from each page's section labels; the one you're reading darkens; only on wide screens (CSS). */
+const chapters = [...document.querySelectorAll('.chapter')].filter(c => c.querySelector('.num'));
+const projectTitle = document.querySelector('.case-hero h1');
+if (chapters.length > 1 && projectTitle) {
+  const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const aside = document.createElement('aside');
+  aside.className = 'sections'; aside.setAttribute('aria-label', 'On this page');
+  const items = chapters.map(c => { const label = c.querySelector('.num').textContent.trim(); if (!c.id) c.id = slug(label); return `<li><a href="#${c.id}">${label}</a></li>`; }).join('');
+  aside.innerHTML = `<a class="sec-back" href="/#projects"><span aria-hidden="true">↩</span> Index</a><a class="sec-title" href="#top">${projectTitle.textContent.trim()}</a><ol>${items}</ol>`;
+  document.body.append(aside);
+  const links = [...aside.querySelectorAll('ol a')];
+  const mark = () => {
+    const line = innerHeight * 0.35; let cur = -1;
+    chapters.forEach((c, i) => { if (c.getBoundingClientRect().top <= line) cur = i; });
+    links.forEach((a, i) => a.toggleAttribute('aria-current', i === cur));
+    aside.classList.toggle('at-top', cur < 0);
+  };
+  addEventListener('scroll', mark, { passive: true }); addEventListener('resize', mark); mark();
+  aside.querySelector('.sec-title').addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: REDUCE_MOTION ? 'auto' : 'smooth' }); });
+}

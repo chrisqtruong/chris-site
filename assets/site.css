@@ -1358,3 +1358,20 @@ body:has(.photo-head) footer { margin-top: 72px; }
 .study { margin: 22px auto 22px; max-width: 420px; }
 .study video { display: block; width: 100%; height: auto; background: #fff; padding: clamp(6px, 1vw, 11px); box-sizing: border-box; border-radius: 2px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, .06), 0 12px 28px -16px rgba(0, 0, 0, .38); }
+
+/* ---------- section list in the left margin (project pages, wide screens only) ---------- */
+.sections { display: none; }
+@media (min-width: 1360px) {
+  .sections { display: block; position: fixed; left: 56px; top: 104px; width: 170px; z-index: 5; font: 400 14px/1.5 var(--sans); }
+  .sections a { color: var(--muted, color-mix(in srgb, var(--ink) 45%, var(--paper))); text-decoration: none; transition: color .2s; }
+  .sections a:hover { color: var(--ink); }
+  .sections .sec-back { display: inline-block; margin-bottom: 28px; }
+  .sections .sec-title { display: block; margin-bottom: 14px; }
+  .sections ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .sections ol a { display: inline-block; padding: 2px 0; }
+  .sections ol a[aria-current] { color: var(--ink); }
+  .sections.at-top .sec-title { color: var(--ink); }
+  /* the margin list has its own way back, so the link above the title can go on wide screens */
+  body:has(.sections) .page-head { display: none; }
+  body:has(.sections) .case-hero { margin-top: 56px !important; }
+}
