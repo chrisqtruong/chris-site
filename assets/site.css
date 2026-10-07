@@ -1584,3 +1584,10 @@ body:not(.benji) main > section { padding-top: 0 !important; }
 body:has(.photo-head) footer { margin-top: 72px; }
 .hl-bubble.wide { width: min(460px, calc(100vw - 24px)); } .hl-bubble.wide .hl-out { max-height: 34vh; }
 .hl-out { white-space: pre-line; }   /* keep the paragraph breaks of a longer selection */
+/* Paper Trail and its two trackers read as one group: no lines inside it, a little closer together */
+.benji .years li:has(+ li.sub) .item { border-bottom-color: transparent; padding-bottom: 4px; }
+.benji .years li.sub .item { padding-top: 4px; }
+@media (max-width: 640px) {
+  .benji .sub .item { grid-template-columns: 1fr; }   /* stack like every other row on a phone */
+  .benji .sub .item .m { padding-left: 1.35em; }      /* descriptions line up under the name, past the ↳ */
+}
