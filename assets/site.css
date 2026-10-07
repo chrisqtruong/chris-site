@@ -1473,6 +1473,41 @@ body:not(.benji) main > section { padding-top: 0 !important; }
   .fx.play.fx-swap .after { animation: u-after 6s infinite; }
   @keyframes u-before { 0%, 35% { opacity: 1; } 45%, 90% { opacity: 0; } 100% { opacity: 1; } }
   @keyframes u-after { 0%, 35% { opacity: 0; } 45%, 90% { opacity: 1; } 100% { opacity: 0; } }
+  /* study · tidy appears only when it would help, then says "tidied" */
+  .fx-utidy .stack { display: grid; } .fx-utidy .stack > * { grid-area: 1 / 1; }
+  .fx-utidy .after, .fx-utidy .t-btn, .fx-utidy .t-done { opacity: 0; }
+  .fx-utidy .foot { gap: 14px !important; }
+  .fx-utidy .t-btn { color: var(--v-text); }
+  .fx-utidy .t-done { margin-left: -36px; }
+  .fx.play.fx-utidy .before { animation: u-before 7s infinite; }
+  .fx.play.fx-utidy .after { animation: u-after 7s infinite; }
+  .fx.play.fx-utidy .t-btn { animation: ut-btn 7s infinite; }
+  .fx.play.fx-utidy .t-done { animation: ut-done 7s infinite; }
+  @keyframes ut-btn { 0%, 15% { opacity: 0; } 20%, 33% { opacity: 1; } 36%, 100% { opacity: 0; } }
+  @keyframes ut-done { 0%, 40% { opacity: 0; } 45%, 90% { opacity: 1; } 100% { opacity: 0; } }
+  /* study · swipe right to archive; swipe left and it asks */
+  .fx-uswipe .track { position: relative; border-radius: 8px; overflow: hidden; }
+  .fx-uswipe .under { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; padding: 0 10px; font: 600 11px var(--mono); }
+  .fx-uswipe .arch { left: 0; right: 50%; background: var(--v-main); color: var(--v-bg); }
+  .fx-uswipe .del { right: 0; left: 50%; justify-content: flex-end; background: var(--u-error); color: var(--v-bg); }
+  .fx-uswipe .row { position: relative; display: grid; gap: 2px; padding: 7px 10px; background: var(--v-line); }
+  .fx-uswipe .row b { font: 600 11px var(--mono); color: var(--v-text); }
+  .fx-uswipe .row i { font-style: normal; font-size: 12.5px; color: color-mix(in srgb, var(--v-text) 80%, transparent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .fx.play.fx-uswipe .row { animation: us-row 7s cubic-bezier(.3,.7,.3,1) infinite; }
+  @keyframes us-row { 0%, 10% { transform: none; } 22%, 36% { transform: translateX(84px); } 46%, 54% { transform: none; } 64%, 84% { transform: translateX(-76px); } 94%, 100% { transform: none; } }
+  /* study · hold, then drag down to pick a run */
+  .fx-upick ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .fx-upick li { display: flex; align-items: center; gap: 8px; }
+  .fx-upick li i { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--v-sub); flex: none; }
+  .fx-upick li span { height: 6px; border-radius: 4px; background: color-mix(in srgb, var(--v-text) 22%, transparent); flex: 1; }
+  .fx-upick li:nth-child(2) span { flex: .7; } .fx-upick li:nth-child(4) span { flex: .85; }
+  .fx-upick .pane { position: relative; }
+  .fx-upick .finger { position: absolute; left: 6px; top: 31px; width: 22px; height: 22px; border-radius: 50%; background: color-mix(in srgb, var(--v-text) 30%, transparent); opacity: 0; }
+  .fx.play.fx-upick .finger { animation: up-finger 6s cubic-bezier(.3,.7,.3,1) infinite; }
+  .fx.play.fx-upick li i { animation: up-pick 6s infinite; }
+  .fx-upick li:nth-child(2) i { animation-delay: .5s !important; } .fx-upick li:nth-child(3) i { animation-delay: 1s !important; } .fx-upick li:nth-child(4) i { animation-delay: 1.5s !important; }
+  @keyframes up-finger { 0%, 8% { opacity: 0; transform: scale(1.4); } 14% { opacity: 1; transform: scale(1); } 24% { transform: none; } 50% { opacity: 1; transform: translateY(57px); } 60%, 100% { opacity: 0; transform: translateY(57px); } }
+  @keyframes up-pick { 0%, 22% { background: transparent; border-color: var(--v-sub); } 26%, 80% { background: var(--v-main); border-color: var(--v-main); } 88%, 100% { background: transparent; border-color: var(--v-sub); } }
   .fx-swap .before s { text-decoration-color: var(--v-sub); color: var(--v-sub); }
   .fx-swap .after b { color: var(--v-main); font-weight: 500; }
   @media (prefers-reduced-motion: reduce) and (max-width: 0px) { .fx-swap .before { opacity: 0; } .fx-swap .after { opacity: 1; } }
