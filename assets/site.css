@@ -1352,3 +1352,4 @@ body:has(.photo-head) footer { margin-top: 72px; }
   .benji .sub .item { grid-template-columns: 1fr; }   /* stack like every other row on a phone */
   .benji .sub .item .m { padding-left: 1.35em; }      /* descriptions line up under the name, past the ↳ */
 }
+.text .nb { white-space: nowrap; }
