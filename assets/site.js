@@ -1,91 +1,8 @@
-/* Shared by every page: photos, lightbox, scroll reveals, footer, page accent. */
+/* Shared by every page: theme and page colors, the light/dark switch, scroll reveals, the highlight bubble, the footer, the full-size viewer. */
 
 // Chris's call (2026-10-06): the site animates for everyone, even with the phone's Reduce Motion setting on.
 // To respect that setting again, set this back to: matchMedia('(prefers-reduced-motion: reduce)').matches
 export const REDUCE_MOTION = false;
-
-/* ---------- photos, grouped into series (placeholders until real ones go in /assets/photos) ---------- */
-// A photo: { src: '/assets/photos/baltimore/harbor.jpg', r: 1.5, cap: '…', cam: '…' }  (r = width / height)
-// Until then each one is a soft neutral block. Series, captions and cameras below are examples.
-const GR = 'Ricoh GR IV', A7 = 'Sony a7 III', IP = 'iPhone';
-const ph = (r, a, b, cap, cam) => ({ r, c: [a, b], cap, cam });
-export const SERIES = [
-  { slug: 'baltimore', title: 'Baltimore', when: '2026', note: 'Example series. Replace with a line about it.', photos: [
-    ph(1.5, '#c9c2b6', '#8f877b', 'Harbor, morning', GR), ph(.8, '#b9b4ab', '#6f6a62', 'Row houses', GR),
-    ph(1.5, '#a59f96', '#57524c', 'Night bus', IP), ph(1.25, '#d3cdc3', '#9a9286', 'Market', GR) ] },
-  { slug: 'vietnam', title: 'Vietnam', when: '2025', note: 'Example series. Replace with a line about it.', photos: [
-    ph(1.5, '#c8c0ae', '#857c68', 'Street, Hội An', A7), ph(.75, '#bdb6a6', '#77705f', 'Grandmother’s house', A7),
-    ph(1.5, '#d0c9b9', '#958d7b', 'Ferry', A7) ] },
-  { slug: 'everyday', title: 'Everyday', when: 'ongoing', note: 'Example series. Replace with a line about it.', photos: [
-    ph(1.25, '#c4c4c0', '#83837e', 'Kitchen light', IP), ph(1, '#b7b6b1', '#6c6b66', 'Sarah', A7),
-    ph(1.5, '#cfcdc7', '#908e87', 'Walk home', GR), ph(.8, '#bcbab3', '#75736c', 'Window', GR) ] },
-];
-
-function photoInner(p) {
-  return p.src
-    ? `<img class="ph" src="${p.src}" alt="${p.cap}" loading="lazy" style="aspect-ratio:${p.r}">`
-    : `<div class="ph" role="img" aria-label="${p.cap}" style="aspect-ratio:${p.r};background:linear-gradient(160deg, ${p.c[0]}, ${p.c[1]})"></div>`;
-}
-
-// A series, one big photo per row with a small caption underneath; click for full screen.
-let PHOTOS = [];
-export function renderSeries(container, series) {
-  PHOTOS = series.photos;
-  series.photos.forEach((p, i) => {
-    const f = document.createElement('figure');
-    f.className = 'plate';
-    f.style.viewTransitionName = `photo-${i}`;
-    f.innerHTML = `<div class="frame">${photoInner(p)}</div><figcaption>${p.cap}<span>${p.cam}</span></figcaption>`;
-    f.querySelector('.frame').onclick = () => openLightbox(i, f);
-    container.append(f);
-  });
-}
-
-/* ---------- lightbox: the photo grows out of the grid (same-page view transition) ---------- */
-let lb, current = -1, fromEl = null;
-function swap(fn) {
-  if (!document.startViewTransition || REDUCE_MOTION) return fn();
-  return document.startViewTransition(fn);
-}
-export function openLightbox(i, el) {
-  lb ??= Object.assign(document.createElement('div'), { className: 'lightbox' });
-  if (!lb.isConnected) {
-    lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
-    lb.onclick = e => { if (!e.target.closest('button')) closeLightbox(); };
-    document.body.append(lb);
-  }
-  const p = PHOTOS[i];
-  swap(() => {
-    if (fromEl) fromEl.style.viewTransitionName = `photo-${current}`;
-    fromEl = el; current = i;
-    el.style.viewTransitionName = 'none';
-    lb.innerHTML = `<div class="lb-frame" style="view-transition-name:photo-${i}; width:min(90vw, 1100px, ${78 * p.r}vh)">${photoInner(p)}</div>`
-      + `<div class="lb-bar"><button data-d="-1" aria-label="Previous">←</button><p>${p.cap} · ${p.cam} · ${i + 1} / ${PHOTOS.length}</p><button data-d="1" aria-label="Next">→</button></div>`;
-    lb.querySelectorAll('[data-d]').forEach(b => b.onclick = () => step(+b.dataset.d));
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-}
-function step(d) {
-  const i = (current + d + PHOTOS.length) % PHOTOS.length;
-  const el = document.querySelectorAll('.plate')[i];
-  if (el) openLightbox(i, el);
-}
-export function closeLightbox() {
-  if (!lb?.classList.contains('open')) return;
-  swap(() => {
-    lb.classList.remove('open'); lb.innerHTML = '';
-    if (fromEl) fromEl.style.viewTransitionName = `photo-${current}`;
-    fromEl = null; current = -1;
-    document.body.style.overflow = '';
-  });
-}
-addEventListener('keydown', e => {
-  if (current < 0) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') step(1);
-  if (e.key === 'ArrowLeft') step(-1);
-});
 
 /* ---------- Vox2 themes (palettes from Vox2 / Monkeytype) ---------- */
 // [bg, main, sub, line, text, accent]; accent is a version of the theme that reads on the white page
@@ -111,36 +28,11 @@ const luminance = hex => {
 };
 const contrast = (a, b) => { const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
 export const onMain = name => { const [bg, main] = THEMES[name]; return contrast(bg, main) >= 4.5 ? bg : '#1d1a1f'; };
-// The same hue, deepened (on the white page) or lifted (on the dark page) only as much as needed
-// to read against it (3:1, fine for large text and accents).
-const PAPER = { light: '#faf8f4', dark: '#16211c' };
-function readableOn(hex, mode) {
-  // work in hue / saturation / lightness, so only lightness moves and the color keeps its character
-  const n = parseInt(hex.slice(1), 16);
-  let [r, g, b] = [n >> 16, (n >> 8) & 255, n & 255].map(v => v / 255);
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  let h = 0, sat = 0, l = (max + min) / 2;
-  if (max !== min) {
-    const d = max - min;
-    sat = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    h = max === r ? (g - b) / d + (g < b ? 6 : 0) : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
-    h /= 6;
-  }
-  const toHex = (L, S) => {
-    const q = L < 0.5 ? L * (1 + S) : L + S - L * S, p = 2 * L - q;
-    const ch = t => { t = (t + 1) % 1; return t < 1 / 6 ? p + (q - p) * 6 * t : t < 1 / 2 ? q : t < 2 / 3 ? p + (q - p) * (2 / 3 - t) * 6 : p; };
-    return '#' + [ch(h + 1 / 3), ch(h), ch(h - 1 / 3)].map(v => Math.round(v * 255).toString(16).padStart(2, '0')).join('');
-  };
-  // lifting a very dark color also needs a little more saturation, or it drifts toward grey
-  const S = mode === 'dark' ? Math.min(1, Math.max(sat, 0.45)) : sat;
-  for (let i = 0; i < 100 && contrast(toHex(l, S), PAPER[mode]) < 3; i++) l += mode === 'light' ? -0.01 : 0.01;
-  return toHex(l, mode === 'dark' && contrast(hex, PAPER[mode]) < 3 ? S : sat);
-}
 
 // Colors the Vox2 parts of a page (--v-*) and the page accent. `surface` is which theme color the
 // page shows big ('bg' for the hero window, 'main' for the Vox2 card); "Truong" in the nav matches it.
 // Light mode keeps one site color whatever the Vox2 theme: an iris that sits between the Vox2 blue and the navy dark mode.
-const SITE_ACCENT_L = '#5a55c9';
+const SITE_ACCENT_L = '#5a55c9', SITE_ACCENT_D = '#a29ff2';   // the same iris, lifted for the dark green page
 export let currentVoxTheme = SITE_THEMES[0];   // the theme on screen right now
 export function applyVoxTheme(name, surface = 'bg') {
   currentVoxTheme = name;
@@ -149,10 +41,10 @@ export function applyVoxTheme(name, surface = 'bg') {
   s.setProperty('--v-bg', bg); s.setProperty('--v-main', main); s.setProperty('--v-sub', sub);
   s.setProperty('--v-line', line); s.setProperty('--v-text', text);
   s.setProperty('--v-on-main', onMain(name));
-  // Light mode: the fixed site iris. Dark mode follows the Vox2 theme.
+  // One site color in both modes: iris (the Vox2 theme only colors the Vox2 parts)
   // On the dark page, the theme's bright color carries the accent instead (Sweden: yellow, not blue):
   // a deep hue on navy only scrapes past 3:1 and looks dim, while the bright one glows at 6–11:1.
-  const nameL = SITE_ACCENT_L, nameD = readableOn(main, 'dark');
+  const nameL = SITE_ACCENT_L, nameD = SITE_ACCENT_D;
   // text inside a selection: white or near-black, whichever reads better on that color
   const ink = c => (contrast(c, '#ffffff') >= contrast(c, '#131214') ? '#ffffff' : '#131214');
   setPageColors({ '--name-l': nameL, '--name-d': nameD, '--sel-ink-l': ink(nameL), '--sel-ink-d': ink(nameD) });
@@ -225,7 +117,7 @@ function setFavicon(color) {
 }
 try {
   const c = JSON.parse(sessionStorage.getItem('pageColors'));
-  if (c) { Object.assign(c, { '--name-l': SITE_ACCENT_L, '--sel-ink-l': '#ffffff' }); setPageColors(c); setFavicon(SITE_ACCENT_L); }
+  if (c) { Object.assign(c, { '--name-l': SITE_ACCENT_L, '--sel-ink-l': '#ffffff', '--name-d': SITE_ACCENT_D, '--sel-ink-d': '#131214' }); setPageColors(c); setFavicon(SITE_ACCENT_L); }
 } catch {}
 
 /* ---------- while the page is scrolling, things that animate on their own wait (so scrolling stays smooth) ---------- */
@@ -407,25 +299,6 @@ document.addEventListener('selectionchange', () => {
 let bubbleY = 0;
 addEventListener('scroll', () => { if (bubble?.classList.contains('show') && Math.abs(scrollY - bubbleY) > 80) hideBubble(); }, { passive: true });
 addEventListener('keydown', e => { if (e.key === 'Escape') hideBubble(); });
-
-/* ---------- a small cat peeks over the footer line when you reach the bottom ---------- */
-const links = document.querySelector('footer .links');
-if (links) {
-  const kitty = document.createElement('span');
-  kitty.className = 'kitty';
-  kitty.setAttribute('aria-hidden', 'true');
-  kitty.innerHTML = `<svg viewBox="0 0 64 40">
-    <path d="M9 24 13 2 29 13Z" fill="#9b6842"/><path d="M14 17 16 8 24 13Z" fill="#f0a3a0"/>
-    <path d="M55 24 51 2 35 13Z" fill="#9b6842"/><path d="M50 17 48 8 40 13Z" fill="#f0a3a0"/>
-    <ellipse cx="32" cy="36" rx="26" ry="23" fill="#9b6842"/>
-    <g class="k-eyes"><ellipse cx="22.5" cy="31" rx="5" ry="5.6" fill="#fffaf2"/><circle cx="23" cy="32" r="3.1" fill="#2a1a12"/>
-      <ellipse cx="41.5" cy="31" rx="5" ry="5.6" fill="#fffaf2"/><circle cx="42" cy="32" r="3.1" fill="#2a1a12"/></g>
-    <g class="k-happy" fill="none" stroke="#2a1a12" stroke-width="2" stroke-linecap="round"><path d="M18 33q4.5-5 9 0"/><path d="M37 33q4.5-5 9 0"/></g>
-  </svg>`;
-  links.append(kitty);
-  // she only moves (and blinks) while she's on screen
-  new IntersectionObserver(([e]) => kitty.classList.toggle('peek', e.isIntersecting), { threshold: 1 }).observe(kitty);
-}
 
 /* ---------- email: assembled in the browser, so bots that read page code don't find the address ---------- */
 document.querySelectorAll('[data-mail]').forEach(a => {

@@ -11,7 +11,7 @@
 <meta property="og:site_name" content="Chris Truong">
 <meta property="og:title" content="Tracewire · Chris Truong">
 <meta property="og:description" content="Tracewire, a sourced, hourly-updated record of the tech, AI and data-center deals and decisions that affect ordinary people, by Chris Truong.">
-<meta property="og:image" content="https://chrisqtruong.github.io/assets/og.png">
+<meta property="og:image" content="https://chrisqtruong.github.io/assets/og/tracewire.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261007100806">
+<link rel="stylesheet" href="/assets/site.css?v=20261007103823">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   /* light by day, dark by night where the visitor is (from their own clock and time zone; flipping the toggle holds for that visit) */(function () { var d = document.documentElement, m; try { localStorage.removeItem('mode'); m = sessionStorage.getItem('mode'); } catch (e) {} if (!m) { try { var n = new Date(), y = n.getFullYear(), tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '', s = /^(Australia|Antarctica)|^Pacific\/(Auckland|Chatham|Fiji)|^America\/(Santiago|Argentina|Sao_Paulo|Montevideo|Asuncion|Lima|La_Paz)|^Africa\/(Johannesburg|Maputo|Harare|Windhoek|Lusaka)/.test(tz), r = Math.PI / 180, lat = (s ? -30 : /^Europe|^Atlantic\/Reykjavik/.test(tz) ? 50 : /^Asia\/(Ho_Chi_Minh|Saigon|Bangkok|Manila|Singapore|Jakarta|Kuala_Lumpur|Kolkata|Calcutta|Colombo|Dhaka|Yangon|Phnom_Penh)|^Africa|^America\/(Mexico_City|Bogota|Caracas|Panama|Guatemala|Costa_Rica)|^Pacific\/Honolulu/.test(tz) ? 13 : 40) * r, day = (n - new Date(y, 0, 0)) / 864e5, dec = -23.44 * r * Math.cos(2 * Math.PI * (day + 10) / 365), c = (Math.sin(-0.833 * r) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec)), half = Math.acos(Math.max(-1, Math.min(1, c))) / r / 15, std = Math.max(new Date(y, 0, 1).getTimezoneOffset(), new Date(y, 6, 1).getTimezoneOffset()), noon = 12 + (std - n.getTimezoneOffset()) / 60, h = n.getHours() + n.getMinutes() / 60; m = h > noon - half && h < noon + half ? 'light' : 'dark'; } catch (e) { m = 'light'; } } d.dataset.mode = m; })();
@@ -32,11 +32,6 @@
 
 <nav>
   <a class="name" href="/">Chris <i>Truong</i></a>
-  <ul>
-    <li><a href="/#projects">Work</a></li>
-    <!-- Photos hidden until there are real photos: <li><a href="/photos/">Photos</a></li> -->
-    <li><a href="#contact">Contact</a></li>
-  </ul>
   <button class="mode" id="modeToggle" type="button" aria-label="Switch to dark mode">
     <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.6 3.7C9.8 4.1 7 7.3 7.2 11.2 7.4 15.3 10.9 18.4 15 18.1 17.1 17.9 18.9 16.8 20.1 15.2 16.3 15.9 12.9 13.1 12.4 9.2 12.2 7.1 12.7 5.3 13.9 3.5"/></svg>
     <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.4 9.3C14.6 8 13.1 7.3 11.6 7.5 9.3 7.8 7.6 9.9 7.8 12.3 8 14.7 10.1 16.4 12.4 16.2 14.7 16 16.4 13.9 16.2 11.6 16.1 10.5 15.6 9.5 14.7 8.8"/><path d="M12.1 2.7 12 5M11.9 19.2l.2 2.2M2.8 11.9l2.3.1M19.1 12.2l2.1-.3M5.3 5.3l1.7 1.6M17.2 17.1l1.4 1.8M5.5 18.7l1.6-1.5M17.1 6.8l1.7-1.6"/></svg>
@@ -113,6 +108,6 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/site.js?v=20261007100806"></script>
+<script type="module" src="/assets/site.js?v=20261007103823"></script>
 </body>
 </html>
