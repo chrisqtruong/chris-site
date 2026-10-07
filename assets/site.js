@@ -378,10 +378,14 @@ function showBubble(range) {
   }
   bubble.querySelector('select').value = hlLang;
   bubble.querySelector('.hl-out').textContent = '…';
-  // just below the selection, kept on screen (above it if there's no room)
-  const r = range.getBoundingClientRect();
-  bubble.style.left = `${Math.max(12, Math.min(r.left, innerWidth - 332))}px`;
-  bubble.style.top = r.bottom + 160 < innerHeight ? `${r.bottom + 10}px` : `${Math.max(12, r.top - 150)}px`;
+  // longer passages get a wider bubble (the text scrolls inside it)
+  const wide = hlText.length > 220;
+  bubble.classList.toggle('wide', wide);
+  const bw = Math.min(wide ? 460 : 320, innerWidth - 24);
+  // just below where the selection ends (its last line), kept on screen; above that line if there's no room
+  const rects = range.getClientRects(), r = rects[rects.length - 1] || range.getBoundingClientRect();
+  bubble.style.left = `${Math.max(12, Math.min(r.left, innerWidth - bw - 12))}px`;
+  bubble.style.top = r.bottom + 200 < innerHeight ? `${r.bottom + 10}px` : `${Math.max(12, r.top - 210)}px`;
   bubble.classList.add('show');
   bubbleY = scrollY;
   hlTranslate();
@@ -394,7 +398,7 @@ document.addEventListener('selectionchange', () => {
     if (!text || sel.isCollapsed) { if (!bubble?.matches(':focus-within')) hideBubble(); return; }
     const where = sel.anchorNode?.parentElement;
     // not inside the translator itself, form fields, or the bubble
-    if (!where || where.closest('.vox, .hl-bubble, input, textarea, select') || text.length > 600 || text === hlText) return;
+    if (!where || where.closest('.vox, .hl-bubble, input, textarea, select') || text.length > 4500 || text === hlText) return;
     hlText = text;
     showBubble(sel.getRangeAt(0));
   }, 350);
