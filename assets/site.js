@@ -341,7 +341,7 @@ if (document.documentElement.dataset.arrived === 'vt') showOnScreen();
 
 /* ---------- highlight any text to translate it, like Vox2's "translate selection" ---------- */
 const HL_LANGS = { vi: 'tiếng Việt', es: 'español', fr: 'français', ja: '日本語', ko: '한국어', 'zh-CN': '中文', ar: 'العربية',
-  fa: 'فارسی', de: 'Deutsch', it: 'italiano', pt: 'português', tr: 'Türkçe', sw: 'Kiswahili', tl: 'Tagalog', hi: 'हिन्दी', en: 'English' };
+  fa: 'فارسی', de: 'Deutsch', it: 'italiano', pt: 'português', tr: 'Türkçe', sw: 'Kiswahili', tl: 'Tagalog', hi: 'हिन्दी', ur: 'اردو', en: 'English' };
 // the visitor's own language if it isn't English, else Vietnamese
 let hlLang = (() => {
   try { const saved = localStorage.getItem('hlLang'); if (HL_LANGS[saved]) return saved; } catch {}
@@ -361,7 +361,7 @@ async function hlTranslate() {
     const j = await res.json();
     const first = Array.isArray(j) ? j[0] : '';
     out.textContent = (Array.isArray(first) ? first[0] : first) || '';
-    out.dir = ['ar', 'fa'].includes(hlLang) ? 'rtl' : 'auto';
+    out.dir = ['ar', 'fa', 'ur'].includes(hlLang) ? 'rtl' : 'auto';
   } catch (e) { if (e.name !== 'AbortError') out.textContent = 'couldn’t reach the translator'; }
   out.classList.remove('pending');
 }
