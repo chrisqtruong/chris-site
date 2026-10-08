@@ -1379,9 +1379,7 @@ body:has(.photo-head) footer { margin-top: 72px; }
 /* the quiet gray, defined once for every page: 64% ink is the lightest mix that still reads (4.56:1 light, 6.41:1 dark) */
 :root { --muted: color-mix(in srgb, var(--ink) 64%, var(--paper)); }
 
-/* home lists: a status on every project (ongoing, paused or finished), and a tracker's deep dives on one quiet line under it */
-.benji .item:has(.st) { grid-template-columns: 150px 1fr auto; }
-.benji .item .st { font: 500 12px/1.4 var(--mono); color: var(--muted); white-space: nowrap; }
+/* home lists: a tracker's deep dives on one quiet line under it */
 .benji .list-label a { color: inherit; text-decoration-color: var(--hair); text-underline-offset: 3px; }
 .benji .list-label a:hover { text-decoration-color: var(--accent); }
 .benji .years li:has(.dive) .item { border-bottom-color: transparent; padding-bottom: 2px; }
@@ -1391,6 +1389,5 @@ body:has(.photo-head) footer { margin-top: 72px; }
 .benji .dive:hover { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
 .benji .dive:hover span { text-decoration: none; }
 @media (max-width: 640px) {
-  .benji .item:has(.st) { grid-template-columns: 1fr; }
   .benji .dive { margin-left: 0; flex-wrap: wrap; gap: 2px 10px; }
 }
