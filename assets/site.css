@@ -1379,15 +1379,14 @@ body:has(.photo-head) footer { margin-top: 72px; }
 /* the quiet gray, defined once for every page: 64% ink is the lightest mix that still reads (4.56:1 light, 6.41:1 dark) */
 :root { --muted: color-mix(in srgb, var(--ink) 64%, var(--paper)); }
 
-/* home lists: a tracker's deep dives on one quiet line under it */
+/* home lists: a tracker's deep dives on one quiet line under it, bulleted with the hand-drawn dot from the theme toggle */
 .benji .list-label a { color: inherit; text-decoration-color: var(--hair); text-underline-offset: 3px; }
 .benji .list-label a:hover { text-decoration-color: var(--accent); }
 .benji .years li:has(.dive) .item { border-bottom-color: transparent; padding-bottom: 2px; }
 .benji .dive { display: flex; gap: 10px; align-items: baseline; margin-left: 166px; padding: 0 0 12px; border-bottom: 1px solid var(--hair); font: 400 15px/1.45 var(--serif); color: var(--ink); text-decoration: none; }
 .benji .years li:last-child .dive { border-bottom: 0; }
-.benji .dive span { font: 500 12px/1.4 var(--mono); color: var(--muted); white-space: nowrap; }
 .benji .dive:hover { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
-.benji .dive:hover span { text-decoration: none; }
+.benji .dive::before { content: ""; flex: none; width: 9px; height: 9px; align-self: center; background: var(--accent); transform: rotate(-8deg); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M58.2 23.4C60.9 29.0 61.0 35.8 58.4 41.4C56.2 46.2 53.8 48.2 50.4 50.6C46.6 53.2 39.2 56.4 33.3 56.7C27.4 56.9 20.0 54.4 15.4 51.5C10.9 48.5 7.7 42.8 5.9 38.9C4.2 35.0 2.8 32.4 4.7 28.2C6.5 23.9 12.2 16.9 17.1 13.2C22.0 9.6 28.6 6.5 34.0 6.2C39.3 5.9 45.0 8.4 49.0 11.3C53.0 14.1 56.6 18.0 58.2 23.4Z'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M58.2 23.4C60.9 29.0 61.0 35.8 58.4 41.4C56.2 46.2 53.8 48.2 50.4 50.6C46.6 53.2 39.2 56.4 33.3 56.7C27.4 56.9 20.0 54.4 15.4 51.5C10.9 48.5 7.7 42.8 5.9 38.9C4.2 35.0 2.8 32.4 4.7 28.2C6.5 23.9 12.2 16.9 17.1 13.2C22.0 9.6 28.6 6.5 34.0 6.2C39.3 5.9 45.0 8.4 49.0 11.3C53.0 14.1 56.6 18.0 58.2 23.4Z'/%3E%3C/svg%3E") center / contain no-repeat; }
 @media (max-width: 640px) {
-  .benji .dive { margin-left: 0; flex-wrap: wrap; gap: 2px 10px; }
+  .benji .dive { margin-left: 0; }
 }
