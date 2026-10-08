@@ -1411,11 +1411,11 @@ body:has(.photo-head) footer { margin-top: 72px; }
 .steps li { position: relative; padding-top: 24px; font: 400 14px/1.4 var(--sans); }
 .steps li::before { content: ""; position: absolute; top: 5px; left: 0; right: -12px; height: 1px; background: var(--hair); }
 .steps li:last-child::before { right: 0; }
-.steps li::after { content: ""; position: absolute; top: 1px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--hair); transition: background-color .3s, transform .3s; }
+.steps li::after { content: ""; position: absolute; top: 1px; left: 0; width: 9px; height: 9px; box-sizing: border-box; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--muted); transition: background-color .3s, border-color .3s, transform .3s, box-shadow .3s; }   /* upcoming: a hollow ring in the quiet gray (4.6:1 light, 6.4:1 dark) */
 .steps b { display: block; font: 600 15px/1.3 var(--serif); color: var(--soft); transition: color .3s; }
 .steps span { color: var(--muted); }
-.steps li.on::after, .steps li.done::after { background: var(--accent); }
-.steps li.on::after { transform: scale(1.35); }
+.steps li.on::after, .steps li.done::after { background: var(--accent); border-color: var(--accent); }   /* done: solid iris */
+.steps li.on::after { transform: scale(1.35); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent); }   /* current: larger, with a soft halo */
 .steps li.on b { color: var(--ink); }
 /* two speeds: the Wire streams, the Feed only takes what was checked */
 .speeds { grid-template-columns: 1fr 1fr; gap: 0 28px; }
