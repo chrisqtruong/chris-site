@@ -1381,10 +1381,7 @@ body:has(.photo-head) footer { margin-top: 72px; }
 
 /* home lists: a status on every project (ongoing, paused or finished), and a tracker's deep dives on one quiet line under it */
 .benji .item:has(.st) { grid-template-columns: 150px 1fr auto; }
-.benji .item .st { font: 500 12px/1.4 var(--mono); color: var(--muted); white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
-.benji .item .st::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-.benji .item .st.paused::before { background: none; box-shadow: inset 0 0 0 1.5px var(--muted); }
-.benji .item .st.finished::before { background: var(--muted); }
+.benji .item .st { font: 500 12px/1.4 var(--mono); color: var(--muted); white-space: nowrap; }
 .benji .list-label a { color: inherit; text-decoration-color: var(--hair); text-underline-offset: 3px; }
 .benji .list-label a:hover { text-decoration-color: var(--accent); }
 .benji .years li:has(.dive) .item { border-bottom-color: transparent; padding-bottom: 2px; }
