@@ -47,13 +47,13 @@
   <div class="copy">
     <p class="part-of">Deep dive · <a href="/projects/tracewire/">Tracewire</a> · October 7, 2026</p>
     <h1>Next Door</h1>
-    <p>When a data center is proposed, residents usually get one number: its size in megawatts. Next Door turns that number into what it means for the town around it, in homes, gallons, jobs and dollars, before the public hearing.</p>
+    <p>When a data center is proposed, residents usually get one number: its size in megawatts. Next Door turns it into homes, gallons, jobs and dollars for their town.</p>
     <div class="btns">
       <a class="btn solid" href="https://chrisqtruong.github.io/tracewire/next-door/" target="_blank" rel="noopener">try it</a>
       <a class="btn" href="https://chrisqtruong.github.io/tracewire/" target="_blank" rel="noopener">tracewire</a>
     </div>
   </div>
-  <figure class="shot"><img src="/assets/next-door-estimate.jpg" width="1700" height="890" alt="Next Door's estimate for a hypothetical 300-megawatt data center in Culpeper, Virginia: about 120,000 homes' worth of electricity, 240,000 gallons of cooling water a day, 480 permanent jobs and an $870 tax break per resident"></figure>
+  <figure class="shot"><img src="/assets/next-door-estimate.jpg?v=2" width="1700" height="765" alt="Next Door's estimate for a hypothetical 300-megawatt data center in Culpeper, Virginia: about 120,000 homes' worth of electricity, 240,000 gallons of cooling water a day, 480 permanent jobs and an $870 tax break per resident"></figure>
 </header>
 
 <section>
@@ -61,22 +61,21 @@
     <div class="num">How</div>
     <div>
       <h2>made with claude</h2>
-      <p>I built this with Claude, Anthropic’s AI assistant. I started from a prototype I made in Lovable, then Claude checked each assumption against its source, rewrote the formulas in plain JavaScript with tests, and drew the charts. I picked the subject, steered the work and checked it before publishing. The rule is the same as for Tracewire: nothing goes up unless it was checked against a source someone actually opened.</p>
+      <p>I built it with Claude, Anthropic’s AI assistant, from a prototype I made in Lovable. Claude checked every assumption against its source and drew the charts. I picked the subject and reviewed it before publishing.</p>
     </div>
   </div>
 
   <div class="chapter reveal">
     <div class="num">What</div>
     <div>
-      <h2>four questions, in everyday terms</h2>
-      <p>You enter a town, its state, the facility’s size and the town’s population, which it can look up from the Census. Next Door estimates four things and shows a range for each. Here’s a hypothetical 300-megawatt data center in Culpeper, Virginia, a town of about 20,800 people:</p>
+      <h2>a 300-megawatt example</h2>
+      <p>A hypothetical data center in Culpeper, Virginia, a town of about 20,800 people:</p>
       <div class="stats">
-        <div class="stat"><b>15×</b><span>the electricity used by every home in town, about 120,000 homes’ worth (<a href="https://www.eia.gov/tools/faqs/faq.php?id=97&amp;t=3" target="_blank" rel="noopener">EIA</a>, <a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">LBNL</a>)</span></div>
-        <div class="stat"><b>240K</b><span>gallons of cooling water a day, about 89 million-gallon pools a year (<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">LBNL</a>, <a href="https://www.usgs.gov/water-science-school/science/a-million-gallons-water-how-much-it" target="_blank" rel="noopener">USGS</a>)</span></div>
-        <div class="stat"><b>480</b><span>permanent jobs, after a peak of about 1,500 construction workers (<a href="https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf" target="_blank" rel="noopener">JLARC</a>)</span></div>
+        <div class="stat"><b>15×</b><span>the electricity every home in town uses (<a href="https://www.eia.gov/tools/faqs/faq.php?id=97&amp;t=3" target="_blank" rel="noopener">EIA</a>, <a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">LBNL</a>)</span></div>
+        <div class="stat"><b>240K</b><span>gallons of cooling water a day (<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">LBNL</a>)</span></div>
+        <div class="stat"><b>480</b><span>permanent jobs (<a href="https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf" target="_blank" rel="noopener">JLARC</a>)</span></div>
       </div>
       <figure class="wide-shot"><img src="/assets/next-door-electricity.jpg" width="1700" height="820" alt="Fifteen blocks of 100 orange squares. Each block is every home in Culpeper; the data center's electricity fills almost fifteen of them." loading="lazy"><figcaption>Each block is every home in town. The data center fills almost fifteen.</figcaption></figure>
-      <p>The fourth is the tax break. Most states exempt data center equipment from sales tax. Enter the project’s announced investment, and Next Door estimates the sales tax it won’t pay and divides it across the town’s residents. For a $500 million project in Culpeper, that’s about $870 a person.</p>
     </div>
   </div>
 
@@ -84,29 +83,12 @@
     <div class="num">Checked</div>
     <div>
       <h2>checking every number</h2>
-      <p>The prototype looked finished, but its assumptions weren’t checked. Checking them against the sources changed several results:</p>
       <ul class="features">
-        <li><b>A unit mix-up.</b> The cooling-water figure was in liters per kilowatt-hour of computer power, not gallons per kilowatt-hour of the whole building. Fixing that, and using LBNL’s figure for how much of its rated power a data center draws on average, cut the water estimate by more than half (<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">LBNL</a>).</li>
-        <li><b>The wrong states.</b> The list of states with a data center tax exemption was wrong for several states. It now comes from Virginia’s legislative auditors, who counted 34 in 2024 (<a href="https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf" target="_blank" rel="noopener">JLARC</a>).</li>
-        <li><b>Numbers with no source.</b> Construction workers per megawatt, equipment spending per megawatt and the volume of an Olympic pool (published depths differ) couldn’t be backed up, so they came out. JLARC’s per-facility figures and USGS’s million-gallon pool replaced them.</li>
-        <li><b>No made-up ranges.</b> Where a source gives one figure, the page says so instead of inventing a range.</li>
+        <li><b>A unit mix-up.</b> Fixing it, with one other correction, more than halved the water estimate.</li>
+        <li><b>The wrong states.</b> The tax-break list now comes from Virginia’s auditors.</li>
+        <li><b>No unsourced numbers.</b> Anything without a source came out.</li>
       </ul>
       <figure class="wide-shot"><img src="/assets/next-door-states.jpg" width="1700" height="1120" alt="A tile map of U.S. states. 34 states are filled orange for having a data center sales tax exemption in 2024; Virginia is outlined." loading="lazy"><figcaption>The 34 states with a data center sales tax exemption in 2024, from JLARC.</figcaption></figure>
-    </div>
-  </div>
-
-  <div class="chapter reveal">
-    <div class="num">Ask</div>
-    <div>
-      <h2>what it can’t tell you</h2>
-      <p>These are planning-level estimates from national and Virginia averages, not predictions for one project. The people proposing it can give the real figures, so the page ends with questions to ask at the hearing:</p>
-      <ul class="features">
-        <li><b>Water.</b> Which cooling system will it use, and where will the water come from?</li>
-        <li><b>Power.</b> Who pays for new power lines, substations and power plants?</li>
-        <li><b>Jobs.</b> How many permanent jobs will go to people who already live here?</li>
-        <li><b>Taxes.</b> What state and local tax breaks has the developer applied for, and for how long?</li>
-      </ul>
-      <p>The <a href="https://chrisqtruong.github.io/tracewire/next-door/" target="_blank" rel="noopener">tool itself</a> shows every assumption, its range and its source.</p>
     </div>
   </div>
 
@@ -114,7 +96,7 @@
     <div class="num">Sources</div>
     <div>
       <h2>sources</h2>
-      <p>Every figure in Next Door comes from these. Each was checked on October 7, 2026; corrections are welcome by email.</p>
+      <p>Checked October 7, 2026. Corrections are welcome by email.</p>
       <ul style="list-style:none;padding:0;margin:0;display:grid;gap:5px;font-size:15px;line-height:1.45">
         <li><a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">Lawrence Berkeley National Laboratory, 2024 United States Data Center Energy Usage Report</a></li>
         <li><a href="https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf" target="_blank" rel="noopener">JLARC, Data Centers in Virginia (Report 598, 2024)</a></li>
