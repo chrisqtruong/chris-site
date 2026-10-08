@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261008004933">
+<link rel="stylesheet" href="/assets/site.css?v=20261008014901">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   /* light by day, dark by night where the visitor is (from their own clock and time zone; flipping the toggle holds for that visit) */(function () { var d = document.documentElement, m; try { localStorage.removeItem('mode'); m = sessionStorage.getItem('mode'); } catch (e) {} if (!m) { try { var n = new Date(), y = n.getFullYear(), tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '', s = /^(Australia|Antarctica)|^Pacific\/(Auckland|Chatham|Fiji)|^America\/(Santiago|Argentina|Sao_Paulo|Montevideo|Asuncion|Lima|La_Paz)|^Africa\/(Johannesburg|Maputo|Harare|Windhoek|Lusaka)/.test(tz), r = Math.PI / 180, lat = (s ? -30 : /^Europe|^Atlantic\/Reykjavik/.test(tz) ? 50 : /^Asia\/(Ho_Chi_Minh|Saigon|Bangkok|Manila|Singapore|Jakarta|Kuala_Lumpur|Kolkata|Calcutta|Colombo|Dhaka|Yangon|Phnom_Penh)|^Africa|^America\/(Mexico_City|Bogota|Caracas|Panama|Guatemala|Costa_Rica)|^Pacific\/Honolulu/.test(tz) ? 13 : 40) * r, day = (n - new Date(y, 0, 0)) / 864e5, dec = -23.44 * r * Math.cos(2 * Math.PI * (day + 10) / 365), c = (Math.sin(-0.833 * r) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec)), half = Math.acos(Math.max(-1, Math.min(1, c))) / r / 15, std = Math.max(new Date(y, 0, 1).getTimezoneOffset(), new Date(y, 6, 1).getTimezoneOffset()), noon = 12 + (std - n.getTimezoneOffset()) / 60, h = n.getHours() + n.getMinutes() / 60; m = h > noon - half && h < noon + half ? 'light' : 'dark'; } catch (e) { m = 'light'; } } d.dataset.mode = m; })();
@@ -67,6 +67,22 @@
   </div>
 
   <div class="chapter reveal">
+    <div class="num">Losses</div>
+    <div>
+      <h2>five years of losing</h2>
+      <p class="meter">Since you opened this page, bettors have lost about <b data-rate="537.8">$0</b> to legal sportsbooks.</p>
+      <figure class="fx bars" aria-label="Money lost by bettors to legal U.S. sportsbooks: $4.3 billion in 2021, $7.5 billion in 2022, $11.0 billion in 2023, $13.7 billion in 2024, $17.0 billion in 2025">
+        <div class="yr" style="--v:4.3"><b>$4.3B</b><i></i><span>2021</span></div>
+        <div class="yr" style="--v:7.5"><b>$7.5B</b><i></i><span>2022</span></div>
+        <div class="yr" style="--v:11.04"><b>$11.0B</b><i></i><span>2023</span></div>
+        <div class="yr" style="--v:13.71"><b>$13.7B</b><i></i><span>2024</span></div>
+        <div class="yr now" style="--v:16.96"><b>$17.0B</b><i></i><span>2025</span></div>
+      </figure>
+      <p class="fine">What sportsbooks kept each year, which is what bettors lost, from the American Gaming Association. The counter runs at the 2025 pace, about $538 a second.</p>
+    </div>
+  </div>
+
+  <div class="chapter reveal">
     <div class="num">Rules</div>
     <div>
       <h2>the rules</h2>
@@ -90,7 +106,15 @@
     <div class="num">How</div>
     <div>
       <h2>how it works</h2>
-      <p>A scheduled Claude task reads the original sources and the news, checks each item, and updates the page. It’s paused for now; everything published stays up.</p>
+      <p>Every hour, a scheduled Claude task checks the primary records first (FEC filings, lobbying disclosures, court dockets, regulators), then the news. It reads each item at its source before it labels it, and writes a dated report even when nothing met the bar.</p>
+      <ol class="fx steps" aria-label="One hourly check, step by step">
+        <li><b>primary records</b><span>FEC, lobbying, courts</span></li>
+        <li><b>the news</b><span>wire, national, trade</span></li>
+        <li><b>read at the source</b><span>duplicates skipped</span></li>
+        <li><b>label it</b><span>confirmed, reported, disputed</span></li>
+        <li><b>publish</b><span>and a dated report</span></li>
+      </ol>
+      <p>So far that's 48 posts (43 confirmed, 4 reported, 1 disputed) and 68 rows in the ledger, which only takes confirmed items. The checks are paused for now; everything published stays up.</p>
       <p class="fine" style="margin-top:32px !important">If gambling is causing problems for you or someone you know, the National Problem Gambling Helpline is 1-800-GAMBLER (call or text).</p>
     </div>
   </div>
@@ -113,6 +137,6 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/site.js?v=20261008004933"></script>
+<script type="module" src="/assets/site.js?v=20261008014901"></script>
 </body>
 </html>

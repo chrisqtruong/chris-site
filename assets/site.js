@@ -512,3 +512,52 @@ if (chapters.length > 1 && projectTitle) {
   addEventListener('scroll', mark, { passive: true }); addEventListener('resize', mark); mark();
   aside.querySelector('.sec-title').addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: REDUCE_MOTION ? 'auto' : 'smooth' }); });
 }
+
+/* ---------- Bankrolled and Tracewire figures ---------- */
+// the loss counter: money lost since this page opened, at the stated yearly pace
+document.querySelectorAll('.meter b[data-rate]').forEach(b => {
+  const rate = +b.dataset.rate, t0 = performance.now();
+  const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  setInterval(() => { b.textContent = fmt.format(rate * (performance.now() - t0) / 1000); }, 100);
+});
+// a dot walks through the steps of one check while the list is on screen
+document.querySelectorAll('.fx.steps').forEach(ol => {
+  const li = [...ol.children]; let i = 0;
+  setInterval(() => {
+    if (!ol.classList.contains('play')) return;
+    li.forEach((x, k) => { x.classList.toggle('on', k === i); x.classList.toggle('done', k < i); });
+    i = (i + 1) % (li.length + 1);
+  }, 1300);
+});
+// two speeds: headlines arrive in the Wire; every third beat the oldest one is checked and moves to the Feed
+document.querySelectorAll('.fx.speeds').forEach(fig => {
+  const heads = JSON.parse(fig.dataset.heads), wire = fig.querySelector('.wire ul'), feed = fig.querySelector('.feed ul');
+  let next = 0, beat = 0;
+  const item = (text, tag) => { const li = document.createElement('li'); li.textContent = text; const em = document.createElement('em'); em.textContent = tag; li.append(em); return li; };
+  const tick = () => {
+    if (!fig.classList.contains('play')) return;
+    beat++;
+    if (beat % 3 === 0 && wire.children.length > 1) {
+      const old = wire.lastElementChild; old.classList.add('going');
+      setTimeout(() => { old.remove(); feed.prepend(item(old.firstChild.textContent, 'confirmed')); while (feed.children.length > 3) feed.lastElementChild.remove(); }, 450);
+    } else {
+      wire.prepend(item(heads[next++ % heads.length], 'unverified'));
+      while (wire.children.length > 3) wire.lastElementChild.remove();
+    }
+  };
+  for (let k = 0; k < 2; k++) wire.prepend(item(heads[next++], 'unverified'));
+  setInterval(tick, 1600);
+});
+// Next Door: the two estimates count up once they come into view
+document.querySelectorAll('.fx.estimate').forEach(fig => {
+  const nums = [...fig.querySelectorAll('b[data-to]')]; let done = false;
+  const run = () => {
+    if (done || !fig.classList.contains('play')) return; done = true;
+    const t0 = performance.now();
+    const step = t => { const x = Math.min(1, (t - t0) / 1600), e = 1 - (1 - x) ** 3;
+      nums.forEach(b => { b.textContent = Math.round(+b.dataset.to * e / 1000) * 1000 === 0 ? '0' : (Math.round(+b.dataset.to * e / 1000) * 1000).toLocaleString('en-US'); });
+      if (x < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  new MutationObserver(run).observe(fig, { attributes: true, attributeFilter: ['class'] });
+});
