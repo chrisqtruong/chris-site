@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <!-- just the letters the greetings need, in serif faces that sit next to Young Serif -->
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@600&family=Noto+Serif+SC:wght@700&family=Noto+Serif+KR:wght@700&family=Noto+Naskh+Arabic:wght@700&display=swap&text=xin%20ch%C3%A0o%20ti%E1%BA%BFng%20Vi%E1%BB%87t%20%E4%BD%A0%E5%A5%BD%E4%B8%AD%E6%96%87%20%EC%95%88%EB%85%95%ED%95%9C%EA%B5%AD%EC%96%B4%20%D8%B3%D9%84%D8%A7%D9%85%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C%20%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" rel="stylesheet">
-<link rel="stylesheet" href="/assets/site.css?v=20261009090018">
+<link rel="stylesheet" href="/assets/site.css?v=20261009103545">
 <script>
   // light or dark before anything paints: the visitor's choice, else light
   /* light by day, dark by night where the visitor is (from their own clock and time zone; flipping the toggle holds for that visit) */(function () { var d = document.documentElement, m; try { localStorage.removeItem('mode'); m = sessionStorage.getItem('mode'); } catch (e) {} if (!m) { try { var n = new Date(), y = n.getFullYear(), tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '', s = /^(Australia|Antarctica)|^Pacific\/(Auckland|Chatham|Fiji)|^America\/(Santiago|Argentina|Sao_Paulo|Montevideo|Asuncion|Lima|La_Paz)|^Africa\/(Johannesburg|Maputo|Harare|Windhoek|Lusaka)/.test(tz), r = Math.PI / 180, lat = (s ? -30 : /^Europe|^Atlantic\/Reykjavik/.test(tz) ? 50 : /^Asia\/(Ho_Chi_Minh|Saigon|Bangkok|Manila|Singapore|Jakarta|Kuala_Lumpur|Kolkata|Calcutta|Colombo|Dhaka|Yangon|Phnom_Penh)|^Africa|^America\/(Mexico_City|Bogota|Caracas|Panama|Guatemala|Costa_Rica)|^Pacific\/Honolulu/.test(tz) ? 13 : 40) * r, day = (n - new Date(y, 0, 0)) / 864e5, dec = -23.44 * r * Math.cos(2 * Math.PI * (day + 10) / 365), c = (Math.sin(-0.833 * r) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec)), half = Math.acos(Math.max(-1, Math.min(1, c))) / r / 15, std = Math.max(new Date(y, 0, 1).getTimezoneOffset(), new Date(y, 6, 1).getTimezoneOffset()), noon = 12 + (std - n.getTimezoneOffset()) / 60, h = n.getHours() + n.getMinutes() / 60; m = h > noon - half && h < noon + half ? 'light' : 'dark'; } catch (e) { m = 'light'; } } d.dataset.mode = m; })();
@@ -55,7 +55,7 @@
       <a class="btn" href="https://github.com/chrisqtruong/vox2" target="_blank" rel="noopener">github</a>
     </div>
   </div>
-  <div class="shot"><video src="/assets/vox2/sweden.mp4" poster="/assets/vox2/sweden.jpg" preload="auto" width="480" height="796" data-vox-shot autoplay muted loop playsinline aria-label="Vox2 translating a sentence live as it's typed, with pronunciation, the back-translation and a 100% match score"></video></div>
+  <div class="shot"><video src="/assets/vox2/sweden.mp4" poster="/assets/vox2/sweden.jpg" preload="auto" width="480" height="796" data-vox-shot autoplay muted loop playsinline aria-label="Vox2 translating a sentence live as it’s typed, with pronunciation, the back-translation and a 100% match score"></video></div>
 </header>
 
 
@@ -78,13 +78,13 @@
         <figcaption>The lifecycle, and the work in each stage</figcaption>
         <ol>
           <li><b>Discover</b><ul><li>A teammate who only spoke Portuguese</li><li>Every message one browser tab away</li><li>No translator tells you if your meaning came through</li><li>None live on your desktop, a shortcut away, faster than switching to a browser or AI app</li></ul></li>
-          <li><b>Design</b><ul><li>Light enough to disappear</li><li>Words settle, they don’t pop</li><li>Private by default</li><li>Make it yours: 37 themes, your own shortcuts</li></ul></li>
+          <li><b>Design</b><ul><li>Stays out of the way</li><li>Words settle, they don’t pop</li><li>Private by default</li><li>Make it yours: 37 themes, your own shortcuts</li></ul></li>
           <li><b>Develop</b><ul><li>Live two-way translation</li><li>Dictation, read aloud, screen snips</li><li>The meaning check</li><li>Conversation mode, one computer between two people</li><li>A Mac version</li><li>The whole app in 133 languages, every translation checked by translating it back</li></ul></li>
           <li class="loop"><b>Test</b><ul><li>11 languages, mistakes planted on purpose</li><li>Fresh sentences every round</li><li>Real medical and legal text</li></ul></li>
           <li class="loop"><b>Iterate</b><ul><li>Targeted checks: 35% → 70%</li><li>“Can’t check” instead of a fake 100%</li><li>Units and “unless”: 48% → 71%</li></ul><em>↺ fail fast, test again</em></li>
           <li><b>Release</b><ul><li>One-click releases for Windows and Mac</li><li>Updates install themselves</li><li>Open source, every test published</li></ul></li>
         </ol>
-        <p class="cycle-next"><span>next</span> Real people, real feedback: putting it in front of people, listening, and deciding what to build from what they do.</p>
+        <p class="cycle-next"><span>next</span> Watching family and friends use it, then deciding what to build from what they do.</p>
       </figure>
     </div>
   </div>
@@ -101,7 +101,7 @@
         </div>
         <div class="detail">
           <figure class="fx fx-score" aria-hidden="true"><div class="pane"><span class="lang">Vietnamese</span><p class="out">Xin chào, tôi là Chris.</p><p class="back">↩ Hello, I’m Chris. <span class="badge"><span class="pct"></span>% match</span></p></div></figure>
-          <div><h3>a score for your meaning</h3><p>The translation is translated back into your language, with a score for how much of your meaning made it. Different wording that says the same thing still scores well.</p></div>
+          <div><h3>a score for your meaning</h3><p>Vox2 translates it back into your language and scores how much of your meaning survived. Different wording that says the same thing still scores well.</p></div>
         </div>
         <div class="detail">
           <figure class="fx fx-themes" aria-hidden="true"><div class="pane"><span class="lang">English</span><p>Is this the right train?</p></div><div class="dots"><i></i><i></i><i></i><i></i><i></i></div></figure>
@@ -162,10 +162,10 @@
           <div><dt>False alarm</dt><dd>a good translation flagged by mistake (about 7% on fresh sentences)</dd></div>
         </dl>
       </figure>
-      <p class="fine">Seven test runs and several targeted tests, 11 languages, more than 15,000 translations scored. Every run is published with its method and raw results on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
+      <p class="fine">Seven test runs and several targeted tests, 11 languages, more than 15,000 translations scored. I publish every run, with its method and raw results, on <a href="https://github.com/chrisqtruong/vox2/tree/main/docs/meaning-check-tests" target="_blank" rel="noopener">GitHub</a>.</p>
       <p>The first version caught under a third of the mistakes. I added checks for negations, numbers, pronouns and opposites, and taught it to say “can’t check” instead of guessing. On sentences nobody had seen, it now catches 70%. Earlier runs said 79%, but I’d read those sentences while tuning the checks, which is a bit like grading yourself on the practice test. So I go with 70%.</p>
       <p>Then I tried harder text: real medicine labels and legal notices, where a wrong dose or “unless” instead of “if” can hurt someone. It caught about half. I added a check for units and taught it that “unless” means “if not”, and on 144 new sentences it now catches 71%. That still isn’t good enough to call it a safety feature, so I don’t.</p>
-      <p>What I’m after is simple. When you write to your family, your in-laws or a coworker in their language, you should know they’ll understand you.</p>
+      <p>When you write to your family, your in-laws or a coworker in their language, you should know they’ll understand you.</p>
     </div>
   </div>
 
@@ -176,8 +176,8 @@
       <p>Vox2 is my closest study in usability: can someone pick it up without instructions, and does it stay quick enough to use every day? So far I’ve mostly answered that by using it myself. Next is watching other people use it.</p>
       <p>The app itself stays small. Bigger features will be add-ons you can turn on when you need them, and every change to the meaning check still gets tested and published.</p>
       <ol class="roadmap">
-        <li><span><b>Real people, real feedback.</b> Hand it to family, friends and coworkers, watch where they get stuck, and build from what they actually do.</span></li>
-          <li><span><b>Quicker, and yours.</b> More shortcuts and settings, so you can shape Vox2 around how you work and get a translation without reaching for the mouse.</span></li>
+        <li><span><b>Testing with real users.</b> Hand it to family, friends and coworkers, watch where they get stuck, and build from what they actually do.</span></li>
+          <li><span><b>More shortcuts and settings.</b> More shortcuts and settings, so you can shape Vox2 around how you work and get a translation without reaching for the mouse.</span></li>
         <li><span><b>A second opinion.</b> Translate back with a different engine, so one engine can’t agree with its own mistake, plus an optional AI double-check for the messages that matter most. That’s where the remaining misses are.</span></li>
         <li><span><b>Measured against the research.</b> Run the checks on the WMT test sets, where research systems are scored against mistakes marked by professional translators, and publish how Vox2 compares.</span></li>
       </ol>
@@ -227,9 +227,9 @@
   <small>© 2026 Chris Truong · Baltimore</small>
 </footer>
 
-<script type="module" src="/assets/vox2-charts.js?v=20261009090018"></script>
+<script type="module" src="/assets/vox2-charts.js?v=20261009103545"></script>
 <script type="module">
-import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261009090018';
+import { SITE_THEMES, applyVoxTheme, themeDots, pickedVoxTheme, showVoxShot } from '/assets/site.js?v=20261009103545';
 // starts as the card you clicked on the home page; picks are remembered for this visit
 const pick = name => { pickedVoxTheme(name); applyVoxTheme(name, 'main'); showVoxShot(name); };
 const names = SITE_THEMES;
